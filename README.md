@@ -50,7 +50,7 @@ and inspect it using
 [Camunda Cockpit](http://docs.camunda.org/latest/guides/user-guide/#cockpit).
 
 ## Environment Restrictions
-Built and tested against Camunda BPM version 7.11.0.
+Built and tested against Camunda BPM version 7.13.0.
 
 ## Known Limitations
 
