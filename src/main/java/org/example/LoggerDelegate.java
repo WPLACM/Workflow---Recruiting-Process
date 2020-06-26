@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
  * This is an easy adapter implementation 
  * illustrating how a Java Delegate can be used 
  * from within a BPMN 2.0 Service Task.
+ * TEEEST
  */
 @Component("logger")
 public class LoggerDelegate implements JavaDelegate {
