@@ -1,11 +1,12 @@
-package org.example;
+package org.example.delegate;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-public class SendConfirmationDelegate implements JavaDelegate{
+public class CheckClientEntryDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
 
+        delegateExecution.setVariable("CandidateAlreadyExists", false);
     }
 }

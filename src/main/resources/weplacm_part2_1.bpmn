@@ -5,7 +5,7 @@
     <bpmn:dataStoreReference id="DataStoreReference_1iu2h1k" name="client database" />
     <bpmn:subProcess id="Activity_1sy4usf" name="collect applications" triggeredByEvent="true">
       <bpmn:standardLoopCharacteristics />
-      <bpmn:serviceTask id="Activity_0zani0n" name="check client entry" implementation="##WebService" camunda:class="org.example.CheckClientEntryDelegate">
+      <bpmn:serviceTask id="Activity_0zani0n" name="check client entry" implementation="##WebService" camunda:class="org.example.delegate.CheckClientEntryDelegate">
         <bpmn:incoming>Flow_1kpeae7</bpmn:incoming>
         <bpmn:outgoing>Flow_178na9k</bpmn:outgoing>
         <bpmn:dataOutputAssociation id="DataOutputAssociation_1d0iejk">
@@ -17,7 +17,7 @@
         <bpmn:outgoing>Flow_1a5feb5</bpmn:outgoing>
         <bpmn:outgoing>Flow_0um83p1</bpmn:outgoing>
       </bpmn:exclusiveGateway>
-      <bpmn:serviceTask id="Activity_16z4buq" name="update database record" implementation="##WebService" camunda:class="org.example.UpdateDatabseRecordDelegate">
+      <bpmn:serviceTask id="Activity_16z4buq" name="update database record" implementation="##WebService" camunda:class="org.example.delegate.UpdateDatabseRecordDelegate">
         <bpmn:incoming>Flow_0um83p1</bpmn:incoming>
         <bpmn:outgoing>Flow_007m5uq</bpmn:outgoing>
         <bpmn:dataOutputAssociation id="DataOutputAssociation_06y2xps">
@@ -29,7 +29,7 @@
         <bpmn:incoming>Flow_007m5uq</bpmn:incoming>
         <bpmn:outgoing>Flow_0iwbb7g</bpmn:outgoing>
       </bpmn:exclusiveGateway>
-      <bpmn:serviceTask id="Activity_0unp3un" name="add to database" implementation="##WebService" camunda:class="org.example.AddToDatabaseDelegate">
+      <bpmn:serviceTask id="Activity_0unp3un" name="add to database" implementation="##WebService" camunda:class="org.example.delegate.AddToDatabaseDelegate">
         <bpmn:incoming>Flow_1a5feb5</bpmn:incoming>
         <bpmn:outgoing>Flow_1e0qp46</bpmn:outgoing>
       </bpmn:serviceTask>
@@ -37,7 +37,7 @@
         <bpmn:outgoing>Flow_1kpeae7</bpmn:outgoing>
         <bpmn:messageEventDefinition id="MessageEventDefinition_0d2slk3" messageRef="Message_0392j67" />
       </bpmn:startEvent>
-      <bpmn:sendTask id="Activity_119grod" name="send confirmation" implementation="##WebService" camunda:class="org.example.SendConfirmationDelegate">
+      <bpmn:sendTask id="Activity_119grod" name="send confirmation" implementation="##WebService" camunda:class="org.example.delegate.SendConfirmationDelegate">
         <bpmn:incoming>Flow_0iwbb7g</bpmn:incoming>
         <bpmn:outgoing>Flow_0rehre2</bpmn:outgoing>
       </bpmn:sendTask>
