@@ -1,4 +1,4 @@
-/*package org.example.entity;
+package org.example.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +17,7 @@ import java.util.List;
 public class Candidate {
     @Id
     @GeneratedValue
-    private int candidate_id; //foreign key in Job_opening_Information Table
+    private int candidate_id;
     private String first_name;
     private String last_name;
     private Date birth_date;
@@ -25,11 +25,10 @@ public class Candidate {
     private String email;
     private String skills;
 
-    //@OneToMany(targetEntity = Application.class, cascade = CascadeType.ALL)
-    //@JoinColumn(name ="ca_ap_fk", referencedColumnName = "candidate_id");
-    //private List<Application> applications;
+    @OneToMany(targetEntity = Application.class, cascade = CascadeType.ALL)
+    @JoinColumn(name ="ca_ap_fk", referencedColumnName = "candidate_id")
+    private List<Application> applicationList;
 
 }
 
- */
 

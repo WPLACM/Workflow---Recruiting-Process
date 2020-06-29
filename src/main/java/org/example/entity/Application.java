@@ -1,4 +1,4 @@
-/*package org.example.entity;
+package org.example.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +17,5 @@ import javax.persistence.Id;
 public class Application {
     @Id
     private int application_id;
+    //TO-DO: specify additional attributes
 }
-
- */

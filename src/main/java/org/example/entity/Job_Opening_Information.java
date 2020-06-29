@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.joda.time.DateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -28,4 +28,8 @@ public class Job_Opening_Information {
     private String job_location;
     private double working_hours;
     private DateTime deadline;
+
+    @OneToMany(targetEntity = Job_Profile.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "joi_jp_fk", referencedColumnName = "job_opening_information_id")
+    private List<Job_Profile> job_profileList;
 }
