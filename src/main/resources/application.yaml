@@ -1,8 +1,19 @@
 spring.datasource:
-  url: jdbc:h2:./camunda-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+  url: jdbc:h2:./camunda-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE #jdbc:h2:./camunda-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
 #shareable h2 database: jdbc:h2:./camunda-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE
   username: sa
   password: sa
+
+spring.secondDatasource:
+  driverClassName: org.h2.Driver
+  url: jdbc:h2:mem:test_mem
+  username: sa1
+  password: sa1
+spring:
+  jpa:
+    database-platform=org:
+      hibernate:
+        dialect: H2Dialect
 spring.h2.console.enabled: true
 camunda.bpm:
   admin-user:
