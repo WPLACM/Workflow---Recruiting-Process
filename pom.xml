@@ -66,6 +66,7 @@
       <version>${camundaSpringBoot.version}</version>
     </dependency>
 
+
     <dependency>
       <groupId>org.camunda.bpm.springboot</groupId>
       <artifactId>camunda-bpm-spring-boot-starter-test</artifactId>
@@ -81,6 +82,19 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+    <!-- Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate. -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+    <!-- Code generation for Getters/Setters, Constructors with @Getter @Setter @NoArgsConstructor -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.12</version>
+      <scope>provided</scope>
     </dependency>
 
     <!-- Required to use Spin dataformat support -->
