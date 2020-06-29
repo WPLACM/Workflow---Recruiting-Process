@@ -14,5 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @NoArgsConstructor
 @ToString
 public class Job_Opening_Information_Request {
+    //Data Transfer Object
     private Client_Company client_company;
 }

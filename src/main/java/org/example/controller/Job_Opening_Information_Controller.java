@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+//Example one can try out with postman
 @RestController
 public class Job_Opening_Information_Controller {
     @Autowired
