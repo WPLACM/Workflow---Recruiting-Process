@@ -1,0 +1,107 @@
+2020-06-28 00:25:02 database: wrong user or password; user: "SA"
+org.h2.message.DbException: Falscher Benutzer Name oder Passwort
+Wrong user name or password [28000-200]
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.message.DbException.get(DbException.java:170)
+	at org.h2.engine.Engine.openSession(Engine.java:131)
+	at org.h2.engine.Engine.openSession(Engine.java:192)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:171)
+	at org.h2.engine.Engine.createSession(Engine.java:166)
+	at org.h2.engine.Engine.createSession(Engine.java:29)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:340)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:152)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:309)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:289)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:785)
+	at org.h2.server.web.WebApp.login(WebApp.java:1008)
+	at org.h2.server.web.WebApp.process(WebApp.java:223)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
+	at org.h2.server.web.WebServlet.doGet(WebServlet.java:129)
+	at org.h2.server.web.WebServlet.doPost(WebServlet.java:166)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Falscher Benutzer Name oder Passwort
+Wrong user name or password [28000-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:461)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	... 55 more
+2020-06-28 00:34:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "CREATE TABLE JOB_OPENING_INFORMATION ( JOB_OPENING_INFORMATION_ID INT PRIMARY KEY, WBIG_PROCESS_ID INT, TIME_STAMP DATETIME, OPEN_SPOTS INT, SALARY VARCHAR(50), JOB_TITLE VARCHAR(50), JOB_DESCRIPTION VARCHAR(200), REQUIRED_QUALIFICATIONS VARCHAR(300), ADDITIONAL_INFORMATION VARCHAR(500), JOB_LOCATION VARCHAR(50),[*] #ATOMIZE THIS? WORKING_HOURS DOUBLE(10,2), DEADLINE DATETIME, FOREIGN KEY(CLIENT_COMPANY_ID) REFERENCES CLIENT_COMPANY(CLIENT_COMPANY_ID) )"
+Syntax error in SQL statement "CREATE TABLE JOB_OPENING_INFORMATION ( JOB_OPENING_INFORMATION_ID INT PRIMARY KEY, WBIG_PROCESS_ID INT, TIME_STAMP DATETIME, OPEN_SPOTS INT, SALARY VARCHAR(50), JOB_TITLE VARCHAR(50), JOB_DESCRIPTION VARCHAR(200), REQUIRED_QUALIFICATIONS VARCHAR(300), ADDITIONAL_INFORMATION VARCHAR(500), JOB_LOCATION VARCHAR(50),[*] #ATOMIZE THIS? WORKING_HOURS DOUBLE(10,2), DEADLINE DATETIME, FOREIGN KEY(CLIENT_COMPANY_ID) REFERENCES CLIENT_COMPANY(CLIENT_COMPANY_ID) )"; SQL statement:
+CREATE TABLE job_opening_information ( job_opening_information_id INT PRIMARY KEY, WBIG_process_ID INT, time_stamp DATETIME, open_spots INT, salary VARCHAR(50), job_title VARCHAR(50), job_description VARCHAR(200), required_qualifications VARCHAR(300), additional_information VARCHAR(500), job_location VARCHAR(50), #atomize this? working_hours DOUBLE(10,2), deadline DATETIME, FOREIGN KEY(client_company_id) REFERENCES client_company(client_company_id) ) [42000-200]
+2020-06-28 00:37:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "CLIENT_COMPANY" besteht bereits
+Table "CLIENT_COMPANY" already exists; SQL statement:
+CREATE TABLE client_company ( company_id INT PRIMARY KEY, company_name VARCHAR(40), company_description VARCHAR(300) ) [42101-200]
+2020-06-28 00:40:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "CLIENT_COMPANY" besteht bereits
+Table "CLIENT_COMPANY" already exists; SQL statement:
+CREATE TABLE client_company ( company_id INT PRIMARY KEY, company_name VARCHAR(40), company_description VARCHAR(300) ) [42101-200]
+2020-06-28 00:43:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "CLIENT_COMPANY" besteht bereits
+Table "CLIENT_COMPANY" already exists; SQL statement:
+CREATE TABLE client_company ( company_id INT PRIMARY KEY, company_name VARCHAR(40), company_description VARCHAR(300) ) [42101-200]
+2020-06-28 21:50:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "CLIENT_COMPANY" besteht bereits
+Table "CLIENT_COMPANY" already exists; SQL statement:
+CREATE TABLE client_company ( company_id INT PRIMARY KEY, company_name VARCHAR(40), company_description VARCHAR(300) ) [42101-200]
+2020-06-28 21:54:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "DROP TABLE IF EXISTS JOB PROFILE[*]"
+Syntax error in SQL statement "DROP TABLE IF EXISTS JOB PROFILE[*]"; SQL statement:
+DROP TABLE IF EXISTS job profile [42000-200]
+2020-06-28 21:56:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "CREATE TABLE JOB_OPENING_INFORMATION ( JOB_OPENING_INFORMATION_ID INT PRIMARY KEY, WBIG_PROCESS_ID INT, TIME_STAMP DATETIME, OPEN_SPOTS INT, SALARY VARCHAR(50), JOB_TITLE VARCHAR(50), JOB_DESCRIPTION VARCHAR(200), REQUIRED_QUALIFICATIONS VARCHAR(300), ADDITIONAL_INFORMATION VARCHAR(500), JOB_LOCATION VARCHAR(50), WORKING_HOURS DOUBLE(10,[*]2), DEADLINE DATETIME, FOREIGN KEY(CLIENT_COMPANY_ID) REFERENCES CLIENT_COMPANY(CLIENT_COMPANY_ID) )"; erwartet ")"
+Syntax error in SQL statement "CREATE TABLE JOB_OPENING_INFORMATION ( JOB_OPENING_INFORMATION_ID INT PRIMARY KEY, WBIG_PROCESS_ID INT, TIME_STAMP DATETIME, OPEN_SPOTS INT, SALARY VARCHAR(50), JOB_TITLE VARCHAR(50), JOB_DESCRIPTION VARCHAR(200), REQUIRED_QUALIFICATIONS VARCHAR(300), ADDITIONAL_INFORMATION VARCHAR(500), JOB_LOCATION VARCHAR(50), WORKING_HOURS DOUBLE(10,[*]2), DEADLINE DATETIME, FOREIGN KEY(CLIENT_COMPANY_ID) REFERENCES CLIENT_COMPANY(CLIENT_COMPANY_ID) )"; expected ")"; SQL statement:
+CREATE TABLE job_opening_information ( job_opening_information_id INT PRIMARY KEY, WBIG_process_ID INT, time_stamp DATETIME, open_spots INT, salary VARCHAR(50), job_title VARCHAR(50), job_description VARCHAR(200), required_qualifications VARCHAR(300), additional_information VARCHAR(500), job_location VARCHAR(50), working_hours DOUBLE(10,2), deadline DATETIME, FOREIGN KEY(client_company_id) REFERENCES client_company(client_company_id) ) [42001-200]
+2020-06-28 22:00:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "CREATE TABLE JOB_OPENING_INFORMATION ( JOB_OPENING_INFORMATION_ID INT PRIMARY KEY, WBIG_PROCESS_ID INT, TIME_STAMP DATETIME, OPEN_SPOTS INT, SALARY VARCHAR(50), JOB_TITLE VARCHAR(50), JOB_DESCRIPTION VARCHAR(200), REQUIRED_QUALIFICATIONS VARCHAR(300), ADDITIONAL_INFORMATION VARCHAR(500), JOB_LOCATION VARCHAR(50), WORKING_HOURS DOUBLE(10,[*]2), DEADLINE DATETIME, FOREIGN KEY(CLIENT_COMPANY_ID) REFERENCES CLIENT_COMPANY(CLIENT_COMPANY_ID) )"; erwartet ")"
+Syntax error in SQL statement "CREATE TABLE JOB_OPENING_INFORMATION ( JOB_OPENING_INFORMATION_ID INT PRIMARY KEY, WBIG_PROCESS_ID INT, TIME_STAMP DATETIME, OPEN_SPOTS INT, SALARY VARCHAR(50), JOB_TITLE VARCHAR(50), JOB_DESCRIPTION VARCHAR(200), REQUIRED_QUALIFICATIONS VARCHAR(300), ADDITIONAL_INFORMATION VARCHAR(500), JOB_LOCATION VARCHAR(50), WORKING_HOURS DOUBLE(10,[*]2), DEADLINE DATETIME, FOREIGN KEY(CLIENT_COMPANY_ID) REFERENCES CLIENT_COMPANY(CLIENT_COMPANY_ID) )"; expected ")"; SQL statement:
+CREATE TABLE job_opening_information ( job_opening_information_id INT PRIMARY KEY, WBIG_process_ID INT, time_stamp DATETIME, open_spots INT, salary VARCHAR(50), job_title VARCHAR(50), job_description VARCHAR(200), required_qualifications VARCHAR(300), additional_information VARCHAR(500), job_location VARCHAR(50), working_hours DOUBLE(10,2), deadline DATETIME, FOREIGN KEY(client_company_id) REFERENCES client_company(client_company_id) ) [42001-200]
+2020-06-29 11:07:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "CREATE TABLE JOB_OPENING_INFORMATION ( JOB_OPENING_INFORMATION_ID INT PRIMARY KEY, WBIG_PROCESS_ID INT, TIME_STAMP DATETIME, OPEN_SPOTS INT, SALARY VARCHAR(50), JOB_TITLE VARCHAR(50), JOB_DESCRIPTION VARCHAR(200), REQUIRED_QUALIFICATIONS VARCHAR(300), ADDITIONAL_INFORMATION VARCHAR(500), JOB_LOCATION VARCHAR(50), WORKING_HOURS DOUBLE(10,[*]2), DEADLINE DATETIME, FOREIGN KEY(COMPANY_ID) REFERENCES CLIENT_COMPANY(COMPANY_ID) )"; erwartet ")"
+Syntax error in SQL statement "CREATE TABLE JOB_OPENING_INFORMATION ( JOB_OPENING_INFORMATION_ID INT PRIMARY KEY, WBIG_PROCESS_ID INT, TIME_STAMP DATETIME, OPEN_SPOTS INT, SALARY VARCHAR(50), JOB_TITLE VARCHAR(50), JOB_DESCRIPTION VARCHAR(200), REQUIRED_QUALIFICATIONS VARCHAR(300), ADDITIONAL_INFORMATION VARCHAR(500), JOB_LOCATION VARCHAR(50), WORKING_HOURS DOUBLE(10,[*]2), DEADLINE DATETIME, FOREIGN KEY(COMPANY_ID) REFERENCES CLIENT_COMPANY(COMPANY_ID) )"; expected ")"; SQL statement:
+CREATE TABLE job_opening_information ( job_opening_information_id INT PRIMARY KEY, WBIG_process_ID INT, time_stamp DATETIME, open_spots INT, salary VARCHAR(50), job_title VARCHAR(50), job_description VARCHAR(200), required_qualifications VARCHAR(300), additional_information VARCHAR(500), job_location VARCHAR(50), working_hours DOUBLE(10,2), deadline DATETIME, FOREIGN KEY(company_id) REFERENCES client_company(company_id) ) [42001-200]
+2020-06-29 11:17:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "CREATE TABLE JOB_OPENING_INFORMATION ( JOB_OPENING_INFORMATION_ID INT PRIMARY KEY, WBIG_PROCESS_ID INT, TIME_STAMP DATETIME, OPEN_SPOTS INT, SALARY VARCHAR(50), JOB_TITLE VARCHAR(50), JOB_DESCRIPTION VARCHAR(200), REQUIRED_QUALIFICATIONS VARCHAR(300), ADDITIONAL_INFORMATION VARCHAR(500), JOB_LOCATION VARCHAR(50), WORKING_HOURS DOUBLE(10,[*]2), DEADLINE DATETIME, FOREIGN KEY(COMPANY_ID) REFERENCES CLIENT_COMPANY(COMPANY_ID) )"; erwartet ")"
+Syntax error in SQL statement "CREATE TABLE JOB_OPENING_INFORMATION ( JOB_OPENING_INFORMATION_ID INT PRIMARY KEY, WBIG_PROCESS_ID INT, TIME_STAMP DATETIME, OPEN_SPOTS INT, SALARY VARCHAR(50), JOB_TITLE VARCHAR(50), JOB_DESCRIPTION VARCHAR(200), REQUIRED_QUALIFICATIONS VARCHAR(300), ADDITIONAL_INFORMATION VARCHAR(500), JOB_LOCATION VARCHAR(50), WORKING_HOURS DOUBLE(10,[*]2), DEADLINE DATETIME, FOREIGN KEY(COMPANY_ID) REFERENCES CLIENT_COMPANY(COMPANY_ID) )"; expected ")"; SQL statement:
+CREATE TABLE job_opening_information ( job_opening_information_id INT PRIMARY KEY, WBIG_process_ID INT, time_stamp DATETIME, open_spots INT, salary VARCHAR(50), job_title VARCHAR(50), job_description VARCHAR(200), required_qualifications VARCHAR(300), additional_information VARCHAR(500), job_location VARCHAR(50), working_hours DOUBLE(10,2), deadline DATETIME, FOREIGN KEY(company_id) REFERENCES client_company(company_id) ) [42001-200]
+2020-06-29 11:18:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "CREATE TABLE JOB_OPENING_INFORMATION ( JOB_OPENING_INFORMATION_ID INT PRIMARY KEY, WBIG_PROCESS_ID INT, TIME_STAMP TIMESTAMP , OPEN_SPOTS INT, SALARY VARCHAR(50), JOB_TITLE VARCHAR(50), JOB_DESCRIPTION VARCHAR(200), REQUIRED_QUALIFICATIONS VARCHAR(300), ADDITIONAL_INFORMATION VARCHAR(500), JOB_LOCATION VARCHAR(50), WORKING_HOURS DOUBLE(10,[*]2), DEADLINE DATE, FOREIGN KEY(COMPANY_ID) REFERENCES CLIENT_COMPANY(COMPANY_ID) )"; erwartet ")"
+Syntax error in SQL statement "CREATE TABLE JOB_OPENING_INFORMATION ( JOB_OPENING_INFORMATION_ID INT PRIMARY KEY, WBIG_PROCESS_ID INT, TIME_STAMP TIMESTAMP , OPEN_SPOTS INT, SALARY VARCHAR(50), JOB_TITLE VARCHAR(50), JOB_DESCRIPTION VARCHAR(200), REQUIRED_QUALIFICATIONS VARCHAR(300), ADDITIONAL_INFORMATION VARCHAR(500), JOB_LOCATION VARCHAR(50), WORKING_HOURS DOUBLE(10,[*]2), DEADLINE DATE, FOREIGN KEY(COMPANY_ID) REFERENCES CLIENT_COMPANY(COMPANY_ID) )"; expected ")"; SQL statement:
+CREATE TABLE job_opening_information ( job_opening_information_id INT PRIMARY KEY, WBIG_process_ID INT, time_stamp TIMESTAMP , open_spots INT, salary VARCHAR(50), job_title VARCHAR(50), job_description VARCHAR(200), required_qualifications VARCHAR(300), additional_information VARCHAR(500), job_location VARCHAR(50), working_hours DOUBLE(10,2), deadline DATE, FOREIGN KEY(company_id) REFERENCES client_company(company_id) ) [42001-200]
