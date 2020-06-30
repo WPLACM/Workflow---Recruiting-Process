@@ -234,6 +234,7 @@
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
       </extensionElements>
       <categoryValueRef>sid-4af92723-f257-465a-ae6e-094b816a5457</categoryValueRef>
+      <conditionExpression xsi:type="tFormalExpression">#{number_of_dunns==3}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-D328D853-EE63-4929-B1D1-254C692959A3" name="" sourceRef="sid-1FD8BCF3-9D04-4BA4-B9CF-E75E5A7774BB" targetRef="sid-E04EEDED-7BDB-43E8-ADC2-5AA958FBEFEB">
       <extensionElements>
@@ -250,6 +251,7 @@
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
         <signavio:signavioLabel align="center" ref="text_name" valign="middle" x="4596.811257922441" y="706.7302858415723" />
       </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression">#{placementFin==true}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-0E7A68F0-737F-4F54-A32C-C8D6BFEAD1FA" name="" sourceRef="sid-3B9107C0-9FB1-49EA-810C-3C32295C8798" targetRef="sid-7A1BCD87-70A8-4C4C-8281-31EE15A7ED51">
       <extensionElements>
@@ -279,6 +281,7 @@
         <signavio:signavioLabel align="left" distance="8.186602" from="1" orientation="ll" ref="text_name" to="2" valign="bottom" x="4104.196509213317" y="780.4991017844407" />
       </extensionElements>
       <categoryValueRef>sid-4af92723-f257-465a-ae6e-094b816a5457</categoryValueRef>
+      <conditionExpression xsi:type="tFormalExpression">#{number_of_dunns!=3}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-4416B73C-3AC6-455F-9F79-0BD43B4A579F" name="" sourceRef="sid-5FE2ABFC-4D34-428F-8D5C-7B4AD9B2C72B" targetRef="sid-D0D109C3-019C-40F0-BD0A-F4F5D0081792">
       <extensionElements>
@@ -312,6 +315,7 @@
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
         <signavio:signavioLabel align="left" distance="-2.6875" from="1" orientation="ll" ref="text_name" to="2" valign="bottom" x="4431.788216711263" y="854.0000000000001" />
       </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression">#{placementFin==false}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-72CF1413-B068-4CFF-9B50-50DBBA6F84F9" name="" sourceRef="sid-2E24762A-C42F-444A-BABE-C7BD591F7F6A" targetRef="sid-FF1AA10F-B92A-45D9-97C7-E7F18D270022">
       <extensionElements>
@@ -540,7 +544,7 @@
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
       </extensionElements>
     </dataStoreReference>
-    <scriptTask id="sid-06AEC8D0-6104-4F48-90E8-39D238608907" name="prepare invoice" scriptFormat="">
+    <scriptTask id="sid-06AEC8D0-6104-4F48-90E8-39D238608907" name="prepare invoice" scriptFormat="JavaScript">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
@@ -553,9 +557,11 @@
       <categoryValueRef>sid-4af92723-f257-465a-ae6e-094b816a5457</categoryValueRef>
       <incoming>sid-C18551ED-BE29-46CF-B2ED-CF6C2468A815</incoming>
       <outgoing>sid-D1D152F8-8936-4831-BA69-06F1065C67A9</outgoing>
-      <script></script>
+      <script>execution.setVariable("net", 5*150.3);
+execution.setVariable("tax", 5*150.3*0.19);
+execution.setVariable("gross", 5*150.3+5*150.3*0.19);</script>
     </scriptTask>
-    <sendTask id="sid-5139464E-954F-4985-86F9-A5DD194966F3" name="Take legal action" implementation="##WebService">
+    <sendTask id="sid-5139464E-954F-4985-86F9-A5DD194966F3" name="Take legal action" implementation="##WebService" camunda:class="org.example.delegate.TakeLegalActionDelegate">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
@@ -577,7 +583,7 @@
       </extensionElements>
       <incoming>sid-1671590C-D538-496C-BEAE-1C5BD3B87FBF</incoming>
     </endEvent>
-    <scriptTask id="sid-3B9107C0-9FB1-49EA-810C-3C32295C8798" name="determine placement status" scriptFormat="">
+    <scriptTask id="sid-3B9107C0-9FB1-49EA-810C-3C32295C8798" name="determine placement status" scriptFormat="JavaScript">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
@@ -590,9 +596,12 @@
       <categoryValueRef>sid-4af92723-f257-465a-ae6e-094b816a5457</categoryValueRef>
       <incoming>sid-E7BF0AC5-776C-4A5C-8314-5EC3EAE9E6AF</incoming>
       <outgoing>sid-0E7A68F0-737F-4F54-A32C-C8D6BFEAD1FA</outgoing>
-      <script></script>
+      <script>execution.setVariable("open_spots", 5);
+execution.setVariable("number_of_acceptances", 4);
+execution.setVariable("open_spots", 5-4);
+execution.setVariable("placementFin", false);</script>
     </scriptTask>
-    <serviceTask id="sid-7478CBC7-5A2E-45B2-90CC-CB9FFAB4084F" name="debit collection" implementation="##WebService">
+    <serviceTask id="sid-7478CBC7-5A2E-45B2-90CC-CB9FFAB4084F" name="debit collection" implementation="##WebService" camunda:class="org.example.delegate.DebitCollectionDelegate">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
@@ -634,7 +643,9 @@
       <categoryValueRef>sid-4af92723-f257-465a-ae6e-094b816a5457</categoryValueRef>
       <incoming>sid-3F5E9A76-4C15-4C87-B244-0C5A2BDB3C83</incoming>
       <outgoing>sid-6FACBD2B-953C-4F6A-B9AF-DCE91DF6D1FD</outgoing>
-      <timerEventDefinition id="sid-29d4f657-5afc-4821-ba51-27a0aec2b5f0" />
+      <timerEventDefinition id="sid-29d4f657-5afc-4821-ba51-27a0aec2b5f0">
+        <timeDuration xsi:type="tFormalExpression">P14D</timeDuration>
+      </timerEventDefinition>
     </intermediateCatchEvent>
     <intermediateCatchEvent id="sid-B3DF4BE3-A6EA-4798-A140-309A4AEAEF6E" name="debit authorization received">
       <extensionElements>
@@ -643,7 +654,7 @@
       </extensionElements>
       <incoming>sid-9F75B30C-7C3C-468B-AD79-2C761A03B82A</incoming>
       <outgoing>sid-12474EF7-7782-44A0-B2F5-13BFC8E087C0</outgoing>
-      <messageEventDefinition id="sid-7ff46241-f251-418a-8d48-c41ce8ae5857" />
+      <messageEventDefinition id="sid-7ff46241-f251-418a-8d48-c41ce8ae5857" messageRef="Message_19oqz93" />
     </intermediateCatchEvent>
     <eventBasedGateway id="sid-FF1AA10F-B92A-45D9-97C7-E7F18D270022" name="" gatewayDirection="Mixed">
       <extensionElements>
@@ -656,7 +667,7 @@
       <outgoing>sid-9F75B30C-7C3C-468B-AD79-2C761A03B82A</outgoing>
       <outgoing>sid-3F5E9A76-4C15-4C87-B244-0C5A2BDB3C83</outgoing>
     </eventBasedGateway>
-    <sendTask id="sid-1313F0D1-6390-4127-9F54-7824A7BC8BDE" name="send dunn" implementation="##WebService">
+    <sendTask id="sid-1313F0D1-6390-4127-9F54-7824A7BC8BDE" name="send dunn" implementation="##WebService" camunda:class="org.example.delegate.SendDunnDelegate">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
@@ -670,7 +681,7 @@
       <incoming>sid-A1B388A4-3A01-48BB-810E-F16D774C4C03</incoming>
       <outgoing>sid-CB0D4779-0D09-4BE2-BA15-63D43148C8FB</outgoing>
     </sendTask>
-    <sendTask id="sid-2E24762A-C42F-444A-BABE-C7BD591F7F6A" name="send invoice" implementation="##WebService">
+    <sendTask id="sid-2E24762A-C42F-444A-BABE-C7BD591F7F6A" name="send invoice" implementation="##WebService" camunda:class="org.example.delegate.SendInvoiceDelegate">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
@@ -691,7 +702,7 @@
       </extensionElements>
       <incoming>sid-4416B73C-3AC6-455F-9F79-0BD43B4A579F</incoming>
       <outgoing>sid-E31C36D5-AB34-411A-B84B-5AA21096568B</outgoing>
-      <messageEventDefinition id="sid-94ee041e-c0b3-46b3-8f73-7bb590175933" />
+      <messageEventDefinition id="sid-94ee041e-c0b3-46b3-8f73-7bb590175933" messageRef="Message_0nut5me" />
     </intermediateCatchEvent>
     <endEvent id="sid-1E7589CF-A4B3-4160-B0F3-2015C9679644" name="">
       <extensionElements>
@@ -717,7 +728,7 @@
       </extensionElements>
       <incoming>sid-D93A3211-083D-464F-B26A-4DA7D606E39D</incoming>
       <outgoing>sid-C18551ED-BE29-46CF-B2ED-CF6C2468A815</outgoing>
-      <messageEventDefinition id="sid-370e5266-f589-486f-9ff2-65d54519e952" />
+      <messageEventDefinition id="sid-370e5266-f589-486f-9ff2-65d54519e952" messageRef="Message_0sghar3" />
     </intermediateCatchEvent>
     <exclusiveGateway id="sid-7A1BCD87-70A8-4C4C-8281-31EE15A7ED51" name="" gatewayDirection="Diverging">
       <extensionElements>
@@ -736,7 +747,7 @@
       </extensionElements>
       <incoming>sid-83DDC1D5-1DB9-45A8-94C1-86B0088399DC</incoming>
       <outgoing>sid-7676CC50-E634-4AAB-B02A-8B7871BC5D78</outgoing>
-      <messageEventDefinition id="sid-5973acec-339e-4b9c-b718-f41fc1c9f03c" />
+      <messageEventDefinition id="sid-5973acec-339e-4b9c-b718-f41fc1c9f03c" messageRef="Message_0gs6jpb" />
     </intermediateCatchEvent>
     <eventBasedGateway id="sid-5FE2ABFC-4D34-428F-8D5C-7B4AD9B2C72B" name="" gatewayDirection="Diverging">
       <extensionElements>
@@ -1249,6 +1260,10 @@ execution.setVariable("cvrating", new);</script>
     </laneSet>
   </process>
   <message id="Message_1ehchp3" name="Candidate Application" />
+  <message id="Message_19oqz93" name="DebitAuthorizationMessage" />
+  <message id="Message_0gs6jpb" name="MoreCandidatesMessage" />
+  <message id="Message_0nut5me" name="OrderCanceledMessage" />
+  <message id="Message_0sghar3" name="CandidatesPlacedMessage" />
   <bpmndi:BPMNDiagram id="sid-309d46ac-0b0a-4334-b79c-cd4b7d3be6d1">
     <bpmndi:BPMNPlane id="sid-9c1aea64-662e-41f6-a2d5-e4bc514c67b9" bpmnElement="sid-8dcc8e95-42e1-4922-a1c0-790ce624206d">
       <bpmndi:BPMNShape id="sid-5946839D-91C5-4774-B24F-69A786FDE6BA_gui" bpmnElement="sid-5946839D-91C5-4774-B24F-69A786FDE6BA" isHorizontal="true">
