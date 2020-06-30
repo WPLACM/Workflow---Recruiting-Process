@@ -33,10 +33,6 @@
         <bpmn:incoming>Flow_1a5feb5</bpmn:incoming>
         <bpmn:outgoing>Flow_1e0qp46</bpmn:outgoing>
       </bpmn:serviceTask>
-      <bpmn:startEvent id="Event_1cksunz" name="application received">
-        <bpmn:outgoing>Flow_1kpeae7</bpmn:outgoing>
-        <bpmn:messageEventDefinition id="MessageEventDefinition_0d2slk3" messageRef="Message_0392j67" />
-      </bpmn:startEvent>
       <bpmn:sendTask id="Activity_119grod" name="send confirmation" implementation="##WebService" camunda:class="org.example.delegate.SendConfirmationDelegate">
         <bpmn:incoming>Flow_0iwbb7g</bpmn:incoming>
         <bpmn:outgoing>Flow_0rehre2</bpmn:outgoing>
@@ -45,7 +41,6 @@
         <bpmn:incoming>Flow_0rehre2</bpmn:incoming>
       </bpmn:endEvent>
       <bpmn:sequenceFlow id="Flow_178na9k" name="" sourceRef="Activity_0zani0n" targetRef="Gateway_0dkrqa7" />
-      <bpmn:sequenceFlow id="Flow_1kpeae7" name="" sourceRef="Event_1cksunz" targetRef="Activity_0zani0n" />
       <bpmn:sequenceFlow id="Flow_0iwbb7g" name="" sourceRef="Gateway_1oocib5" targetRef="Activity_119grod" />
       <bpmn:sequenceFlow id="Flow_0rehre2" name="" sourceRef="Activity_119grod" targetRef="Event_10hzdq7" />
       <bpmn:sequenceFlow id="Flow_1a5feb5" name="no" sourceRef="Gateway_0dkrqa7" targetRef="Activity_0unp3un">
@@ -56,6 +51,11 @@
       </bpmn:sequenceFlow>
       <bpmn:sequenceFlow id="Flow_1e0qp46" name="" sourceRef="Activity_0unp3un" targetRef="Gateway_1oocib5" />
       <bpmn:sequenceFlow id="Flow_007m5uq" name="" sourceRef="Activity_16z4buq" targetRef="Gateway_1oocib5" />
+      <bpmn:startEvent id="Event_1cksunz" name="application received">
+        <bpmn:outgoing>Flow_1kpeae7</bpmn:outgoing>
+        <bpmn:messageEventDefinition id="MessageEventDefinition_0d2slk3" messageRef="Message_0392j67" />
+      </bpmn:startEvent>
+      <bpmn:sequenceFlow id="Flow_1kpeae7" name="" sourceRef="Event_1cksunz" targetRef="Activity_0zani0n" />
     </bpmn:subProcess>
     <bpmn:boundaryEvent id="Event_18cn65p" name="Deadline exceeded" cancelActivity="false" attachedToRef="Activity_1sy4usf">
       <bpmn:timerEventDefinition id="TimerEventDefinition_1padunn">

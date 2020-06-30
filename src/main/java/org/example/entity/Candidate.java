@@ -29,6 +29,13 @@ public class Candidate {
     @JoinColumn(name ="ca_ap_fk", referencedColumnName = "candidate_id")
     private List<Application> applicationList;
 
+    public Candidate(String first_name, String last_name, Date birth_date, String sex, String email){
+        this.first_name = first_name;
+        this.last_name  = last_name;
+        this.birth_date = birth_date;
+        this.sex        = sex;
+        this.email      = email;
+    }
 }
 
 
