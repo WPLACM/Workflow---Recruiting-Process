@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 public class Candidate {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int candidate_id;
     private String first_name;
     private String last_name;
