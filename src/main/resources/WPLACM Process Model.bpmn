@@ -787,7 +787,7 @@
       <outgoing>sid-4F78A2E9-A974-4310-B2B2-21FF1CF46A88</outgoing>
       <multiInstanceLoopCharacteristics id="sid-527dd549-eaf7-4be8-a8e2-f8125ebd4de2" />
     </manualTask>
-    <businessRuleTask id="sid-B4C31733-DF10-40C6-8D46-CE9515284024" name="select CV&#39;s" implementation="##WebService" camunda:class="org.example.delegate.SelectCVs">
+    <businessRuleTask id="sid-B4C31733-DF10-40C6-8D46-CE9515284024" name="select CV&#39;s" implementation="##WebService" camunda:class="org.example.delegate.SelectCVsDelegate">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
@@ -974,7 +974,7 @@ execution.setVariable("cvrating", new);</script>
         <targetRef>Property_08bcc8t</targetRef>
       </dataInputAssociation>
     </userTask>
-    <sendTask id="sid-7B2672DE-9A58-4E88-9646-623C55262664" name="send final selection" implementation="##WebService" camunda:class="org.example.delegate.SendFinalSelection">
+    <sendTask id="sid-7B2672DE-9A58-4E88-9646-623C55262664" name="send final selection" implementation="##WebService" camunda:class="org.example.delegate.SendFinalSelectionDelegate">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
