@@ -23,7 +23,7 @@
   <message id="sid-B0BC6897-F406-4C30-8C6F-1E39D4F0F0E0" name="partner &#10;information&#10;" />
   <message id="sid-B1A2D570-80E7-4A43-9C6A-10A74A543BA3" name="standardized&#10; application" />
   <message id="sid-A9755004-C5D4-4589-BBD5-1E0AFB9BDF04" name="Job opening &#10;mail" />
-  <collaboration id="sid-8dcc8e95-42e1-4922-a1c0-790ce624206d">
+  <collaboration id="wplacm_id">
     <extensionElements>
       <signavio:signavioDiagramMetaData metaKey="prozessreifegrad" metaValue="" />
       <signavio:signavioDiagramMetaData metaKey="iso9000ff" metaValue="" />
@@ -193,7 +193,6 @@
         <flowNodeRef>sid-0C9FA878-B6A0-487D-AE78-59E914AC9B82</flowNodeRef>
         <flowNodeRef>sid-E04EEDED-7BDB-43E8-ADC2-5AA958FBEFEB</flowNodeRef>
         <flowNodeRef>sid-247120BC-C3E7-4717-8214-B59155B5D7AD</flowNodeRef>
-        <flowNodeRef>sid-0B6B92CF-6B16-48A5-9BE2-0803E7310A20</flowNodeRef>
         <flowNodeRef>sid-3FE7F46D-6BDC-4882-AE90-A825FA1F2F53</flowNodeRef>
         <flowNodeRef>sid-B4C31733-DF10-40C6-8D46-CE9515284024</flowNodeRef>
         <flowNodeRef>sid-B11765A0-D66B-4C18-801A-C08847CFC1D8</flowNodeRef>
@@ -202,6 +201,7 @@
         <flowNodeRef>sid-9E056D0C-0F42-40F0-9F6B-65010965EE89</flowNodeRef>
         <flowNodeRef>sid-6D98E17C-9555-479D-86BC-B7EF17602B95</flowNodeRef>
         <flowNodeRef>sid-3C0CB5FA-74BA-4332-8FEF-0F198F80D562</flowNodeRef>
+        <flowNodeRef>sid-0B6B92CF-6B16-48A5-9BE2-0803E7310A20</flowNodeRef>
       </lane>
       <lane id="sid-2740A609-D5B6-431C-BD1A-9A60001D1BE5" name="Management">
         <extensionElements>
@@ -830,47 +830,6 @@ execution.setVariable("placementFin", false);</script>
       <outgoing>sid-65F5B595-4AB8-48E3-A9D4-7AC158655CA1</outgoing>
       <outgoing>sid-5E652E1E-BC65-41E0-B8F3-40182603B864</outgoing>
     </parallelGateway>
-    <userTask id="sid-0B6B92CF-6B16-48A5-9BE2-0803E7310A20" name="publish job opening" implementation="##WebService">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
-        <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
-        <signavio:signavioMetaData metaKey="risikenundkontrollen" metaValue="" />
-        <signavio:signavioMetaData metaKey="erteiltfreigabe" metaValue="" />
-        <signavio:signavioMetaData metaKey="wirdkonsultiert" metaValue="[]" />
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
-        <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
-      </extensionElements>
-      <categoryValueRef>sid-13b1e73f-3078-4892-a474-acac8a6f058c</categoryValueRef>
-      <incoming>sid-624BA53C-DAC3-437D-81A6-71B328D5A2CB</incoming>
-      <outgoing>sid-A3DFE089-BA04-4CB7-990B-8525CEAEE7C2</outgoing>
-      <ioSpecification id="sid-4113a89d-8981-484f-ae83-6ee5dcf15630">
-        <dataInput id="sid-0a4c7366-7c09-41cc-8f66-49c1364f821f" />
-        <dataInput id="sid-d4e351ac-38b7-42ea-b948-5578cf35d388" />
-        <inputSet id="sid-c47a52cb-1461-4671-b94a-d12fa5f8cb5d" name="DefaultInputSet">
-          <dataInputRefs>sid-0a4c7366-7c09-41cc-8f66-49c1364f821f</dataInputRefs>
-          <dataInputRefs>sid-d4e351ac-38b7-42ea-b948-5578cf35d388</dataInputRefs>
-          <outputSetRefs>sid-f3dafe38-130b-4547-8566-7e2f613cf579</outputSetRefs>
-        </inputSet>
-        <outputSet id="sid-f3dafe38-130b-4547-8566-7e2f613cf579" name="DefaultOutputSet">
-          <inputSetRefs>sid-c47a52cb-1461-4671-b94a-d12fa5f8cb5d</inputSetRefs>
-        </outputSet>
-      </ioSpecification>
-      <property id="Property_0aifrli" name="__targetRef_placeholder" />
-      <dataInputAssociation id="sid-BDB36FC4-0477-42C6-BD36-EAFC019456AE">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
-        </extensionElements>
-        <sourceRef>sid-4AB5C264-A4EC-4BBB-8CF6-E09EB1199E08</sourceRef>
-        <targetRef>Property_0aifrli</targetRef>
-      </dataInputAssociation>
-      <dataInputAssociation id="sid-9B90372A-8294-4605-BD61-3178D958FD66">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
-        </extensionElements>
-        <sourceRef>sid-952A419B-0183-4242-8603-4292F19F4BD7</sourceRef>
-        <targetRef>Property_0aifrli</targetRef>
-      </dataInputAssociation>
-    </userTask>
     <parallelGateway id="sid-247120BC-C3E7-4717-8214-B59155B5D7AD" name="" gatewayDirection="Converging">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
@@ -963,6 +922,9 @@ execution.setVariable("cvrating", new);</script>
         <signavio:signavioMetaData metaKey="wirdkonsultiert" metaValue="[]" />
         <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
         <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
+        <camunda:formData>
+          <camunda:formField id="JobProfile" />
+        </camunda:formData>
       </extensionElements>
       <incoming>sid-5C9F4FE2-7019-411C-913D-6748BF765B28</incoming>
       <outgoing>sid-01B67229-F517-4B7D-858D-3D2555770D52</outgoing>
@@ -1225,6 +1187,31 @@ execution.setVariable("cvrating", new);</script>
       <outgoing>sid-9EA1DAA7-0674-4034-8781-3464A54B3013</outgoing>
       <messageEventDefinition id="sid-3d077e23-a8ce-4031-abba-b86b365799d7" />
     </startEvent>
+    <serviceTask id="sid-0B6B92CF-6B16-48A5-9BE2-0803E7310A20" name="publish job opening" implementation="##WebService" camunda:class="org.example.delegate.PublishJobOpeningDelegate">
+      <incoming>sid-624BA53C-DAC3-437D-81A6-71B328D5A2CB</incoming>
+      <outgoing>sid-A3DFE089-BA04-4CB7-990B-8525CEAEE7C2</outgoing>
+      <ioSpecification>
+        <dataInput />
+        <dataInput />
+        <inputSet name="DefaultInputSet" />
+        <outputSet name="DefaultOutputSet" />
+      </ioSpecification>
+      <property id="Property_10emlwa" name="__targetRef_placeholder" />
+      <dataInputAssociation id="sid-BDB36FC4-0477-42C6-BD36-EAFC019456AE">
+        <extensionElements>
+          <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
+        </extensionElements>
+        <sourceRef>sid-4AB5C264-A4EC-4BBB-8CF6-E09EB1199E08</sourceRef>
+        <targetRef>Property_10emlwa</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation id="sid-9B90372A-8294-4605-BD61-3178D958FD66">
+        <extensionElements>
+          <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
+        </extensionElements>
+        <sourceRef>sid-952A419B-0183-4242-8603-4292F19F4BD7</sourceRef>
+        <targetRef>Property_10emlwa</targetRef>
+      </dataInputAssociation>
+    </serviceTask>
   </process>
   <process id="sid-4CF5718C-2DBA-46CD-8B2B-0D0FC88A760A" name="WBIG" processType="None" isClosed="false" isExecutable="false">
     <extensionElements />
@@ -1265,7 +1252,7 @@ execution.setVariable("cvrating", new);</script>
   <message id="Message_0nut5me" name="OrderCanceledMessage" />
   <message id="Message_0sghar3" name="CandidatesPlacedMessage" />
   <bpmndi:BPMNDiagram id="sid-309d46ac-0b0a-4334-b79c-cd4b7d3be6d1">
-    <bpmndi:BPMNPlane id="sid-9c1aea64-662e-41f6-a2d5-e4bc514c67b9" bpmnElement="sid-8dcc8e95-42e1-4922-a1c0-790ce624206d">
+    <bpmndi:BPMNPlane id="sid-9c1aea64-662e-41f6-a2d5-e4bc514c67b9" bpmnElement="wplacm_id">
       <bpmndi:BPMNShape id="sid-5946839D-91C5-4774-B24F-69A786FDE6BA_gui" bpmnElement="sid-5946839D-91C5-4774-B24F-69A786FDE6BA" isHorizontal="true">
         <omgdc:Bounds x="158" y="245" width="4714" height="931" />
         <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
@@ -1315,9 +1302,9 @@ execution.setVariable("cvrating", new);</script>
         <omgdi:waypoint x="1008.3112489556847" y="1019.850502921413" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-624BA53C-DAC3-437D-81A6-71B328D5A2CB_gui" bpmnElement="sid-624BA53C-DAC3-437D-81A6-71B328D5A2CB">
-        <omgdi:waypoint x="968.9663180499912" y="930.040523060271" />
-        <omgdi:waypoint x="968.9663180499911" y="879.9805197101005" />
-        <omgdi:waypoint x="1153.3112489556847" y="879.9805197101005" />
+        <omgdi:waypoint x="969" y="931" />
+        <omgdi:waypoint x="968.9663180499911" y="880" />
+        <omgdi:waypoint x="1153" y="880" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-C1A26EB1-505A-4C2A-A8DD-27E330B86C51_gui" bpmnElement="sid-C1A26EB1-505A-4C2A-A8DD-27E330B86C51">
         <omgdi:waypoint x="1454.4372961465378" y="950.5140441922501" />
@@ -1333,9 +1320,9 @@ execution.setVariable("cvrating", new);</script>
         <omgdi:waypoint x="2455.0877742616112" y="1019.850502921413" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-A3DFE089-BA04-4CB7-990B-8525CEAEE7C2_gui" bpmnElement="sid-A3DFE089-BA04-4CB7-990B-8525CEAEE7C2">
-        <omgdi:waypoint x="1253.3112489556847" y="879.9805197101005" />
-        <omgdi:waypoint x="1434.9372961465383" y="879.9805197101005" />
-        <omgdi:waypoint x="1434.9372961465383" y="930.040523060271" />
+        <omgdi:waypoint x="1253" y="880" />
+        <omgdi:waypoint x="1434.9372961465383" y="880" />
+        <omgdi:waypoint x="1435" y="931" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-18340B16-430F-4383-B71C-F593C5D06F59_gui" bpmnElement="sid-18340B16-430F-4383-B71C-F593C5D06F59">
         <omgdi:waypoint x="1108" y="1020" />
@@ -1679,12 +1666,6 @@ execution.setVariable("cvrating", new);</script>
       <bpmndi:BPMNShape id="sid-3FE7F46D-6BDC-4882-AE90-A825FA1F2F53_gui" bpmnElement="sid-3FE7F46D-6BDC-4882-AE90-A825FA1F2F53">
         <omgdc:Bounds x="2350" y="930" width="40" height="40" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="sid-0B6B92CF-6B16-48A5-9BE2-0803E7310A20_gui" bpmnElement="sid-0B6B92CF-6B16-48A5-9BE2-0803E7310A20">
-        <omgdc:Bounds x="1153" y="840" width="100" height="80" />
-        <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
-          <omgdc:Bounds x="1123.2255327081261" y="1025.9805197101005" width="60.17143249511719" height="24" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-247120BC-C3E7-4717-8214-B59155B5D7AD_gui" bpmnElement="sid-247120BC-C3E7-4717-8214-B59155B5D7AD">
         <omgdc:Bounds x="1414" y="930" width="40" height="40" />
       </bpmndi:BPMNShape>
@@ -1738,6 +1719,9 @@ execution.setVariable("cvrating", new);</script>
         <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
           <omgdc:Bounds x="974.7541047906457" y="1159.850502921413" width="67.11428833007812" height="36" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ec9nf1_di" bpmnElement="sid-0B6B92CF-6B16-48A5-9BE2-0803E7310A20">
+        <omgdc:Bounds x="1153" y="840" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-6D98E17C-9555-479D-86BC-B7EF17602B95_gui" bpmnElement="sid-6D98E17C-9555-479D-86BC-B7EF17602B95" isExpanded="true">
         <omgdc:Bounds x="1499" y="810" width="698" height="280" />
@@ -1898,12 +1882,12 @@ execution.setVariable("cvrating", new);</script>
         <omgdi:waypoint x="3024.994124056205" y="985.5718163421561" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-BDB36FC4-0477-42C6-BD36-EAFC019456AE_gui" bpmnElement="sid-BDB36FC4-0477-42C6-BD36-EAFC019456AE">
-        <omgdi:waypoint x="1243.9804203016597" y="820.6301945282678" />
-        <omgdi:waypoint x="1230.720818302694" y="839.9805197101006" />
+        <omgdi:waypoint x="1244" y="821" />
+        <omgdi:waypoint x="1230" y="840" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-9B90372A-8294-4605-BD61-3178D958FD66_gui" bpmnElement="sid-9B90372A-8294-4605-BD61-3178D958FD66">
-        <omgdi:waypoint x="1157.3384711001108" y="812.6841945282677" />
-        <omgdi:waypoint x="1175.9856690038187" y="839.9805197101006" />
+        <omgdi:waypoint x="1157" y="813" />
+        <omgdi:waypoint x="1176" y="840" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-74D97F0B-4F7B-422C-AF60-A87481793125_gui" bpmnElement="sid-74D97F0B-4F7B-422C-AF60-A87481793125">
         <omgdi:waypoint x="737.353182260409" y="817.5122253624053" />
