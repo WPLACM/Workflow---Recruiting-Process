@@ -20,7 +20,7 @@ public class Job_Opening_Information_Controller {
     @Autowired
     private Job_Opening_Information_Repository jobOpeningInformationRepository;
 
-        @PostMapping("/sendJobOpeningInformation")
+    @PostMapping("/sendJobOpeningInformation")
     public Client_Company sendJobOpeningInformation(@RequestBody Job_Opening_Information_Request request){
         return clientCompanyRepository.save(request.getClient_company());
     }
