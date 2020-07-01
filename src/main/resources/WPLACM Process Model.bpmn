@@ -149,7 +149,7 @@
       </extensionElements>
     </group>
   </collaboration>
-  <process id="sid-9E969114-7F80-4315-A6D5-4D25DC5B40F1" name="WPLACM" processType="None" isClosed="false" isExecutable="true">
+  <process id="sid-9E969114-7F80-4315-A6D5-4D25DC5B40F1" name="WPLACM" processType="None" isClosed="false" isExecutable="false">
     <extensionElements />
     <laneSet id="sid-fea1f6a2-43d3-4d2c-af98-1113431e4e6f">
       <lane id="sid-72C0EB9D-3472-4677-83D5-A590BEFC5E46" name="Accounting">
