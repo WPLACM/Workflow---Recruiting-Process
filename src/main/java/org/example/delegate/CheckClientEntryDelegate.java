@@ -15,7 +15,7 @@ public class CheckClientEntryDelegate implements JavaDelegate {
         // Candidate: first_name, last_name, birth_date, sex
         String first_name, last_name, sex, email;
         first_name = last_name = sex = email = "test1";
-        java.sql.Date birth_date = new java.sql.Date(1900, 01, 01);
+        java.sql.Date birth_date = new java.sql.Date(0, 00, 01);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         String birth_date_string = sdf.format(birth_date);
@@ -43,7 +43,6 @@ public class CheckClientEntryDelegate implements JavaDelegate {
         }
         else if(count == 1){
             delegateExecution.setVariable("CandidateAlreadyExists", true);
-            System.out.println("onnneee");
         }
         else{
             // TODO throw error: conflict, multiple entries found
