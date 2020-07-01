@@ -786,7 +786,6 @@ execution.setVariable("placementFin", false);</script>
       <categoryValueRef>sid-8dc65996-6426-4fc6-a053-2ef307e60cc0</categoryValueRef>
       <incoming>sid-5E652E1E-BC65-41E0-B8F3-40182603B864</incoming>
       <outgoing>sid-7192A392-2690-489E-A6DE-D2986D12DDB6</outgoing>
-      <multiInstanceLoopCharacteristics id="sid-c75f536c-097e-4aa4-b67b-181bdec5b26d" />
     </userTask>
     <businessRuleTask id="sid-B4C31733-DF10-40C6-8D46-CE9515284024" name="select CV&#39;s" implementation="##WebService" camunda:class="org.example.delegate.SelectCVsDelegate">
       <extensionElements>
@@ -1218,7 +1217,6 @@ execution.setVariable("cvrating", new);</script>
       </extensionElements>
       <incoming>sid-65F5B595-4AB8-48E3-A9D4-7AC158655CA1</incoming>
       <outgoing>sid-4F78A2E9-A974-4310-B2B2-21FF1CF46A88</outgoing>
-      <multiInstanceLoopCharacteristics />
     </userTask>
   </process>
   <process id="sid-4CF5718C-2DBA-46CD-8B2B-0D0FC88A760A" name="WBIG" processType="None" isClosed="false" isExecutable="false">
@@ -1723,9 +1721,6 @@ execution.setVariable("cvrating", new);</script>
           <omgdc:Bounds x="974.7541047906457" y="1159.850502921413" width="67.11428833007812" height="36" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1sodeq4_di" bpmnElement="sid-B11765A0-D66B-4C18-801A-C08847CFC1D8">
-        <omgdc:Bounds x="2455" y="980" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-6D98E17C-9555-479D-86BC-B7EF17602B95_gui" bpmnElement="sid-6D98E17C-9555-479D-86BC-B7EF17602B95" isExpanded="true">
         <omgdc:Bounds x="1499" y="810" width="698" height="280" />
         <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
@@ -1786,7 +1781,7 @@ execution.setVariable("cvrating", new);</script>
       <bpmndi:BPMNShape id="sid-AC4812A8-C345-4D5A-BE9C-AD1395758DD8_gui" bpmnElement="sid-AC4812A8-C345-4D5A-BE9C-AD1395758DD8">
         <omgdc:Bounds x="1533" y="935" width="30" height="30" />
         <bpmndi:BPMNLabel labelStyle="sid-49296282-892a-416b-8b1d-ce19da3d49d2">
-          <omgdc:Bounds x="1522" y="916" width="53" height="27" />
+          <omgdc:Bounds x="1522" y="906" width="53" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-6C81AD71-B2CA-41D5-8BD5-AB39794F8664_gui" bpmnElement="sid-6C81AD71-B2CA-41D5-8BD5-AB39794F8664">
@@ -1827,6 +1822,9 @@ execution.setVariable("cvrating", new);</script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ec9nf1_di" bpmnElement="sid-0B6B92CF-6B16-48A5-9BE2-0803E7310A20">
         <omgdc:Bounds x="1153" y="840" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1sodeq4_di" bpmnElement="sid-B11765A0-D66B-4C18-801A-C08847CFC1D8">
+        <omgdc:Bounds x="2455" y="980" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-3C0CB5FA-74BA-4332-8FEF-0F198F80D562_gui" bpmnElement="sid-3C0CB5FA-74BA-4332-8FEF-0F198F80D562">
         <omgdc:Bounds x="2183" y="1067" width="30" height="30" />
