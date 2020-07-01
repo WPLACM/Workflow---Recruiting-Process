@@ -195,13 +195,13 @@
         <flowNodeRef>sid-247120BC-C3E7-4717-8214-B59155B5D7AD</flowNodeRef>
         <flowNodeRef>sid-3FE7F46D-6BDC-4882-AE90-A825FA1F2F53</flowNodeRef>
         <flowNodeRef>sid-B4C31733-DF10-40C6-8D46-CE9515284024</flowNodeRef>
-        <flowNodeRef>sid-B11765A0-D66B-4C18-801A-C08847CFC1D8</flowNodeRef>
         <flowNodeRef>sid-BA44DA97-9017-4629-82C1-5AFE0D419A29</flowNodeRef>
         <flowNodeRef>sid-3839F2D8-975B-41C7-BF67-208FA75B95B3</flowNodeRef>
         <flowNodeRef>sid-9E056D0C-0F42-40F0-9F6B-65010965EE89</flowNodeRef>
         <flowNodeRef>sid-6D98E17C-9555-479D-86BC-B7EF17602B95</flowNodeRef>
         <flowNodeRef>sid-3C0CB5FA-74BA-4332-8FEF-0F198F80D562</flowNodeRef>
         <flowNodeRef>sid-0B6B92CF-6B16-48A5-9BE2-0803E7310A20</flowNodeRef>
+        <flowNodeRef>sid-B11765A0-D66B-4C18-801A-C08847CFC1D8</flowNodeRef>
       </lane>
       <lane id="sid-2740A609-D5B6-431C-BD1A-9A60001D1BE5" name="Management">
         <extensionElements>
@@ -467,7 +467,9 @@
     </sequenceFlow>
     <boundaryEvent id="sid-3C0CB5FA-74BA-4332-8FEF-0F198F80D562" name="Deadline exceeded" cancelActivity="false" attachedToRef="sid-6D98E17C-9555-479D-86BC-B7EF17602B95">
       <outgoing>sid-056D6D14-DCEF-42A7-AAAB-F2053659DADE</outgoing>
-      <timerEventDefinition id="sid-a31305c4-03e6-44c6-a414-61002600fcd9" />
+      <timerEventDefinition id="sid-a31305c4-03e6-44c6-a414-61002600fcd9">
+        <timeDuration xsi:type="tFormalExpression">#{deadline}</timeDuration>
+      </timerEventDefinition>
     </boundaryEvent>
     <serviceTask id="sid-9E056D0C-0F42-40F0-9F6B-65010965EE89" name="generate mails" camunda:class="org.example.delegate.GenerateMailsDelegate">
       <incoming>sid-18340B16-430F-4383-B71C-F593C5D06F59</incoming>
@@ -768,7 +770,7 @@ execution.setVariable("placementFin", false);</script>
       <outgoing>sid-06352C00-E179-4BD1-A42C-BC4E2496FAEC</outgoing>
       <outgoing>sid-8DC9B279-F8B0-4C91-8F0E-BCFAFADDCFC2</outgoing>
     </exclusiveGateway>
-    <userTask id="sid-BA44DA97-9017-4629-82C1-5AFE0D419A29" name="evaluate CV" implementation="##WebService">
+    <userTask id="sid-BA44DA97-9017-4629-82C1-5AFE0D419A29" name="evaluate CV" implementation="##WebService" camunda:formKey="rating">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
@@ -777,27 +779,15 @@ execution.setVariable("placementFin", false);</script>
         <signavio:signavioMetaData metaKey="wirdkonsultiert" metaValue="[]" />
         <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
         <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
+        <camunda:formData>
+          <camunda:formField id="rating" label="Rate from 1-10" type="string" defaultValue="0" />
+        </camunda:formData>
       </extensionElements>
       <categoryValueRef>sid-8dc65996-6426-4fc6-a053-2ef307e60cc0</categoryValueRef>
       <incoming>sid-5E652E1E-BC65-41E0-B8F3-40182603B864</incoming>
       <outgoing>sid-7192A392-2690-489E-A6DE-D2986D12DDB6</outgoing>
       <multiInstanceLoopCharacteristics id="sid-c75f536c-097e-4aa4-b67b-181bdec5b26d" />
     </userTask>
-    <manualTask id="sid-B11765A0-D66B-4C18-801A-C08847CFC1D8" name="do background check">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
-        <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
-        <signavio:signavioMetaData metaKey="risikenundkontrollen" metaValue="" />
-        <signavio:signavioMetaData metaKey="erteiltfreigabe" metaValue="" />
-        <signavio:signavioMetaData metaKey="wirdkonsultiert" metaValue="[]" />
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
-        <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
-      </extensionElements>
-      <categoryValueRef>sid-8dc65996-6426-4fc6-a053-2ef307e60cc0</categoryValueRef>
-      <incoming>sid-65F5B595-4AB8-48E3-A9D4-7AC158655CA1</incoming>
-      <outgoing>sid-4F78A2E9-A974-4310-B2B2-21FF1CF46A88</outgoing>
-      <multiInstanceLoopCharacteristics id="sid-527dd549-eaf7-4be8-a8e2-f8125ebd4de2" />
-    </manualTask>
     <businessRuleTask id="sid-B4C31733-DF10-40C6-8D46-CE9515284024" name="select CV&#39;s" implementation="##WebService" camunda:class="org.example.delegate.SelectCVsDelegate">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
@@ -911,7 +901,7 @@ execution.setVariable("cvrating", new);</script>
         <signavio:signavioLabel align="left" bottom="false" left="true" ref="text_name" right="false" top="false" valign="middle" x="33.0" y="14.0" />
       </extensionElements>
       <incoming>sid-06352C00-E179-4BD1-A42C-BC4E2496FAEC</incoming>
-      <messageEventDefinition id="sid-e26738b7-415e-4577-be46-8376742d7d12" />
+      <messageEventDefinition id="sid-e26738b7-415e-4577-be46-8376742d7d12" messageRef="Message_1cxk0u6" camunda:class="org.example.delegate.NoApplicationsReceivedDelegate" />
     </endEvent>
     <userTask id="sid-13E49214-4737-4900-8B19-27907B038A06" name="create job profile" implementation="##WebService">
       <extensionElements>
@@ -1220,6 +1210,16 @@ execution.setVariable("cvrating", new);</script>
         <targetRef>Property_10emlwa</targetRef>
       </dataInputAssociation>
     </serviceTask>
+    <userTask id="sid-B11765A0-D66B-4C18-801A-C08847CFC1D8" name="do background check" camunda:formKey="backgroundrating">
+      <extensionElements>
+        <camunda:formData>
+          <camunda:formField id="backgroundrating" label="Rate from 1-3" type="string" defaultValue="1" />
+        </camunda:formData>
+      </extensionElements>
+      <incoming>sid-65F5B595-4AB8-48E3-A9D4-7AC158655CA1</incoming>
+      <outgoing>sid-4F78A2E9-A974-4310-B2B2-21FF1CF46A88</outgoing>
+      <multiInstanceLoopCharacteristics />
+    </userTask>
   </process>
   <process id="sid-4CF5718C-2DBA-46CD-8B2B-0D0FC88A760A" name="WBIG" processType="None" isClosed="false" isExecutable="false">
     <extensionElements />
@@ -1259,6 +1259,7 @@ execution.setVariable("cvrating", new);</script>
   <message id="Message_0gs6jpb" name="MoreCandidatesMessage" />
   <message id="Message_0nut5me" name="OrderCanceledMessage" />
   <message id="Message_0sghar3" name="CandidatesPlacedMessage" />
+  <message id="Message_1cxk0u6" name="NoApplicationsReceivedMessage" />
   <bpmndi:BPMNDiagram id="sid-309d46ac-0b0a-4334-b79c-cd4b7d3be6d1">
     <bpmndi:BPMNPlane id="sid-9c1aea64-662e-41f6-a2d5-e4bc514c67b9" bpmnElement="wplacm_id">
       <bpmndi:BPMNShape id="sid-5946839D-91C5-4774-B24F-69A786FDE6BA_gui" bpmnElement="sid-5946839D-91C5-4774-B24F-69A786FDE6BA" isHorizontal="true">
@@ -1323,9 +1324,9 @@ execution.setVariable("cvrating", new);</script>
         <omgdi:waypoint x="2350.423428293936" y="950.540523060271" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-65F5B595-4AB8-48E3-A9D4-7AC158655CA1_gui" bpmnElement="sid-65F5B595-4AB8-48E3-A9D4-7AC158655CA1">
-        <omgdi:waypoint x="2370.923428293936" y="970.040523060271" />
-        <omgdi:waypoint x="2370.923428293936" y="1019.850502921413" />
-        <omgdi:waypoint x="2455.0877742616112" y="1019.850502921413" />
+        <omgdi:waypoint x="2371" y="969" />
+        <omgdi:waypoint x="2370.923428293936" y="1020" />
+        <omgdi:waypoint x="2455" y="1020" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-A3DFE089-BA04-4CB7-990B-8525CEAEE7C2_gui" bpmnElement="sid-A3DFE089-BA04-4CB7-990B-8525CEAEE7C2">
         <omgdi:waypoint x="1253" y="880" />
@@ -1351,9 +1352,9 @@ execution.setVariable("cvrating", new);</script>
         <omgdi:waypoint x="2455.0877742616112" y="879.9805197101005" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-4F78A2E9-A974-4310-B2B2-21FF1CF46A88_gui" bpmnElement="sid-4F78A2E9-A974-4310-B2B2-21FF1CF46A88">
-        <omgdi:waypoint x="2555.0877742616112" y="1019.850502921413" />
-        <omgdi:waypoint x="2620.5877742616112" y="1019.850502921413" />
-        <omgdi:waypoint x="2620.5877742616112" y="965.5718163421561" />
+        <omgdi:waypoint x="2555" y="1020" />
+        <omgdi:waypoint x="2620.5877742616112" y="1020" />
+        <omgdi:waypoint x="2621" y="965" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-56A44324-9A82-4151-9B04-03201A740618_gui" bpmnElement="sid-56A44324-9A82-4151-9B04-03201A740618">
         <omgdi:waypoint x="3075.0877742616112" y="945.5718163421561" />
@@ -1659,12 +1660,6 @@ execution.setVariable("cvrating", new);</script>
           <omgdc:Bounds x="2423.0734882203515" y="1031.9805197101005" width="64.02857208251953" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="sid-B11765A0-D66B-4C18-801A-C08847CFC1D8_gui" bpmnElement="sid-B11765A0-D66B-4C18-801A-C08847CFC1D8">
-        <omgdc:Bounds x="2455" y="980" width="100" height="80" />
-        <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
-          <omgdc:Bounds x="2414.2020625916894" y="1165.850502921413" width="81.77142333984375" height="24" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-B4C31733-DF10-40C6-8D46-CE9515284024_gui" bpmnElement="sid-B4C31733-DF10-40C6-8D46-CE9515284024">
         <omgdc:Bounds x="2975" y="906" width="100" height="80" />
         <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
@@ -1727,6 +1722,9 @@ execution.setVariable("cvrating", new);</script>
         <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
           <omgdc:Bounds x="974.7541047906457" y="1159.850502921413" width="67.11428833007812" height="36" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1sodeq4_di" bpmnElement="sid-B11765A0-D66B-4C18-801A-C08847CFC1D8">
+        <omgdc:Bounds x="2455" y="980" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-6D98E17C-9555-479D-86BC-B7EF17602B95_gui" bpmnElement="sid-6D98E17C-9555-479D-86BC-B7EF17602B95" isExpanded="true">
         <omgdc:Bounds x="1499" y="810" width="698" height="280" />
