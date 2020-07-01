@@ -33,14 +33,24 @@ public class AddToDatabaseDelegate implements JavaDelegate {
         statement.setString(5, candidate.getValue().prop("email").stringValue() );
         statement.executeUpdate();
 
-        // Get results from insert (i.e. generated PKs)
         ResultSet rs = statement.getGeneratedKeys();
         if(rs.next()) {
-            long key = rs.getLong(1);
-            System.out.println("inserted row: " + key);
-        }
+            // set candidate_id process variable
+            long candidate_id = rs.getLong(1);
+            System.out.println("inserted candidate: " + candidate_id);
+            delegateExecution.setVariable("candidate_id", candidate_id);
 
-        // TODO refer to Application/ JobOpeningId
+            //Dummy set job opening id
+            delegateExecution.setVariable("job_opening_id", 1);
+
+            // insert new application to db
+            String application_insert = "INSERT INTO Application ( CA_AP_FK, JO_AP_FK) VALUES (?,?)";
+            PreparedStatement statement_application = con.prepareStatement(application_insert, Statement.RETURN_GENERATED_KEYS);
+            statement_application.setInt(1, Integer.parseInt(Long.toString(candidate_id)));
+            statement_application.setInt(2, (Integer) delegateExecution.getVariable("job_opening_id"));
+            statement_application.executeUpdate();
+
+        }
 
     }
 }

@@ -11,8 +11,8 @@ public class CheckClientEntryDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
         // TODO get candidate Data (Name,...) from Application form
-        // get application id, get job opening id
-        // get skills, get cv/cv path
+        // TODO get skills, get cv/cv path from JSON message (for testing, later from Application form)
+        // TODO get application id, get job opening id from process
 
         // get Process Variables from Message
         String first_name = delegateExecution.getVariable("first_name").toString();
