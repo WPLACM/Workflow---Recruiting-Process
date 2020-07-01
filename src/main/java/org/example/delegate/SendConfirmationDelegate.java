@@ -18,7 +18,7 @@ public class SendConfirmationDelegate implements JavaDelegate{
                          "for the Job Offer" + /* job offer number + caption + */ "." + System.lineSeparator() +
                          "Please be patient, the Company WBIG will contact you regarding your application status." +
                          System.lineSeparator() + "Sincerely, WPLACM Headhunting";
-
+        System.out.println(message);
         // send "application received" email
         // see:
         //https://blog.camunda.com/post/2016/06/camunda-bpm-mail/https://blog.camunda.com/post/2016/06/camunda-bpm-mail/
