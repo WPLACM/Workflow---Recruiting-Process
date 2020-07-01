@@ -7,6 +7,8 @@ import lombok.ToString;
 import org.joda.time.DateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Data
@@ -16,6 +18,10 @@ import javax.persistence.Id;
 @Entity
 public class Application {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int application_id;
-    //TO-DO: specify additional attributes
+    private int candidate_id;
+    private int job_opening_id;
+
+    //TO-DO: specify additional attributes, sql foreign key and relation config
 }
