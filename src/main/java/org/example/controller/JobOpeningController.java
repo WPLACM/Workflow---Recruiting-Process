@@ -25,7 +25,8 @@ public class JobOpeningController {
     @PostMapping(path = "/start", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public String startProcess(@RequestBody JobOpeningInformation jobInfo){
         ProcessInstance processInstance = runtimeService
-                .startProcessInstanceByKey("wplacm_id",
+                //.startProcessInstanceByKey("wplacm_id",
+                .startProcessInstanceByKey("sid-9E969114-7F80-4315-A6D5-4D25DC5B40F1",
                         Variables.createVariables()
                                 .putValue("openingId", jobInfo.getOpeningId())
                                 .putValue("openSpots" , jobInfo.getOpenSpots())

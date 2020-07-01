@@ -21,6 +21,6 @@ public class SendConfirmationDelegate implements JavaDelegate{
         System.out.println(message);
         // send "application received" email
         // see:
-        //https://blog.camunda.com/post/2016/06/camunda-bpm-mail/https://blog.camunda.com/post/2016/06/camunda-bpm-mail/
+        //https://blog.camunda.com/post/2016/06/camunda-bpm-mail/
     }
 }
