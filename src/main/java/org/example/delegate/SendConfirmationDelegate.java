@@ -14,7 +14,7 @@ public class SendConfirmationDelegate implements JavaDelegate{
 
         String message = "Dear " + candidate.getValue().prop("first_name").stringValue() + " " +
                                    candidate.getValue().prop("last_name").stringValue() + ", " + System.lineSeparator() +
-                         "we have received your Application" + /* "number " + applicationid */ "." +
+                         "we have received your Application " + /* "number " + applicationid + */
                          "for the Job Offer" + /* job offer number + caption + */ "." + System.lineSeparator() +
                          "Please be patient, the Company WBIG will contact you regarding your application status." +
                          System.lineSeparator() + "Sincerely, WPLACM Headhunting";
