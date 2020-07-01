@@ -12,30 +12,37 @@ public class CheckClientEntryDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         // TODO get candidate Data (Name,...) from Application form
 
-        // Candidate: first_name, last_name, birth_date, sex
-        String first_name, last_name, sex, email;
-        first_name = last_name = sex = email = "test1";
-        java.sql.Date birth_date = new java.sql.Date(0, 00, 01);
+        // get Process Variables from Message
+        String first_name = delegateExecution.getVariable("first_name").toString();
+        String last_name = delegateExecution.getVariable("last_name").toString();
+        String email = delegateExecution.getVariable("email").toString();
+        String sex = delegateExecution.getVariable("sex").toString();
+        String birth_date_string = delegateExecution.getVariable("birth_date").toString();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        String birth_date_string = sdf.format(birth_date);
+        // format birth_date
+        java.util.Date birth_date = (java.util.Date) new SimpleDateFormat("yyyy-MM-dd").parse(birth_date_string);
+        String birth_date_string_converted = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(birth_date);
 
-        String json = "{\"first_name\" : \"" + first_name + "\","
-                + "\"last_name\" : \"" + last_name + "\","
-                + "\"birth_date\" : \"" + birth_date_string + "\","
-                + "\"sex\" : \"" + sex + "\","
-                + "\"email\" :  \"" + email + "\""
-                + "}";
+        // create JSON Process Variable containing Candidate data
+        String candidate_master_data = "{\"first_name\" : \"" + first_name + "\","
+                                            + "\"last_name\" : \"" + last_name + "\","
+                                            + "\"birth_date\" : \"" + birth_date_string_converted + "\","
+                                            + "\"sex\" : \"" + sex + "\","
+                                            + "\"email\" :  \"" + email + "\""
+                                            + "}";
 
-        JsonValue jsonValue = SpinValues.jsonValue(json).create();
+        JsonValue jsonValue = SpinValues.jsonValue(candidate_master_data).create();
         delegateExecution.setVariable("new_candidate", jsonValue);
 
-        String select_query = "SELECT COUNT(*) as resultcount FROM Candidate WHERE first_name = \'" + first_name +"\'";
-        System.out.println(select_query);
-        // query candidate db for candidate
+        // Find existing Candidates Entries in DB (first_name, last_name, birth_date)
+        String count_query = "SELECT COUNT(*) as resultcount FROM Candidate " +
+                                "WHERE first_name = \'" + first_name + "\' " +
+                                "AND last_name = \'" + last_name + "\' " +
+                                "AND birth_date = \'" + birth_date_string + "\'";
+
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         Statement query = con.createStatement();
-        ResultSet rs = query.executeQuery( select_query);
+        ResultSet rs = query.executeQuery( count_query);
         rs.next();
         int count = rs.getInt("resultcount");
 
@@ -43,8 +50,11 @@ public class CheckClientEntryDelegate implements JavaDelegate {
             delegateExecution.setVariable("CandidateAlreadyExists", false);
         }
         else if(count == 1){
-            rs = query.executeQuery(
-                    "SELECT candidate_id FROM Candidate WHERE first_name = \'" + first_name +"\'");
+            String candidate_id_query = "SELECT  candidate_id FROM Candidate " +
+                                            "WHERE first_name = \'" + first_name + "\' " +
+                                            "AND last_name = \'" + last_name + "\' " +
+                                            "AND birth_date = \'" + birth_date_string + "\'";
+            rs = query.executeQuery(candidate_id_query);
             rs.next();
             int candidate_id = rs.getInt(1);
             delegateExecution.setVariable("CandidateAlreadyExists", true);
