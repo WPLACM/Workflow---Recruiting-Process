@@ -149,7 +149,7 @@
       </extensionElements>
     </group>
   </collaboration>
-  <process id="sid-9E969114-7F80-4315-A6D5-4D25DC5B40F1" name="WPLACM" processType="None" isClosed="false" isExecutable="false">
+  <process id="sid-9E969114-7F80-4315-A6D5-4D25DC5B40F1" name="WPLACM" processType="None" isClosed="false" isExecutable="true">
     <extensionElements />
     <laneSet id="sid-fea1f6a2-43d3-4d2c-af98-1113431e4e6f">
       <lane id="sid-72C0EB9D-3472-4677-83D5-A590BEFC5E46" name="Accounting">
@@ -423,10 +423,11 @@
       </extensionElements>
       <categoryValueRef>sid-8dc65996-6426-4fc6-a053-2ef307e60cc0</categoryValueRef>
     </sequenceFlow>
-    <sequenceFlow id="sid-8DC9B279-F8B0-4C91-8F0E-BCFAFADDCFC2" name="" sourceRef="sid-3839F2D8-975B-41C7-BF67-208FA75B95B3" targetRef="sid-3FE7F46D-6BDC-4882-AE90-A825FA1F2F53">
+    <sequenceFlow id="sid-8DC9B279-F8B0-4C91-8F0E-BCFAFADDCFC2" name="applications received" sourceRef="sid-3839F2D8-975B-41C7-BF67-208FA75B95B3" targetRef="sid-3FE7F46D-6BDC-4882-AE90-A825FA1F2F53">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
       </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression">#{number_of_cvs&gt;0}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-C1A26EB1-505A-4C2A-A8DD-27E330B86C51" name="" sourceRef="sid-247120BC-C3E7-4717-8214-B59155B5D7AD" targetRef="sid-6D98E17C-9555-479D-86BC-B7EF17602B95">
       <extensionElements>
@@ -449,6 +450,7 @@
       <extensionElements>
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
       </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression">#{number_of_cvs==0}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-3D86EE2A-9E0B-4CF7-8126-AB4D94FBF1AF" name="" sourceRef="sid-22AC35F2-B986-48A8-8305-F7D314DCDD48" targetRef="sid-5FE2ABFC-4D34-428F-8D5C-7B4AD9B2C72B">
       <extensionElements>
@@ -1219,7 +1221,7 @@ execution.setVariable("cvrating", new);</script>
       <outgoing>sid-4F78A2E9-A974-4310-B2B2-21FF1CF46A88</outgoing>
     </userTask>
   </process>
-  <process id="sid-4CF5718C-2DBA-46CD-8B2B-0D0FC88A760A" name="WBIG" processType="None" isClosed="false" isExecutable="false">
+  <process id="sid-4CF5718C-2DBA-46CD-8B2B-0D0FC88A760A" name="WBIG" processType="None" isClosed="false" isExecutable="true">
     <extensionElements />
     <laneSet id="sid-677083b9-95e6-4486-a1dd-376a7f5b317a">
       <lane id="sid-7A1946F9-6538-48FD-A845-9A3C895BAFB4">
@@ -1230,7 +1232,7 @@ execution.setVariable("cvrating", new);</script>
       </lane>
     </laneSet>
   </process>
-  <process id="sid-B9084399-9B6E-4BA8-A5D6-F88F9261BE59" name="Candidate" processType="None" isClosed="false" isExecutable="false">
+  <process id="sid-B9084399-9B6E-4BA8-A5D6-F88F9261BE59" name="Candidate" processType="None" isClosed="false" isExecutable="true">
     <extensionElements />
     <laneSet id="sid-530f1169-fbfa-4023-a360-6b3828b9391a">
       <lane id="sid-61AD9D50-9D71-4E6A-89FD-224122679592">
@@ -1241,7 +1243,7 @@ execution.setVariable("cvrating", new);</script>
       </lane>
     </laneSet>
   </process>
-  <process id="sid-A49ED47A-E0AC-46BE-9E2B-C2E43D68DE85" name="Lawyer" processType="None" isClosed="false" isExecutable="false">
+  <process id="sid-A49ED47A-E0AC-46BE-9E2B-C2E43D68DE85" name="Lawyer" processType="None" isClosed="false" isExecutable="true">
     <extensionElements />
     <laneSet id="sid-9dede380-aa8d-4bf3-9863-7a28c5c58f9d">
       <lane id="sid-13D70EE6-8B08-43A1-91E6-38B07FE90CE0">
@@ -1320,6 +1322,9 @@ execution.setVariable("cvrating", new);</script>
       <bpmndi:BPMNEdge id="sid-8DC9B279-F8B0-4C91-8F0E-BCFAFADDCFC2_gui" bpmnElement="sid-8DC9B279-F8B0-4C91-8F0E-BCFAFADDCFC2">
         <omgdi:waypoint x="2265.969736358585" y="950.540523060271" />
         <omgdi:waypoint x="2350.423428293936" y="950.540523060271" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="2270" y="953" width="59" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-65F5B595-4AB8-48E3-A9D4-7AC158655CA1_gui" bpmnElement="sid-65F5B595-4AB8-48E3-A9D4-7AC158655CA1">
         <omgdi:waypoint x="2371" y="969" />
