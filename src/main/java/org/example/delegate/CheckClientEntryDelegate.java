@@ -30,19 +30,25 @@ public class CheckClientEntryDelegate implements JavaDelegate {
         JsonValue jsonValue = SpinValues.jsonValue(json).create();
         delegateExecution.setVariable("new_candidate", jsonValue);
 
+        String select_query = "SELECT COUNT(*) as resultcount FROM Candidate WHERE first_name = \'" + first_name +"\'";
+        System.out.println(select_query);
         // query candidate db for candidate
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         Statement query = con.createStatement();
-        ResultSet results = query.executeQuery(
-                "SELECT COUNT(*) as resultcount FROM Candidate WHERE first_name = \'first_name\'");
-        results.next();
-        int count = results.getInt("resultcount");
+        ResultSet rs = query.executeQuery( select_query);
+        rs.next();
+        int count = rs.getInt("resultcount");
 
         if (count == 0){
             delegateExecution.setVariable("CandidateAlreadyExists", false);
         }
         else if(count == 1){
+            rs = query.executeQuery(
+                    "SELECT candidate_id FROM Candidate WHERE first_name = \'" + first_name +"\'");
+            rs.next();
+            int candidate_id = rs.getInt(1);
             delegateExecution.setVariable("CandidateAlreadyExists", true);
+            delegateExecution.setVariable("candidate_id", candidate_id);
         }
         else{
             // TODO throw error: conflict, multiple entries found

@@ -21,16 +21,14 @@ public class UpdateDatabseRecordDelegate implements JavaDelegate {
 
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         String candidate_update =
-                "UPDATE Candidate SET email = " + candidate.getValue().prop("email").stringValue() +
-                        " WHERE candidate_id = " + candidate_id;
+                "UPDATE Candidate SET email = \'" + candidate.getValue().prop("email").stringValue() +
+                        "1234\' WHERE candidate_id = " + candidate_id;
+
+        System.out.println(candidate_update);
 
         PreparedStatement statement = con.prepareStatement(candidate_update);
-        statement.executeUpdate();
-
-        ResultSet rs = statement.getResultSet();
-        if(rs.next()){
-            System.out.println("update row: " + candidate_id);
-        }
+        int index = statement.executeUpdate();
+        System.out.println(index);
 
         // return canidate id, refer to specific job opening
 
