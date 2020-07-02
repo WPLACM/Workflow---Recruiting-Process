@@ -1,5 +1,11 @@
 package org.example.delegate;
 
-public class ContactCandidatesDelegate {
-    // TODO
+import org.camunda.bpm.engine.delegate.DelegateExecution;
+import org.camunda.bpm.engine.delegate.JavaDelegate;
+
+public class ContactCandidatesDelegate implements JavaDelegate {
+    @Override
+    public void execute(DelegateExecution execution) throws Exception {
+
+    }
 }
