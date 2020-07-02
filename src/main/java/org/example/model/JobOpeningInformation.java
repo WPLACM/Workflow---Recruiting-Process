@@ -14,8 +14,8 @@ public class JobOpeningInformation {
     private String jobDescription;
     private String requiredQualifications;
     private String additionalInformation;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate deadline;
+    //@JsonFormat(pattern = "yyyy-MM-dd")
+    private String deadline;
     private int paymentInformationAcceptances;
     private String jobLocation;
     private int workingHours;
@@ -87,11 +87,11 @@ public class JobOpeningInformation {
         this.additionalInformation = additionalInformation;
     }
 
-    public LocalDate getDeadline() {
+    public String getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(LocalDate deadline) {
+    public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
 

@@ -1,1 +1,3 @@
 /target/
+/camunda-db.lock.db/
+/camunda-db.mv.db/
