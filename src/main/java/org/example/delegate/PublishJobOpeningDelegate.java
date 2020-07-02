@@ -13,5 +13,6 @@ public class PublishJobOpeningDelegate implements JavaDelegate {
 
         //create entry on website
 
+        //TODO fill openingID with key (stefan)
     }
 }

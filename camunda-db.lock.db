@@ -1,6 +1,6 @@
 #FileLock
-#Thu Jul 02 23:07:04 CEST 2020
-hostName=192.168.0.31
-id=173115aab9ca1678d5feefd9d24d154aab626600b51
+#Thu Jul 02 22:37:13 CEST 2020
+hostName=DESKTOP-4BQR0OJ.mshome.net
+id=173113f593a72829c77d9dc8f76cc2e3cc801de27d5
 method=file
-server=192.168.0.31\:51695
+server=172.18.151.17\:61459
