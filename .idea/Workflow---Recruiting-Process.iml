@@ -31,9 +31,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.camunda.bpm.extension:camunda-bpm-mail-core:1.0.0" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.mail:javax.mail:1.5.5" level="project" />
-    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:7.13.0" level="project" />
     <orderEntry type="library" name="Maven: org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp-core:7.13.0" level="project" />
     <orderEntry type="library" name="Maven: org.camunda.bpm.webapp:camunda-webapp:classes:7.13.0" level="project" />
