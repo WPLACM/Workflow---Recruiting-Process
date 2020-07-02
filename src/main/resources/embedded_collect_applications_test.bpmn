@@ -5,10 +5,6 @@
       <bpmn:incoming>Flow_1y1ssb1</bpmn:incoming>
       <bpmn:outgoing>Flow_126koio</bpmn:outgoing>
       <bpmn:subProcess id="Activity_1818egi" name="collect applications" triggeredByEvent="true">
-        <bpmn:startEvent id="Event_0gttcpk">
-          <bpmn:outgoing>Flow_0vv3nt2</bpmn:outgoing>
-          <bpmn:messageEventDefinition id="MessageEventDefinition_14c22ax" messageRef="Message_0m465lk" />
-        </bpmn:startEvent>
         <bpmn:serviceTask id="Activity_068sywm" name="check client entry" implementation="##WebService" camunda:class="org.example.delegate.CheckClientEntryDelegate">
           <bpmn:incoming>Flow_0vv3nt2</bpmn:incoming>
           <bpmn:outgoing>Flow_1sfjyrp</bpmn:outgoing>
@@ -76,6 +72,10 @@
         </bpmn:sequenceFlow>
         <bpmn:sequenceFlow id="Flow_1sfjyrp" name="" sourceRef="Activity_068sywm" targetRef="Gateway_1jwr8uz" />
         <bpmn:sequenceFlow id="Flow_0vv3nt2" sourceRef="Event_0gttcpk" targetRef="Activity_068sywm" />
+        <bpmn:startEvent id="Event_0gttcpk" isInterrupting="false">
+          <bpmn:outgoing>Flow_0vv3nt2</bpmn:outgoing>
+          <bpmn:messageEventDefinition id="MessageEventDefinition_0zy86r3" messageRef="Message_0drn1mo" />
+        </bpmn:startEvent>
       </bpmn:subProcess>
       <bpmn:startEvent id="Event_1awcz7c" name="ApplicationPhaseStarted">
         <bpmn:outgoing>Flow_0522a8q</bpmn:outgoing>
@@ -107,7 +107,7 @@
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_137ndak" sourceRef="Activity_1fm2kjy" targetRef="Event_08au9hg" />
   </bpmn:process>
-  <bpmn:message id="Message_0m465lk" name="ApplicationReceived3" />
+  <bpmn:message id="Message_0drn1mo" name="ApplicationReceivedx" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_10ll4dk">
       <bpmndi:BPMNEdge id="Flow_137ndak_di" bpmnElement="Flow_137ndak">
@@ -180,9 +180,6 @@
         <di:waypoint x="994" y="291" />
         <di:waypoint x="1016" y="291" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_0gttcpk_di" bpmnElement="Event_0gttcpk">
-        <dc:Bounds x="442" y="273" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_068sywm_di" bpmnElement="Activity_068sywm">
         <dc:Bounds x="514" y="251" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -224,6 +221,9 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="527" y="136" width="74" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1oq7107_di" bpmnElement="Event_0gttcpk">
+        <dc:Bounds x="442" y="273" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1awcz7c_di" bpmnElement="Event_1awcz7c">
         <dc:Bounds x="342" y="182" width="36" height="36" />
