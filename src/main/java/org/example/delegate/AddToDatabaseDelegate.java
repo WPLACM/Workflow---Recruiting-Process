@@ -40,18 +40,12 @@ public class AddToDatabaseDelegate implements JavaDelegate {
             System.out.println("inserted candidate: " + candidate_id);
             delegateExecution.setVariable("candidate_id", candidate_id);
 
-            //Dummy set job opening id
-            delegateExecution.setVariable("job_opening_id", 1);
-
             // insert new application to db
-            //temporarily disabled due to refer. integrity error
-            /*
             String application_insert = "INSERT INTO Application ( CA_AP_FK, JO_AP_FK) VALUES (?,?)";
             PreparedStatement statement_application = con.prepareStatement(application_insert, Statement.RETURN_GENERATED_KEYS);
             statement_application.setInt(1, Integer.parseInt(Long.toString(candidate_id)));
-            statement_application.setInt(2, (Integer) delegateExecution.getVariable("job_opening_id"));
+            statement_application.setInt(2, (Integer) delegateExecution.getVariable("openingId"));
             statement_application.executeUpdate();
-            */
 
             // set process variable required for next step
             delegateExecution.setVariable("applications_received", true);

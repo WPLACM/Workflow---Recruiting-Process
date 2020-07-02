@@ -39,14 +39,11 @@ public class UpdateDatabseRecordDelegate implements JavaDelegate {
         // Index = Updated PK id
         System.out.println(index);
 
-        //Dummy set job opening id
-        delegateExecution.setVariable("job_opening_id", 1);
-
         // insert new application to db
         String application_insert = "INSERT INTO Application ( CA_AP_FK, JO_AP_FK) VALUES (?,?)";
         PreparedStatement statement_application = con.prepareStatement(application_insert, Statement.RETURN_GENERATED_KEYS);
         statement_application.setInt(1, candidate_id);
-        statement_application.setInt(2, (Integer) delegateExecution.getVariable("job_opening_id"));
+        statement_application.setInt(2, (Integer) delegateExecution.getVariable("openingId"));
         statement_application.executeUpdate();
 
         // set process variable required for next step
