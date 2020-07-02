@@ -1025,10 +1025,6 @@ execution.setVariable("cvrating", new);</script>
       <incoming>Flow_0o2ccah</incoming>
       <outgoing>Flow_0remkaj</outgoing>
       <subProcess id="Activity_0qwzikh" name="collect applications" triggeredByEvent="true">
-        <startEvent id="Event_1ypuawp">
-          <outgoing>Flow_16yce1d</outgoing>
-          <messageEventDefinition id="MessageEventDefinition_0wuhgwq" messageRef="Message_0maotbe" />
-        </startEvent>
         <serviceTask id="sid-995A30FB-C472-41A3-8FD7-13AEBD35DB8B" name="check client entry" implementation="##WebService" camunda:class="org.example.delegate.CheckClientEntryDelegate">
           <extensionElements>
             <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
@@ -1120,11 +1116,11 @@ execution.setVariable("cvrating", new);</script>
             <camunda:connector>
               <camunda:inputOutput>
                 <camunda:inputParameter name="to">
-                  <camunda:script scriptFormat="{&#34;to&#34;: execution.getVariable(&#34;candidate_email&#34;)}"></camunda:script>
+                  <camunda:script scriptFormat="{&#34;to&#34;: execution.getVariable(&#34;candidate_email&#34;)}" />
                 </camunda:inputParameter>
                 <camunda:inputParameter name="subject">Your application has been received</camunda:inputParameter>
                 <camunda:inputParameter name="text">
-                  <camunda:script scriptFormat="{&#34;to&#34;: execution.getVariable(&#34;candidate_confirmation_text&#34;)}"></camunda:script>
+                  <camunda:script scriptFormat="{&#34;to&#34;: execution.getVariable(&#34;candidate_confirmation_text&#34;)}" />
                 </camunda:inputParameter>
               </camunda:inputOutput>
               <camunda:connectorId>mail-send</camunda:connectorId>
@@ -1200,6 +1196,10 @@ execution.setVariable("cvrating", new);</script>
             <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
           </extensionElements>
         </dataStoreReference>
+        <startEvent id="Event_1ypuawp" name="application received" isInterrupting="false">
+          <outgoing>Flow_16yce1d</outgoing>
+          <messageEventDefinition id="MessageEventDefinition_19cokdd" messageRef="Message_11ykwb0" />
+        </startEvent>
       </subProcess>
       <startEvent id="Event_142o7se" name="ApplicationPhaseStarted">
         <outgoing>Flow_1ars7ky</outgoing>
@@ -1261,7 +1261,7 @@ execution.setVariable("cvrating", new);</script>
   <message id="Message_1cxk0u6" name="NoApplicationsReceivedMessage" />
   <message id="Message_14lnuod" name="JobOpeningInformation" />
   <message id="Message_12j1big" name="Message_08e5mc3" />
-  <message id="Message_0maotbe" name="ApplicationReceived" />
+  <message id="Message_11ykwb0" name="ApplicationReceived" />
   <bpmndi:BPMNDiagram id="sid-309d46ac-0b0a-4334-b79c-cd4b7d3be6d1">
     <bpmndi:BPMNPlane id="sid-9c1aea64-662e-41f6-a2d5-e4bc514c67b9" bpmnElement="wplacm_id">
       <bpmndi:BPMNShape id="sid-5946839D-91C5-4774-B24F-69A786FDE6BA_gui" bpmnElement="sid-5946839D-91C5-4774-B24F-69A786FDE6BA" isHorizontal="true">
@@ -1785,9 +1785,6 @@ execution.setVariable("cvrating", new);</script>
         <omgdi:waypoint x="1578" y="956" />
         <omgdi:waypoint x="1614" y="956" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_1wvfgzc_di" bpmnElement="Event_1ypuawp">
-        <omgdc:Bounds x="1542" y="938" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-995A30FB-C472-41A3-8FD7-13AEBD35DB8B_gui" bpmnElement="sid-995A30FB-C472-41A3-8FD7-13AEBD35DB8B">
         <omgdc:Bounds x="1614" y="916" width="100" height="80" />
         <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
@@ -1840,6 +1837,12 @@ execution.setVariable("cvrating", new);</script>
         <omgdc:Bounds x="1633" y="825" width="62" height="60" />
         <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
           <omgdc:Bounds x="1627" y="801" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_171wygy_di" bpmnElement="Event_1ypuawp">
+        <omgdc:Bounds x="1542" y="938" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1537" y="908" width="53" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_142o7se_di" bpmnElement="Event_142o7se">
