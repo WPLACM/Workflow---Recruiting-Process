@@ -1200,7 +1200,7 @@ execution.setVariable("cvrating", new);</script>
     <boundaryEvent id="sid-3C0CB5FA-74BA-4332-8FEF-0F198F80D562" name="Deadline exceeded" cancelActivity="false" attachedToRef="sid-6D98E17C-9555-479D-86BC-B7EF17602B95">
       <outgoing>sid-056D6D14-DCEF-42A7-AAAB-F2053659DADE</outgoing>
       <timerEventDefinition id="sid-a31305c4-03e6-44c6-a414-61002600fcd9">
-        <timeDate xsi:type="tFormalExpression">#{deadline}</timeDate>
+        <timeDuration xsi:type="tFormalExpression">#{deadline}</timeDuration>
       </timerEventDefinition>
     </boundaryEvent>
   </process>
@@ -1741,7 +1741,7 @@ execution.setVariable("cvrating", new);</script>
         <omgdi:waypoint x="1712" y="895" />
         <omgdi:waypoint x="1756" y="895" />
         <bpmndi:BPMNLabel labelStyle="sid-49296282-892a-416b-8b1d-ce19da3d49d2">
-          <omgdc:Bounds x="1712.3786128557022" y="977.959476939729" width="13" height="14" />
+          <omgdc:Bounds x="1713" y="903" width="13" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-19D0BDC6-C708-4C33-A325-0335B84385BC_gui" bpmnElement="sid-19D0BDC6-C708-4C33-A325-0335B84385BC">
