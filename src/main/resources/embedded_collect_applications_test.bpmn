@@ -36,24 +36,6 @@
           <bpmn:incoming>Flow_1xh7a3d</bpmn:incoming>
           <bpmn:outgoing>Flow_12ctzkl</bpmn:outgoing>
         </bpmn:exclusiveGateway>
-        <bpmn:sendTask id="Activity_19adgpl" name="send confirmation" implementation="##WebService" camunda:class="org.example.delegate.SendConfirmationDelegate">
-          <bpmn:extensionElements>
-            <camunda:connector>
-              <camunda:inputOutput>
-                <camunda:inputParameter name="to">
-                  <camunda:script scriptFormat="JavaScript">{"to": execution.getVariable("candidate_confirmation_text")}</camunda:script>
-                </camunda:inputParameter>
-                <camunda:inputParameter name="subject">Your application has been received</camunda:inputParameter>
-                <camunda:inputParameter name="text">
-                  <camunda:script scriptFormat="JavaScript">{"to": execution.getVariable("candidate_confirmation_text")}</camunda:script>
-                </camunda:inputParameter>
-              </camunda:inputOutput>
-              <camunda:connectorId>mail-send</camunda:connectorId>
-            </camunda:connector>
-          </bpmn:extensionElements>
-          <bpmn:incoming>Flow_12ctzkl</bpmn:incoming>
-          <bpmn:outgoing>Flow_1bqa2d1</bpmn:outgoing>
-        </bpmn:sendTask>
         <bpmn:endEvent id="Event_0k1splk" name="">
           <bpmn:incoming>Flow_1bqa2d1</bpmn:incoming>
         </bpmn:endEvent>
@@ -76,6 +58,24 @@
           <bpmn:outgoing>Flow_0vv3nt2</bpmn:outgoing>
           <bpmn:messageEventDefinition id="MessageEventDefinition_0zy86r3" messageRef="Message_0drn1mo" />
         </bpmn:startEvent>
+        <bpmn:serviceTask id="Activity_19adgpl" name="send confirmation">
+          <bpmn:extensionElements>
+            <camunda:connector>
+              <camunda:inputOutput>
+                <camunda:inputParameter name="to">
+                  <camunda:script scriptFormat="JavaScript">{"to": execution.getVariable("candidate_confirmation_text")}</camunda:script>
+                </camunda:inputParameter>
+                <camunda:inputParameter name="subject">Your application has been received</camunda:inputParameter>
+                <camunda:inputParameter name="text">
+                  <camunda:script scriptFormat="JavaScript">{"to": execution.getVariable("candidate_confirmation_text")}</camunda:script>
+                </camunda:inputParameter>
+              </camunda:inputOutput>
+              <camunda:connectorId>mail-send</camunda:connectorId>
+            </camunda:connector>
+          </bpmn:extensionElements>
+          <bpmn:incoming>Flow_12ctzkl</bpmn:incoming>
+          <bpmn:outgoing>Flow_1bqa2d1</bpmn:outgoing>
+        </bpmn:serviceTask>
       </bpmn:subProcess>
       <bpmn:startEvent id="Event_1awcz7c" name="ApplicationPhaseStarted">
         <bpmn:outgoing>Flow_0522a8q</bpmn:outgoing>
@@ -198,9 +198,6 @@
       <bpmndi:BPMNShape id="Gateway_0h4wf1x_di" bpmnElement="Gateway_0h4wf1x" isMarkerVisible="true">
         <dc:Bounds x="809" y="271" width="40" height="40" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_19adgpl_di" bpmnElement="Activity_19adgpl">
-        <dc:Bounds x="894" y="251" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0k1splk_di" bpmnElement="Event_0k1splk">
         <dc:Bounds x="1016" y="277" width="28" height="28" />
       </bpmndi:BPMNShape>
@@ -224,6 +221,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1oq7107_di" bpmnElement="Event_0gttcpk">
         <dc:Bounds x="442" y="273" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_089e9q8_di" bpmnElement="Activity_19adgpl">
+        <dc:Bounds x="894" y="251" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1awcz7c_di" bpmnElement="Event_1awcz7c">
         <dc:Bounds x="342" y="182" width="36" height="36" />
