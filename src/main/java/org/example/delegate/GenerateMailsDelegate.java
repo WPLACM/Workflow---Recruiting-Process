@@ -7,6 +7,9 @@ public class GenerateMailsDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
 
+
+        String jobProfile = (String) execution.getVariable("jobProfile");
+        System.out.println("Job Profile: "+jobProfile);
     }
 
 }
