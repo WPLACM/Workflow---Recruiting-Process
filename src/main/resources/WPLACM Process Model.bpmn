@@ -392,13 +392,13 @@
       <extensionElements>
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression">#{applications_received==true}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">#{applications_received}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-06352C00-E179-4BD1-A42C-BC4E2496FAEC" name="no replies" sourceRef="sid-3839F2D8-975B-41C7-BF67-208FA75B95B3" targetRef="sid-2844DE3D-C86F-4497-B86F-62A4069F669B">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression">#{applications_received==0}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">#{not applications_received}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-3D86EE2A-9E0B-4CF7-8126-AB4D94FBF1AF" name="" sourceRef="sid-22AC35F2-B986-48A8-8305-F7D314DCDD48" targetRef="sid-5FE2ABFC-4D34-428F-8D5C-7B4AD9B2C72B">
       <extensionElements>
