@@ -22,7 +22,6 @@ public class GenerateMailsDelegate implements JavaDelegate {
                     "we are pleased to announce to you that there is a new job offer that you might be interested in. "+ System.lineSeparator() +
                     "Please find all relevant information below."+System.lineSeparator()+ "Sincerely, Weplacm Headhunting. "+System.lineSeparator()+
                     jobProfile;
-                    //TODO improve later
 
             emails.add(mail);
         }
