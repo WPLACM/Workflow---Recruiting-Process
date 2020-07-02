@@ -21,7 +21,8 @@ public class GenerateMailsDelegate implements JavaDelegate {
             String mail ="Dear "+currentFirstName+" "+currentLastName+", " + System.lineSeparator() +
                     "we are pleased to announce to you that there is a new job offer that you might be interested in. "+ System.lineSeparator() +
                     "Please find all relevant information below."+System.lineSeparator()+ "Sincerely, Weplacm Headhunting. "+System.lineSeparator()+
-                    jobProfile;
+                    "(todo)";
+                    //include jobProfile as soon as fixed
 
             emails.add(mail);
         }
