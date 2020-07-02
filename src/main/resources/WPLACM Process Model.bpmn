@@ -1113,18 +1113,6 @@ execution.setVariable("cvrating", new);</script>
             <signavio:signavioMetaData metaKey="wirdkonsultiert" metaValue="[]" />
             <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
             <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
-            <camunda:connector>
-              <camunda:inputOutput>
-                <camunda:inputParameter name="to">
-                  <camunda:script scriptFormat="{&#34;to&#34;: execution.getVariable(&#34;candidate_email&#34;)}" />
-                </camunda:inputParameter>
-                <camunda:inputParameter name="subject">Your application has been received</camunda:inputParameter>
-                <camunda:inputParameter name="text">
-                  <camunda:script scriptFormat="{&#34;to&#34;: execution.getVariable(&#34;candidate_confirmation_text&#34;)}" />
-                </camunda:inputParameter>
-              </camunda:inputOutput>
-              <camunda:connectorId>mail-send</camunda:connectorId>
-            </camunda:connector>
           </extensionElements>
           <incoming>sid-24C9BA16-D6E1-4088-BBE9-82C3C78CBA69</incoming>
           <outgoing>sid-83A246A6-A1E3-4D11-AD22-48A0E09A1ACA</outgoing>
