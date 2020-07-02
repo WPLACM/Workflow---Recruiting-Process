@@ -392,13 +392,13 @@
       <extensionElements>
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression">#{number_of_cvs&gt;0}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">#{applications_received==true}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-06352C00-E179-4BD1-A42C-BC4E2496FAEC" name="no replies" sourceRef="sid-3839F2D8-975B-41C7-BF67-208FA75B95B3" targetRef="sid-2844DE3D-C86F-4497-B86F-62A4069F669B">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression">#{number_of_cvs==0}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">#{applications_received==0}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-3D86EE2A-9E0B-4CF7-8126-AB4D94FBF1AF" name="" sourceRef="sid-22AC35F2-B986-48A8-8305-F7D314DCDD48" targetRef="sid-5FE2ABFC-4D34-428F-8D5C-7B4AD9B2C72B">
       <extensionElements>
@@ -1276,6 +1276,10 @@ execution.setVariable("cvrating", new);</script>
           <omgdc:Bounds x="143.71030411739318" y="707.9133855368821" width="12" height="60.17143249511719" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0remkaj_di" bpmnElement="Flow_0remkaj">
+        <omgdi:waypoint x="2200" y="950" />
+        <omgdi:waypoint x="2226" y="950" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0o2ccah_di" bpmnElement="Flow_0o2ccah">
         <omgdi:waypoint x="1341" y="950" />
         <omgdi:waypoint x="1390" y="950" />
@@ -1488,10 +1492,6 @@ execution.setVariable("cvrating", new);</script>
       <bpmndi:BPMNEdge id="sid-D1D152F8-8936-4831-BA69-06F1065C67A9_gui" bpmnElement="sid-D1D152F8-8936-4831-BA69-06F1065C67A9">
         <omgdi:waypoint x="3781.728400963869" y="577.9576805086101" />
         <omgdi:waypoint x="3811.410370606014" y="577.9576805086101" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0remkaj_di" bpmnElement="Flow_0remkaj">
-        <omgdi:waypoint x="2200" y="950" />
-        <omgdi:waypoint x="2226" y="950" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="sid-EFF056BD-D850-4D56-8988-44937504345F_gui" bpmnElement="sid-EFF056BD-D850-4D56-8988-44937504345F">
         <omgdc:Bounds x="2994" y="1097" width="62" height="60" />
@@ -1718,32 +1718,14 @@ execution.setVariable("cvrating", new);</script>
           <omgdc:Bounds x="1457.4372961465378" y="980.0405230602709" width="100.28571319580078" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_1ars7ky_di" bpmnElement="Flow_1ars7ky">
-        <omgdi:waypoint x="1470" y="878" />
-        <omgdi:waypoint x="1470" y="942" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1d0f7y9_di" bpmnElement="Flow_1d0f7y9">
         <omgdi:waypoint x="1470" y="978" />
         <omgdi:waypoint x="1470" y="1042" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_142o7se_di" bpmnElement="Event_142o7se">
-        <omgdc:Bounds x="1452" y="842" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1427" y="804.5" width="85" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1lo6sb9_di" bpmnElement="Event_1lo6sb9">
-        <omgdc:Bounds x="1452" y="1042" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1428" y="1085" width="85" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_11t0ikz_di" bpmnElement="Event_0s8tvgq">
-        <omgdc:Bounds x="1452" y="942" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1399" y="948" width="48" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1ars7ky_di" bpmnElement="Flow_1ars7ky">
+        <omgdi:waypoint x="1470" y="878" />
+        <omgdi:waypoint x="1470" y="942" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_0qwzikh_di" bpmnElement="Activity_0qwzikh" isExpanded="true">
         <omgdc:Bounds x="1520" y="795" width="650" height="300" />
       </bpmndi:BPMNShape>
@@ -1848,6 +1830,24 @@ execution.setVariable("cvrating", new);</script>
           <omgdc:Bounds x="1627" y="801" width="74" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_142o7se_di" bpmnElement="Event_142o7se">
+        <omgdc:Bounds x="1452" y="842" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1427" y="804.5" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1lo6sb9_di" bpmnElement="Event_1lo6sb9">
+        <omgdc:Bounds x="1452" y="1042" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1428" y="1085" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_11t0ikz_di" bpmnElement="Event_0s8tvgq">
+        <omgdc:Bounds x="1452" y="942" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1399" y="948" width="48" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-F8B1D689-27F8-4CCE-AADA-6F72B7957FB9_gui" bpmnElement="sid-F8B1D689-27F8-4CCE-AADA-6F72B7957FB9" isHorizontal="true">
         <omgdc:Bounds x="158" y="84" width="4530" height="70" />
         <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
@@ -1875,18 +1875,6 @@ execution.setVariable("cvrating", new);</script>
       <bpmndi:BPMNShape id="sid-13D70EE6-8B08-43A1-91E6-38B07FE90CE0_gui" bpmnElement="sid-13D70EE6-8B08-43A1-91E6-38B07FE90CE0" isHorizontal="true">
         <omgdc:Bounds x="188" y="1356" width="4684" height="91" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="sid-518A606E-E9A3-459E-AEAC-4D7152D3814E_gui" bpmnElement="sid-518A606E-E9A3-459E-AEAC-4D7152D3814E">
-        <omgdi:waypoint x="1664" y="916" />
-        <omgdi:waypoint x="1664" y="885" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="sid-0A54895F-0F2F-4370-AF50-55CA2BF4EC49_gui" bpmnElement="sid-0A54895F-0F2F-4370-AF50-55CA2BF4EC49">
-        <omgdi:waypoint x="1896" y="888" />
-        <omgdi:waypoint x="1999" y="871" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="sid-0F55AFFF-F6BB-4E9D-AF77-66ADDE2B6099_gui" bpmnElement="sid-0F55AFFF-F6BB-4E9D-AF77-66ADDE2B6099">
-        <omgdi:waypoint x="1796" y="1030" />
-        <omgdi:waypoint x="1681" y="1042" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="sid-634D73C4-6E25-4F44-87AF-B566441AB832_gui" bpmnElement="sid-634D73C4-6E25-4F44-87AF-B566441AB832">
         <omgdc:Bounds x="795" y="830" width="549" height="246" />
         <bpmndi:BPMNLabel labelStyle="sid-49296282-892a-416b-8b1d-ce19da3d49d2">
@@ -1928,6 +1916,18 @@ execution.setVariable("cvrating", new);</script>
       <bpmndi:BPMNEdge id="sid-094BA3AD-B933-4D87-8D0C-4C9A93D11E6F_gui" bpmnElement="sid-094BA3AD-B933-4D87-8D0C-4C9A93D11E6F">
         <omgdi:waypoint x="1084" y="1091" />
         <omgdi:waypoint x="1086" y="1060" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="sid-518A606E-E9A3-459E-AEAC-4D7152D3814E_gui" bpmnElement="sid-518A606E-E9A3-459E-AEAC-4D7152D3814E">
+        <omgdi:waypoint x="1664" y="916" />
+        <omgdi:waypoint x="1664" y="885" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="sid-0A54895F-0F2F-4370-AF50-55CA2BF4EC49_gui" bpmnElement="sid-0A54895F-0F2F-4370-AF50-55CA2BF4EC49">
+        <omgdi:waypoint x="1896" y="888" />
+        <omgdi:waypoint x="1999" y="871" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="sid-0F55AFFF-F6BB-4E9D-AF77-66ADDE2B6099_gui" bpmnElement="sid-0F55AFFF-F6BB-4E9D-AF77-66ADDE2B6099">
+        <omgdi:waypoint x="1796" y="1030" />
+        <omgdi:waypoint x="1681" y="1042" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-82FDD36A-4ABD-49CC-B92F-E75FFBCE1131_gui" bpmnElement="sid-82FDD36A-4ABD-49CC-B92F-E75FFBCE1131">
         <omgdi:waypoint x="304.4798159163993" y="153.87080608631072" />
