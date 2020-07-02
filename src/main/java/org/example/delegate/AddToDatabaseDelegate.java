@@ -50,6 +50,9 @@ public class AddToDatabaseDelegate implements JavaDelegate {
             statement_application.setInt(2, (Integer) delegateExecution.getVariable("job_opening_id"));
             statement_application.executeUpdate();
 
+            // set process variable required for next step
+            delegateExecution.setVariable("applications_received", true);
+
         }
 
     }
