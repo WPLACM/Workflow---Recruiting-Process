@@ -4,7 +4,7 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.spin.plugin.variable.value.JsonValue;
 
-public class SendConfirmationDelegate implements JavaDelegate{
+public class  SendConfirmationDelegate implements JavaDelegate{
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
 
