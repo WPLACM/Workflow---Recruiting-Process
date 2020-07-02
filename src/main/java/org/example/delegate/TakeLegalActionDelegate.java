@@ -6,6 +6,10 @@ import org.camunda.spin.plugin.variable.value.JsonValue;
 
 public class TakeLegalActionDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
+        //https://docs.camunda.org/manual/7.5/user-guide/data-formats/json/
+        int dunn = (int) delegateExecution.getVariable("number_of_dunns");
+        dunn=dunn+1;
+        delegateExecution.setVariable("number_of_dunns", dunn);
         JsonValue client_company = delegateExecution.getVariableTyped("new_client_company");
         String client_name=client_company.getValue().prop("name").stringValue();
         JsonValue job_opening = delegateExecution.getVariableTyped("new_job_opening");

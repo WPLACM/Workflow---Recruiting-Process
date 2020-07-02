@@ -5,6 +5,8 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.spin.plugin.variable.value.JsonValue;
 
 public class SendInvoiceDelegate implements JavaDelegate {
+    private int number_of_dunns;
+    public void setNumber_of_dunns(int dunn){this.number_of_dunns=dunn;}
     public void execute(DelegateExecution delegateExecution) throws Exception {
         JsonValue client_company = delegateExecution.getVariableTyped("new_client_company");
         String client_name = client_company.getValue().prop("name").stringValue();
@@ -31,6 +33,9 @@ public class SendInvoiceDelegate implements JavaDelegate {
                 +"\"Net\" : \"amount\","
                 +"\"Tax\" : \"amount\""
                 + "}";
+        this.number_of_dunns=0;
+        delegateExecution.setVariable("invoice", invoiceJSON);
+
     }
 
 }
