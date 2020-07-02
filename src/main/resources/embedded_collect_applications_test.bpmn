@@ -45,11 +45,11 @@
             <camunda:connector>
               <camunda:inputOutput>
                 <camunda:inputParameter name="to">
-                  <camunda:script scriptFormat="{&#34;to&#34;: execution.getVariable(&#34;candidate_confirmation_text&#34;)}"></camunda:script>
+                  <camunda:script scriptFormat="JavaScript">{"to": execution.getVariable("candidate_confirmation_text")}</camunda:script>
                 </camunda:inputParameter>
                 <camunda:inputParameter name="subject">Your application has been received</camunda:inputParameter>
                 <camunda:inputParameter name="text">
-                  <camunda:script scriptFormat="{&#34;to&#34;: execution.getVariable(&#34;candidate_confirmation_text&#34;)}"></camunda:script>
+                  <camunda:script scriptFormat="JavaScript">{"to": execution.getVariable("candidate_confirmation_text")}</camunda:script>
                 </camunda:inputParameter>
               </camunda:inputOutput>
               <camunda:connectorId>mail-send</camunda:connectorId>
@@ -88,7 +88,7 @@
         <bpmn:incoming>Flow_0522a8q</bpmn:incoming>
         <bpmn:outgoing>Flow_0njuwm5</bpmn:outgoing>
         <bpmn:timerEventDefinition id="TimerEventDefinition_0j6mhxp">
-          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1M</bpmn:timeDuration>
+          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT3M</bpmn:timeDuration>
         </bpmn:timerEventDefinition>
       </bpmn:intermediateCatchEvent>
       <bpmn:sequenceFlow id="Flow_0njuwm5" sourceRef="Event_09rtqsi" targetRef="Event_1oe4y8a" />

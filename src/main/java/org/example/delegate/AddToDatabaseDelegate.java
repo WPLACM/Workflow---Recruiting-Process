@@ -56,7 +56,7 @@ public class AddToDatabaseDelegate implements JavaDelegate {
             // set process variable required for next step
             delegateExecution.setVariable("applications_received", true);
 
-            delegateExecution.setVariable("candidate_email", "stefan.tewes@outlook.de");
+            delegateExecution.setVariable("candidate_email", "wplacmrecruiting@gmail.com");
             delegateExecution.setVariable("candidate_confirmation_text", "hello this is a test");
         }
 
