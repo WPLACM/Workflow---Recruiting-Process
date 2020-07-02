@@ -14,7 +14,6 @@ public class CreateCandidateListDelegate implements JavaDelegate {
         //get relevant information from process context
         String qualifications = (String) execution.getVariable("requiredQualifications");
         String location = (String) execution.getVariable("jobLocation");
-        //System.out.println(qualifications + " " + location);
 
         //create SQL query
         String candidats_query = "SELECT first_name, last_name, email FROM Candidate " +
@@ -44,9 +43,9 @@ public class CreateCandidateListDelegate implements JavaDelegate {
         con.close();
 
         //Test result (TODO remove)
-        for(int i = 0; i < candidates_first_name.size(); i++){
-            System.out.println(candidates_first_name.get(i));
-        }
+        //for(int i = 0; i < candidates_first_name.size(); i++){
+        //    System.out.println(candidates_first_name.get(i));
+        //}
 
         //saving variables into process context
         execution.setVariable("candidates_first_name", candidates_first_name);
@@ -76,7 +75,7 @@ public class CreateCandidateListDelegate implements JavaDelegate {
         query.executeUpdate(insert_query4);
         query.close();
         con.close();
-        System.out.println("Test entries created");
+        //System.out.println("Test entries created");
     }
 
 }
