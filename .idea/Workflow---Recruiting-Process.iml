@@ -31,9 +31,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.camunda.bpm.extension:camunda-bpm-mail-core:1.0.0" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.mail:javax.mail:1.5.5" level="project" />
-    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:7.13.0" level="project" />
     <orderEntry type="library" name="Maven: org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp-core:7.13.0" level="project" />
     <orderEntry type="library" name="Maven: org.camunda.bpm.webapp:camunda-webapp:classes:7.13.0" level="project" />
@@ -193,8 +190,9 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.6.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.camunda.bpm.extension:camunda-bpm-assert-scenario:0.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.slf4j:jul-to-slf4j:1.7.30" level="project" />
-    <orderEntry type="library" name="Maven: org.camunda.bpm.extension:camunda-bpm-mail-core:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.camunda.bpm.extension:camunda-bpm-mail-core:1.2.0" level="project" />
     <orderEntry type="library" name="Maven: com.sun.mail:javax.mail:1.5.5" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.camunda.connect:camunda-connect-core:1.4.0" level="project" />
   </component>
 </module>
