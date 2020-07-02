@@ -24,6 +24,8 @@ public class Candidate {
     private String sex;
     private String email;
     private String skills;
+    private String location_country;
+    private String location_city;
 
     @OneToMany(targetEntity = Application.class, cascade = CascadeType.ALL)
     @JoinColumn(name ="ca_ap_fk", referencedColumnName = "candidate_id")
