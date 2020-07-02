@@ -42,7 +42,7 @@ public class CreateCandidateListDelegate implements JavaDelegate {
         query.close();
         con.close();
 
-        //Test result (TODO remove)
+        //Test results
         //for(int i = 0; i < candidates_first_name.size(); i++){
         //    System.out.println(candidates_first_name.get(i));
         //}
@@ -75,7 +75,6 @@ public class CreateCandidateListDelegate implements JavaDelegate {
         query.executeUpdate(insert_query4);
         query.close();
         con.close();
-        //System.out.println("Test entries created");
     }
 
 }

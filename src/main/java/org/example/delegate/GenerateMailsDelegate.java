@@ -18,14 +18,15 @@ public class GenerateMailsDelegate implements JavaDelegate {
             String currentFirstName = ((ArrayList<String>) execution.getVariable("candidates_first_name")).get(i);
             String currentLastName = ((ArrayList<String>) execution.getVariable("candidates_last_name")).get(i);
 
-            String mail ="Dear "+currentFirstName+" "+currentLastName+", " +
-                    "we are pleased to announce to you that there is a new job offer that you might be interested in. "+
-                    "Please find all relevant information below. Yours sincerely Weplacm. "+ jobProfile;
+            String mail ="Dear "+currentFirstName+" "+currentLastName+", " + System.lineSeparator() +
+                    "we are pleased to announce to you that there is a new job offer that you might be interested in. "+ System.lineSeparator() +
+                    "Please find all relevant information below."+System.lineSeparator()+ "Sincerely, Weplacm Headhunting. "+System.lineSeparator()+
+                    jobProfile;
                     //TODO improve later
 
             emails.add(mail);
         }
 
-        execution.setVariable("mails", emails);
+        execution.setVariable("ListOfMails", emails);
     }
 }
