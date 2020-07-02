@@ -13,8 +13,8 @@ public class NoApplicationsReceivedDelegate implements JavaDelegate {
         String noapplicationsJSON = "{\"WPLACM_process_ID\" : \"ID\","
                 + "\"WBIG_process_ID\" : \"ID\","
                 + "\"timestamp\" : 12345\","
-                + "\"message\" : \" Dear " + client_name + ", " +
-                "sorry we were not able to find any suitable candidates for you. We are extremely sorry. " +
+                + "\"message\" : \" Dear " + client_name + ", we are very sorry that " +
+                "we were not able to find any suitable candidates for you. Our apologies. " +
                 "We hope we can continue doing services for you in the future for " +
                 "any other job openings you will have. Thanks very much for your " +
                 "understanding. Yours faithfully, WPLACM. \"}";
