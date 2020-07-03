@@ -19,7 +19,7 @@ import java.util.List;
 public class Job_Opening {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int job_opening_id;
+    private Integer job_opening_id;
     private Date opening_date;
     private Timestamp deadline;
 

@@ -37,9 +37,11 @@ public class PublishJobOpeningDelegate implements JavaDelegate {
         ResultSet rs = statement.getGeneratedKeys();
         if(rs.next()) {
             // set openingId process variable
-            long job_opening_id = rs.getLong(1);
+            Integer job_opening_id =  rs.getInt(1);
             execution.setVariable("openingId", job_opening_id);
         }
+        execution.setVariable("applications_received", false);
+
 
         //access jobProfile
 
