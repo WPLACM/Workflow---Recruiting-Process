@@ -26,4 +26,9 @@ public class Application {
     //private int job_opening_id;
 
     //TO-DO: specify additional attributes, sql foreign key and relation config
+    private int cv_id;
+    private int rating;
+    private int cv_rating;
+    private int backgroundrating;
+    //private XXX link_to_cv; still to be defined
 }
