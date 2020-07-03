@@ -35,7 +35,7 @@ public class SendInvoiceDelegate implements JavaDelegate {
                 + "}";
         this.number_of_dunns=0;
         delegateExecution.setVariable("invoice", invoiceJSON);
-
+        //TODO replace values with actual properties; testing
     }
 
 }
