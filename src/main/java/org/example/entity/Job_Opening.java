@@ -26,4 +26,8 @@ public class Job_Opening {
     @OneToMany(targetEntity = Application.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "jo_ap_fk", referencedColumnName = "job_opening_id")
     private List<Application> applicationList ;
+
+    @ManyToOne(targetEntity = Job_Opening_Information.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "jo_joi_fk", referencedColumnName = "job_opening_information_id")
+    private List<Job_Opening_Information> job_opening_informationList;
 }

@@ -26,12 +26,13 @@ public class PublishJobOpeningDelegate implements JavaDelegate {
         // Prepare Insert Statement
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         String job_opening_insert =
-                "INSERT INTO JOB_OPENING ( opening_date, deadline) VALUES (?,?)";
+                "INSERT INTO JOB_OPENING ( opening_date, deadline, jo_joi_fk) VALUES (?,?,?)";
         PreparedStatement statement = con.prepareStatement(job_opening_insert, Statement.RETURN_GENERATED_KEYS);
 
         // Set values for insert
         statement.setDate(1, opening_date);
         statement.setTimestamp(2, deadline);
+        statement.setInt(3, (Integer) execution.getVariable("opening_information_id"));
         statement.executeUpdate();
 
         ResultSet rs = statement.getGeneratedKeys();

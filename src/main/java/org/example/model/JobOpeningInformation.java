@@ -12,7 +12,7 @@ public class JobOpeningInformation {
     /*
     Attributes
      */
-    private String wbig_process_ID;
+    private Integer wbig_process_ID;
     private String time_stamp;
     private Information information;
     //private JSONValue information;
