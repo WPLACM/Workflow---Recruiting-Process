@@ -152,10 +152,8 @@
           <signavio:signavioMetaData metaKey="bgcolor" metaValue="" />
           <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
         </extensionElements>
-        <flowNodeRef>sid-06AEC8D0-6104-4F48-90E8-39D238608907</flowNodeRef>
         <flowNodeRef>sid-5139464E-954F-4985-86F9-A5DD194966F3</flowNodeRef>
         <flowNodeRef>sid-2DABE27F-3EB0-4266-856E-812E5A9016E5</flowNodeRef>
-        <flowNodeRef>sid-3B9107C0-9FB1-49EA-810C-3C32295C8798</flowNodeRef>
         <flowNodeRef>sid-7478CBC7-5A2E-45B2-90CC-CB9FFAB4084F</flowNodeRef>
         <flowNodeRef>sid-108A41F9-43CA-403F-A882-310AB3227C25</flowNodeRef>
         <flowNodeRef>sid-508E5E20-44C5-4DDA-B2A6-626C22751BF8</flowNodeRef>
@@ -171,6 +169,8 @@
         <flowNodeRef>sid-7A1BCD87-70A8-4C4C-8281-31EE15A7ED51</flowNodeRef>
         <flowNodeRef>sid-5D18F7D6-AC55-4E90-BDDF-4911FB6FBEF4</flowNodeRef>
         <flowNodeRef>sid-5FE2ABFC-4D34-428F-8D5C-7B4AD9B2C72B</flowNodeRef>
+        <flowNodeRef>sid-06AEC8D0-6104-4F48-90E8-39D238608907</flowNodeRef>
+        <flowNodeRef>sid-3B9107C0-9FB1-49EA-810C-3C32295C8798</flowNodeRef>
       </lane>
       <lane id="sid-3D4B6F6B-5C0F-47F4-BD69-D6072E0A5EC0" name="Recruiting&#10;&#10;">
         <extensionElements>
@@ -421,23 +421,6 @@
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
       </extensionElements>
     </dataStoreReference>
-    <scriptTask id="sid-06AEC8D0-6104-4F48-90E8-39D238608907" name="prepare invoice" scriptFormat="JavaScript">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
-        <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
-        <signavio:signavioMetaData metaKey="risikenundkontrollen" metaValue="" />
-        <signavio:signavioMetaData metaKey="erteiltfreigabe" metaValue="" />
-        <signavio:signavioMetaData metaKey="wirdkonsultiert" metaValue="[]" />
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
-        <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
-      </extensionElements>
-      <categoryValueRef>sid-4af92723-f257-465a-ae6e-094b816a5457</categoryValueRef>
-      <incoming>sid-C18551ED-BE29-46CF-B2ED-CF6C2468A815</incoming>
-      <outgoing>sid-D1D152F8-8936-4831-BA69-06F1065C67A9</outgoing>
-      <script>execution.setVariable("net", 5*150.3);
-execution.setVariable("tax", 5*150.3*0.19);
-execution.setVariable("gross", 5*150.3+5*150.3*0.19);</script>
-    </scriptTask>
     <sendTask id="sid-5139464E-954F-4985-86F9-A5DD194966F3" name="Take legal action" implementation="##WebService" camunda:class="org.example.delegate.TakeLegalActionDelegate">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
@@ -460,24 +443,6 @@ execution.setVariable("gross", 5*150.3+5*150.3*0.19);</script>
       </extensionElements>
       <incoming>sid-1671590C-D538-496C-BEAE-1C5BD3B87FBF</incoming>
     </endEvent>
-    <scriptTask id="sid-3B9107C0-9FB1-49EA-810C-3C32295C8798" name="determine placement status" scriptFormat="JavaScript">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
-        <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
-        <signavio:signavioMetaData metaKey="risikenundkontrollen" metaValue="" />
-        <signavio:signavioMetaData metaKey="erteiltfreigabe" metaValue="" />
-        <signavio:signavioMetaData metaKey="wirdkonsultiert" metaValue="[]" />
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
-        <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
-      </extensionElements>
-      <categoryValueRef>sid-4af92723-f257-465a-ae6e-094b816a5457</categoryValueRef>
-      <incoming>sid-E7BF0AC5-776C-4A5C-8314-5EC3EAE9E6AF</incoming>
-      <outgoing>sid-0E7A68F0-737F-4F54-A32C-C8D6BFEAD1FA</outgoing>
-      <script>execution.setVariable("open_spots", 5);
-execution.setVariable("number_of_acceptances", 4);
-execution.setVariable("open_spots", 5-4);
-execution.setVariable("placementFin", false);</script>
-    </scriptTask>
     <serviceTask id="sid-7478CBC7-5A2E-45B2-90CC-CB9FFAB4084F" name="debit collection" implementation="##WebService" camunda:class="org.example.delegate.DebitCollectionDelegate">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
@@ -1181,6 +1146,14 @@ execution.setVariable("placementFin", false);</script>
       <incoming>sid-4942DDAC-FF75-4A04-B914-2C7765DCCDB9</incoming>
       <outgoing>sid-DCD17210-D7A3-432A-ADBE-C831623BC54F</outgoing>
     </serviceTask>
+    <serviceTask id="sid-06AEC8D0-6104-4F48-90E8-39D238608907" name="prepare invoice" camunda:class="org.example.delegate.PrepareInvoiceDelegate">
+      <incoming>sid-C18551ED-BE29-46CF-B2ED-CF6C2468A815</incoming>
+      <outgoing>sid-D1D152F8-8936-4831-BA69-06F1065C67A9</outgoing>
+    </serviceTask>
+    <serviceTask id="sid-3B9107C0-9FB1-49EA-810C-3C32295C8798" name="determine placement status" camunda:class="org.example.delegate.DeterminePlacementStatusDelegate">
+      <incoming>sid-E7BF0AC5-776C-4A5C-8314-5EC3EAE9E6AF</incoming>
+      <outgoing>sid-0E7A68F0-737F-4F54-A32C-C8D6BFEAD1FA</outgoing>
+    </serviceTask>
   </process>
   <process id="sid-4CF5718C-2DBA-46CD-8B2B-0D0FC88A760A" name="WBIG" processType="None" isClosed="false" isExecutable="true">
     <extensionElements />
@@ -1427,13 +1400,13 @@ execution.setVariable("placementFin", false);</script>
         <omgdi:waypoint x="836" y="951" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-E7BF0AC5-776C-4A5C-8314-5EC3EAE9E6AF_gui" bpmnElement="sid-E7BF0AC5-776C-4A5C-8314-5EC3EAE9E6AF">
-        <omgdi:waypoint x="4507.074520904711" y="490.95768050861034" />
-        <omgdi:waypoint x="4553.074520904711" y="490.95768050861034" />
+        <omgdi:waypoint x="4507" y="491" />
+        <omgdi:waypoint x="4553" y="491" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-0E7A68F0-737F-4F54-A32C-C8D6BFEAD1FA_gui" bpmnElement="sid-0E7A68F0-737F-4F54-A32C-C8D6BFEAD1FA">
-        <omgdi:waypoint x="4603.074520904711" y="530.9576805086103" />
-        <omgdi:waypoint x="4603.074520904711" y="578.4576805086102" />
-        <omgdi:waypoint x="4670" y="578.4576805086102" />
+        <omgdi:waypoint x="4603" y="531" />
+        <omgdi:waypoint x="4603" y="578.4576805086102" />
+        <omgdi:waypoint x="4670" y="578" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-1671590C-D538-496C-BEAE-1C5BD3B87FBF_gui" bpmnElement="sid-1671590C-D538-496C-BEAE-1C5BD3B87FBF">
         <omgdi:waypoint x="4710" y="577.2079277248581" />
@@ -1460,23 +1433,17 @@ execution.setVariable("placementFin", false);</script>
         <omgdi:waypoint x="4334.074520904711" y="515.9576805086103" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-C18551ED-BE29-46CF-B2ED-CF6C2468A815_gui" bpmnElement="sid-C18551ED-BE29-46CF-B2ED-CF6C2468A815">
-        <omgdi:waypoint x="3631.4998352676675" y="578.191849570835" />
-        <omgdi:waypoint x="3681.728400963869" y="578.0744980349302" />
+        <omgdi:waypoint x="3631" y="578" />
+        <omgdi:waypoint x="3682" y="578" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-D1D152F8-8936-4831-BA69-06F1065C67A9_gui" bpmnElement="sid-D1D152F8-8936-4831-BA69-06F1065C67A9">
-        <omgdi:waypoint x="3781.728400963869" y="577.9576805086101" />
-        <omgdi:waypoint x="3811.410370606014" y="577.9576805086101" />
+        <omgdi:waypoint x="3782" y="578" />
+        <omgdi:waypoint x="3811" y="578" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="sid-EFF056BD-D850-4D56-8988-44937504345F_gui" bpmnElement="sid-EFF056BD-D850-4D56-8988-44937504345F">
         <omgdc:Bounds x="2994" y="1097" width="62" height="60" />
         <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
           <omgdc:Bounds x="2988" y="1162" width="74" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="sid-06AEC8D0-6104-4F48-90E8-39D238608907_gui" bpmnElement="sid-06AEC8D0-6104-4F48-90E8-39D238608907">
-        <omgdc:Bounds x="3682" y="538" width="100" height="80" />
-        <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
-          <omgdc:Bounds x="3640.842689293947" y="729.9576805086101" width="81.77142333984375" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-5139464E-954F-4985-86F9-A5DD194966F3_gui" bpmnElement="sid-5139464E-954F-4985-86F9-A5DD194966F3">
@@ -1487,12 +1454,6 @@ execution.setVariable("placementFin", false);</script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-2DABE27F-3EB0-4266-856E-812E5A9016E5_gui" bpmnElement="sid-2DABE27F-3EB0-4266-856E-812E5A9016E5">
         <omgdc:Bounds x="4799" y="564" width="28" height="28" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="sid-3B9107C0-9FB1-49EA-810C-3C32295C8798_gui" bpmnElement="sid-3B9107C0-9FB1-49EA-810C-3C32295C8798">
-        <omgdc:Bounds x="4553" y="451" width="100" height="80" />
-        <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
-          <omgdc:Bounds x="4525.688809234789" y="630.9576805086103" width="54.77142333984375" height="36" />
-        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-7478CBC7-5A2E-45B2-90CC-CB9FFAB4084F_gui" bpmnElement="sid-7478CBC7-5A2E-45B2-90CC-CB9FFAB4084F">
         <omgdc:Bounds x="4407" y="451" width="100" height="80" />
@@ -1674,11 +1635,11 @@ execution.setVariable("placementFin", false);</script>
           <omgdc:Bounds x="1072" y="756" width="78" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_12qfudv_di" bpmnElement="sid-68DD3769-3B35-40AA-9CAA-3B7B7CF142B5">
-        <omgdc:Bounds x="2685" y="906" width="100" height="80" />
+      <bpmndi:BPMNShape id="Activity_1kn21s2_di" bpmnElement="sid-06AEC8D0-6104-4F48-90E8-39D238608907">
+        <omgdc:Bounds x="3682" y="538" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1al4zko_di" bpmnElement="sid-04B0B3DE-2D41-449C-A143-ADB5241E91C0">
-        <omgdc:Bounds x="2830" y="906" width="100" height="80" />
+      <bpmndi:BPMNShape id="Activity_17gzt9d_di" bpmnElement="sid-3B9107C0-9FB1-49EA-810C-3C32295C8798">
+        <omgdc:Bounds x="4553" y="451" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-6D98E17C-9555-479D-86BC-B7EF17602B95_gui" bpmnElement="sid-6D98E17C-9555-479D-86BC-B7EF17602B95" isExpanded="true">
         <omgdc:Bounds x="1390" y="768" width="810" height="357" />
@@ -1818,6 +1779,12 @@ execution.setVariable("placementFin", false);</script>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds x="1399" y="948" width="48" height="27" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12qfudv_di" bpmnElement="sid-68DD3769-3B35-40AA-9CAA-3B7B7CF142B5">
+        <omgdc:Bounds x="2685" y="906" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1al4zko_di" bpmnElement="sid-04B0B3DE-2D41-449C-A143-ADB5241E91C0">
+        <omgdc:Bounds x="2830" y="906" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-F8B1D689-27F8-4CCE-AADA-6F72B7957FB9_gui" bpmnElement="sid-F8B1D689-27F8-4CCE-AADA-6F72B7957FB9" isHorizontal="true">
         <omgdc:Bounds x="158" y="84" width="4530" height="70" />
