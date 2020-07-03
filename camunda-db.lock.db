@@ -1,6 +1,6 @@
 #FileLock
-#Thu Jul 02 23:17:29 CEST 2020
-hostName=192.168.0.31
-id=173116437851ceda18c78ad53115e3737da6055c9d1
+#Thu Jul 02 19:23:49 CEST 2020
+hostName=host.docker.internal
+id=173108e49d69261a4f0ef3a6ea451d743eb22aee073
 method=file
-server=192.168.0.31\:52444
+server=192.168.2.101\:55321

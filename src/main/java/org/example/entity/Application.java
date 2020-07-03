@@ -21,9 +21,7 @@ public class Application {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int application_id;
 
-    // not needed, is being generated:
-    //private int candidate_id;
-    //private int job_opening_id;
+
 
     //TO-DO: specify additional attributes, sql foreign key and relation config
     private int cv_id;
