@@ -20,8 +20,11 @@ public class Application {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int application_id;
+    private int rating;
+    private int cv_rating;
+    private int backgroundrating;
 
-
+    //private ??? link to cv file
 
     //TO-DO: specify additional attributes, sql foreign key and relation config
 }
