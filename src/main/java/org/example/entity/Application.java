@@ -1,5 +1,6 @@
 package org.example.entity;
 
+import com.sun.istack.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,10 +20,10 @@ import javax.persistence.Id;
 public class Application {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int application_id;
-    private int rating;
-    private int cv_rating;
-    private int backgroundrating;
+    private Integer application_id;
+    private Integer rating;
+    private Integer cv_rating;
+    private Integer backgroundrating;
 
     //private ??? link to cv file
 

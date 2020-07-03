@@ -16,10 +16,10 @@ import java.util.List;
 @Entity
 public class Job_Opening_Information {
     @Id
-    private int job_opening_information_id;
-    private int WBIG_process_ID;
+    private Integer job_opening_information_id;
+    private Integer WBIG_process_ID;
     private DateTime time_stamp;
-    private int open_spots;
+    private Integer open_spots;
     private String salary;
     private String job_title;
     private String job_description;

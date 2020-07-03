@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@EnableProcessApplication("Camunda_Test")
+@EnableProcessApplication("WPLACM")
 public class CamundaApplication {
   public static void main(String... args) {
     SpringApplication.run(CamundaApplication.class, args);

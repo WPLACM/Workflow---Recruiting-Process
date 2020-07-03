@@ -13,9 +13,9 @@ public class Information {
     /*
     Attributes
      */
-    private String opening_ID;
-    private int open_spots;
-    private int salary;
+    private Integer opening_ID;
+    private Integer open_spots;
+    private Integer salary;
     private String job_title;
     private String opening_name;
     private String job_description;
@@ -23,7 +23,7 @@ public class Information {
     private String additional_information;
     //@JsonFormat(pattern = "yyyy-MM-dd")
     private String deadline;
-    private int payment_information_acceptances;
+    private Integer payment_information_acceptances;
     private String job_location;
-    private int working_hours;
+    private Integer working_hours;
 }
