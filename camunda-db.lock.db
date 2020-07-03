@@ -1,6 +1,6 @@
 #FileLock
-#Thu Jul 02 22:37:13 CEST 2020
-hostName=DESKTOP-4BQR0OJ.mshome.net
-id=173113f593a72829c77d9dc8f76cc2e3cc801de27d5
+#Thu Jul 02 19:23:49 CEST 2020
+hostName=host.docker.internal
+id=173108e49d69261a4f0ef3a6ea451d743eb22aee073
 method=file
-server=172.18.151.17\:61459
+server=192.168.2.101\:55321
