@@ -13,6 +13,7 @@ import java.security.GeneralSecurityException;
 import java.util.Properties;
 
 //TODO testing
+// TODO replace opening ID, client company name with actual properties set by Maxi + Luis
 
 public class SendDunnDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
