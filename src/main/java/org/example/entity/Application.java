@@ -20,10 +20,11 @@ public class Application {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int application_id;
+    private int rating;
+    private int cv_rating;
+    private int backgroundrating;
 
-    // not needed, is being generated:
-    //private int candidate_id;
-    //private int job_opening_id;
+    //private ??? link to cv file
 
     //TO-DO: specify additional attributes, sql foreign key and relation config
 }
