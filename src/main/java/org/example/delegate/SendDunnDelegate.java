@@ -17,7 +17,6 @@ import java.util.Properties;
 
 public class SendDunnDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        //https://docs.camunda.org/manual/7.5/user-guide/data-formats/json/
         String lawyer_mail = "genericlawyer123@gmail";
         int dunn = (int) delegateExecution.getVariable("number_of_dunns");
         dunn=dunn+1;
