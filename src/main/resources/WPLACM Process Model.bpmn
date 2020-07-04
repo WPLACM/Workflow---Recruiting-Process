@@ -626,6 +626,7 @@
       <categoryValueRef>sid-8dc65996-6426-4fc6-a053-2ef307e60cc0</categoryValueRef>
       <incoming>sid-5E652E1E-BC65-41E0-B8F3-40182603B864</incoming>
       <outgoing>sid-7192A392-2690-489E-A6DE-D2986D12DDB6</outgoing>
+      <multiInstanceLoopCharacteristics camunda:collection="Application" camunda:elementVariable="application_id" />
     </userTask>
     <businessRuleTask id="sid-B4C31733-DF10-40C6-8D46-CE9515284024" name="select CV&#39;s" implementation="##WebService" camunda:class="org.example.delegate.SelectCVsDelegate">
       <extensionElements>
@@ -738,6 +739,7 @@
       </extensionElements>
       <incoming>sid-65F5B595-4AB8-48E3-A9D4-7AC158655CA1</incoming>
       <outgoing>sid-4F78A2E9-A974-4310-B2B2-21FF1CF46A88</outgoing>
+      <multiInstanceLoopCharacteristics camunda:collection="Application" camunda:elementVariable="application_id" />
     </userTask>
     <userTask id="sid-13E49214-4737-4900-8B19-27907B038A06" name="create job profile" implementation="##WebService">
       <extensionElements>
