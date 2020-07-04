@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-@RequestMapping("/jobpostings")
+@RequestMapping("/job-openings")
 public class PublishJobOpeningController {
     @Autowired
     private Job_Opening_Repository repository;

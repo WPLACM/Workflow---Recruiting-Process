@@ -814,24 +814,19 @@
       <extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="url">http://localhost:8080/jobopenings/</camunda:inputParameter>
+            <camunda:inputParameter name="url">http://localhost:8080/job-openings/</camunda:inputParameter>
             <camunda:inputParameter name="method">PUT</camunda:inputParameter>
-            <!-- <camunda:inputParameter name="headers" />  -->
-            <camunda:inputParameter name="header">
+            <camunda:inputParameter name="headers">
               <camunda:map>
-                <camunda:entry key="accept">application/json</camunda:entry>
-                <camunda:entry key="content-type">application/json</camunda:entry>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
               </camunda:map>
             </camunda:inputParameter>
-            <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="javascript">var myJson = {
+            <camunda:inputParameter name="payload">{
     "job_opening_id" : 2,
     "opening_date": "2020-12-10T13:45:00.000Z",
     "deadline": "2021-12-10T13:45:00.000Z"
-}
-
-JSON.stringify(myJson);</camunda:script>
-            </camunda:inputParameter>
+}</camunda:inputParameter>
+            <camunda:outputParameter name="test">#{response}</camunda:outputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>http-connector</camunda:connectorId>
         </camunda:connector>

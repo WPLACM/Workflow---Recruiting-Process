@@ -151,12 +151,12 @@
       <version>1.4.0</version>
     </dependency>
     <dependency>
-      <groupId>org.camunda.connect</groupId>
-      <artifactId>camunda-connect-soap-http-client</artifactId>
+      <groupId>org.camunda.bpm</groupId>
+      <artifactId>camunda-engine-plugin-connect</artifactId>
     </dependency>
     <dependency>
       <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine-plugin-connect</artifactId>
+      <artifactId>camunda-engine-plugin-spin</artifactId>
     </dependency>
 
 

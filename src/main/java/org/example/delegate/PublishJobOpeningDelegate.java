@@ -43,17 +43,5 @@ public class PublishJobOpeningDelegate implements JavaDelegate {
         }
         execution.setVariable("applications_received", false);
 
-
-        //post job opening
-        /*HttpConnector http = Connectors.getConnector(http-connector);
-        http.createRequest()
-                .post()
-                .url("http://camunda.org")
-                .contentType("text/plain")
-                .payload("Hello World!")
-                .execute();
-
-         */
-
     }
 }
