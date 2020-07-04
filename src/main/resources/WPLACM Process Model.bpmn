@@ -810,7 +810,12 @@
         <targetRef>Property_1l30von</targetRef>
       </dataInputAssociation>
     </serviceTask>
-    <serviceTask id="sid-0B6B92CF-6B16-48A5-9BE2-0803E7310A20" name="publish job opening" implementation="##WebService" camunda:class="org.example.delegate.PublishJobOpeningDelegate">
+    <serviceTask id="sid-0B6B92CF-6B16-48A5-9BE2-0803E7310A20" name="publish job opening" implementation="##WebService">
+      <extensionElements>
+        <camunda:connector>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </extensionElements>
       <incoming>sid-624BA53C-DAC3-437D-81A6-71B328D5A2CB</incoming>
       <outgoing>sid-A3DFE089-BA04-4CB7-990B-8525CEAEE7C2</outgoing>
       <ioSpecification>

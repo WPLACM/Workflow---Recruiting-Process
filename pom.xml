@@ -133,6 +133,32 @@
       <artifactId>camunda-bpm-mail-core</artifactId>
       <version>1.2.0</version>
     </dependency>
+    <!-- Camunda Connector Reference -->
+    <dependency>
+      <groupId>org.camunda.bpm</groupId>
+      <artifactId>camunda-bom</artifactId>
+      <version>7.13.0</version>
+      <scope>import</scope>
+      <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>org.camunda.connect</groupId>
+      <artifactId>camunda-connect-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.camunda.connect</groupId>
+      <artifactId>camunda-connect-http-client</artifactId>
+      <version>1.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.camunda.connect</groupId>
+      <artifactId>camunda-connect-soap-http-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.camunda.bpm</groupId>
+      <artifactId>camunda-engine-plugin-connect</artifactId>
+    </dependency>
+
 
   </dependencies>
 
