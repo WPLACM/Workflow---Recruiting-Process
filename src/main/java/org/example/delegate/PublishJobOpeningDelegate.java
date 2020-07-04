@@ -45,7 +45,7 @@ public class PublishJobOpeningDelegate implements JavaDelegate {
 
 
         //post job opening
-        /* HttpConnector http = Connectors.getConnector(HttpConnector.ID);
+        /*HttpConnector http = Connectors.getConnector(http-connector);
         http.createRequest()
                 .post()
                 .url("http://camunda.org")

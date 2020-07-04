@@ -813,6 +813,26 @@
     <serviceTask id="sid-0B6B92CF-6B16-48A5-9BE2-0803E7310A20" name="publish job opening" implementation="##WebService">
       <extensionElements>
         <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">http://localhost:8080/jobopenings/</camunda:inputParameter>
+            <camunda:inputParameter name="method">PUT</camunda:inputParameter>
+            <!-- <camunda:inputParameter name="headers" />  -->
+            <camunda:inputParameter name="header">
+              <camunda:map>
+                <camunda:entry key="accept">application/json</camunda:entry>
+                <camunda:entry key="content-type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="javascript">var myJson = {
+    "job_opening_id" : 2,
+    "opening_date": "2020-12-10T13:45:00.000Z",
+    "deadline": "2021-12-10T13:45:00.000Z"
+}
+
+JSON.stringify(myJson);</camunda:script>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
           <camunda:connectorId>http-connector</camunda:connectorId>
         </camunda:connector>
       </extensionElements>
