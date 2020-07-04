@@ -1,5 +1,6 @@
 package org.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,12 +20,14 @@ import java.util.List;
 public class Job_Opening {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer job_opening_id;
-    private Date opening_date;
+    private Integer jobOpeningId;
+
+    //@JsonFormat(pattern = "dd.MM.yyyy, HH:mm:ss")
+    private Date openingDate;
     private Timestamp deadline;
 
     @OneToMany(targetEntity = Application.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "jo_ap_fk", referencedColumnName = "job_opening_id")
+    @JoinColumn(name = "jo_ap_fk", referencedColumnName = "jobOpeningId")
     private List<Application> applicationList ;
 
     @ManyToOne(targetEntity = Job_Opening_Information.class, cascade = CascadeType.ALL)

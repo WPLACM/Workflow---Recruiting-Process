@@ -20,7 +20,8 @@ public class PublishJobOpeningController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllEntries(){
-        List<Job_Opening> jobopenings = repository.findAll();
+        //List<Job_Opening> jobopenings = repository.findAll();
+        List<Job_Opening> jobopenings = repository.findAllByOrderByJobOpeningIdDesc();
         return ResponseEntity.ok(jobopenings);
     }
     @RequestMapping(value = "/", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
