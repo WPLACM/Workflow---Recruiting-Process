@@ -6,7 +6,6 @@ import org.camunda.spin.plugin.variable.value.JsonValue;
 import org.h2.util.json.JSONValue;
 
 //TODO set invoice ID, date, WBIG address
-//TODO WPLACM process ID, opening name, payment info acceptances (currently not in job opening information)
 //TODO testing
 
 public class SendInvoiceDelegate implements JavaDelegate {
@@ -24,8 +23,10 @@ public class SendInvoiceDelegate implements JavaDelegate {
         String gross=delegateExecution.getVariable("gross").toString();
         String tax=delegateExecution.getVariable("tax").toString();
         String acceptances=delegateExecution.getVariable("number_of_acceptances").toString();
+        String openingName = delegateExecution.getVariable("opening_name").toString();
+        String processID=delegateExecution.getVariable("wplacm_id").toString();
 
-        String invoiceJSON = "{\"WPLACM_process_ID\" : \"ID\","
+        String invoiceJSON = "{\"WPLACM_process_ID\" : " +processID+","
                 + "\"WBIG_process_ID\" : " +wbig_process_id+ ","
                 + "\"timestamp\" : " +time_stamp+","
                 + "\"Invoice_ID\" : \"ID\","
@@ -33,7 +34,7 @@ public class SendInvoiceDelegate implements JavaDelegate {
                 + "\"Date\" : \"date\","
                 + "\"Tax_id_WPLACM\" : 123456\","
                 + "" +client_name+ ": {"
-                    + "\"street\" : \"example\","
+                    + "\"street\" : \"WBIG street 1\","
                     + "\"post code\" : 1234"
                     + "}"
                 +"\"address WPLACM\" : {"
@@ -42,7 +43,7 @@ public class SendInvoiceDelegate implements JavaDelegate {
                     + "}"
                 +"\"Number_of_acceptances\" : " +acceptances+ ","
                 +"\"Opening_ID\" : " +openingid+ ","
-                +"\"Opening_Name\" : \"name\","
+                +"\"Opening_Name\" : " +openingName+","
                 +"\"Gross\" : " +gross+ ","
                 +"\"Net\" : " +net+ ","
                 +"\"Tax\" : " +tax+ "}";
