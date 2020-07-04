@@ -25,6 +25,38 @@ public class Application {
     private Integer cv_rating;
     private Integer backgroundrating;
 
+    public Integer getApplication_id() {
+        return application_id;
+    }
+
+    public void setApplication_id(Integer application_id) {
+        this.application_id = application_id;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    public Integer getCv_rating() {
+        return cv_rating;
+    }
+
+    public void setCv_rating(Integer cv_rating) {
+        this.cv_rating = cv_rating;
+    }
+
+    public Integer getBackgroundrating() {
+        return backgroundrating;
+    }
+
+    public void setBackgroundrating(Integer backgroundrating) {
+        this.backgroundrating = backgroundrating;
+    }
+
     //private ??? link to cv file
 
     //TO-DO: specify additional attributes, sql foreign key and relation config
