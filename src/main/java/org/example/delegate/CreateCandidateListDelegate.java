@@ -9,8 +9,11 @@ import java.util.ArrayList;
 public class CreateCandidateListDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-        createTestEntries(); //include for tests
-
+        try {
+            createTestEntries(); //include for tests
+        } catch (SQLException e) {
+            System.out.println("test entries already existing");
+        }
         //get relevant information from process context
         String qualifications = (String) execution.getVariable("requiredQualifications");
         String location = (String) execution.getVariable("jobLocation");

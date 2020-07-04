@@ -10,8 +10,10 @@ public class enhanceCVsWithRatingsDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         // get all applications/cvs for this job opening
         Integer openingId = (Integer) delegateExecution.getVariable("openingId");
-        String applications_query = "SELECT  application_id, cv_rating, backgroundrationg  FROM Application " +
+        String applications_query = "SELECT  application_id, cv_rating, backgroundrating  FROM Application " +
                 "WHERE jo_ap_fk = \'" + openingId + "\' ";
+
+        //SELECT  application_id, cv_rating, backgroundrating  FROM Application WHERE jo_ap_fk = \'" + openingId + "\' ";
 
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         Statement query = con.createStatement();
@@ -20,11 +22,11 @@ public class enhanceCVsWithRatingsDelegate implements JavaDelegate {
         // iterate all found applications
         while (rs.next()){
             Integer application_id  =rs.getInt("application_id");
-            Integer cv_raring = rs.getInt("cv_rating");
+            Integer cv_rating = rs.getInt("cv_rating");
             Integer bg_rating = rs.getInt("backgroundrating");
 
             // TODO calculate rating
-            Integer rating = 100;
+            Integer rating = 100; //SOME FORMULA
 
             // update db entry
             // Prepare Update Statement
