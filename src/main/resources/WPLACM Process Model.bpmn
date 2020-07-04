@@ -620,7 +620,7 @@
         <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
         <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
         <camunda:formData>
-          <camunda:formField id="cv_rating" label="Rate from 1-10" type="long" defaultValue="0" />
+          <camunda:formField id="cv_rating" label="Rate from 1-10" type="long" defaultValue="${cv_rating}" />
         </camunda:formData>
       </extensionElements>
       <categoryValueRef>sid-8dc65996-6426-4fc6-a053-2ef307e60cc0</categoryValueRef>
@@ -705,7 +705,7 @@
     <userTask id="sid-1FD8BCF3-9D04-4BA4-B9CF-E75E5A7774BB" name="Clarify job opening information">
       <extensionElements>
         <camunda:formData>
-          <camunda:formField id="openSpots" label="Open Spots" type="long" defaultValue="${openSpots}" />
+          <camunda:formField id="openSpots" label="Open Spots" type="string" defaultValue="${openSpots}" />
           <camunda:formField id="salary" label="Salary" type="long" defaultValue="${salary}" />
           <camunda:formField id="jobTitle" label="Job Title" type="string" defaultValue="${jobTitle}" />
           <camunda:formField id="openingName" label="Opening Name" type="string" defaultValue="${openingName}" />
@@ -733,7 +733,7 @@
     <userTask id="sid-B11765A0-D66B-4C18-801A-C08847CFC1D8" name="do background check" camunda:formKey="backgroundrating">
       <extensionElements>
         <camunda:formData>
-          <camunda:formField id="backgroundrating" label="Rate from 1-3" type="long" defaultValue="1" />
+          <camunda:formField id="backgroundrating" label="Rate from 1-3" type="long" defaultValue="${backgroundrating}" />
         </camunda:formData>
       </extensionElements>
       <incoming>sid-65F5B595-4AB8-48E3-A9D4-7AC158655CA1</incoming>
