@@ -9,7 +9,7 @@ import java.util.List;
 public class SendFinalSelectionDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        String allCvJson = delegateExecution.getVariable("allCvJson",cvJson);
+        // String allCvJson = delegateExecution.getVariable("allCvJson",cvJson);
 
         //send where?
     }
