@@ -715,7 +715,7 @@
           <camunda:formField id="deadline" label="Deadline" type="string" defaultValue="${deadline}" />
           <camunda:formField id="paymentInformationAcceptances" label="Payment Information Acceptances" type="long" defaultValue="${paymentInformationAcceptances}" />
           <camunda:formField id="jobLocation" label="Job Location" type="string" defaultValue="${jobLocation}" />
-          <camunda:formField id="workingHours" label="Working Hours" type="long" defaultValue="${workingHours}" />
+          <camunda:formField id="workingHours" label="Working Hours" type="string" defaultValue="${workingHours}" />
         </camunda:formData>
       </extensionElements>
       <incoming>sid-9EA1DAA7-0674-4034-8781-3464A54B3013</incoming>
@@ -756,7 +756,7 @@
           <camunda:formField id="requiredQualifications" label="Required Qualifications" type="string" defaultValue="${requiredQualifications}" />
           <camunda:formField id="additionalInformation" label="Additional Information" type="string" defaultValue="${additionalInformation}" />
           <camunda:formField id="jobLocation" label="Job Location" type="string" defaultValue="${jobLocation}" />
-          <camunda:formField id="workingHours" label="Working Hours" type="long" defaultValue="${workingHours}" />
+          <camunda:formField id="workingHours" label="Working Hours" type="string" defaultValue="${workingHours}" />
           <camunda:formField id="JobProfile" label="Job Profile" type="string" />
         </camunda:formData>
       </extensionElements>

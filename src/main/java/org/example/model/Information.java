@@ -25,5 +25,5 @@ public class Information {
     private String deadline;
     private Integer payment_information_acceptances;
     private String job_location;
-    private Integer working_hours;
+    private Double working_hours;
 }
