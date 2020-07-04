@@ -9,8 +9,7 @@ import org.camunda.spin.plugin.variable.value.JsonValue;
 public class PrepareInvoiceDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         int number_acceptances = Integer.parseInt(delegateExecution.getVariable("number_of_acceptances").toString());
-        JsonValue job_opening = delegateExecution.getVariableTyped("new_jobOpeningInformation");
-        int paymentInfo = Integer.parseInt(delegateExecution.getVariable("paymentInformationAcceptances").toString());
+        int paymentInfo = Integer.parseInt(delegateExecution.getVariable("payment_information_acceptances").toString());
 
         int net=number_acceptances*paymentInfo;
         delegateExecution.setVariable("net", net);

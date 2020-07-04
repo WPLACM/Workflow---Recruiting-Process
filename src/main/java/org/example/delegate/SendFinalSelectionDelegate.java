@@ -10,9 +10,11 @@ public class SendFinalSelectionDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
 
+
         String allCvJson = (String) delegateExecution.getVariable("allCvJson");
 
-        //send where?
+
+        //send json where where?
     }
 
 
