@@ -12,16 +12,14 @@ import java.security.GeneralSecurityException;
 import java.util.Properties;
 
 //TODO testing
-// TODO replace opening ID, client company name with actual properties set by Maxi + Luis
 
 public class TakeLegalActionDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        //https://docs.camunda.org/manual/7.5/user-guide/data-formats/json/
         String lawyer_mail = "genericlawyer123@gmail";
         JsonValue client_company = delegateExecution.getVariableTyped("new_client_company");
         String client_name=client_company.getValue().prop("name").stringValue();
-        JsonValue job_opening = delegateExecution.getVariableTyped("new_job_opening");
-        String opening_id=job_opening.getValue().prop("job_opening_id").stringValue();
+        JsonValue job_opening = delegateExecution.getVariableTyped("new_job_opening_information");
+        String opening_id=job_opening.getValue().prop("job_opening_information_id").stringValue();
         String legalaction_message = "Dear Mr. Lawyer," + System.lineSeparator() +
                 "our client " + client_name + " is not paying our invoice, even after sending him three bills, " +
                 "for the job opening with the ID " +opening_id + "." + System.lineSeparator() +

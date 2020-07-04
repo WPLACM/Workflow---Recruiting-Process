@@ -8,15 +8,14 @@ import org.camunda.spin.plugin.variable.value.JsonValue;
 
 public class DeterminePlacementStatusDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        JsonValue job_opening = delegateExecution.getVariableTyped("new_client_company");
-        int open_spots = Integer.parseInt(job_opening.getValue().prop("openSpots").stringValue());
+        JsonValue job_opening = delegateExecution.getVariableTyped("new_job_opening_information");
+        int open_spots = Integer.parseInt(job_opening.getValue().prop("open_spots").stringValue());
         int number_acceptances = Integer.parseInt(delegateExecution.getVariable("number_of_acceptances").toString());
-        boolean placementFin = false;
 
             if (open_spots - number_acceptances > 0) {
-                placementFin = false;
+                delegateExecution.setVariable("placementFin",  false);
             } else {
-                placementFin = true;
+               delegateExecution.setVariable("placementFin", true);
             }
         }
     }
