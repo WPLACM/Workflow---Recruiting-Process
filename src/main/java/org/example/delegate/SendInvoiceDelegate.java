@@ -28,7 +28,7 @@ public class SendInvoiceDelegate implements JavaDelegate {
         String acceptances=delegateExecution.getVariable("number_of_acceptances").toString();
         String openingName = delegateExecution.getVariable("opening_name").toString();
         String processID=delegateExecution.getVariable("wplacm_id").toString();
-        //Date Format DD.MM.YYYY
+        //Date Format yyyy MMM dd
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd");
         Calendar calendar = Calendar.getInstance();
         String date = sdf.format(calendar.getTime());
