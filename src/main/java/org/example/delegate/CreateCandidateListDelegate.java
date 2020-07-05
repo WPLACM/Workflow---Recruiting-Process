@@ -20,8 +20,8 @@ public class CreateCandidateListDelegate implements JavaDelegate {
 
         //create SQL query
         String candidats_query = "SELECT first_name, last_name, email FROM Candidate " +
-               // "WHERE skills CONTAINS \'"+ qualifications + "\' " + /TODO filter by qualifications
-                "WHERE location_city = \'"+ location + "\'";
+               "WHERE (skills LIKE \'%"+ qualifications + "%\' AND " +
+                "location_city = \'"+ location + "\')";
 
         //create lists for relevant information of candidates
         ArrayList<String> candidates_first_name = new ArrayList<String>();
