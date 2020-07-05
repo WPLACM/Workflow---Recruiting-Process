@@ -5,7 +5,10 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.spin.plugin.variable.value.JsonValue;
 import org.h2.util.json.JSONValue;
 
-//TODO set invoice ID, date, WBIG address
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+//TODO set invoice ID, WBIG address
 //TODO testing
 
 public class SendInvoiceDelegate implements JavaDelegate {
@@ -25,13 +28,17 @@ public class SendInvoiceDelegate implements JavaDelegate {
         String acceptances=delegateExecution.getVariable("number_of_acceptances").toString();
         String openingName = delegateExecution.getVariable("opening_name").toString();
         String processID=delegateExecution.getVariable("wplacm_id").toString();
+        //Date Format yyyy MMM dd
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd");
+        Calendar calendar = Calendar.getInstance();
+        String date = sdf.format(calendar.getTime());
 
-        String invoiceJSON = "{\"WPLACM_process_ID\" : " +processID+","
+                String invoiceJSON = "{\"WPLACM_process_ID\" : " +processID+","
                 + "\"WBIG_process_ID\" : " +wbig_process_id+ ","
                 + "\"timestamp\" : " +time_stamp+","
                 + "\"Invoice_ID\" : \"ID\","
                 + "\"Payment_information_acceptances\" : " +paymentInfo+ ","
-                + "\"Date\" : \"date\","
+                + "\"Date\" : " +date+ ","
                 + "\"Tax_id_WPLACM\" : 123456\","
                 + "" +client_name+ ": {"
                     + "\"street\" : \"WBIG street 1\","
