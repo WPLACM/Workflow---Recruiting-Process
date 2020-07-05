@@ -9426,3 +9426,27 @@ The connection was not closed by the application and is garbage collected [90018
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:622)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 247 more
+2020-07-05 12:36:39 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "SELECT FIRST_NAME, LAST_NAME, EMAIL FROM CANDIDATE WHERE SKILLS LIKE '%Java%' WHERE[*] LOCATION_CITY = 'Cologne'"
+Syntax error in SQL statement "SELECT FIRST_NAME, LAST_NAME, EMAIL FROM CANDIDATE WHERE SKILLS LIKE '%Java%' WHERE[*] LOCATION_CITY = 'Cologne'"; SQL statement:
+SELECT first_name, last_name, email FROM Candidate WHERE skills LIKE '%Java%' WHERE location_city = 'Cologne' [42000-200]
+2020-07-05 12:39:40 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "SELECT FIRST_NAME, LAST_NAME, EMAIL FROM CANDIDATE WHERE SKILLS LIKE '%Java%' WHERE[*] LOCATION_CITY = 'Cologne'"
+Syntax error in SQL statement "SELECT FIRST_NAME, LAST_NAME, EMAIL FROM CANDIDATE WHERE SKILLS LIKE '%Java%' WHERE[*] LOCATION_CITY = 'Cologne'"; SQL statement:
+SELECT first_name, last_name, email FROM Candidate WHERE skills LIKE '%Java%' WHERE location_city = 'Cologne' [42000-200]
+2020-07-05 12:44:18 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "SELECT FIRST_NAME, LAST_NAME, EMAIL FROM CANDIDATE WHERE SKILLS LIKE '%Java%' ANDWHERE[*] LOCATION_CITY = 'Cologne'"
+Syntax error in SQL statement "SELECT FIRST_NAME, LAST_NAME, EMAIL FROM CANDIDATE WHERE SKILLS LIKE '%Java%' ANDWHERE[*] LOCATION_CITY = 'Cologne'"; SQL statement:
+SELECT first_name, last_name, email FROM Candidate WHERE skills LIKE '%Java%' ANDWHERE location_city = 'Cologne' [42000-200]
+2020-07-05 12:46:14 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "SELECT FIRST_NAME, LAST_NAME, EMAIL FROM CANDIDATE WHERE SKILLS LIKE '%Java%' AND WHERE[*] LOCATION_CITY = 'Cologne'"; erwartet "NOT, EXISTS, INTERSECTS, UNIQUE"
+Syntax error in SQL statement "SELECT FIRST_NAME, LAST_NAME, EMAIL FROM CANDIDATE WHERE SKILLS LIKE '%Java%' AND WHERE[*] LOCATION_CITY = 'Cologne'"; expected "NOT, EXISTS, INTERSECTS, UNIQUE"; SQL statement:
+SELECT first_name, last_name, email FROM Candidate WHERE skills LIKE '%Java%' AND WHERE location_city = 'Cologne' [42001-200]
+2020-07-05 12:51:00 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "SELECT DISTINCT FIRST_NAME, LAST_NAME, EMAIL FROM CANDIDATE WHERE SKILLS LIKE '%Java%' AND WHERE[*] LOCATION_CITY = 'Cologne'"; erwartet "NOT, EXISTS, INTERSECTS, UNIQUE"
+Syntax error in SQL statement "SELECT DISTINCT FIRST_NAME, LAST_NAME, EMAIL FROM CANDIDATE WHERE SKILLS LIKE '%Java%' AND WHERE[*] LOCATION_CITY = 'Cologne'"; expected "NOT, EXISTS, INTERSECTS, UNIQUE"; SQL statement:
+SELECT DISTINCT first_name, last_name, email FROM Candidate WHERE skills LIKE '%Java%' AND WHERE location_city = 'Cologne' [42001-200]
+2020-07-05 12:56:12 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "SELECT FIRST_NAME, LAST_NAME, EMAIL FROM CANDIDATE WHERE (SKILLS LIKE %[*]JAVA% AND LOCATION_CITY = 'Cologne')"
+Syntax error in SQL statement "SELECT FIRST_NAME, LAST_NAME, EMAIL FROM CANDIDATE WHERE (SKILLS LIKE %[*]JAVA% AND LOCATION_CITY = 'Cologne')"; SQL statement:
+SELECT first_name, last_name, email FROM Candidate WHERE (skills LIKE %Java% AND location_city = 'Cologne') [42000-200]

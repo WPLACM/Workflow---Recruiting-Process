@@ -710,7 +710,11 @@
           <camunda:formField id="additionalInformation" label="Additional Information" type="string" defaultValue="${additionalInformation}" />
           <camunda:formField id="jobLocation" label="Job Location" type="string" defaultValue="${jobLocation}" />
           <camunda:formField id="workingHours" label="Working Hours" type="string" defaultValue="${workingHours}" />
-          <camunda:formField id="jobProfile" label="Job Profile" type="string" />
+          <camunda:formField id="jobProfile" label="Job Profile" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
         </camunda:formData>
       </extensionElements>
       <incoming>sid-5C9F4FE2-7019-411C-913D-6748BF765B28</incoming>
