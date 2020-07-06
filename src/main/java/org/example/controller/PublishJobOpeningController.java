@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +27,12 @@ public class PublishJobOpeningController {
     public ResponseEntity<?> create(@RequestBody Job_Opening job_opening){
         job_opening = repository.save(job_opening);
         return ResponseEntity.ok(job_opening);
+    }
+
+    @GetMapping("/job-opening")
+    public String greeting(@RequestParam(name="id", required=false, defaultValue="World") String name, Model model) {
+        model.addAttribute("name", name);
+        //return "job-opening.thml";
+        return "CheckoutForm";
     }
 }
