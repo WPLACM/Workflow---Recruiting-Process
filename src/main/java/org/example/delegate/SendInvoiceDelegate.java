@@ -43,30 +43,34 @@ public class SendInvoiceDelegate implements JavaDelegate {
 
         String date = (String) delegateExecution.getVariable("date");
 
-                String invoiceJSON = "{\"WPLACM_process_ID\" : " +processID+","
-                + "\"WBIG_process_ID\" : " +wbig_process_id+ ","
-                + "\"timestamp\" : " +time_stamp+","
+                String invoiceJSON = "{\"WPLACM_process_ID\" : \"" +processID+"\","
+                + "\"WBIG_process_ID\" : \"" +wbig_process_id+ "\","
+                + "\"timestamp\" : \"" +time_stamp+"\","
                 + "\"Invoice_ID\" : \"ID\","
-                + "\"Payment_information_acceptances\" : " +payment_info+ ","
-                + "\"Date\" : " +date+ ","
-                + "\"Tax_id_WPLACM\" : 123456\","
-                + "" +client_name+ ": {"
+                + "\"Payment_information_acceptances\" : \"" +payment_info+ ","
+                + "\"Date\" : \"" +date+ "\","
+                + "\"Tax_id_WPLACM\" : \"AB123456\","
+                + "\"" +client_name+"\" : {"
                     + "\"street\" : \"WBIG street 1\","
-                    + "\"post code\" : 1234"
+                    + "\"post code\" : \"12345\""
                     + "}"
                 +"\"address WPLACM\" : {"
                     + "\"street\" : \"Leonardo-Campus 3\","
-                    + "\"post code\" : 48149"
+                    + "\"post code\" : \"48149\""
                     + "}"
-                +"\"Number_of_acceptances\" : " +number_of_acceptances+ ","
-                +"\"Opening_ID\" : " +openingid+ ","
-                +"\"Opening_Name\" : " +openingName+","
-                +"\"Gross\" : " +gross+ ","
-                +"\"Net\" : " +net+ ","
-                +"\"Tax\" : " +tax+ "}";
+                +"\"Number_of_acceptances\" : \"" +number_of_acceptances+ "\","
+                +"\"Opening_ID\" : \"" +openingid+ "\","
+                +"\"Opening_Name\" : \"" +openingName+"\","
+                +"\"Gross\" : \"" +gross+ "\","
+                +"\"Net\" : \"" +net+ "\","
+                +"\"Tax\" : \"" +tax+ "\"}";
         delegateExecution.setVariable("number_of_dunns", 0);
-        delegateExecution.setVariable("invoice", invoiceJSON);
         //TODO: Message/JSON/POST see https://www.youtube.com/watch?v=8SYEc3dHnM4
+        System.out.print(invoiceJSON);
+        delegateExecution.getProcessEngineServices().getRuntimeService()
+                .createMessageCorrelation("invoice")
+                .setVariable("invoice", invoiceJSON)
+                .correlate();
     }
 
 }
