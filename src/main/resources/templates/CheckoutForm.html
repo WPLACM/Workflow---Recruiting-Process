@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -44,7 +44,10 @@
     <p class="lead">Job description: Entry level developer who will spend his entire week on StackOverflow</p>
     <p class="lead">Required qualifications: Java, Spring</p>
     <p class="lead">Salary: 85k</p>
-    <p class="lead">Job location: Home Office</p>
+    <p class="lead">Job location:  Home Office</p>
+    <p class="lead" th:text="'This opening has been posted on' + ${openingDate}" />
+    <p class="lead" th:text="'The application deadline is, ' + ${deadline} + '.'" />
+
   </div>
 
   <div class="container">
