@@ -42,6 +42,8 @@ public class setTesting implements JavaDelegate {
         //String openingName = delegateExecution.getVariable("opening_name").toString();
         String processID = "processID_Test";
         delegateExecution.setVariable("processID", processID);
+        Integer open_spots = 101;
+        delegateExecution.setVariable("open_spots", open_spots);
         //String processID=delegateExecution.getVariable("wplacm_id").toString();
         //Date Format yyyy MMM dd
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd");
