@@ -11,8 +11,6 @@ import javax.mail.internet.MimeMessage;
 import java.security.GeneralSecurityException;
 import java.util.Properties;
 
-//TODO testing
-//TODO create Message instead of Mail
 
 public class TakeLegalActionDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {

@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 import java.security.GeneralSecurityException;
 import java.util.Properties;
 
-//TODO testing
+
 // TODO replace opening ID, client company name with actual properties set by Maxi + Luis
 
 
@@ -38,7 +38,7 @@ public class SendDunnDelegate implements JavaDelegate {
 
         //Message
         delegateExecution.getProcessEngineServices().getRuntimeService()
-                .createMessageCorrelation("message_name")//TODO message name
+                .createMessageCorrelation("message_name")//TODO message name of WBIG
                 .setVariable("dunn_message", dunn_message)
                 .correlate();
 //

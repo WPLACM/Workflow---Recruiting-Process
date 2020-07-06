@@ -4,7 +4,6 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.spin.plugin.variable.value.JsonValue;
 
-//TODO testing
 
 public class PrepareInvoiceDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {

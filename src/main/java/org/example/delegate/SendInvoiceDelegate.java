@@ -7,7 +7,6 @@ import org.h2.util.json.JSONValue;
 
 
 //TODO set invoice ID, WBIG address
-//TODO testing
 
 public class SendInvoiceDelegate implements JavaDelegate {
 
