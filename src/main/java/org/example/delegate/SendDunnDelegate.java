@@ -52,7 +52,7 @@ public class SendDunnDelegate implements JavaDelegate {
 
         http.createRequest()
                 .post()
-                .url("http://localhost:8080/engine-rest/message/invoice_message") //TODO update for WBIG
+                .url("http://localhost:8080/engine-rest/message/message_name") //TODO update for WBIG
                 .contentType("application/json")
                 .payload(String.valueOf(postingString))
                 .execute();
