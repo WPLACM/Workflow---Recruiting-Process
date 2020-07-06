@@ -3,8 +3,6 @@ package org.example.delegate;
 import com.sun.mail.util.MailSSLSocketFactory;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.camunda.spin.plugin.variable.value.JsonValue;
-import org.h2.util.json.JSONValue;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
