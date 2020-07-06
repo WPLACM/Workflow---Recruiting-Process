@@ -18,9 +18,10 @@ import java.util.Iterator;
 public class ApplicationPhaseStartedListener implements ExecutionListener {
 
     public void notify(DelegateExecution execution) throws Exception {
-
+        /*
         Collection<Integer> collectedApplications = new ArrayList();
         execution.setVariable("collectedApplications", collectedApplications );
+         */
 
         /*
         Collection<ApplicationCollectionElement> collectedApplications = new ArrayList();
@@ -34,6 +35,10 @@ public class ApplicationPhaseStartedListener implements ExecutionListener {
 
          */
 
+        // create json
+        String applications = "{ \"applications\": [] }";
+        SpinJsonNode json = JSON(applications);
+        execution.setVariable("collectedApplications", json );
 
     }
 }
