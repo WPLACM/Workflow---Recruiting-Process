@@ -1,8 +1,14 @@
 package org.example.delegate;
 
+import camundajar.impl.com.google.gson.Gson;
 import com.sun.mail.util.MailSSLSocketFactory;
+import connectjar.org.apache.http.entity.StringEntity;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.camunda.connect.Connectors;
+import org.camunda.connect.httpclient.HttpConnector;
+import org.camunda.spin.plugin.variable.SpinValues;
+import org.camunda.spin.plugin.variable.value.JsonValue;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -10,7 +16,7 @@ import javax.mail.internet.MimeMessage;
 import java.security.GeneralSecurityException;
 import java.util.Properties;
 
-
+//TODO Decide if the dunn goes to WBIG or the Lawyer
 // TODO replace opening ID, client company name with actual properties set by Maxi + Luis
 
 
@@ -24,6 +30,7 @@ public class SendDunnDelegate implements JavaDelegate {
         String client_name = (String) delegateExecution.getVariable("client_name");
         String job_opening_info = (String) delegateExecution.getVariable("job_opening_info");
         String openingid = (String) delegateExecution.getVariable("openingid");
+        //TODO Create JSON if this goes to WBIG.
         String dunn_message = "Dear WBIG," + System.lineSeparator() +
                 "we sadly did not receive your debit authorization " +
                 "for the job opening with ID " + openingid + "." + System.lineSeparator() +
@@ -34,11 +41,26 @@ public class SendDunnDelegate implements JavaDelegate {
 
         System.out.print(dunn_message);
 
+        JsonValue jsonValue = SpinValues.jsonValue(dunn_message).create(); //might be irrelevant
+        delegateExecution.setVariable("dunn_message", jsonValue);
+
+        System.out.println("HTTP POST Start"); //Just to test, if the json posting works.
+
+        HttpConnector http = Connectors.getConnector(HttpConnector.ID);
+        Gson gson = new Gson();
+        StringEntity postingString = new StringEntity(new Gson().toJson(jsonValue)); //gson.tojson() converts your pojo to json
+
+        http.createRequest()
+                .post()
+                .url("http://localhost:8080/engine-rest/message/invoice_message") //TODO update for WBIG
+                .contentType("application/json")
+                .payload(String.valueOf(postingString))
+                .execute();
         //Message
-        delegateExecution.getProcessEngineServices().getRuntimeService()
-                .createMessageCorrelation("message_name")//TODO message name of WBIG
-                .setVariable("dunn_message", dunn_message)
-                .correlate();
+//        delegateExecution.getProcessEngineServices().getRuntimeService()
+//                .createMessageCorrelation("message_name")//TODO message name of WBIG
+//                .setVariable("dunn_message", dunn_message)
+//                .correlate();
 //
 //        Properties props = new Properties();
 //
