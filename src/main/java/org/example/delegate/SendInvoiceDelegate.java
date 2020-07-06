@@ -68,7 +68,7 @@ public class SendInvoiceDelegate implements JavaDelegate {
         //TODO: Message/JSON/POST see https://www.youtube.com/watch?v=8SYEc3dHnM4
         System.out.print(invoiceJSON);
         delegateExecution.getProcessEngineServices().getRuntimeService()
-                .createMessageCorrelation("invoice")
+                .createMessageCorrelation("invoice_message") //TODO Message name
                 .setVariable("invoice", invoiceJSON)
                 .correlate();
     }
