@@ -702,14 +702,14 @@
         <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
         <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
         <camunda:formData>
-          <camunda:formField id="salary" label="Salary" type="long" defaultValue="${salary}" />
           <camunda:formField id="jobTitle" label="Job Title" type="string" defaultValue="${jobTitle}" />
           <camunda:formField id="openingName" label="Opening Name" type="string" defaultValue="${openingName}" />
           <camunda:formField id="jobDescription" label="Job Description" type="string" defaultValue="${jobDescription}" />
-          <camunda:formField id="requiredQualifications" label="Required Qualifications" type="string" defaultValue="${requiredQualifications}" />
-          <camunda:formField id="additionalInformation" label="Additional Information" type="string" defaultValue="${additionalInformation}" />
           <camunda:formField id="jobLocation" label="Job Location" type="string" defaultValue="${jobLocation}" />
+          <camunda:formField id="requiredQualifications" label="Required Qualifications" type="string" defaultValue="${requiredQualifications}" />
+          <camunda:formField id="salary" label="Salary" type="long" defaultValue="${salary}" />
           <camunda:formField id="workingHours" label="Working Hours" type="string" defaultValue="${workingHours}" />
+          <camunda:formField id="additionalInformation" label="Additional Information" type="string" defaultValue="${additionalInformation}" />
           <camunda:formField id="jobProfile" label="Job Profile" type="string">
             <camunda:validation>
               <camunda:constraint name="required" />
