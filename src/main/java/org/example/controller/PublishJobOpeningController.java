@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -38,10 +40,13 @@ public class PublishJobOpeningController {
         Job_Opening current = repository.findByJobOpeningId(Integer.parseInt(id));
         Job_Profile profile = current.getJob_profile();
         model.addAttribute("id", id);
-        model.addAttribute("deadline",current.getDeadline());
-        model.addAttribute("openingDate", current.getOpeningDate());
+        DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm");
+        String openingDate = dateFormat.format(current.getOpeningDate());
+        String deadline = dateFormat.format(current.getDeadline());
+        model.addAttribute("deadline",deadline);
+        model.addAttribute("openingDate", openingDate);
 
-        //TO-DO: add Job_Profile attributes
+        //todo:  add Job_Profile attributes
 
         return "CheckoutForm";
     }

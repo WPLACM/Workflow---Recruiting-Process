@@ -19,6 +19,7 @@ public class Job_Opening_Information {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer index;
     // todo maybe change time_stamp and deadline to timestamp type, (additional efforts required!)
+    // Why change it? Isn't basically the same anyway? from:Maxi
     private Integer job_opening_information_id;
     private Integer WBIG_process_ID;
     private String time_stamp;
