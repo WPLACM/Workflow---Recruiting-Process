@@ -115,7 +115,7 @@
         <signavio:signavioMetaData metaKey="messageposition" metaValue="{&#34;x&#34;:4178.0569562731425,&#34;y&#34;:939.9341945282677}" />
       </extensionElements>
     </messageFlow>
-    <messageFlow id="sid-3CC8AC94-AFC3-4B34-AC2C-82FB7DC89EBB" name="" sourceRef="sid-1313F0D1-6390-4127-9F54-7824A7BC8BDE" targetRef="sid-53D54C8F-0DA7-49F2-A33F-AA1AA758ED0C" messageRef="sid-B0BC6897-F406-4C30-8C6F-1E39D4F0F0E0">
+    <messageFlow id="sid-3CC8AC94-AFC3-4B34-AC2C-82FB7DC89EBB" name="" sourceRef="sid-1313F0D1-6390-4127-9F54-7824A7BC8BDE" targetRef="sid-F8B1D689-27F8-4CCE-AADA-6F72B7957FB9" messageRef="sid-B0BC6897-F406-4C30-8C6F-1E39D4F0F0E0">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
         <signavio:signavioMetaData metaKey="messageposition" metaValue="{&#34;x&#34;:4350.863671203408,&#34;y&#34;:939.8633265271885}" />
@@ -308,7 +308,7 @@
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
         <signavio:signavioLabel align="left" distance="-2.6875" from="1" orientation="ll" ref="text_name" to="2" valign="bottom" x="4431.788216711263" y="854.0000000000001" />
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression">#{placementFin==false}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">#{not placementFin}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-72CF1413-B068-4CFF-9B50-50DBBA6F84F9" name="" sourceRef="sid-2E24762A-C42F-444A-BABE-C7BD591F7F6A" targetRef="sid-FF1AA10F-B92A-45D9-97C7-E7F18D270022">
       <extensionElements>
@@ -1990,8 +1990,8 @@
         <omgdi:waypoint x="4228" y="1356" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-3CC8AC94-AFC3-4B34-AC2C-82FB7DC89EBB_gui" bpmnElement="sid-3CC8AC94-AFC3-4B34-AC2C-82FB7DC89EBB">
-        <omgdi:waypoint x="4401" y="660" />
-        <omgdi:waypoint x="4401" y="1356" />
+        <omgdi:waypoint x="4376" y="580" />
+        <omgdi:waypoint x="4376" y="154" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-B7CC4C34-482B-47BC-B908-9197891F3450_gui" bpmnElement="sid-B7CC4C34-482B-47BC-B908-9197891F3450">
         <omgdi:waypoint x="1235" y="1060" />
