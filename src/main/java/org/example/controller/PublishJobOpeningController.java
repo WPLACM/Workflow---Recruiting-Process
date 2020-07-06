@@ -48,6 +48,6 @@ public class PublishJobOpeningController {
 
         //todo:  add Job_Profile attributes
 
-        return "CheckoutForm";
+        return "jobOpening";
     }
 }
