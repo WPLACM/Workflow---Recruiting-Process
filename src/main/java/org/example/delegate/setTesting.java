@@ -2,7 +2,6 @@ package org.example.delegate;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.camunda.spin.plugin.variable.value.JsonValue;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -35,16 +34,7 @@ public class setTesting implements JavaDelegate {
         Integer payment_info = 10;
         delegateExecution.setVariable("payment_info", payment_info);
         //int payment_info = Integer.parseInt(delegateExecution.getVariable("payment_information_acceptances").toString());
-        String net = "net_Test";
-        delegateExecution.setVariable("net", net);
-        //String net=delegateExecution.getVariable("net").toString();
-        String gross = "gross_Test";
-        delegateExecution.setVariable("gross", gross);
-        //String gross=delegateExecution.getVariable("gross").toString();
-        String tax = "tax_Test";
-        delegateExecution.setVariable("tax", tax);
-        //String tax=delegateExecution.getVariable("tax").toString();
-        String number_of_acceptances = "number_of_acceptances_Test";
+        Integer number_of_acceptances = 100;
         delegateExecution.setVariable("number_of_acceptances", number_of_acceptances);
         //String acceptances=delegateExecution.getVariable("number_of_acceptances").toString();
         String openingName = "openingName_Test";

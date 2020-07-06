@@ -5,8 +5,6 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.spin.plugin.variable.value.JsonValue;
 import org.h2.util.json.JSONValue;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 //TODO set invoice ID, WBIG address
 //TODO testing
@@ -30,13 +28,13 @@ public class SendInvoiceDelegate implements JavaDelegate {
         //String openingid = job_opening.getValue().prop("job_opening_id").toString();
         Integer payment_info = (Integer) delegateExecution.getVariable("payment_info");
         //int paymentInfo = Integer.parseInt(delegateExecution.getVariable("payment_information_acceptances").toString());
-        String net = (String) delegateExecution.getVariable("net");
+        Integer net = (Integer) delegateExecution.getVariable("net");
         //String net=delegateExecution.getVariable("net").toString();
-        String gross = (String) delegateExecution.getVariable("gross");
+        Double gross = (Double) delegateExecution.getVariable("gross");
         //String gross=delegateExecution.getVariable("gross").toString();
-        String tax = (String) delegateExecution.getVariable("tax");
+        Double tax = (Double) delegateExecution.getVariable("tax");
         //String tax=delegateExecution.getVariable("tax").toString();
-        String number_of_acceptances = (String) delegateExecution.getVariable("number_of_acceptances");
+        Integer number_of_acceptances = (Integer) delegateExecution.getVariable("number_of_acceptances");
         //String number_of_acceptances=delegateExecution.getVariable("number_of_acceptances").toString();
         String openingName = (String) delegateExecution.getVariable("openingName");
         //String openingName = delegateExecution.getVariable("opening_name").toString();
