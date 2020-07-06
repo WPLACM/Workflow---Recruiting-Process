@@ -7,13 +7,15 @@ import org.camunda.bpm.engine.variable.Variables;
 import org.camunda.bpm.engine.variable.value.ObjectValue;
 import org.camunda.spin.json.SpinJsonNode;
 import org.camunda.spin.plugin.variable.value.JsonValue;
+import org.camunda.spin.plugin.variable.value.impl.JsonValueImpl;
 import org.example.entity.Application;
 import org.example.model.ApplicationCollectionElement;
-
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import static org.camunda.spin.Spin.JSON;
 
 public class AddToDatabaseDelegate implements JavaDelegate {
     @Override
@@ -62,22 +64,10 @@ public class AddToDatabaseDelegate implements JavaDelegate {
                 delegateExecution.setVariable("candidate_email", "wplacmrecruiting@gmail.com");
                 delegateExecution.setVariable("candidate_confirmation_text", "hello this is a test");
 
+                /*
                 Collection<Integer> collectedApplications =
                         (Collection<Integer>) delegateExecution.getVariable("collectedApplications");
                 collectedApplications.add(rs_application.getInt(1));
-
-                /*
-                // add application to collection
-                String application = "{\"application_id\" : \"" + rs_application.getInt(1) + "\","
-                        + "\"candidate_id\" : \"" + candidate_id + "\","
-                        + "\"first_name\" : \"" + candidate.getValue().prop("first_name").stringValue() + "\","
-                        + "\"last_name\" : \"" + candidate.getValue().prop("last_name").stringValue() + "\","
-                        + "\"cv\" :  \"" + "cv link" + "\""
-                        + "}";
-
-                SpinJsonNode application_collection = delegateExecution.getVariableTyped("collectedApplications");
-                application_collection.append(application);
-                delegateExecution.setVariable("collectedApplications", application_collection);
                 */
 
                 /*
@@ -104,6 +94,34 @@ public class AddToDatabaseDelegate implements JavaDelegate {
 
 
                  */
+
+                // add application to collection
+                String application = "{\"application_id\" : \"" + rs_application.getInt(1) + "\","
+                        + "\"candidate_id\" : \"" + candidate_id + "\","
+                        + "\"first_name\" : \"" + candidate.getValue().prop("first_name").stringValue() + "\","
+                        + "\"last_name\" : \"" + candidate.getValue().prop("last_name").stringValue() + "\","
+                        + "\"cv\" :  \"" + "cv link" + "\""
+                        + "}";
+
+                System.out.println(application);
+                SpinJsonNode application_json = JSON(application);
+
+                System.out.println("before get variable");
+                JsonValueImpl Test = (JsonValueImpl) delegateExecution.getVariableTyped("collectedApplications");
+                System.out.println(Test.getValueSerialized());
+
+                SpinJsonNode application_collection = JSON(Test.getValueSerialized());
+
+                System.out.println("before append");
+
+                if (!application_collection.hasProp("applications")){
+                    application_collection.prop("applications", application_json);
+                }
+                else{
+                    application_collection.prop("applications").append(application_json);
+                }
+
+                delegateExecution.setVariable("collectedApplications", application_collection);
 
             }
             else {
