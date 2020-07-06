@@ -30,9 +30,12 @@ public class PublishJobOpeningController {
     }
 
     @GetMapping("/job-opening")
-    public String greeting(@RequestParam(name="id", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        //return "job-opening.thml";
+    public String greeting(@RequestParam(name="id", required=false, defaultValue="World") String id, Model model) {
+        Job_Opening current = repository.findByJobOpeningId(Integer.parseInt(id));
+        model.addAttribute("id", id);
+        model.addAttribute("deadline",current.getDeadline());
+        model.addAttribute("openingDate", current.getOpeningDate());
+
         return "CheckoutForm";
     }
 }
