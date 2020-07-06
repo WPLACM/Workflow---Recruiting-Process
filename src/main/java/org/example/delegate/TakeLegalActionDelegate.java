@@ -21,7 +21,7 @@ public class TakeLegalActionDelegate implements JavaDelegate {
         JsonValue job_opening = delegateExecution.getVariableTyped("new_job_opening_information");
         String opening_id=job_opening.getValue().prop("job_opening_information_id").stringValue();
         String legalaction_message = "Dear Mr. Lawyer," + System.lineSeparator() +
-                "our client " + client_name + " is not paying our invoice, even after sending him three bills, " +
+                "our client " + client_name + " is not paying our invoice, even after sending him three dunns, " +
                 "for the job opening with the ID " +opening_id + "." + System.lineSeparator() +
                 "Please take legal action." +System.lineSeparator() + "Sincerely, WPLACM Headhunting";
 
