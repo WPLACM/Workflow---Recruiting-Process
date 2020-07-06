@@ -11,6 +11,7 @@ import java.security.GeneralSecurityException;
 import java.util.Properties;
 
 //TODO WBIG mail address
+//TODO Message Task instead of Service Task
 
 public class DebitCollectionDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
