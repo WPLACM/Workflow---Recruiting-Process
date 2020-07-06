@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/job-openings")
@@ -38,9 +39,12 @@ public class PublishJobOpeningController {
     @GetMapping("/job-opening")
     public String viewJobOpening(@RequestParam(name="id", required=false, defaultValue="1") String id, Model model) {
         Job_Opening current = repository.findByJobOpeningId(Integer.parseInt(id));
+        if(current==null){
+            return "index";
+        }
         Job_Profile profile = current.getJob_profile();
         model.addAttribute("id", id);
-        DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm");
+        DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm", Locale.ENGLISH);
         String openingDate = dateFormat.format(current.getOpeningDate());
         String deadline = dateFormat.format(current.getDeadline());
         model.addAttribute("deadline",deadline);

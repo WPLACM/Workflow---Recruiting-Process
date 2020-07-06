@@ -110,7 +110,7 @@
     </div> -->
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Contact details</h4>
-      <form class="needs-validation" novalidate>
+      <form id="target" class="needs-validation" novalidate>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
@@ -253,6 +253,10 @@
         <hr class="mb-4">
         <button class="btn btn-primary btn-lg btn-block" type="submit">Submit application</button>
       </form>
+      <script>$( "#target" ).submit(function( event ) {
+        alert( "Handler for .submit() called." );
+        event.preventDefault();
+      });</script>
     </div>
   </div>
 
