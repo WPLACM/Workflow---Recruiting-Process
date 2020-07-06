@@ -58,7 +58,7 @@ public class CheckClientEntryDelegate implements JavaDelegate {
                                             "AND birth_date = \'" + birth_date_string + "\'";
             rs = query.executeQuery(candidate_id_query);
             rs.next();
-            int candidate_id = rs.getInt(1);
+            Integer candidate_id = rs.getInt(1);
             delegateExecution.setVariable("CandidateAlreadyExists", true);
             delegateExecution.setVariable("candidate_id", candidate_id);
         }

@@ -3,9 +3,17 @@ package org.example.delegate;
 import camundajar.impl.scala.Int;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.camunda.bpm.engine.variable.Variables;
+import org.camunda.bpm.engine.variable.value.ObjectValue;
+import org.camunda.spin.json.SpinJsonNode;
 import org.camunda.spin.plugin.variable.value.JsonValue;
+import org.example.entity.Application;
+import org.example.model.ApplicationCollectionElement;
+
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class AddToDatabaseDelegate implements JavaDelegate {
     @Override
@@ -36,7 +44,7 @@ public class AddToDatabaseDelegate implements JavaDelegate {
         ResultSet rs = statement.getGeneratedKeys();
         if(rs.next()) {
             // set candidate_id process variable
-            long candidate_id = rs.getLong(1);
+            Integer candidate_id = rs.getInt(1);
             System.out.println("inserted candidate: " + candidate_id);
             delegateExecution.setVariable("candidate_id", candidate_id);
 
@@ -46,12 +54,62 @@ public class AddToDatabaseDelegate implements JavaDelegate {
             statement_application.setInt(1, Integer.parseInt(Long.toString(candidate_id)));
             statement_application.setInt(2, (Integer) delegateExecution.getVariable("openingId"));
             statement_application.executeUpdate();
+            ResultSet rs_application = statement_application.getGeneratedKeys();
 
-            // set process variable required for next step
-            delegateExecution.setVariable("applications_received", true);
+            if (rs_application.next()){
+                // set process variable required for next step
+                delegateExecution.setVariable("applications_received", true);
+                delegateExecution.setVariable("candidate_email", "wplacmrecruiting@gmail.com");
+                delegateExecution.setVariable("candidate_confirmation_text", "hello this is a test");
 
-            delegateExecution.setVariable("candidate_email", "wplacmrecruiting@gmail.com");
-            delegateExecution.setVariable("candidate_confirmation_text", "hello this is a test");
+                Collection<Integer> collectedApplications =
+                        (Collection<Integer>) delegateExecution.getVariable("collectedApplications");
+                collectedApplications.add(rs_application.getInt(1));
+
+                /*
+                // add application to collection
+                String application = "{\"application_id\" : \"" + rs_application.getInt(1) + "\","
+                        + "\"candidate_id\" : \"" + candidate_id + "\","
+                        + "\"first_name\" : \"" + candidate.getValue().prop("first_name").stringValue() + "\","
+                        + "\"last_name\" : \"" + candidate.getValue().prop("last_name").stringValue() + "\","
+                        + "\"cv\" :  \"" + "cv link" + "\""
+                        + "}";
+
+                SpinJsonNode application_collection = delegateExecution.getVariableTyped("collectedApplications");
+                application_collection.append(application);
+                delegateExecution.setVariable("collectedApplications", application_collection);
+                */
+
+                /*
+                ObjectValue typedApplicationCollection =
+                        (ObjectValue) delegateExecution.getVariableTyped("collectedApplications");
+
+                Collection<ApplicationCollectionElement> collectedApplications =
+                        (Collection<ApplicationCollectionElement>) typedApplicationCollection.getValue();
+
+                collectedApplications.add( new ApplicationCollectionElement(rs_application.getInt(1), candidate_id,
+                        (candidate.getValue().prop("first_name").stringValue() + " " +
+                                candidate.getValue().prop("last_name").stringValue()),
+                        "cv_link" )
+                );
+
+                typedApplicationCollection = Variables
+                        .objectValue(collectedApplications)
+                        .serializationDataFormat(Variables.SerializationDataFormats.JSON)
+                        .create();
+
+                System.out.println("set variable typed");
+
+                delegateExecution.setVariable("collectedApplications", typedApplicationCollection);
+
+
+                 */
+
+            }
+            else {
+                //error
+            }
+
         }
 
     }

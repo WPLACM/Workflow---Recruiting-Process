@@ -1,5 +1,6 @@
 package org.example.entity;
 
+import camundajar.impl.scala.Int;
 import com.sun.istack.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -60,4 +61,5 @@ public class Application {
     //private ??? link to cv file
 
     //TO-DO: specify additional attributes, sql foreign key and relation config
+
 }

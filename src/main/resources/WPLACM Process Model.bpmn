@@ -607,13 +607,13 @@
         <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
         <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
         <camunda:formData>
-          <camunda:formField id="cv_rating" label="Rate from 1-10" type="long" defaultValue="${cv_rating}" />
+          <camunda:formField id="cv_rating" label="Rate from 1-10" type="long" />
         </camunda:formData>
       </extensionElements>
       <categoryValueRef>sid-8dc65996-6426-4fc6-a053-2ef307e60cc0</categoryValueRef>
       <incoming>sid-5E652E1E-BC65-41E0-B8F3-40182603B864</incoming>
       <outgoing>sid-7192A392-2690-489E-A6DE-D2986D12DDB6</outgoing>
-      <multiInstanceLoopCharacteristics camunda:collection="Application" camunda:elementVariable="application_id" />
+      <multiInstanceLoopCharacteristics camunda:collection="#{collectedApplications}" camunda:elementVariable="application_id" />
     </userTask>
     <parallelGateway id="sid-3FE7F46D-6BDC-4882-AE90-A825FA1F2F53" name="" gatewayDirection="Diverging">
       <extensionElements>
@@ -685,12 +685,12 @@
     <userTask id="sid-B11765A0-D66B-4C18-801A-C08847CFC1D8" name="do background check" camunda:formKey="backgroundrating">
       <extensionElements>
         <camunda:formData>
-          <camunda:formField id="backgroundrating" label="Rate from 1-3" type="long" defaultValue="${backgroundrating}" />
+          <camunda:formField id="backgroundrating" label="Rate from 1-3" type="long" />
         </camunda:formData>
       </extensionElements>
       <incoming>sid-65F5B595-4AB8-48E3-A9D4-7AC158655CA1</incoming>
       <outgoing>sid-4F78A2E9-A974-4310-B2B2-21FF1CF46A88</outgoing>
-      <multiInstanceLoopCharacteristics camunda:collection="Application" camunda:elementVariable="application_id" />
+      <multiInstanceLoopCharacteristics camunda:collection="#{collectedApplications}" camunda:elementVariable="application_id" />
     </userTask>
     <userTask id="sid-13E49214-4737-4900-8B19-27907B038A06" name="create job profile" implementation="##WebService">
       <extensionElements>
@@ -1078,6 +1078,9 @@
         </startEvent>
       </subProcess>
       <startEvent id="Event_142o7se" name="ApplicationPhaseStarted">
+        <extensionElements>
+          <camunda:executionListener class="org.example.listener.ApplicationPhaseStartedListener" event="start" />
+        </extensionElements>
         <outgoing>Flow_1ars7ky</outgoing>
       </startEvent>
       <sequenceFlow id="Flow_1ars7ky" sourceRef="Event_142o7se" targetRef="Event_0s8tvgq" />

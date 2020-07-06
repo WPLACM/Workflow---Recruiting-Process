@@ -7,5 +7,11 @@ public class InformCandidatesDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
 
+        // get candidate collection
+
+        // send mail A to forwarded candidates
+
+        // send mail B to rejected candidates
+
     }
 }
