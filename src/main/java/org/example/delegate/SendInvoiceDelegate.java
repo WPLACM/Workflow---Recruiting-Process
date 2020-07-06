@@ -66,6 +66,7 @@ public class SendInvoiceDelegate implements JavaDelegate {
                 +"\"Tax\" : " +tax+ "}";
         delegateExecution.setVariable("number_of_dunns", 0);
         delegateExecution.setVariable("invoice", invoiceJSON);
+        //TODO: Message/JSON/POST see https://www.youtube.com/watch?v=8SYEc3dHnM4
     }
 
 }
