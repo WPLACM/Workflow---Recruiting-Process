@@ -43,13 +43,5 @@ public class PublishJobOpeningDelegate implements JavaDelegate {
         }
         execution.setVariable("applications_received", false);
 
-
-        //access jobProfile
-
-        //create website
-
-        //create entry on website
-
-
     }
 }

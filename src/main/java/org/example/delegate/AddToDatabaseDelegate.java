@@ -91,8 +91,6 @@ public class AddToDatabaseDelegate implements JavaDelegate {
                 System.out.println("set variable typed");
 
                 delegateExecution.setVariable("collectedApplications", typedApplicationCollection);
-
-
                  */
 
                 // add application to collection
