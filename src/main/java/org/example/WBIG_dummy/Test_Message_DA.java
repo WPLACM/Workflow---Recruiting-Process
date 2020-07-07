@@ -13,7 +13,6 @@ public class Test_Message_DA implements JavaDelegate{
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        LOGGER.info("Send debit authorization started");
         RestTemplate template = new RestTemplate();
 
         //String wbig_processInstanceId = delegateExecution.getProcessInstanceId();
@@ -27,7 +26,6 @@ public class Test_Message_DA implements JavaDelegate{
         String wbig_processInstanceId = template.postForObject("http://localhost:8080/Billing/DA/" + wplacm_processInstanceId, da, String.class);
         //delegateExecution.setVariable("wbig_processInstanceId", wbig_processInstanceId);
 
-        LOGGER.info("Send debit authorization ended");
     }
 }
 

@@ -15,7 +15,6 @@ public class Test_Message_noC implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        LOGGER.info("Send number of accepted applicants started");
         RestTemplate template = new RestTemplate();
 
         String wbig_processInstanceId = delegateExecution.getProcessInstanceId();
@@ -29,6 +28,5 @@ public class Test_Message_noC implements JavaDelegate {
         //the following variable is necessary to link the response (see controller) !!!
         //delegateExecution.setVariable("wbig_processInstanceId", wbig_processInstanceId);
 
-        LOGGER.info("Send number of candidates ended");
     }
 }
