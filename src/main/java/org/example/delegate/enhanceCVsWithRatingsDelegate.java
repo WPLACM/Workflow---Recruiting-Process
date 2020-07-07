@@ -32,7 +32,7 @@ public class enhanceCVsWithRatingsDelegate implements JavaDelegate {
                     rating = cv_rating;
                     break;
                 case 2:
-                    rating = (Integer) Math.round((cv_rating/3));
+                    rating = (Integer) Math.round((2*cv_rating/3));
                     break;
                 case 3:
                     rating = 0;
