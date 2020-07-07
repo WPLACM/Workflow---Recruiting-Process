@@ -2,7 +2,7 @@ package org.example.delegate;
 ;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.example.Database.Invoice;
+import org.example.model.Invoice;
 import java.util.Date;
 import org.springframework.web.client.RestTemplate;
 

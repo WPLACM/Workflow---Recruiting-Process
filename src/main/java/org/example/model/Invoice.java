@@ -1,4 +1,4 @@
-package org.example.Database;
+package org.example.model;
 import java.util.Date;
 
 public class Invoice {
@@ -116,5 +116,9 @@ public class Invoice {
 
     public void setSales_tax(double sales_tax) {
         this.sales_tax = sales_tax;
+    }
+
+    public Invoice(){
+
     }
 }
