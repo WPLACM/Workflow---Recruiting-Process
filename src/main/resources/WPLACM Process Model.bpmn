@@ -115,7 +115,7 @@
         <signavio:signavioMetaData metaKey="messageposition" metaValue="{&#34;x&#34;:4178.0569562731425,&#34;y&#34;:939.9341945282677}" />
       </extensionElements>
     </messageFlow>
-    <messageFlow id="sid-3CC8AC94-AFC3-4B34-AC2C-82FB7DC89EBB" name="" sourceRef="sid-1313F0D1-6390-4127-9F54-7824A7BC8BDE" targetRef="sid-53D54C8F-0DA7-49F2-A33F-AA1AA758ED0C" messageRef="sid-B0BC6897-F406-4C30-8C6F-1E39D4F0F0E0">
+    <messageFlow id="sid-3CC8AC94-AFC3-4B34-AC2C-82FB7DC89EBB" name="" sourceRef="sid-1313F0D1-6390-4127-9F54-7824A7BC8BDE" targetRef="sid-F8B1D689-27F8-4CCE-AADA-6F72B7957FB9" messageRef="sid-B0BC6897-F406-4C30-8C6F-1E39D4F0F0E0">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
         <signavio:signavioMetaData metaKey="messageposition" metaValue="{&#34;x&#34;:4350.863671203408,&#34;y&#34;:939.8633265271885}" />
@@ -194,11 +194,11 @@
         <flowNodeRef>sid-E735D456-46FC-4A95-B1B9-09E9BD046C3D</flowNodeRef>
         <flowNodeRef>sid-6D98E17C-9555-479D-86BC-B7EF17602B95</flowNodeRef>
         <flowNodeRef>sid-68DD3769-3B35-40AA-9CAA-3B7B7CF142B5</flowNodeRef>
+        <flowNodeRef>sid-B4C31733-DF10-40C6-8D46-CE9515284024</flowNodeRef>
         <flowNodeRef>Gateway_06odl5i</flowNodeRef>
         <flowNodeRef>sid-7B2672DE-9A58-4E88-9646-623C55262664</flowNodeRef>
         <flowNodeRef>Activity_03kwath</flowNodeRef>
         <flowNodeRef>Gateway_1mudnk0</flowNodeRef>
-        <flowNodeRef>sid-B4C31733-DF10-40C6-8D46-CE9515284024</flowNodeRef>
       </lane>
       <lane id="sid-2740A609-D5B6-431C-BD1A-9A60001D1BE5" name="Management">
         <extensionElements>
@@ -307,7 +307,7 @@
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
         <signavio:signavioLabel align="left" distance="-2.6875" from="1" orientation="ll" ref="text_name" to="2" valign="bottom" x="4431.788216711263" y="854.0000000000001" />
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression">#{placementFin==false}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">#{not placementFin}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-72CF1413-B068-4CFF-9B50-50DBBA6F84F9" name="" sourceRef="sid-2E24762A-C42F-444A-BABE-C7BD591F7F6A" targetRef="sid-FF1AA10F-B92A-45D9-97C7-E7F18D270022">
       <extensionElements>
@@ -590,7 +590,7 @@
       <outgoing>sid-06352C00-E179-4BD1-A42C-BC4E2496FAEC</outgoing>
       <outgoing>sid-8DC9B279-F8B0-4C91-8F0E-BCFAFADDCFC2</outgoing>
     </exclusiveGateway>
-    <userTask id="sid-BA44DA97-9017-4629-82C1-5AFE0D419A29" name="evaluate CV" implementation="##WebService" camunda:formKey="rating">
+    <userTask id="sid-BA44DA97-9017-4629-82C1-5AFE0D419A29" name="evaluate CV" implementation="##WebService">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
@@ -600,13 +600,21 @@
         <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
         <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
         <camunda:formData>
-          <camunda:formField id="cv_rating" label="Rate from 1-10" type="long" defaultValue="${cv_rating}" />
+          <camunda:formField id="cv_rating" label="Rate from 1-10" type="long" />
+          <camunda:formField id="application_id" label="Application ID" type="string" defaultValue="${applicationelem.prop(&#34;application_id&#34;).stringValue()}" />
+          <camunda:formField id="candidate_id" label="Candidate ID" type="string" defaultValue="${applicationelem.prop(&#34;candidate_id&#34;).stringValue()}" />
+          <camunda:formField id="first_name" label="Firstname" type="string" defaultValue="${applicationelem.prop(&#34;first_name&#34;).stringValue()}" />
+          <camunda:formField id="last_name" label="Lastname" type="string" defaultValue="${applicationelem.prop(&#34;last_name&#34;).stringValue()}" />
+          <camunda:formField id="cv" label="CV link" type="string" defaultValue="${applicationelem.prop(&#34;cv&#34;).stringValue()}" />
         </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="cv_rating" />
+        </camunda:inputOutput>
       </extensionElements>
       <categoryValueRef>sid-8dc65996-6426-4fc6-a053-2ef307e60cc0</categoryValueRef>
       <incoming>sid-5E652E1E-BC65-41E0-B8F3-40182603B864</incoming>
       <outgoing>sid-7192A392-2690-489E-A6DE-D2986D12DDB6</outgoing>
-      <multiInstanceLoopCharacteristics camunda:collection="Application" camunda:elementVariable="application_id" />
+      <multiInstanceLoopCharacteristics camunda:collection="${collectedApplications.prop(&#34;applications&#34;).elements()}" camunda:elementVariable="applicationelem" />
     </userTask>
     <parallelGateway id="sid-3FE7F46D-6BDC-4882-AE90-A825FA1F2F53" name="" gatewayDirection="Diverging">
       <extensionElements>
@@ -675,15 +683,20 @@
       <outgoing>sid-9EA1DAA7-0674-4034-8781-3464A54B3013</outgoing>
       <messageEventDefinition id="sid-3d077e23-a8ce-4031-abba-b86b365799d7" messageRef="Message_14lnuod" />
     </startEvent>
-    <userTask id="sid-B11765A0-D66B-4C18-801A-C08847CFC1D8" name="do background check" camunda:formKey="backgroundrating">
+    <userTask id="sid-B11765A0-D66B-4C18-801A-C08847CFC1D8" name="do background check">
       <extensionElements>
         <camunda:formData>
-          <camunda:formField id="backgroundrating" label="Rate from 1-3" type="long" defaultValue="${backgroundrating}" />
+          <camunda:formField id="backgroundrating" label="Rate from 1-3" type="long" />
+          <camunda:formField id="application_id" label="Application ID" type="string" defaultValue="${applicationelem.prop(&#34;application_id&#34;).stringValue()}" />
+          <camunda:formField id="candidate_id" label="Candidate ID" type="string" defaultValue="${applicationelem.prop(&#34;candidate_id&#34;).stringValue()}" />
+          <camunda:formField id="first_name" label="Firstname" type="string" defaultValue="${applicationelem.prop(&#34;first_name&#34;).stringValue()}" />
+          <camunda:formField id="last_name" label="Lastname" type="string" defaultValue="${applicationelem.prop(&#34;last_name&#34;).stringValue()}" />
+          <camunda:formField id="cv" label="CV link" type="string" defaultValue="${applicationelem.prop(&#34;cv&#34;).stringValue()}" />
         </camunda:formData>
       </extensionElements>
       <incoming>sid-65F5B595-4AB8-48E3-A9D4-7AC158655CA1</incoming>
       <outgoing>sid-4F78A2E9-A974-4310-B2B2-21FF1CF46A88</outgoing>
-      <multiInstanceLoopCharacteristics camunda:collection="Application" camunda:elementVariable="application_id" />
+      <multiInstanceLoopCharacteristics camunda:collection="${collectedApplications.prop(&#34;applications&#34;).elements()}" camunda:elementVariable="applicationelem" />
     </userTask>
     <userTask id="sid-13E49214-4737-4900-8B19-27907B038A06" name="create job profile" implementation="##WebService">
       <extensionElements>
@@ -695,15 +708,51 @@
         <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
         <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
         <camunda:formData>
-          <camunda:formField id="salary" label="Salary" type="long" defaultValue="${salary}" />
-          <camunda:formField id="jobTitle" label="Job Title" type="string" defaultValue="${jobTitle}" />
-          <camunda:formField id="openingName" label="Opening Name" type="string" defaultValue="${openingName}" />
-          <camunda:formField id="jobDescription" label="Job Description" type="string" defaultValue="${jobDescription}" />
-          <camunda:formField id="requiredQualifications" label="Required Qualifications" type="string" defaultValue="${requiredQualifications}" />
-          <camunda:formField id="additionalInformation" label="Additional Information" type="string" defaultValue="${additionalInformation}" />
-          <camunda:formField id="jobLocation" label="Job Location" type="string" defaultValue="${jobLocation}" />
-          <camunda:formField id="workingHours" label="Working Hours" type="string" defaultValue="${workingHours}" />
-          <camunda:formField id="JobProfile" label="Job Profile" type="string" />
+          <camunda:formField id="jobTitle" label="Job Title" type="string" defaultValue="${jobTitle}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="openingName" label="Opening Name" type="string" defaultValue="${openingName}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="jobDescription" label="Job Description" type="string" defaultValue="${jobDescription}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="jobLocation" label="Job Location" type="string" defaultValue="${jobLocation}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="requiredQualifications" label="Required Qualifications" type="string" defaultValue="${requiredQualifications}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="salary" label="Salary" type="long" defaultValue="${salary}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="workingHours" label="Working Hours" type="string" defaultValue="${workingHours}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="additionalInformation" label="Additional Information" type="string" defaultValue="${additionalInformation}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="jobProfile" label="Job Profile" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
         </camunda:formData>
       </extensionElements>
       <incoming>sid-5C9F4FE2-7019-411C-913D-6748BF765B28</incoming>
@@ -1087,6 +1136,9 @@
         </startEvent>
       </subProcess>
       <startEvent id="Event_142o7se" name="ApplicationPhaseStarted">
+        <extensionElements>
+          <camunda:executionListener class="org.example.listener.ApplicationPhaseStartedListener" event="start" />
+        </extensionElements>
         <outgoing>Flow_1ars7ky</outgoing>
       </startEvent>
       <sequenceFlow id="Flow_1ars7ky" sourceRef="Event_142o7se" targetRef="Event_0s8tvgq" />
@@ -1098,7 +1150,7 @@
         <incoming>Flow_1ars7ky</incoming>
         <outgoing>Flow_1d0f7y9</outgoing>
         <timerEventDefinition id="TimerEventDefinition_12uxvm9">
-          <timeDuration xsi:type="tFormalExpression">PT5M</timeDuration>
+          <timeDuration xsi:type="tFormalExpression">PT2M</timeDuration>
         </timerEventDefinition>
       </intermediateCatchEvent>
     </subProcess>
@@ -1122,34 +1174,6 @@
     <sequenceFlow id="Flow_1eiizfw" sourceRef="Activity_03kwath" targetRef="Gateway_1mudnk0" />
     <sequenceFlow id="Flow_1d7xl9i" sourceRef="sid-7B2672DE-9A58-4E88-9646-623C55262664" targetRef="Gateway_1mudnk0" />
     <sequenceFlow id="Flow_0n2gnw1" sourceRef="Gateway_1mudnk0" targetRef="sid-22AC35F2-B986-48A8-8305-F7D314DCDD48" />
-    <parallelGateway id="Gateway_06odl5i">
-      <incoming>Flow_14bvo8h</incoming>
-      <outgoing>Flow_0fl1gx4</outgoing>
-      <outgoing>Flow_1jrviis</outgoing>
-    </parallelGateway>
-    <sendTask id="sid-7B2672DE-9A58-4E88-9646-623C55262664" name="send final selection" implementation="##WebService" camunda:class="org.example.delegate.SendFinalSelectionDelegate">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
-        <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
-        <signavio:signavioMetaData metaKey="risikenundkontrollen" metaValue="" />
-        <signavio:signavioMetaData metaKey="erteiltfreigabe" metaValue="" />
-        <signavio:signavioMetaData metaKey="wirdkonsultiert" metaValue="[]" />
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
-        <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
-      </extensionElements>
-      <categoryValueRef>sid-8dc65996-6426-4fc6-a053-2ef307e60cc0</categoryValueRef>
-      <incoming>Flow_0fl1gx4</incoming>
-      <outgoing>Flow_1d7xl9i</outgoing>
-    </sendTask>
-    <sendTask id="Activity_03kwath" name="Inform candidates" camunda:class="org.example.delegate.InformCandidatesDelegate">
-      <incoming>Flow_1jrviis</incoming>
-      <outgoing>Flow_1eiizfw</outgoing>
-    </sendTask>
-    <parallelGateway id="Gateway_1mudnk0">
-      <incoming>Flow_1eiizfw</incoming>
-      <incoming>Flow_1d7xl9i</incoming>
-      <outgoing>Flow_0n2gnw1</outgoing>
-    </parallelGateway>
     <businessRuleTask id="sid-B4C31733-DF10-40C6-8D46-CE9515284024" name="select CV&#39;s" implementation="##WebService" camunda:class="org.example.delegate.SelectCVsDelegate">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
@@ -1178,6 +1202,34 @@
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
       </extensionElements>
     </dataStoreReference>
+    <parallelGateway id="Gateway_06odl5i">
+      <incoming>Flow_14bvo8h</incoming>
+      <outgoing>Flow_0fl1gx4</outgoing>
+      <outgoing>Flow_1jrviis</outgoing>
+    </parallelGateway>
+    <sendTask id="sid-7B2672DE-9A58-4E88-9646-623C55262664" name="send final selection" implementation="##WebService" camunda:class="org.example.delegate.SendFinalSelectionDelegate">
+      <extensionElements>
+        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
+        <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
+        <signavio:signavioMetaData metaKey="risikenundkontrollen" metaValue="" />
+        <signavio:signavioMetaData metaKey="erteiltfreigabe" metaValue="" />
+        <signavio:signavioMetaData metaKey="wirdkonsultiert" metaValue="[]" />
+        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
+        <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
+      </extensionElements>
+      <categoryValueRef>sid-8dc65996-6426-4fc6-a053-2ef307e60cc0</categoryValueRef>
+      <incoming>Flow_0fl1gx4</incoming>
+      <outgoing>Flow_1d7xl9i</outgoing>
+    </sendTask>
+    <sendTask id="Activity_03kwath" name="Inform candidates" camunda:class="org.example.delegate.InformCandidatesDelegate">
+      <incoming>Flow_1jrviis</incoming>
+      <outgoing>Flow_1eiizfw</outgoing>
+    </sendTask>
+    <parallelGateway id="Gateway_1mudnk0">
+      <incoming>Flow_1eiizfw</incoming>
+      <incoming>Flow_1d7xl9i</incoming>
+      <outgoing>Flow_0n2gnw1</outgoing>
+    </parallelGateway>
   </process>
   <process id="sid-4CF5718C-2DBA-46CD-8B2B-0D0FC88A760A" name="WBIG" processType="None" isClosed="false" isExecutable="true">
     <extensionElements />
@@ -1273,7 +1325,7 @@
         <omgdi:waypoint x="3130" y="890" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_14bvo8h_di" bpmnElement="Flow_14bvo8h">
-        <omgdi:waypoint x="3010" y="946" />
+        <omgdi:waypoint x="3040" y="946" />
         <omgdi:waypoint x="3065" y="946" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0remkaj_di" bpmnElement="Flow_0remkaj">
@@ -1355,7 +1407,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-4942DDAC-FF75-4A04-B914-2C7765DCCDB9_gui" bpmnElement="sid-4942DDAC-FF75-4A04-B914-2C7765DCCDB9">
         <omgdi:waypoint x="2785" y="946" />
-        <omgdi:waypoint x="2910" y="946" />
+        <omgdi:waypoint x="2940" y="946" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-7192A392-2690-489E-A6DE-D2986D12DDB6_gui" bpmnElement="sid-7192A392-2690-489E-A6DE-D2986D12DDB6">
         <omgdi:waypoint x="2555.0877742616112" y="879.9805197101005" />
@@ -1656,18 +1708,6 @@
           <omgdc:Bounds x="1072" y="756" width="78" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="sid-B4C31733-DF10-40C6-8D46-CE9515284024_gui" bpmnElement="sid-B4C31733-DF10-40C6-8D46-CE9515284024">
-        <omgdc:Bounds x="2910" y="906" width="100" height="80" />
-        <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
-          <omgdc:Bounds x="2945.387773498672" y="1097.5718163421561" width="59.400001525878906" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="sid-EFF056BD-D850-4D56-8988-44937504345F_gui" bpmnElement="sid-EFF056BD-D850-4D56-8988-44937504345F">
-        <omgdc:Bounds x="2929" y="1100" width="62" height="60" />
-        <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
-          <omgdc:Bounds x="2923" y="1165" width="74" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-6D98E17C-9555-479D-86BC-B7EF17602B95_gui" bpmnElement="sid-6D98E17C-9555-479D-86BC-B7EF17602B95" isExpanded="true">
         <omgdc:Bounds x="1390" y="768" width="810" height="357" />
         <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
@@ -1816,6 +1856,18 @@
       <bpmndi:BPMNShape id="Activity_17gzt9d_di" bpmnElement="sid-3B9107C0-9FB1-49EA-810C-3C32295C8798">
         <omgdc:Bounds x="4553" y="451" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sid-B4C31733-DF10-40C6-8D46-CE9515284024_gui" bpmnElement="sid-B4C31733-DF10-40C6-8D46-CE9515284024">
+        <omgdc:Bounds x="2940" y="906" width="100" height="80" />
+        <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
+          <omgdc:Bounds x="2945.387773498672" y="1097.5718163421561" width="59.400001525878906" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sid-EFF056BD-D850-4D56-8988-44937504345F_gui" bpmnElement="sid-EFF056BD-D850-4D56-8988-44937504345F">
+        <omgdc:Bounds x="2949" y="1097" width="62" height="60" />
+        <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
+          <omgdc:Bounds x="2943" y="1162" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0xdi0iy_di" bpmnElement="Gateway_06odl5i">
         <omgdc:Bounds x="3065" y="921" width="50" height="50" />
       </bpmndi:BPMNShape>
@@ -1909,8 +1961,8 @@
         <omgdi:waypoint x="1681" y="1042" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-BBC89C89-D6D6-486A-B7B9-B5CC3148D5C2_gui" bpmnElement="sid-BBC89C89-D6D6-486A-B7B9-B5CC3148D5C2">
-        <omgdi:waypoint x="2960" y="1100" />
-        <omgdi:waypoint x="2960" y="986" />
+        <omgdi:waypoint x="2982" y="1097" />
+        <omgdi:waypoint x="2988" y="986" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-82FDD36A-4ABD-49CC-B92F-E75FFBCE1131_gui" bpmnElement="sid-82FDD36A-4ABD-49CC-B92F-E75FFBCE1131">
         <omgdi:waypoint x="304.4798159163993" y="153.87080608631072" />
@@ -1953,8 +2005,8 @@
         <omgdi:waypoint x="4228" y="1356" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-3CC8AC94-AFC3-4B34-AC2C-82FB7DC89EBB_gui" bpmnElement="sid-3CC8AC94-AFC3-4B34-AC2C-82FB7DC89EBB">
-        <omgdi:waypoint x="4401" y="660" />
-        <omgdi:waypoint x="4401" y="1356" />
+        <omgdi:waypoint x="4376" y="580" />
+        <omgdi:waypoint x="4376" y="154" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-B7CC4C34-482B-47BC-B908-9197891F3450_gui" bpmnElement="sid-B7CC4C34-482B-47BC-B908-9197891F3450">
         <omgdi:waypoint x="1235" y="1060" />

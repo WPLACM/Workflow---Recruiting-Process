@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1xxsq0w" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.0.0">
+  <bpmn:process id="Process_09j1w24" name="invoice received" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="invocie received">
+      <bpmn:outgoing>Flow_1ko4q8z</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_16sk8ms" messageRef="Message_07fjjts" />
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_09ljzno">
+      <bpmn:incoming>Flow_1fzsdwz</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1ko4q8z" sourceRef="StartEvent_1" targetRef="Activity_1ym64e8" />
+    <bpmn:sequenceFlow id="Flow_1fzsdwz" sourceRef="Activity_1ym64e8" targetRef="Event_09ljzno" />
+    <bpmn:scriptTask id="Activity_1ym64e8" name="invoice inbound" scriptFormat="JavaScript">
+      <bpmn:incoming>Flow_1ko4q8z</bpmn:incoming>
+      <bpmn:outgoing>Flow_1fzsdwz</bpmn:outgoing>
+      <bpmn:script>execution.setVariable("invoicereceived", "true");</bpmn:script>
+    </bpmn:scriptTask>
+  </bpmn:process>
+  <bpmn:message id="Message_07fjjts" name="invoice" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_09j1w24">
+      <bpmndi:BPMNEdge id="Flow_1fzsdwz_di" bpmnElement="Flow_1fzsdwz">
+        <di:waypoint x="440" y="130" />
+        <di:waypoint x="602" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ko4q8z_di" bpmnElement="Flow_1ko4q8z">
+        <di:waypoint x="215" y="120" />
+        <di:waypoint x="340" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_007dvg0_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="158" y="145" width="79" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1u9ywnx_di" bpmnElement="Activity_1ym64e8">
+        <dc:Bounds x="340" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_09ljzno_di" bpmnElement="Event_09ljzno">
+        <dc:Bounds x="602" y="112" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
