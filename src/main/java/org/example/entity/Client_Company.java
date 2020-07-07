@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 public class Client_Company {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer company_id; //foreign key in Job_opening_Information Table
     private String name;
     private String description;
