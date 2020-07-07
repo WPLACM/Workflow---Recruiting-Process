@@ -16,14 +16,11 @@ public class Test_Message implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        LOGGER.info("Send opening job information started");
+        LOGGER.info("Send number of accepted applicants started");
         RestTemplate template = new RestTemplate();
 
         // requires data-object class. Set variables in object
         NumberOfCandidates payload = new NumberOfCandidates(delegateExecution.getProcessInstanceId(), 1,50);
-
-        LOGGER.info("Opening data in data base");
-
 
         String wbig_processInstanceId = payload.getWBIG_processInstanceID();
         // sends data-object to url (String class specification needed)
