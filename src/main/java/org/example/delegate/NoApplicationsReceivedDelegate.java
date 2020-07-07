@@ -13,11 +13,11 @@ public class NoApplicationsReceivedDelegate implements JavaDelegate {
         String wbig_process_id = (String) delegateExecution.getVariable("wbig_process_id");
         String WPLACM_process_id = (String) delegateExecution.getVariable("processID");
         String time_stamp = (String) delegateExecution.getVariable("time_stamp");
-        String message = "Dear WBIG, we are very sorry that we were not able to find any suitable candidates " +
+        String textmessage = "Dear WBIG, we are very sorry that we were not able to find any suitable candidates " +
                 "for you. Our apologies. We hope we can continue doing services for you in the future for any " +
                 "other job openings you will have. Thanks very much for your understanding. Yours faithfully, WPLACM.";
 
-        NoApplicationsReceivedMessage noappmsg = new NoApplicationsReceivedMessage(wbig_process_id, WPLACM_process_id, time_stamp, message);
+        NoApplicationsReceivedMessage noappmsg = new NoApplicationsReceivedMessage(wbig_process_id, WPLACM_process_id, time_stamp, textmessage);
         String wbig_processInstanceId = template.postForObject("http://localhost:8080/wbig/wbig", noappmsg, String.class);
 
 
