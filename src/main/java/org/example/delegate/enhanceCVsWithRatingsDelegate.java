@@ -32,7 +32,7 @@ public class enhanceCVsWithRatingsDelegate implements JavaDelegate {
             // Prepare Update Statement
             String s_update_application =
                     "UPDATE Application  SET" +
-                            " rating = \'" + rating +
+                            " rating = " + rating +
                             " WHERE application_id = " + application_id;
 
             PreparedStatement update_application = con.prepareStatement(s_update_application);

@@ -64,35 +64,6 @@ public class AddToDatabaseDelegate implements JavaDelegate {
                 delegateExecution.setVariable("candidate_email", "wplacmrecruiting@gmail.com");
                 delegateExecution.setVariable("candidate_confirmation_text", "hello this is a test");
 
-                /*
-                Collection<Integer> collectedApplications =
-                        (Collection<Integer>) delegateExecution.getVariable("collectedApplications");
-                collectedApplications.add(rs_application.getInt(1));
-                */
-
-                /*
-                ObjectValue typedApplicationCollection =
-                        (ObjectValue) delegateExecution.getVariableTyped("collectedApplications");
-
-                Collection<ApplicationCollectionElement> collectedApplications =
-                        (Collection<ApplicationCollectionElement>) typedApplicationCollection.getValue();
-
-                collectedApplications.add( new ApplicationCollectionElement(rs_application.getInt(1), candidate_id,
-                        (candidate.getValue().prop("first_name").stringValue() + " " +
-                                candidate.getValue().prop("last_name").stringValue()),
-                        "cv_link" )
-                );
-
-                typedApplicationCollection = Variables
-                        .objectValue(collectedApplications)
-                        .serializationDataFormat(Variables.SerializationDataFormats.JSON)
-                        .create();
-
-                System.out.println("set variable typed");
-
-                delegateExecution.setVariable("collectedApplications", typedApplicationCollection);
-                 */
-
                 // add application to collection
                 String application = "{\"application_id\" : \"" + rs_application.getInt(1) + "\","
                         + "\"candidate_id\" : \"" + candidate_id + "\","
@@ -104,13 +75,9 @@ public class AddToDatabaseDelegate implements JavaDelegate {
                 System.out.println(application);
                 SpinJsonNode application_json = JSON(application);
 
-                System.out.println("before get variable");
-                JsonValueImpl Test = (JsonValueImpl) delegateExecution.getVariableTyped("collectedApplications");
-                System.out.println(Test.getValueSerialized());
+                JsonValueImpl collApplication = (JsonValueImpl) delegateExecution.getVariableTyped("collectedApplications");
 
-                SpinJsonNode application_collection = JSON(Test.getValueSerialized());
-
-                System.out.println("before append");
+                SpinJsonNode application_collection = JSON(collApplication.getValueSerialized());
 
                 if (!application_collection.hasProp("applications")){
                     application_collection.prop("applications", application_json);
@@ -118,7 +85,6 @@ public class AddToDatabaseDelegate implements JavaDelegate {
                 else{
                     application_collection.prop("applications").append(application_json);
                 }
-
                 delegateExecution.setVariable("collectedApplications", application_collection);
 
             }
