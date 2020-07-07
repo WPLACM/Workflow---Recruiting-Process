@@ -52,8 +52,19 @@ public class SelectCVsDelegate implements JavaDelegate {
                 //acp.candidate = cand;
 
                 //response.add(acp);
+                try {
+                    // selectedCVs.getApplicationList().add(cv);
 
-                selectedCVs.getApplicationList().add(cv);
+                    List<ApplicationMessage> list = selectedCVs.getApplicationList();
+                    list.add(cv);
+                    selectedCVs.setApplicationList(list);
+
+                    System.out.println("after add cv");
+                } catch (NullPointerException n) {
+                    System.out.println("nullpointer");
+                    System.out.println(n.getMessage());
+                }
+
             }
             /*
             ObjectMapper obj = new ObjectMapper();
@@ -62,6 +73,7 @@ public class SelectCVsDelegate implements JavaDelegate {
             delegateExecution.setVariable("allCvJson",cvJson);
 
              */
+
             delegateExecution.setVariable("finalSelection", selectedCVs);
         }
     }

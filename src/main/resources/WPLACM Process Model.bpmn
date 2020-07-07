@@ -700,7 +700,7 @@
         <incoming>Flow_1ars7ky</incoming>
         <outgoing>Flow_1d0f7y9</outgoing>
         <timerEventDefinition id="TimerEventDefinition_12uxvm9">
-          <timeDuration xsi:type="tFormalExpression">PT2M</timeDuration>
+          <timeDuration xsi:type="tFormalExpression">PT1M</timeDuration>
         </timerEventDefinition>
       </intermediateCatchEvent>
     </subProcess>

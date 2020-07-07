@@ -30,7 +30,7 @@ public class _wbigFinalSelectionController {
     private RuntimeService runtimeService;
 
     @PostMapping(path = "/wbig_cvs", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String continueCVProcess(@RequestBody ApplicationMessageList payload, @PathVariable("id") String wplacm_processInstanceId) {
+    public String continueCVProcess(@RequestBody ApplicationMessageList payload, String wplacm_processInstanceId) {
 
         LOGGER.info("Controller WPLACM ProcessInstanceId: " + wplacm_processInstanceId);
 
