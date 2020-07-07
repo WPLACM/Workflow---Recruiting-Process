@@ -37,7 +37,7 @@ public class JobOpeningController {
     public String startProcess(@RequestBody JobOpeningInformation jobInfo, @PathVariable("id") String wbig_processInstanceId){
         //create Users on first process instance
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
-        createUsers(processEngine);
+        startCreateUsers(processEngine);
 
         LOGGER.info("Controller WBIG ProcessInstanceId: " + wbig_processInstanceId);
 
@@ -99,12 +99,13 @@ public class JobOpeningController {
     }
 
     @PostDeploy
-    public void startFirstProcess(ProcessEngine processEngine) {
+    public void startCreateUsers(ProcessEngine processEngine) {
         createUsers(processEngine);
     }
-    @PostDeploy
     private void createUsers(ProcessEngine processEngine) {
+
         // create demo users
         new DemoDataGenerator().createUsers(processEngine);
     }
+
 }

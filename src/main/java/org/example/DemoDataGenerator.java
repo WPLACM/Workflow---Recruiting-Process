@@ -68,18 +68,19 @@ public class DemoDataGenerator {
             return;
         }
 
-        User singleResult = identityService.createUserQuery().userId("demo").singleResult();
+        //Not executed if demo user present
+        User singleResult = identityService.createUserQuery().userId("nemo").singleResult();
         if (singleResult != null) {
             return;
         }
 
-        LOGGER.info("Generating demo data for invoice showcase");
+        LOGGER.info("Generating demo data");
 
-        User user = identityService.newUser("demo");
-        user.setFirstName("Demo");
-        user.setLastName("Demo");
-        user.setPassword("demo");
-        user.setEmail("demo@camunda.org");
+        User user = identityService.newUser("nemo");
+        user.setFirstName("Nemo");
+        user.setLastName("Nemo");
+        user.setPassword("nemo");
+        user.setEmail("nemo@camunda.org");
         identityService.saveUser(user, true);
 
         User user2 = identityService.newUser("john");
@@ -103,10 +104,10 @@ public class DemoDataGenerator {
         user4.setEmail("peter@camunda.org");
         identityService.saveUser(user4, true);
 
-        Group salesGroup = identityService.newGroup("sales");
-        salesGroup.setName("Sales");
-        salesGroup.setType("WORKFLOW");
-        identityService.saveGroup(salesGroup);
+        Group publishingGroup = identityService.newGroup("publishing");
+        publishingGroup.setName("Publishing");
+        publishingGroup.setType("WORKFLOW");
+        identityService.saveGroup(publishingGroup);
 
         Group accountingGroup = identityService.newGroup("accounting");
         accountingGroup.setName("Accounting");
@@ -140,33 +141,33 @@ public class DemoDataGenerator {
             }
         }
 
-        identityService.createMembership("demo", "sales");
-        identityService.createMembership("demo", "accounting");
-        identityService.createMembership("demo", "management");
-        identityService.createMembership("demo", "camunda-admin");
+        identityService.createMembership("nemo", "publishing");
+        identityService.createMembership("nemo", "accounting");
+        identityService.createMembership("nemo", "management");
+        identityService.createMembership("nemo", "camunda-admin");
 
-        identityService.createMembership("john", "sales");
+        identityService.createMembership("john", "publishing");
         identityService.createMembership("mary", "accounting");
         identityService.createMembership("peter", "management");
 
 
         // authorize groups for tasklist only:
 
-        Authorization salesTasklistAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
-        salesTasklistAuth.setGroupId("sales");
-        salesTasklistAuth.addPermission(ACCESS);
-        salesTasklistAuth.setResourceId("tasklist");
-        salesTasklistAuth.setResource(APPLICATION);
-        authorizationService.saveAuthorization(salesTasklistAuth);
+        Authorization publishingTasklistAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
+        publishingTasklistAuth.setGroupId("publishing");
+        publishingTasklistAuth.addPermission(ACCESS);
+        publishingTasklistAuth.setResourceId("tasklist");
+        publishingTasklistAuth.setResource(APPLICATION);
+        authorizationService.saveAuthorization(publishingTasklistAuth);
 
-        Authorization salesReadProcessDefinition = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
-        salesReadProcessDefinition.setGroupId("sales");
-        salesReadProcessDefinition.addPermission(Permissions.READ);
-        salesReadProcessDefinition.addPermission(Permissions.READ_HISTORY);
-        salesReadProcessDefinition.setResource(Resources.PROCESS_DEFINITION);
+        Authorization publishingReadProcessDefinition = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
+        publishingReadProcessDefinition.setGroupId("publishing");
+        publishingReadProcessDefinition.addPermission(Permissions.READ);
+        publishingReadProcessDefinition.addPermission(Permissions.READ_HISTORY);
+        publishingReadProcessDefinition.setResource(Resources.PROCESS_DEFINITION);
         // restrict to invoice process definition only
-        salesReadProcessDefinition.setResourceId("invoice");
-        authorizationService.saveAuthorization(salesReadProcessDefinition);
+        publishingReadProcessDefinition.setResourceId("invoice");
+        authorizationService.saveAuthorization(publishingReadProcessDefinition);
 
         Authorization accountingTasklistAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
         accountingTasklistAuth.setGroupId("accounting");
@@ -200,19 +201,19 @@ public class DemoDataGenerator {
         managementReadProcessDefinition.setResourceId("invoice");
         authorizationService.saveAuthorization(managementReadProcessDefinition);
 
-        Authorization salesDemoAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
-        salesDemoAuth.setGroupId("sales");
-        salesDemoAuth.setResource(USER);
-        salesDemoAuth.setResourceId("demo");
-        salesDemoAuth.addPermission(READ);
-        authorizationService.saveAuthorization(salesDemoAuth);
+        Authorization publishingDemoAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
+        publishingDemoAuth.setGroupId("publishing");
+        publishingDemoAuth.setResource(USER);
+        publishingDemoAuth.setResourceId("nemo");
+        publishingDemoAuth.addPermission(READ);
+        authorizationService.saveAuthorization(publishingDemoAuth);
 
-        Authorization salesJohnAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
-        salesJohnAuth.setGroupId("sales");
-        salesJohnAuth.setResource(USER);
-        salesJohnAuth.setResourceId("john");
-        salesJohnAuth.addPermission(READ);
-        authorizationService.saveAuthorization(salesJohnAuth);
+        Authorization publishingJohnAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
+        publishingJohnAuth.setGroupId("publishing");
+        publishingJohnAuth.setResource(USER);
+        publishingJohnAuth.setResourceId("john");
+        publishingJohnAuth.addPermission(READ);
+        authorizationService.saveAuthorization(publishingJohnAuth);
 
         Authorization manDemoAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
         manDemoAuth.setGroupId("management");
@@ -231,7 +232,7 @@ public class DemoDataGenerator {
         Authorization accDemoAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
         accDemoAuth.setGroupId("accounting");
         accDemoAuth.setResource(USER);
-        accDemoAuth.setResourceId("demo");
+        accDemoAuth.setResourceId("nemo");
         accDemoAuth.addPermission(READ);
         authorizationService.saveAuthorization(accDemoAuth);
 
@@ -260,7 +261,7 @@ public class DemoDataGenerator {
         addVariables(filterProperties);
         TaskService taskService = engine.getTaskService();
         TaskQuery query = taskService.createTaskQuery().taskAssigneeExpression("${currentUser()}");
-        Filter myTasksFilter = filterService.newTaskFilter().setName("My Tasks").setProperties(filterProperties).setOwner("demo").setQuery(query);
+        Filter myTasksFilter = filterService.newTaskFilter().setName("My Tasks").setProperties(filterProperties).setOwner("nemo").setQuery(query);
         filterService.saveFilter(myTasksFilter);
 
         filterProperties.clear();
@@ -268,7 +269,7 @@ public class DemoDataGenerator {
         filterProperties.put("priority", -5);
         addVariables(filterProperties);
         query = taskService.createTaskQuery().taskCandidateGroupInExpression("${currentUserGroups()}").taskUnassigned();
-        Filter groupTasksFilter = filterService.newTaskFilter().setName("My Group Tasks").setProperties(filterProperties).setOwner("demo").setQuery(query);
+        Filter groupTasksFilter = filterService.newTaskFilter().setName("My Group Tasks").setProperties(filterProperties).setOwner("nemo").setQuery(query);
         filterService.saveFilter(groupTasksFilter);
 
         // global read authorizations for these filters
@@ -292,7 +293,7 @@ public class DemoDataGenerator {
         filterProperties.put("priority", -3);
         addVariables(filterProperties);
         query = taskService.createTaskQuery().taskCandidateGroupIn(Arrays.asList("accounting")).taskUnassigned();
-        Filter candidateGroupTasksFilter = filterService.newTaskFilter().setName("Accounting").setProperties(filterProperties).setOwner("demo").setQuery(query);
+        Filter candidateGroupTasksFilter = filterService.newTaskFilter().setName("Accounting").setProperties(filterProperties).setOwner("nemo").setQuery(query);
         filterService.saveFilter(candidateGroupTasksFilter);
 
         Authorization managementGroupFilterRead = authorizationService.createNewAuthorization(Authorization.AUTH_TYPE_GRANT);
@@ -309,7 +310,7 @@ public class DemoDataGenerator {
         filterProperties.put("priority", -1);
         addVariables(filterProperties);
         query = taskService.createTaskQuery().taskAssignee("john");
-        Filter johnsTasksFilter = filterService.newTaskFilter().setName("John's Tasks").setProperties(filterProperties).setOwner("demo").setQuery(query);
+        Filter johnsTasksFilter = filterService.newTaskFilter().setName("John's Tasks").setProperties(filterProperties).setOwner("nemo").setQuery(query);
         filterService.saveFilter(johnsTasksFilter);
 
         // mary's tasks
@@ -319,7 +320,7 @@ public class DemoDataGenerator {
         filterProperties.put("priority", -1);
         addVariables(filterProperties);
         query = taskService.createTaskQuery().taskAssignee("mary");
-        Filter marysTasksFilter = filterService.newTaskFilter().setName("Mary's Tasks").setProperties(filterProperties).setOwner("demo").setQuery(query);
+        Filter marysTasksFilter = filterService.newTaskFilter().setName("Mary's Tasks").setProperties(filterProperties).setOwner("nemo").setQuery(query);
         filterService.saveFilter(marysTasksFilter);
 
         // peter's tasks
@@ -329,7 +330,7 @@ public class DemoDataGenerator {
         filterProperties.put("priority", -1);
         addVariables(filterProperties);
         query = taskService.createTaskQuery().taskAssignee("peter");
-        Filter petersTasksFilter = filterService.newTaskFilter().setName("Peter's Tasks").setProperties(filterProperties).setOwner("demo").setQuery(query);
+        Filter petersTasksFilter = filterService.newTaskFilter().setName("Peter's Tasks").setProperties(filterProperties).setOwner("nemo").setQuery(query);
         filterService.saveFilter(petersTasksFilter);
 
         // all tasks
@@ -339,7 +340,7 @@ public class DemoDataGenerator {
         filterProperties.put("priority", 10);
         addVariables(filterProperties);
         query = taskService.createTaskQuery();
-        Filter allTasksFilter = filterService.newTaskFilter().setName("All Tasks").setProperties(filterProperties).setOwner("demo").setQuery(query);
+        Filter allTasksFilter = filterService.newTaskFilter().setName("All Tasks").setProperties(filterProperties).setOwner("nemo").setQuery(query);
         filterService.saveFilter(allTasksFilter);
 
     }
