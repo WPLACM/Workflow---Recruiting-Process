@@ -25,4 +25,7 @@ public class DebitAuthorization {
     public void setIBAN(String IBAN) {
         this.IBAN = IBAN;
     }
+
+    public DebitAuthorization(){
+    }
 }

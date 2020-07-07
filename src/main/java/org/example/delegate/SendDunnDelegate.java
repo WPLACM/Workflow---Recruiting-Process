@@ -34,12 +34,6 @@ public class SendDunnDelegate implements JavaDelegate {
 
         System.out.print(dunn_message);
 
-        //Message
-        delegateExecution.getProcessEngineServices().getRuntimeService()
-                .createMessageCorrelation("message_name")//TODO message name of WBIG
-                .setVariable("dunn_message", dunn_message)
-                .correlate();
-
         Properties props = new Properties();
 
         props.put("mail.smtp.auth", "true");

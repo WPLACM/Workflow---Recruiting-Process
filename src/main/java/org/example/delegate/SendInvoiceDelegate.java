@@ -3,7 +3,6 @@ package org.example.delegate;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.example.model.Invoice;
-import java.util.Date;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -32,11 +31,9 @@ public class SendInvoiceDelegate implements JavaDelegate {
         String address_send = "Leonardo Campus 3, 48149 Münster";
         String address_rec = "WBIG street 5, 48149 Münster";
         String taxID = "AB123456";
+        String date = (String) delegateExecution.getVariable("date");
 
-
-        Date cdate = (Date) delegateExecution.getVariable("date");
-
-        Invoice inv = new Invoice(delegateExecution.getProcessInstanceId(), invoiceid, payment_information_acceptances, cdate, taxID, address_rec, address_send, number_of_acceptances, openingid,
+        Invoice inv = new Invoice(delegateExecution.getProcessInstanceId(), invoiceid, payment_information_acceptances, date, taxID, address_rec, address_send, number_of_acceptances, openingid,
                 openingName, gross, net, tax);
         String wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/Invoice/"+ delegateExecution.getProcessInstanceId(), inv, String.class);
         delegateExecution.setVariable("wplacm_processInstanceId", wplacm_processInstanceId);

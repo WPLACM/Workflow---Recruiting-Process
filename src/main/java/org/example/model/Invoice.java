@@ -4,7 +4,7 @@ import java.util.Date;
 public class Invoice {
     private String WPLACM_processInstanceID;
     private Double payment_information_acceptances;
-    private Date invoice_date;
+    private String invoice_date;
     private String tax_id;
     private String address_recipient;
     private String address_sender;
@@ -16,7 +16,7 @@ public class Invoice {
     private Double sales_tax;
     private String invoice_id;
 
-    public Invoice(String WPLACM_processInstanceID, String invoice_id, Double payment_information_acceptances, Date invoice_date, String tax_id, String address_recipient,
+    public Invoice(String WPLACM_processInstanceID, String invoice_id, Double payment_information_acceptances, String invoice_date, String tax_id, String address_recipient,
                    String address_sender, Integer number_of_acceptances, String opening_id, String opening_name, Double gross,
                    Double net, Double sales_tax) {
         this.WPLACM_processInstanceID = WPLACM_processInstanceID;
@@ -58,11 +58,11 @@ public class Invoice {
         this.payment_information_acceptances = payment_information_acceptances;
     }
 
-    public Date getInvoice_date() {
+    public String getInvoice_date() {
         return invoice_date;
     }
 
-    public void setInvoice_date(Date invoice_date) {
+    public void setInvoice_date(String invoice_date) {
         this.invoice_date = invoice_date;
     }
 

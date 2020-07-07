@@ -25,6 +25,8 @@ public class DebitCollectionDelegate implements JavaDelegate {
                  + openingid + ". Expect your specified account to be charged in the upcoming days." + System.lineSeparator() +
                  "Sincerely, WPLACM Headhunting";
 
+        System.out.print(debit_message);
+
         Properties props = new Properties();
 
         props.put("mail.smtp.auth", "true");
