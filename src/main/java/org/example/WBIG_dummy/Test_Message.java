@@ -16,18 +16,15 @@ public class Test_Message implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        LOGGER.info("Send opening job information started");
+        LOGGER.info("Send number of accepted applicants started");
         RestTemplate template = new RestTemplate();
 
         // requires data-object class. Set variables in object
         NumberOfCandidates payload = new NumberOfCandidates(delegateExecution.getProcessInstanceId(), 1,50);
-
-        LOGGER.info("Opening data in data base");
-
-
-        String wbig_processInstanceId = payload.getWBIG_processInstanceID();
+        System.out.println("WBIG Prozess ID: "+delegateExecution.getProcessInstanceId());
+        //String wbig_processInstanceId = payload.getWBIG_processInstanceID();
         // sends data-object to url (String class specification needed)
-        String wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/" + wbig_processInstanceId, payload, String.class);
+        String wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/start", payload, String.class);
         //the following variable is necessary to link the response (see controller) !!!
         delegateExecution.setVariable("wplacm_processInstanceId", wplacm_processInstanceId);
 

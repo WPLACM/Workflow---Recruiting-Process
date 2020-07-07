@@ -20,14 +20,14 @@ public class Controller {
     private RuntimeService runtimeService;
 
     // specifes mailbox path, {id} to correlate with specific process instance
-    @PostMapping(path = "/Billing/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String continueBillingProcess (@RequestBody NumberOfCandidates candidateInfo, @PathVariable ("id") String wbig_processInstanceId) throws SQLException {
+    @PostMapping(path = "/start" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String continueBillingProcess (@RequestBody NumberOfCandidates candidateInfo) throws SQLException {
 
-        LOGGER.info("Controller WBIG ProcessInstanceId: " + wbig_processInstanceId);
+        LOGGER.info("Controller WBIG ProcessInstanceId: " + candidateInfo.getWbig_process_ID());
 
         //correlation specification via message name "SomeCVs". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("NumberOfCandidatesMessage")
-                .processInstanceVariableEquals("wbig_processInstanceId", wbig_processInstanceId)
+                .processInstanceVariableEquals("wbig_processInstanceId", candidateInfo.getWbig_process_ID())
                 .setVariable("number_of_acceptances", candidateInfo.getNumber_of_acceptances())
                 .setVariable("payment_info", candidateInfo.getPayment_info())
                 .correlate();
