@@ -9,7 +9,7 @@ import org.camunda.connect.httpclient.HttpConnector;
 import org.camunda.spin.plugin.variable.SpinValues;
 import org.camunda.spin.plugin.variable.value.JsonValue;
 
-//TODO set invoice ID, WBIG address
+//TODO set WBIG address
 
 public class SendInvoiceDelegate implements JavaDelegate {
 
@@ -21,6 +21,7 @@ public class SendInvoiceDelegate implements JavaDelegate {
         String time_stamp = (String) delegateExecution.getVariable("time_stamp");
         String job_opening = (String) delegateExecution.getVariable("job_opening");
         String openingid = (String) delegateExecution.getVariable("openingid");
+        String invoiceid = (String) delegateExecution.getVariable("invoiceid");
         Integer payment_info = (Integer) delegateExecution.getVariable("payment_info");
         Integer net = (Integer) delegateExecution.getVariable("net");
         Double gross = (Double) delegateExecution.getVariable("gross");
@@ -35,7 +36,7 @@ public class SendInvoiceDelegate implements JavaDelegate {
         String invoiceJSON = "{\"WPLACM_process_ID\" : \"" +processID+"\","
                 + "\"WBIG_process_ID\" : \"" +wbig_process_id+ "\","
                 + "\"timestamp\" : \"" +time_stamp+"\","
-                + "\"Invoice_ID\" : \"ID\","
+                + "\"Invoice_ID\" : \"" +invoiceid+"\","
                 + "\"Payment_information_acceptances\" : \"" +payment_info+ ","
                 + "\"Date\" : \"" +date+ "\","
                 + "\"Tax_id_WPLACM\" : \"AB123456\","
@@ -54,21 +55,23 @@ public class SendInvoiceDelegate implements JavaDelegate {
                 +"\"Net\" : \"" +net+ "\","
                 +"\"Tax\" : \"" +tax+ "\"}";
 
-        JsonValue jsonValue = SpinValues.jsonValue(invoiceJSON).create(); //might be irrelevant
-        delegateExecution.setVariable("invoice_message", jsonValue);
+        //TODO Send Java Object
 
-        System.out.println("HTTP POST Start"); //Just to test, if the json posting works.
-
-        HttpConnector http = Connectors.getConnector(HttpConnector.ID);
-        Gson gson = new Gson();
-        StringEntity postingString = new StringEntity(new Gson().toJson(jsonValue)); //gson.tojson() converts your pojo to json
-
-        http.createRequest()
-                .post()
-                .url("http://localhost:8080/engine-rest/message/invoice_message") //TODO update for WBIG
-                .contentType("application/json")
-                .payload(String.valueOf(postingString))
-                .execute();
+//        JsonValue jsonValue = SpinValues.jsonValue(invoiceJSON).create(); //might be irrelevant
+//        delegateExecution.setVariable("invoice_message", jsonValue);
+//
+//        System.out.println("HTTP POST Start"); //Just to test, if the json posting works.
+//
+//        HttpConnector http = Connectors.getConnector(HttpConnector.ID);
+//        Gson gson = new Gson();
+//        StringEntity postingString = new StringEntity(new Gson().toJson(jsonValue)); //gson.tojson() converts your pojo to json
+//
+//        http.createRequest()
+//                .post()
+//                .url("http://localhost:8080/engine-rest/message/invoice_message") //TODO update for WBIG
+//                .contentType("application/json")
+//                .payload(String.valueOf(postingString))
+//                .execute();
     }
 
 }
