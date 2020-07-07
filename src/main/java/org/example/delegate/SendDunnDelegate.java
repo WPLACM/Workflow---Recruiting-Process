@@ -17,18 +17,20 @@ import java.util.Properties;
 
 public class SendDunnDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        String lawyer_mail = "genericlawyer123@gmail";
+        String lawyer_mail = "genericlawyer123@gmail.com";
         int dunn = (int) delegateExecution.getVariable("number_of_dunns");
         dunn=dunn+1;
         delegateExecution.setVariable("number_of_dunns", dunn);
-        JsonValue client_company = delegateExecution.getVariableTyped("new_client_company");
-        String client_name=client_company.getValue().prop("name").stringValue();
-        JsonValue job_opening = delegateExecution.getVariableTyped("new_job_opening");
-        String opening_id=job_opening.getValue().prop("job_opening_id").stringValue();
+        String client_company = (String) delegateExecution.getVariable("new_client_company");
+        String client_name = (String) delegateExecution.getVariable("client_name");
+        String job_opening_info = (String) delegateExecution.getVariable("job_opening_info");
+        String openingid = (String) delegateExecution.getVariable("openingid");
         String dunn_message = "Dear Mr. Lawyer," + System.lineSeparator() +
                 "we are sadly running into payment issues with " + client_name +
-                " for the job opening with ID " + opening_id + "." + System.lineSeparator() +
+                " for the job opening with ID " + openingid + "." + System.lineSeparator() +
                 "Please initiate the dunning process." +System.lineSeparator() + "Sincerely, WPLACM Headhunting";
+
+        System.out.print(dunn_message);
 
         Properties props = new Properties();
 
@@ -45,7 +47,6 @@ public class SendDunnDelegate implements JavaDelegate {
             socketFactory.setTrustAllHosts(true);
             props.put("mail.smtp.ssl.socketFactory", socketFactory);
         } catch (GeneralSecurityException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
 

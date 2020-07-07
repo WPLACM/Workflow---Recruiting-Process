@@ -15,16 +15,17 @@ import java.util.Properties;
 
 public class TakeLegalActionDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        String lawyer_mail = "genericlawyer123@gmail";
-        JsonValue client_company = delegateExecution.getVariableTyped("new_client_company");
-        String client_name=client_company.getValue().prop("name").stringValue();
-        JsonValue job_opening = delegateExecution.getVariableTyped("new_job_opening_information");
-        String opening_id=job_opening.getValue().prop("job_opening_information_id").stringValue();
+        String lawyer_mail = "genericlawyer123@gmail.com";
+        String client_company = (String) delegateExecution.getVariable("new_client_company");
+        String client_name = (String) delegateExecution.getVariable("client_name");
+        String job_opening_info = (String) delegateExecution.getVariable("job_opening_info");
+        String openingid = (String) delegateExecution.getVariable("openingid");
         String legalaction_message = "Dear Mr. Lawyer," + System.lineSeparator() +
-                "our client " + client_name + " is not paying our invoice, even after sending him three bills, " +
-                "for the job opening with the ID " +opening_id + "." + System.lineSeparator() +
+                "our client " + client_name + " is not paying our invoice, even after sending him three dunns, " +
+                "for the job opening with the ID " +openingid + "." + System.lineSeparator() +
                 "Please take legal action." +System.lineSeparator() + "Sincerely, WPLACM Headhunting";
 
+        System.out.print(legalaction_message);
         Properties props = new Properties();
 
         props.put("mail.smtp.auth", "true");
