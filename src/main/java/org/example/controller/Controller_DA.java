@@ -21,18 +21,20 @@ public class Controller_DA {
 
     // specifes mailbox path, {id} to correlate with specific process instance
     @PostMapping(path = "/DA/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String receiveDebitAuthorization (@RequestBody DebitAuthorization daInfo, @PathVariable ("id") String wbig_processInstanceId) throws SQLException {
+    public String receiveDebitAuthorization (@RequestBody DebitAuthorization daInfo, @PathVariable ("id") String wplacm_processInstanceId) throws SQLException {
 
-        System.out.println("Controller_DA WBIG ProcessInstanceId: " + wbig_processInstanceId);
+
 
         //correlation specification via message name "DebitAuthorizationMessage". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("DebitAuthorizationMessage")
-                .processInstanceVariableEquals("wbig_processInstanceId", wbig_processInstanceId)
+                //.processInstanceVariableEquals("wplacm_processInstanceId", wbig_processInstanceId)
                 .setVariable("IBAN", daInfo.getIBAN())
-                //.processInstanceId(wbig_processInstanceId)
+                .setVariable("wbig_processInstanceId", daInfo.getWBIG_processInstanceID())
+                .processInstanceId(wplacm_processInstanceId)
                 .correlate();
 
+        System.out.println("Debit Authorization received");
 
-        return wbig_processInstanceId;
+        return wplacm_processInstanceId;
     }
 }
