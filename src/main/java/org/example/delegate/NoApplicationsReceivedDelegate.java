@@ -2,8 +2,8 @@ package org.example.delegate;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.springframework.web.client.RestTemplate;
 import org.example.model.NoApplicationsReceivedMessage;
+import org.springframework.web.client.RestTemplate;
 
 
 public class NoApplicationsReceivedDelegate implements JavaDelegate {
@@ -11,14 +11,16 @@ public class NoApplicationsReceivedDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         RestTemplate template = new RestTemplate();
         String wbig_process_id = (String) delegateExecution.getVariable("wbig_process_id");
-        String WPLACM_process_id = (String) delegateExecution.getVariable("processID");
         String time_stamp = (String) delegateExecution.getVariable("time_stamp");
         String textmessage = "Dear WBIG, we are very sorry that we were not able to find any suitable candidates " +
                 "for you. Our apologies. We hope we can continue doing services for you in the future for any " +
                 "other job openings you will have. Thanks very much for your understanding. Yours faithfully, WPLACM.";
 
-        NoApplicationsReceivedMessage noappmsg = new NoApplicationsReceivedMessage(wbig_process_id, WPLACM_process_id, time_stamp, textmessage);
-        String wbig_processInstanceId = template.postForObject("http://localhost:8080/wbig/wbig", noappmsg, String.class);
+        NoApplicationsReceivedMessage noappmsg = new NoApplicationsReceivedMessage(wbig_process_id, time_stamp, textmessage);
+        String wplacm_processInstanceId = template.postForObject("http://localhost:8080/wbig/adress/" + delegateExecution.getProcessInstanceId(), noappmsg, String.class);
+        delegateExecution.setVariable("wplacm_processInstanceId", wplacm_processInstanceId);
+
+        System.out.println("NoApplicationsReceivedMessage succesfully sent");
 
 
         /** old version for sending via http

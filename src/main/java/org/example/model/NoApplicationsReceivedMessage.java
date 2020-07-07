@@ -2,23 +2,21 @@ package org.example.model;
 
 public class NoApplicationsReceivedMessage {
     private String wbig_process_id;
-    private String WPLACM_processInstanceID;
     private String time_stamp;
     private String textmessage;
 
-    public NoApplicationsReceivedMessage(String wbig_process_id, String WPLACM_processInstanceID, String time_stamp, String textmessage) {
-        this.time_stamp = time_stamp;
-        this.WPLACM_processInstanceID = WPLACM_processInstanceID;
+    public NoApplicationsReceivedMessage(String wbig_process_id, String time_stamp, String textmessage) {
+        this.wbig_process_id = wbig_process_id;
         this.time_stamp = time_stamp;
         this.textmessage = textmessage;
     }
 
-    public String getWPLACM_processInstanceID() {
-        return WPLACM_processInstanceID;
+    public String getWbig_process_id() {
+        return wbig_process_id;
     }
 
-    public void setWPLACM_processInstanceID(String WBIG_processInstanceID) {
-        this.WPLACM_processInstanceID = WBIG_processInstanceID;
+    public void setWbig_process_id(String wbig_process_id) {
+        this.wbig_process_id = wbig_process_id;
     }
 
     public String getTime_stamp() {
