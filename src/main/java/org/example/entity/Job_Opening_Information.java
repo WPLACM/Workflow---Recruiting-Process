@@ -18,8 +18,6 @@ public class Job_Opening_Information {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer index;
-
-
     // todo maybe change time_stamp and deadline to timestamp type, (additional efforts required!)
     private Integer job_opening_information_id;
     private Integer WBIG_process_ID;
