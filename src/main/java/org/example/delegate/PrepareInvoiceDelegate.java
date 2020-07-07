@@ -11,7 +11,7 @@ public class PrepareInvoiceDelegate implements JavaDelegate {
         String date = (String) delegateExecution.getVariable("date");
         //Manual setting of invoice id
         String invoiceid = (String) delegateExecution.getVariable("openingid");
-        invoiceid = invoiceid + date;
+        invoiceid = invoiceid + " "+ date;
 
         Double net = number_of_acceptances*payment_info;
         delegateExecution.setVariable("net", net);

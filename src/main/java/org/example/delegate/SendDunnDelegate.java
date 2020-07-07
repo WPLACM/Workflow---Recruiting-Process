@@ -23,7 +23,7 @@ public class SendDunnDelegate implements JavaDelegate {
         String client_name = (String) delegateExecution.getVariable("client_name");
         String job_opening_info = (String) delegateExecution.getVariable("job_opening_info");
         String openingid = (String) delegateExecution.getVariable("openingid");
-        String invoiceid = (String) delegateExecution.getVariable("openingid");
+        String invoiceid = (String) delegateExecution.getVariable("invoiceid");
         String dunn_message = "Dear WBIG," + System.lineSeparator() +
                 "we sadly did not receive your debit authorization from the Invoice " + invoiceid +
                 " for the job opening with ID " + openingid + "." + System.lineSeparator() +

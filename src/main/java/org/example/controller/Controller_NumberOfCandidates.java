@@ -23,19 +23,20 @@ public class Controller_NumberOfCandidates {
     @PostMapping(path = "/start/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public String continueBillingProcess (@RequestBody NumberOfCandidates candidateInfo, @PathVariable ("id") String wbig_processInstanceId) throws SQLException {
 
-        LOGGER.info("Controller WBIG ProcessInstanceId: " + wbig_processInstanceId);
+        LOGGER.info("Controller_NOC WPLACM ProcessInstanceId: " + wbig_processInstanceId);
 
         //correlation specification via message name "SomeCVs". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("NumberOfCandidatesMessage")
                 .processInstanceVariableEquals("wbig_processInstanceId", wbig_processInstanceId)
                 .setVariable("number_of_acceptances", candidateInfo.getNumber_of_acceptances())
                 .setVariable("payment_info", candidateInfo.getPayment_info())
+                .setVariable("wbig_processInstanceId", wbig_processInstanceId)
                 .processInstanceId(wbig_processInstanceId)
                 .correlate();
 
 
         LOGGER.info("WPLACM Billing started");
-        return "Process started";
+        return wbig_processInstanceId;
     }
 
 }

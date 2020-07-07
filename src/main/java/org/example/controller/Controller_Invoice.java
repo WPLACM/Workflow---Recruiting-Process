@@ -22,11 +22,12 @@ public class Controller_Invoice {
     // specifes mailbox path, {id} to correlate with specific process instance
     @PostMapping(path = "/Invoice/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public String receiveInvoice (@RequestBody Invoice invInfo, @PathVariable ("id") String wplacm_processInstanceId) throws SQLException {
-        LOGGER.info("Controller WPLACM ProcessInstanceId: " + wplacm_processInstanceId);
+        LOGGER.info("Controller_Inv WPLACM ProcessInstanceId: " + wplacm_processInstanceId);
 
         //correlation specification via message name "test_message". This needs to be inserted as message name for catching event in bpmn-model.
-        runtimeService.createMessageCorrelation("test_message123")
+        runtimeService.createMessageCorrelation("test_message_WBIG")
                 .processInstanceVariableEquals("wplacm_processInstanceId", wplacm_processInstanceId)
+                .setVariable("wplacm_processInstanceId", wplacm_processInstanceId)
                 .setVariable("invoice_id", invInfo.getInvoice_id())
                 .setVariable("payment_information_acceptances", invInfo.getPayment_information_acceptances() )
                 .setVariable("invoice_date" , invInfo.getInvoice_date())
@@ -44,6 +45,6 @@ public class Controller_Invoice {
 
 
         LOGGER.info("WBIG Test started");
-        return "Process started";
+        return wplacm_processInstanceId;
     }
 }

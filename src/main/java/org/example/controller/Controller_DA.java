@@ -23,7 +23,7 @@ public class Controller_DA {
     @PostMapping(path = "/DA/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public String receiveDebitAuthorization (@RequestBody DebitAuthorization daInfo, @PathVariable ("id") String wbig_processInstanceId) throws SQLException {
 
-        LOGGER.info("Controller WBIG ProcessInstanceId: " + wbig_processInstanceId);
+        LOGGER.info("Controller_DA WBIG ProcessInstanceId: " + wbig_processInstanceId);
 
         //correlation specification via message name "DebitAuthorizationMessage". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("DebitAuthorizationMessage")
@@ -34,6 +34,6 @@ public class Controller_DA {
 
 
         LOGGER.info("DebitAuthorization received");
-        return "Process started";
+        return wbig_processInstanceId;
     }
 }

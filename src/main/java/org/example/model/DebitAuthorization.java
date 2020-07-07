@@ -27,5 +27,6 @@ public class DebitAuthorization {
     }
 
     public DebitAuthorization(){
+
     }
 }
