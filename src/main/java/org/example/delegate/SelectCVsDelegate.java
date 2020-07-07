@@ -24,8 +24,7 @@ public class SelectCVsDelegate implements JavaDelegate {
             String applications_query = "SELECT  application_id, cv_rating, backgroundrating  FROM Application " +
                     "WHERE jo_ap_fk = \'" + openingId + "\' AND rating > 55 ORDER BY rating desc limit 10";
 
-            //SELECT  application_id, cv_rating, backgroundrating  FROM Application WHERE jo_ap_fk = \'" + openingId + "\' ";
-            //String applications_query= "SELECT  application_id, cv_rating, backgroundrating,RATING  FROM Application  ORDER BY rating desc";
+
             Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
             Statement query = con.createStatement();
             ResultSet rs = query.executeQuery( applications_query);
