@@ -36,19 +36,19 @@ public class JobOpeningController {
                         Variables.createVariables()
                                 .putValue("WBIG_process_ID", jobInfo.getWbig_process_ID())
                                 .putValue("time_stamp", jobInfo.getTime_stamp())
-                                .putValue("opening_information_id", jobInfo.getInformation().getOpening_ID())
-                                .putValue("openSpots" , jobInfo.getInformation().getOpen_spots())
-                                .putValue("salary" , jobInfo.getInformation().getSalary())
-                                .putValue("jobTitle" , jobInfo.getInformation().getJob_title())
-                                .putValue("openingName" , jobInfo.getInformation().getOpening_name())
-                                .putValue("jobDescription" , jobInfo.getInformation().getJob_description())
-                                .putValue("requiredQualifications" , jobInfo.getInformation().getRequired_qualifications())
-                                .putValue("additionalInformation" , jobInfo.getInformation().getAdditional_information())
-                                .putValue("deadline" , jobInfo.getInformation().getDeadline())
-                                .putValue("paymentInformationAcceptances" , jobInfo.getInformation().getPayment_information_acceptances())
-                                .putValue("jobLocation" , jobInfo.getInformation().getJob_location())
+                                .putValue("opening_information_id", jobInfo.getOpening_name())
+                                .putValue("openSpots" , jobInfo.getOpen_spots_initial())
+                                .putValue("salary" , jobInfo.getOpen_spots_remaining())
+                                .putValue("jobTitle" , jobInfo.getSalary())
+                                .putValue("openingName" , jobInfo.getJob_title())
+                                .putValue("jobDescription" , jobInfo.getJob_description())
+                                .putValue("requiredQualifications" , jobInfo.getRequired_qualifications())
+                                .putValue("additionalInformation" , jobInfo.getAdditional_information())
+                                .putValue("deadline" , jobInfo.getDeadline())
+                                .putValue("paymentInformationAcceptances" , jobInfo.getRewardPerAcceptance())
+                                .putValue("jobLocation" , jobInfo.getJob_location())
                                 // convert working hours process variable to string (no Double values possible in camunda forms)
-                                .putValue("workingHours" , Double.toString(jobInfo.getInformation().getWorking_hours())));
+                                .putValue("workingHours" , Double.toString(jobInfo.getWorking_hours())));
 
         // insert job opening information into db
         try {
@@ -62,18 +62,20 @@ public class JobOpeningController {
             PreparedStatement statement = con.prepareStatement(job_opening_insert, Statement.RETURN_GENERATED_KEYS);
 
             // Set values for insert
-            statement.setInt(1, jobInfo.getInformation().getOpening_ID());
-            statement.setInt(2, jobInfo.getWbig_process_ID());
+            //statement.setInt(1, jobInfo.getInformation().getOpening_ID());
+            //statement.setInt(2, jobInfo.getWbig_process_ID());
             statement.setString(3, jobInfo.getTime_stamp());
-            statement.setInt(4, jobInfo.getInformation().getOpen_spots());
-            statement.setInt(5, jobInfo.getInformation().getSalary());
-            statement.setString(6, jobInfo.getInformation().getJob_title());
-            statement.setString(7, jobInfo.getInformation().getJob_description());
-            statement.setString(8, jobInfo.getInformation().getRequired_qualifications());
-            statement.setString(9, jobInfo.getInformation().getAdditional_information());
-            statement.setString(10, jobInfo.getInformation().getJob_location());
-            statement.setDouble(11, jobInfo.getInformation().getWorking_hours());
-            statement.setString(12, jobInfo.getInformation().getDeadline());
+            statement.setString(3, jobInfo.getOpening_name());
+            //statement.setInt(4, jobInfo.getInformation().getOpen_spots());
+            //statement.setInt(5, jobInfo.getSalary());
+            statement.setString(6, jobInfo.getJob_title());
+            statement.setString(7, jobInfo.getJob_description());
+            statement.setString(8, jobInfo.getRequired_qualifications());
+            statement.setString(9, jobInfo.getAdditional_information());
+            //statement.setString(10, jobInfo.getDeadline());
+            statement.setDouble(11, jobInfo.getRewardPerAcceptance());
+            statement.setString(12, jobInfo.getJob_location());
+            //statement.setString(12, jobInfo.getWorking_hours());
             statement.executeUpdate();
         } catch (java.sql.SQLException e){
             System.out.println(e.getErrorCode());
