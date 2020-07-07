@@ -19,7 +19,7 @@ public class Test_Message_noC implements JavaDelegate {
         RestTemplate template = new RestTemplate();
 
         // requires data-object class. Set variables in object
-        NumberOfCandidates payload = new NumberOfCandidates(delegateExecution.getProcessInstanceId(), 1,50);
+        NumberOfCandidates payload = new NumberOfCandidates(delegateExecution.getProcessInstanceId(), 1,50.5);
         System.out.println("WBIG Prozess ID: "+ delegateExecution.getProcessInstanceId());
         //String wbig_processInstanceId = payload.getWBIG_processInstanceID();
         // sends data-object to url (String class specification needed)

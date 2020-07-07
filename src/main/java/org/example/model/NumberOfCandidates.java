@@ -3,9 +3,9 @@ public class NumberOfCandidates {
 
     private String WBIG_processInstanceID;
     private Integer number_of_acceptances;
-    private Integer payment_info;
+    private Double payment_info;
 
-    public NumberOfCandidates(String WBIG_processInstanceID, Integer number_of_acceptances, Integer payment_info) {
+    public NumberOfCandidates(String WBIG_processInstanceID, Integer number_of_acceptances, Double payment_info) {
         this.WBIG_processInstanceID = WBIG_processInstanceID;
         this.number_of_acceptances = number_of_acceptances;
         this.payment_info = payment_info;
@@ -20,11 +20,11 @@ public class NumberOfCandidates {
         this.WBIG_processInstanceID = WBIG_processInstanceID;
     }
 
-    public Integer getPayment_info() {
+    public Double getPayment_info() {
         return payment_info;
     }
 
-    public void setPayment_info(Integer payment_info) {
+    public void setPayment_info(Double payment_info) {
         this.payment_info = payment_info;
     }
 
