@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 public class Job_Profile {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer job_profile_id;
     private String company_name;
     private Integer open_spots;

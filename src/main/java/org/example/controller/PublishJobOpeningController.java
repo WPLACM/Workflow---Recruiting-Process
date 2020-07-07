@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -31,6 +34,8 @@ public class PublishJobOpeningController {
     //called by "Publish job opening" service task via http-request
     @RequestMapping(value = "/", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody Job_Opening job_opening){
+        Date date = new Date();
+        job_opening.setOpeningDate(date);
         job_opening = repository.save(job_opening);
         return ResponseEntity.ok(job_opening);
     }

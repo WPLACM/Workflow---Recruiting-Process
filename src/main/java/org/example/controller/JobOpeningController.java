@@ -44,7 +44,6 @@ public class JobOpeningController {
                         Variables.createVariables()
                                 .putValue("WBIG_process_ID", jobInfo.getWbig_process_ID())
                                 .putValue("time_stamp", jobInfo.getTime_stamp())
-                                .putValue("opening_information_id", jobInfo.getInformation().getOpening_ID())
                                 .putValue("openSpots" , jobInfo.getInformation().getOpen_spots())
                                 .putValue("salary" , jobInfo.getInformation().getSalary())
                                 .putValue("jobTitle" , jobInfo.getInformation().getJob_title())
@@ -63,25 +62,24 @@ public class JobOpeningController {
 
             Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
             String job_opening_insert =
-                    "INSERT INTO Job_Opening_Information ( job_opening_information_id, WBIG_process_ID, time_stamp, open_spots, salary, " +
+                    "INSERT INTO Job_Opening_Information ( WBIG_process_ID, time_stamp, open_spots, salary, " +
                             "job_title, job_description, required_qualifications, additional_information, job_location, " +
-                            "working_hours, deadline) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                            "working_hours, deadline) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement statement = con.prepareStatement(job_opening_insert, Statement.RETURN_GENERATED_KEYS);
 
             // Set values for insert
-            statement.setInt(1, jobInfo.getInformation().getOpening_ID());
-            statement.setInt(2, jobInfo.getWbig_process_ID());
-            statement.setString(3, jobInfo.getTime_stamp());
-            statement.setInt(4, jobInfo.getInformation().getOpen_spots());
-            statement.setInt(5, jobInfo.getInformation().getSalary());
-            statement.setString(6, jobInfo.getInformation().getJob_title());
-            statement.setString(7, jobInfo.getInformation().getJob_description());
-            statement.setString(8, jobInfo.getInformation().getRequired_qualifications());
-            statement.setString(9, jobInfo.getInformation().getAdditional_information());
-            statement.setString(10, jobInfo.getInformation().getJob_location());
-            statement.setDouble(11, jobInfo.getInformation().getWorking_hours());
-            statement.setString(12, jobInfo.getInformation().getDeadline());
+            statement.setInt(1, jobInfo.getWbig_process_ID());
+            statement.setString(2, jobInfo.getTime_stamp());
+            statement.setInt(3, jobInfo.getInformation().getOpen_spots());
+            statement.setInt(4, jobInfo.getInformation().getSalary());
+            statement.setString(5, jobInfo.getInformation().getJob_title());
+            statement.setString(6, jobInfo.getInformation().getJob_description());
+            statement.setString(7, jobInfo.getInformation().getRequired_qualifications());
+            statement.setString(8, jobInfo.getInformation().getAdditional_information());
+            statement.setString(9, jobInfo.getInformation().getJob_location());
+            statement.setDouble(10, jobInfo.getInformation().getWorking_hours());
+            statement.setString(11, jobInfo.getInformation().getDeadline());
             statement.executeUpdate();
         } catch (java.sql.SQLException e){
             System.out.println(e.getErrorCode());
