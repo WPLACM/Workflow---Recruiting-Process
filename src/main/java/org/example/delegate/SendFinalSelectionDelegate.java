@@ -17,7 +17,7 @@ public class SendFinalSelectionDelegate implements JavaDelegate {
 
         RestTemplate template = new RestTemplate();
         String wplacm_processInstanceId =
-                template.postForObject("http://localhost:8080/weplacm/weplacm", final_selection, String.class);
+                template.postForObject("http://localhost:8080/wbig/wbig_cvs", final_selection, String.class);
 
         /*
         String allCvJson = (String) delegateExecution.getVariable("allCvJson");

@@ -8,6 +8,6 @@ import java.util.List;
 @Getter
 @Setter
 public class ApplicationMessageList {
-    private List<Application> applicationList;
+    private List<ApplicationMessage> applicationList;
 
 }
