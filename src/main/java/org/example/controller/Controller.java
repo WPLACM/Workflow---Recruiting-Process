@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.example.model.Invoice;
 import org.example.model.NumberOfCandidates;
+import org.example.model.DebitAuthorization;
 
 import java.sql.SQLException;
 import java.util.logging.Logger;
@@ -42,7 +43,7 @@ public class Controller {
     public String test (@RequestBody Invoice invInfo, @PathVariable ("id") String wplacm_processInstanceId) throws SQLException {
         LOGGER.info("Controller WPLACM ProcessInstanceId: " + wplacm_processInstanceId);
 
-        //correlation specification via message name "SomeCVs". This needs to be inserted as message name for catching event in bpmn-model.
+        //correlation specification via message name "test_message". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("test_message")
                 .processInstanceVariableEquals("wplacm_processInstanceId", wplacm_processInstanceId)
                 .setVariable("invoice_id", invInfo.getInvoice_id())
@@ -62,6 +63,22 @@ public class Controller {
 
 
         LOGGER.info("WBIG Test started");
+        return "Process started";
+    }
+
+    public String receivedDebitAuthorization (@RequestBody DebitAuthorization daInfo, @PathVariable ("id") String wbig_processInstanceId) throws SQLException {
+
+        LOGGER.info("Controller WBIG ProcessInstanceId: " + wbig_processInstanceId);
+
+        //correlation specification via message name "DebitAuthorizationMessage". This needs to be inserted as message name for catching event in bpmn-model.
+        runtimeService.createMessageCorrelation("DebitAuthorizationMessage")
+                .processInstanceVariableEquals("wbig_processInstanceId", wbig_processInstanceId)
+                .setVariable("IBAN", daInfo.getIBAN())
+                .processInstanceId(wbig_processInstanceId)
+                .correlate();
+
+
+        LOGGER.info("DebitAuthorization received");
         return "Process started";
     }
 

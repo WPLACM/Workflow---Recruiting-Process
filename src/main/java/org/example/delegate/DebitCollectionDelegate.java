@@ -12,6 +12,7 @@ import java.util.Properties;
 
 //TODO WBIG mail address
 //TODO Message Task instead of Service Task
+//TODO Test if the given IBAN is correct?
 
 public class DebitCollectionDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
