@@ -14,7 +14,7 @@ spring:
       hibernate:
         dialect: H2Dialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
   data:
     jpa:
       repositories:
