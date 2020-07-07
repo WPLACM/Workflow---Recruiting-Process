@@ -14,12 +14,5 @@ public class CamundaApplication {
   }
 
   //Gotta figure out how this is called. Taken from github invoice example - InvoiceProcessApplication
-  @PostDeploy
-  public void startFirstProcess(ProcessEngine processEngine) {
-    createUsers(processEngine);
-  }
-  private void createUsers(ProcessEngine processEngine) {
-    // create demo users
-    new DemoDataGenerator().createUsers(processEngine);
-  }
+
 }

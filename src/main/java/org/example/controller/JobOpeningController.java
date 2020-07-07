@@ -1,8 +1,12 @@
 package org.example.controller;
 
+import org.camunda.bpm.application.PostDeploy;
+import org.camunda.bpm.engine.ProcessEngine;
+import org.camunda.bpm.engine.ProcessEngines;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.variable.Variables;
+import org.example.DemoDataGenerator;
 import org.example.model.JobOpeningInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -30,6 +34,10 @@ public class JobOpeningController {
 
     @PostMapping(path = "/start", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public String startProcess(@RequestBody JobOpeningInformation jobInfo){
+        //create Users on first process instance
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        createUsers(processEngine);
+
         ProcessInstance processInstance = runtimeService
                 //.startProcessInstanceByKey("wplacm_id",
                 .startProcessInstanceByKey("sid-9E969114-7F80-4315-A6D5-4D25DC5B40F1",
@@ -81,5 +89,15 @@ public class JobOpeningController {
         }
 
         return processInstance.getId();
+    }
+
+    @PostDeploy
+    public void startFirstProcess(ProcessEngine processEngine) {
+        createUsers(processEngine);
+    }
+    @PostDeploy
+    private void createUsers(ProcessEngine processEngine) {
+        // create demo users
+        new DemoDataGenerator().createUsers(processEngine);
     }
 }
