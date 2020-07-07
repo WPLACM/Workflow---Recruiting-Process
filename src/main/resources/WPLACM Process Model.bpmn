@@ -194,7 +194,6 @@
         <flowNodeRef>sid-E735D456-46FC-4A95-B1B9-09E9BD046C3D</flowNodeRef>
         <flowNodeRef>sid-6D98E17C-9555-479D-86BC-B7EF17602B95</flowNodeRef>
         <flowNodeRef>sid-68DD3769-3B35-40AA-9CAA-3B7B7CF142B5</flowNodeRef>
-        <flowNodeRef>sid-04B0B3DE-2D41-449C-A143-ADB5241E91C0</flowNodeRef>
         <flowNodeRef>sid-B4C31733-DF10-40C6-8D46-CE9515284024</flowNodeRef>
         <flowNodeRef>Gateway_06odl5i</flowNodeRef>
         <flowNodeRef>sid-7B2672DE-9A58-4E88-9646-623C55262664</flowNodeRef>
@@ -339,12 +338,6 @@
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
       </extensionElements>
     </sequenceFlow>
-    <sequenceFlow id="sid-DCD17210-D7A3-432A-ADBE-C831623BC54F" name="" sourceRef="sid-04B0B3DE-2D41-449C-A143-ADB5241E91C0" targetRef="sid-B4C31733-DF10-40C6-8D46-CE9515284024">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
-      </extensionElements>
-      <categoryValueRef>sid-8dc65996-6426-4fc6-a053-2ef307e60cc0</categoryValueRef>
-    </sequenceFlow>
     <sequenceFlow id="sid-D3F8220E-5BDD-4EF0-BFAF-4DAF59BEE3E2" name="" sourceRef="sid-0C9FA878-B6A0-487D-AE78-59E914AC9B82" targetRef="sid-68DD3769-3B35-40AA-9CAA-3B7B7CF142B5">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
@@ -357,7 +350,7 @@
       </extensionElements>
       <categoryValueRef>sid-8dc65996-6426-4fc6-a053-2ef307e60cc0</categoryValueRef>
     </sequenceFlow>
-    <sequenceFlow id="sid-4942DDAC-FF75-4A04-B914-2C7765DCCDB9" name="" sourceRef="sid-68DD3769-3B35-40AA-9CAA-3B7B7CF142B5" targetRef="sid-04B0B3DE-2D41-449C-A143-ADB5241E91C0">
+    <sequenceFlow id="sid-4942DDAC-FF75-4A04-B914-2C7765DCCDB9" name="" sourceRef="sid-68DD3769-3B35-40AA-9CAA-3B7B7CF142B5" targetRef="sid-B4C31733-DF10-40C6-8D46-CE9515284024">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
       </extensionElements>
@@ -1158,10 +1151,6 @@
     <sequenceFlow id="Flow_1eiizfw" sourceRef="Activity_03kwath" targetRef="Gateway_1mudnk0" />
     <sequenceFlow id="Flow_1d7xl9i" sourceRef="sid-7B2672DE-9A58-4E88-9646-623C55262664" targetRef="Gateway_1mudnk0" />
     <sequenceFlow id="Flow_0n2gnw1" sourceRef="Gateway_1mudnk0" targetRef="sid-22AC35F2-B986-48A8-8305-F7D314DCDD48" />
-    <serviceTask id="sid-04B0B3DE-2D41-449C-A143-ADB5241E91C0" name="sort CVs" camunda:class="org.example.delegate.SortCVsDelegate">
-      <incoming>sid-4942DDAC-FF75-4A04-B914-2C7765DCCDB9</incoming>
-      <outgoing>sid-DCD17210-D7A3-432A-ADBE-C831623BC54F</outgoing>
-    </serviceTask>
     <businessRuleTask id="sid-B4C31733-DF10-40C6-8D46-CE9515284024" name="select CV&#39;s" implementation="##WebService" camunda:class="org.example.delegate.SelectCVsDelegate">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
@@ -1173,7 +1162,7 @@
         <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
       </extensionElements>
       <categoryValueRef>sid-8dc65996-6426-4fc6-a053-2ef307e60cc0</categoryValueRef>
-      <incoming>sid-DCD17210-D7A3-432A-ADBE-C831623BC54F</incoming>
+      <incoming>sid-4942DDAC-FF75-4A04-B914-2C7765DCCDB9</incoming>
       <outgoing>Flow_14bvo8h</outgoing>
       <property id="Property_016ychx" name="__targetRef_placeholder" />
       <dataInputAssociation id="sid-BBC89C89-D6D6-486A-B7B9-B5CC3148D5C2">
@@ -1395,7 +1384,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-4942DDAC-FF75-4A04-B914-2C7765DCCDB9_gui" bpmnElement="sid-4942DDAC-FF75-4A04-B914-2C7765DCCDB9">
         <omgdi:waypoint x="2785" y="946" />
-        <omgdi:waypoint x="2810" y="946" />
+        <omgdi:waypoint x="2940" y="946" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-7192A392-2690-489E-A6DE-D2986D12DDB6_gui" bpmnElement="sid-7192A392-2690-489E-A6DE-D2986D12DDB6">
         <omgdi:waypoint x="2555.0877742616112" y="879.9805197101005" />
@@ -1405,10 +1394,6 @@
       <bpmndi:BPMNEdge id="sid-D3F8220E-5BDD-4EF0-BFAF-4DAF59BEE3E2_gui" bpmnElement="sid-D3F8220E-5BDD-4EF0-BFAF-4DAF59BEE3E2">
         <omgdi:waypoint x="2640" y="946" />
         <omgdi:waypoint x="2685" y="946" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="sid-DCD17210-D7A3-432A-ADBE-C831623BC54F_gui" bpmnElement="sid-DCD17210-D7A3-432A-ADBE-C831623BC54F">
-        <omgdi:waypoint x="2910" y="946" />
-        <omgdi:waypoint x="2940" y="946" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-83DDC1D5-1DB9-45A8-94C1-86B0088399DC_gui" bpmnElement="sid-83DDC1D5-1DB9-45A8-94C1-86B0088399DC">
         <omgdi:waypoint x="3387.9998352676675" y="557.9576805086102" />
@@ -1847,9 +1832,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_17gzt9d_di" bpmnElement="sid-3B9107C0-9FB1-49EA-810C-3C32295C8798">
         <omgdc:Bounds x="4553" y="451" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1al4zko_di" bpmnElement="sid-04B0B3DE-2D41-449C-A143-ADB5241E91C0">
-        <omgdc:Bounds x="2810" y="906" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-B4C31733-DF10-40C6-8D46-CE9515284024_gui" bpmnElement="sid-B4C31733-DF10-40C6-8D46-CE9515284024">
         <omgdc:Bounds x="2940" y="906" width="100" height="80" />
