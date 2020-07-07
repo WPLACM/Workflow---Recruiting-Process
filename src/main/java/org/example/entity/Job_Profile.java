@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 public class Job_Profile {
     @Id
-    //perhaps add generated value annotation
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer job_profile_id;
     private String company_name;
     private Integer open_spots;
