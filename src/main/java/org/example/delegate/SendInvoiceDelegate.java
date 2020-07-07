@@ -57,21 +57,6 @@ public class SendInvoiceDelegate implements JavaDelegate {
 
         //TODO Send Java Object
 
-//        JsonValue jsonValue = SpinValues.jsonValue(invoiceJSON).create(); //might be irrelevant
-//        delegateExecution.setVariable("invoice_message", jsonValue);
-//
-//        System.out.println("HTTP POST Start"); //Just to test, if the json posting works.
-//
-//        HttpConnector http = Connectors.getConnector(HttpConnector.ID);
-//        Gson gson = new Gson();
-//        StringEntity postingString = new StringEntity(new Gson().toJson(jsonValue)); //gson.tojson() converts your pojo to json
-//
-//        http.createRequest()
-//                .post()
-//                .url("http://localhost:8080/engine-rest/message/invoice_message") //TODO update for WBIG
-//                .contentType("application/json")
-//                .payload(String.valueOf(postingString))
-//                .execute();
     }
 
 }
