@@ -17,16 +17,15 @@ public class Test_Message_noC implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         RestTemplate template = new RestTemplate();
 
-        String wbig_processInstanceId = delegateExecution.getProcessInstanceId();
-
         // requires data-object class. Set variables in object
-        NumberOfCandidates payload = new NumberOfCandidates(wbig_processInstanceId, 1,50.5);
-        System.out.println("WBIG Prozess ID_NOC: "+ wbig_processInstanceId);
+        NumberOfCandidates payload = new NumberOfCandidates(delegateExecution.getProcessInstanceId(), 1,50.5);
+        System.out.println("WBIG Prozess ID_NOC: "+ delegateExecution.getProcessInstanceId());
 
         // sends data-object to url (String class specification needed)
-        wbig_processInstanceId = template.postForObject("http://localhost:8080/Billing/start/" + wbig_processInstanceId, payload, String.class);
+        String wbig_processInstanceId = template.postForObject("http://localhost:8080/Billing/start/" + delegateExecution.getProcessInstanceId(), payload, String.class);
         //the following variable is necessary to link the response (see controller) !!!
-        //delegateExecution.setVariable("wbig_processInstanceId", wbig_processInstanceId);
+        delegateExecution.setVariable("wbig_processInstanceId", wbig_processInstanceId);
+        System.out.println("After Delegate WBIG ProcessInstanceId: " + wbig_processInstanceId);
 
     }
 }

@@ -29,7 +29,7 @@ public class Controller_DA {
         runtimeService.createMessageCorrelation("DebitAuthorizationMessage")
                 .processInstanceVariableEquals("wbig_processInstanceId", wbig_processInstanceId)
                 .setVariable("IBAN", daInfo.getIBAN())
-                .processInstanceId(wbig_processInstanceId)
+                //.processInstanceId(wbig_processInstanceId)
                 .correlate();
 
 

@@ -32,14 +32,14 @@ public class SendInvoiceDelegate implements JavaDelegate {
         String address_rec = "WBIG street 5, 48149 Münster";
         String taxID = "AB123456";
         String date = (String) delegateExecution.getVariable("date");
-        String wbig_processInstanceId = (String) delegateExecution.getVariable("wbig_processInstanceId");
+        //String wbig_processInstanceId = (String) delegateExecution.getVariable("wbig_processInstanceId");
 
         System.out.println("WPLACM Prozess ID_INV: "+ delegateExecution.getProcessInstanceId());
 
         Invoice inv = new Invoice(wbig_process_id, invoiceid, payment_information_acceptances, date, taxID, address_rec, address_send, number_of_acceptances, openingid,
                 openingName, gross, net, tax);
-        String wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/Invoice/"+ wbig_processInstanceId, inv, String.class);
-        //delegateExecution.setVariable("wplacm_processInstanceId", wplacm_processInstanceId);
+        String wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/Invoice/" + delegateExecution.getProcessInstanceId(), inv, String.class);
+        delegateExecution.setVariable("wplacm_processInstanceId", wplacm_processInstanceId);
 
         /*
         String invoiceJSON = "{\"WPLACM_process_ID\" : \"" +processID+"\","

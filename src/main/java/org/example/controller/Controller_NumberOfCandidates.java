@@ -30,8 +30,8 @@ public class Controller_NumberOfCandidates {
                 .processInstanceVariableEquals("wbig_processInstanceId", wbig_processInstanceId)
                 .setVariable("number_of_acceptances", candidateInfo.getNumber_of_acceptances())
                 .setVariable("payment_info", candidateInfo.getPayment_info())
-                .setVariable("wbig_processInstanceId", wbig_processInstanceId)
-                .processInstanceId(wbig_processInstanceId)
+                //.setVariable("wbig_processInstanceId", wbig_processInstanceId)
+                //.processInstanceId(wbig_processInstanceId)
                 .correlate();
 
         return wbig_processInstanceId;

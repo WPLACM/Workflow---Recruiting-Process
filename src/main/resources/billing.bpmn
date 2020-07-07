@@ -9,6 +9,7 @@
     <bpmn:messageFlow id="Flow_0131ul7" sourceRef="Activity_1nxu2ix" targetRef="Participant_07amvsb" />
     <bpmn:messageFlow id="Flow_1u91d0t" sourceRef="Activity_1qavcug" targetRef="Participant_07amvsb" />
     <bpmn:messageFlow id="Flow_0ep5ucg" sourceRef="Activity_13266wa" targetRef="Participant_07amvsb" />
+    <bpmn:messageFlow id="Flow_01yvnlc" sourceRef="ServiceTask_Logger" targetRef="Participant_07amvsb" />
   </bpmn:collaboration>
   <bpmn:process id="Billing" name="Billing" isExecutable="true">
     <bpmn:startEvent id="StartEvent" name="candidates placed">
@@ -42,10 +43,6 @@
       <bpmn:outgoing>Flow_1wpridl</bpmn:outgoing>
       <bpmn:outgoing>Flow_1gz5n60</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:serviceTask id="ServiceTask_Logger" name="Debit collection" camunda:class="org.example.delegate.DebitCollectionDelegate">
-      <bpmn:incoming>Flow_0b5qbag</bpmn:incoming>
-      <bpmn:outgoing>Flow_045w6ar</bpmn:outgoing>
-    </bpmn:serviceTask>
     <bpmn:serviceTask id="Activity_1hlg9iw" name="Determine placement status" camunda:class="org.example.delegate.DeterminePlacementStatusDelegate">
       <bpmn:incoming>Flow_045w6ar</bpmn:incoming>
       <bpmn:outgoing>Flow_1i5sb5m</bpmn:outgoing>
@@ -104,6 +101,10 @@
     <bpmn:sequenceFlow id="Flow_0ac1xbw" sourceRef="Gateway_0xvknp5" targetRef="Event_0mu70om">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${not placementFin}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
+    <bpmn:sendTask id="ServiceTask_Logger" name="Debit collection" camunda:class="org.example.delegate.DebitCollectionDelegate">
+      <bpmn:incoming>Flow_0b5qbag</bpmn:incoming>
+      <bpmn:outgoing>Flow_045w6ar</bpmn:outgoing>
+    </bpmn:sendTask>
   </bpmn:process>
   <bpmn:process id="Process_0j16qw3" isExecutable="false" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -218,9 +219,6 @@
           <dc:Bounds x="1044" y="445" width="89" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ServiceTask_16vok30_di" bpmnElement="ServiceTask_Logger">
-        <dc:Bounds x="977" y="290" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0m71m3d_di" bpmnElement="Activity_1hlg9iw">
         <dc:Bounds x="1167" y="290" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -248,6 +246,9 @@
       <bpmndi:BPMNShape id="Event_0mu70om_di" bpmnElement="Event_0mu70om">
         <dc:Bounds x="1522" y="422" width="36" height="36" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1sustym_di" bpmnElement="ServiceTask_Logger">
+        <dc:Bounds x="977" y="290" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_07amvsb_di" bpmnElement="Participant_07amvsb" isHorizontal="true">
         <dc:Bounds x="160" y="80" width="1560" height="150" />
       </bpmndi:BPMNShape>
@@ -262,6 +263,10 @@
       <bpmndi:BPMNEdge id="Flow_0ep5ucg_di" bpmnElement="Flow_0ep5ucg">
         <di:waypoint x="1237" y="570" />
         <di:waypoint x="1237" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01yvnlc_di" bpmnElement="Flow_01yvnlc">
+        <di:waypoint x="1027" y="290" />
+        <di:waypoint x="1027" y="230" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

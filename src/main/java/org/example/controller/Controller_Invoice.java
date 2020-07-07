@@ -28,7 +28,6 @@ public class Controller_Invoice {
         //correlation specification via message name "test_message". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("test_message_WBIG")
                 .processInstanceVariableEquals("wplacm_processInstanceId", wplacm_processInstanceId)
-                .setVariable("wplacm_processInstanceId", wplacm_processInstanceId)
                 .setVariable("invoice_id", invInfo.getInvoice_id())
                 .setVariable("payment_information_acceptances", invInfo.getPayment_information_acceptances() )
                 .setVariable("invoice_date" , invInfo.getInvoice_date())
@@ -41,7 +40,7 @@ public class Controller_Invoice {
                 .setVariable("gross" , invInfo.getGross())
                 .setVariable("net" , invInfo.getNet())
                 .setVariable("sales_tax" , invInfo.getSales_tax())
-                .processInstanceId(wplacm_processInstanceId)
+                //.processInstanceId(wplacm_processInstanceId)
                 .correlate();
 
         return wplacm_processInstanceId;

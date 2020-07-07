@@ -15,16 +15,13 @@ public class Test_Message_DA implements JavaDelegate{
     public void execute(DelegateExecution delegateExecution) throws Exception {
         RestTemplate template = new RestTemplate();
 
-        //String wbig_processInstanceId = delegateExecution.getProcessInstanceId();
-        String wplacm_processInstanceId = (String) delegateExecution.getVariable("wplacm_processInstanceId");
-
         // requires data-object class. Set variables in object
         DebitAuthorization da = new DebitAuthorization(delegateExecution.getProcessInstanceId(), "DE00121545487");
         System.out.println("WBIG Prozess ID_DA: "+ delegateExecution.getProcessInstanceId());
 
         // sends data-object to url (String class specification needed)
-        String wbig_processInstanceId = template.postForObject("http://localhost:8080/Billing/DA/" + wplacm_processInstanceId, da, String.class);
-        //delegateExecution.setVariable("wbig_processInstanceId", wbig_processInstanceId);
+        String wbig_processInstanceId = template.postForObject("http://localhost:8080/Billing/DA/" + delegateExecution.getProcessInstanceId(), da, String.class);
+        delegateExecution.setVariable("wbig_processInstanceId", wbig_processInstanceId);
 
     }
 }
