@@ -17,7 +17,7 @@ public class NoApplicationsReceivedDelegate implements JavaDelegate {
                 "other job openings you will have. Thanks very much for your understanding. Yours faithfully, WPLACM.";
 
         NoApplicationsReceivedMessage noappmsg = new NoApplicationsReceivedMessage(wbig_process_id, time_stamp, textmessage);
-        String wplacm_processInstanceId = template.postForObject("http://localhost:8080/wbig/adress/" + delegateExecution.getProcessInstanceId(), noappmsg, String.class);
+        String wplacm_processInstanceId = template.postForObject("http://localhost:8080/WBIG_NoAppMsg/noapprec/" + delegateExecution.getProcessInstanceId(), noappmsg, String.class);
         delegateExecution.setVariable("wplacm_processInstanceId", wplacm_processInstanceId);
 
         System.out.println("NoApplicationsReceivedMessage succesfully sent");
