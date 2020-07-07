@@ -15,7 +15,7 @@ import java.util.Properties;
 
 public class SendDunnDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        //String lawyer_mail = "genericlawyer123@gmail.com";
+        String lawyer_mail = "genericlawyer123@gmail.com";
         Integer dunn = (Integer) delegateExecution.getVariable("number_of_dunns");
         dunn=dunn+1;
         delegateExecution.setVariable("number_of_dunns", dunn);

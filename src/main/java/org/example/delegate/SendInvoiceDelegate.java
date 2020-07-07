@@ -1,19 +1,18 @@
 package org.example.delegate;
-
-import camundajar.impl.com.google.gson.Gson;
-import connectjar.org.apache.http.entity.StringEntity;
+;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.camunda.connect.Connectors;
-import org.camunda.connect.httpclient.HttpConnector;
-import org.camunda.spin.plugin.variable.SpinValues;
-import org.camunda.spin.plugin.variable.value.JsonValue;
+import org.example.Database.Invoice;
+import java.util.Date;
+import org.springframework.web.client.RestTemplate;
+
 
 //TODO set WBIG address
 
 public class SendInvoiceDelegate implements JavaDelegate {
 
     public void execute(DelegateExecution delegateExecution) throws Exception {
+        RestTemplate template = new RestTemplate();
         String client_company = (String) delegateExecution.getVariable("new_client_company");
         String client_name = (String) delegateExecution.getVariable("client_name");
         String job_opening_info = (String) delegateExecution.getVariable("job_opening_info");
@@ -23,16 +22,26 @@ public class SendInvoiceDelegate implements JavaDelegate {
         String openingid = (String) delegateExecution.getVariable("openingid");
         String invoiceid = (String) delegateExecution.getVariable("invoiceid");
         Integer payment_info = (Integer) delegateExecution.getVariable("payment_info");
-        Integer net = (Integer) delegateExecution.getVariable("net");
+        Double net = (Double) delegateExecution.getVariable("net");
         Double gross = (Double) delegateExecution.getVariable("gross");
         Double tax = (Double) delegateExecution.getVariable("tax");
         Integer number_of_acceptances = (Integer) delegateExecution.getVariable("number_of_acceptances");
         String openingName = (String) delegateExecution.getVariable("openingName");
         String processID = (String) delegateExecution.getVariable("processID");
         delegateExecution.setVariable("number_of_dunns", 0);
+        String address_send = "Leonardo Campus 3, 48149 Münster";
+        String address_rec = "WBIG street 5, 48149 Münster";
+        String taxID = "AB123456";
 
-        String date = (String) delegateExecution.getVariable("date");
 
+        Date cdate = (Date) delegateExecution.getVariable("date");
+
+        Invoice inv = new Invoice(payment_info, cdate, taxID, address_rec, address_send, number_of_acceptances, openingid,
+                openingName, gross, net, tax);
+        String wbig_processInstanceId = template.postForObject("http://localhost:8080/wbig/wbig", inv, String.class);
+
+
+        /*
         String invoiceJSON = "{\"WPLACM_process_ID\" : \"" +processID+"\","
                 + "\"WBIG_process_ID\" : \"" +wbig_process_id+ "\","
                 + "\"timestamp\" : \"" +time_stamp+"\","
@@ -54,7 +63,7 @@ public class SendInvoiceDelegate implements JavaDelegate {
                 +"\"Gross\" : \"" +gross+ "\","
                 +"\"Net\" : \"" +net+ "\","
                 +"\"Tax\" : \"" +tax+ "\"}";
-
+*/
         //TODO Send Java Object
 
     }
