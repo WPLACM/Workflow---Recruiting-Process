@@ -2,21 +2,25 @@ package org.example.model;
 import java.util.Date;
 
 public class Invoice {
-    private double payment_information_acceptances;
+    private String WPLACM_processInstanceID;
+    private Double payment_information_acceptances;
     private Date invoice_date;
     private String tax_id;
     private String address_recipient;
     private String address_sender;
-    private int number_of_acceptances;
+    private Integer number_of_acceptances;
     private String opening_id;
     private String opening_name;
-    private double gross;
-    private double net;
-    private double sales_tax;
+    private Double gross;
+    private Double net;
+    private Double sales_tax;
+    private String invoice_id;
 
-    public Invoice(double payment_information_acceptances, Date invoice_date, String tax_id, String address_recipient,
-                   String address_sender, int number_of_acceptances, String opening_id, String opening_name, double gross,
-                   double net, double sales_tax) {
+    public Invoice(String WPLACM_processInstanceID, String invoice_id, Double payment_information_acceptances, Date invoice_date, String tax_id, String address_recipient,
+                   String address_sender, Integer number_of_acceptances, String opening_id, String opening_name, Double gross,
+                   Double net, Double sales_tax) {
+        this.WPLACM_processInstanceID = WPLACM_processInstanceID;
+        this.invoice_id = invoice_id;
         this.payment_information_acceptances = payment_information_acceptances;
         this.invoice_date = invoice_date;
         this.tax_id = tax_id;
@@ -30,11 +34,27 @@ public class Invoice {
         this.sales_tax = sales_tax;
     }
 
+    public String getWPLACM_processInstanceID() {
+        return WPLACM_processInstanceID;
+    }
+
+    public void setWPLACM_processInstanceID(String WBIG_processInstanceID) {
+        this.WPLACM_processInstanceID = WBIG_processInstanceID;
+    }
+
+    public String getInvoice_id() {
+        return invoice_id;
+    }
+
+    public void setInvoice_id(String invoice_id) {
+        this.invoice_id = invoice_id;
+    }
+
     public double getPayment_information_acceptances() {
         return payment_information_acceptances;
     }
 
-    public void setPayment_information_acceptances(double payment_information_acceptances) {
+    public void setPayment_information_acceptances(Double payment_information_acceptances) {
         this.payment_information_acceptances = payment_information_acceptances;
     }
 
@@ -70,11 +90,11 @@ public class Invoice {
         this.address_sender = address_sender;
     }
 
-    public int getNumber_of_acceptances() {
+    public Integer getNumber_of_acceptances() {
         return number_of_acceptances;
     }
 
-    public void setNumber_of_acceptances(int number_of_acceptances) {
+    public void setNumber_of_acceptances(Integer number_of_acceptances) {
         this.number_of_acceptances = number_of_acceptances;
     }
 
@@ -94,27 +114,27 @@ public class Invoice {
         this.opening_name = opening_name;
     }
 
-    public double getGross() {
+    public Double getGross() {
         return gross;
     }
 
-    public void setGross(double gross) {
+    public void setGross(Double gross) {
         this.gross = gross;
     }
 
-    public double getNet() {
+    public Double getNet() {
         return net;
     }
 
-    public void setNet(double net) {
+    public void setNet(Double net) {
         this.net = net;
     }
 
-    public double getSales_tax() {
+    public Double getSales_tax() {
         return sales_tax;
     }
 
-    public void setSales_tax(double sales_tax) {
+    public void setSales_tax(Double sales_tax) {
         this.sales_tax = sales_tax;
     }
 

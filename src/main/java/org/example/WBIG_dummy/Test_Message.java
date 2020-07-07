@@ -23,7 +23,7 @@ public class Test_Message implements JavaDelegate {
         System.out.println("WBIG Prozess ID: "+ delegateExecution.getProcessInstanceId());
         //String wbig_processInstanceId = payload.getWBIG_processInstanceID();
         // sends data-object to url (String class specification needed)
-        String wbig_processInstanceId = template.postForObject("http://localhost:8080/Billing/" + delegateExecution.getProcessInstanceId(), payload, String.class);
+        String wbig_processInstanceId = template.postForObject("http://localhost:8080/Billing/start/" + delegateExecution.getProcessInstanceId(), payload, String.class);
         //the following variable is necessary to link the response (see controller) !!!
         delegateExecution.setVariable("wbig_processInstanceId", wbig_processInstanceId);
 

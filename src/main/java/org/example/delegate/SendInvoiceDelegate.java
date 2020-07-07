@@ -21,7 +21,7 @@ public class SendInvoiceDelegate implements JavaDelegate {
         String job_opening = (String) delegateExecution.getVariable("job_opening");
         String openingid = (String) delegateExecution.getVariable("openingid");
         String invoiceid = (String) delegateExecution.getVariable("invoiceid");
-        Integer payment_info = (Integer) delegateExecution.getVariable("payment_info");
+        Double payment_information_acceptances = (Double) delegateExecution.getVariable("payment_info");
         Double net = (Double) delegateExecution.getVariable("net");
         Double gross = (Double) delegateExecution.getVariable("gross");
         Double tax = (Double) delegateExecution.getVariable("tax");
@@ -36,10 +36,10 @@ public class SendInvoiceDelegate implements JavaDelegate {
 
         Date cdate = (Date) delegateExecution.getVariable("date");
 
-        Invoice inv = new Invoice(payment_info, cdate, taxID, address_rec, address_send, number_of_acceptances, openingid,
+        Invoice inv = new Invoice(delegateExecution.getProcessInstanceId(), invoiceid, payment_information_acceptances, cdate, taxID, address_rec, address_send, number_of_acceptances, openingid,
                 openingName, gross, net, tax);
-        String wbig_processInstanceId = template.postForObject("http://localhost:8080/wbig/wbig", inv, String.class);
-
+        String wplacm_processInstanceId = template.postForObject("http://localhost:8080/wbig/wbig", inv, String.class);
+        delegateExecution.setVariable("wplacm_processInstanceId", wplacm_processInstanceId);
 
         /*
         String invoiceJSON = "{\"WPLACM_process_ID\" : \"" +processID+"\","
