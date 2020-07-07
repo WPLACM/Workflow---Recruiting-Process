@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.example.entity.Application;
+import org.example.entity.ApplicationMessageList;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SelectCVsDelegate implements JavaDelegate {
-        List<Application> allCvs = new ArrayList<Application>();
+        //List<Application> allCvs = new ArrayList<Application>();
+        ApplicationMessageList selectedCVs = new ApplicationMessageList();
       // List<Applicaton_Candidate_REsponse> response = new ArrayList<Applicaton_Candidate_REsponse>();
 
 
@@ -46,12 +48,15 @@ public class SelectCVsDelegate implements JavaDelegate {
 
                 //response.add(acp);
 
-                allCvs.add(cv);
+                selectedCVs.getApplicationList().add(cv);
             }
-
+            /*
             ObjectMapper obj = new ObjectMapper();
             String cvJson = obj.writeValueAsString(allCvs);
             System.out.println("cvJson: "+cvJson);
             delegateExecution.setVariable("allCvJson",cvJson);
+
+             */
+            delegateExecution.setVariable("finalSelection", selectedCVs);
         }
     }
