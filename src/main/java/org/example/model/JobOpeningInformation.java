@@ -1,121 +1,34 @@
 package org.example.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import java.time.LocalDate;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.time.LocalDate;
+import org.camunda.spin.plugin.variable.value.JsonValue;
+import org.h2.util.json.JSONValue;
+@Getter
+@Setter
 public class JobOpeningInformation {
     /*
     Attributes
      */
-    private String openingId;
-    private int openSpots;
+    private Integer wbig_process_ID;
+    private String time_stamp;
+    private Information information;
+    //private JSONValue information;
+    /*
+    private String opening_ID;
+    private int open_spots;
     private int salary;
-    private String jobTitle;
-    private String openingName;
-    private String jobDescription;
-    private String requiredQualifications;
-    private String additionalInformation;
+    private String job_title;
+    private String opening_name;
+    private String job_description;
+    private String required_qualifications;
+    private String additional_information;
     //@JsonFormat(pattern = "yyyy-MM-dd")
     private String deadline;
-    private int paymentInformationAcceptances;
-    private String jobLocation;
-    private int workingHours;
-
-    /*
-    Getter and Setter
+    private int payment_information_acceptances;
+    private String job_location;
+    private int working_hours;
      */
-    public String getOpeningId() {
-        return openingId;
-    }
-
-    public void setOpeningId(String opening_ID) {
-        this.openingId = opening_ID;
-    }
-
-    public int getOpenSpots() {
-        return openSpots;
-    }
-
-    public void setOpenSpots(int openSpots) {
-        this.openSpots = openSpots;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    public String getOpeningName() {
-        return openingName;
-    }
-
-    public void setOpeningName(String openingName) {
-        this.openingName = openingName;
-    }
-
-    public String getJobDescription() {
-        return jobDescription;
-    }
-
-    public void setJobDescription(String jobDescription) {
-        this.jobDescription = jobDescription;
-    }
-
-    public String getRequiredQualifications() {
-        return requiredQualifications;
-    }
-
-    public void setRequiredQualifications(String requiredQualifications) {
-        this.requiredQualifications = requiredQualifications;
-    }
-
-    public String getAdditionalInformation() {
-        return additionalInformation;
-    }
-
-    public void setAdditionalInformation(String additionalInformation) {
-        this.additionalInformation = additionalInformation;
-    }
-
-    public String getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(String deadline) {
-        this.deadline = deadline;
-    }
-
-    public int getPaymentInformationAcceptances() {
-        return paymentInformationAcceptances;
-    }
-
-    public void setPaymentInformationAcceptances(int paymentInformationAcceptances) {
-        this.paymentInformationAcceptances = paymentInformationAcceptances;
-    }
-
-    public String getJobLocation() {
-        return jobLocation;
-    }
-
-    public void setJobLocation(String jobLocation) {
-        this.jobLocation = jobLocation;
-    }
-
-    public int getWorkingHours() {
-        return workingHours;
-    }
-
-    public void setWorkingHours(int workingHours) {
-        this.workingHours = workingHours;
-    }
 }

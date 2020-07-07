@@ -9,16 +9,19 @@ import java.util.ArrayList;
 public class CreateCandidateListDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-        createTestEntries(); //include for tests
-
+        try {
+            createTestEntries(); //include for tests
+        } catch (SQLException e) {
+            System.out.println("test entries already existing");
+        }
         //get relevant information from process context
         String qualifications = (String) execution.getVariable("requiredQualifications");
         String location = (String) execution.getVariable("jobLocation");
 
         //create SQL query
         String candidats_query = "SELECT first_name, last_name, email FROM Candidate " +
-               // "WHERE skills CONTAINS \'"+ qualifications + "\' " + /TODO filter by qualifications
-                "WHERE location_city = \'"+ location + "\'";
+               "WHERE (skills LIKE \'%"+ qualifications + "%\' AND " +
+                "location_city = \'"+ location + "\')";
 
         //create lists for relevant information of candidates
         ArrayList<String> candidates_first_name = new ArrayList<String>();
@@ -59,13 +62,13 @@ public class CreateCandidateListDelegate implements JavaDelegate {
      */
     public void createTestEntries() throws SQLException {
         String insert_query1 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
-                "VALUES (12, \'Donald\', \'Duck\', \'donald@web.de\', \'Java\', \'Cologne\')";
+                "VALUES (12, 'Donald', 'Duck', 'wplacmrecruiting@gmail.com', 'Java', 'Cologne')";
         String insert_query2 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
-                "VALUES (2, 'Max', 'Mustermann', 'max@web.de', 'Spring', 'Cologne')";
+                "VALUES (2, 'Max', 'Mustermann', 'wplacmrecruiting@gmail.com', 'Spring', 'Cologne')";
         String insert_query3 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
-                "VALUES (3, 'Dieter', 'Duck', 'dieter@web.de', 'Java', 'Muenster')";
+                "VALUES (3, 'Dieter', 'Duck', 'wplacmrecruiting@gmail.com', 'Java', 'Muenster')";
         String insert_query4 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
-                "VALUES (4, 'Tim', 'Tom', 'tim@web.de', 'Java, Spring', 'Cologne')";
+                "VALUES (4, 'Tim', 'Tom', 'wplacmrecruiting@gmail.com', 'Java, Spring', 'Cologne')";
 
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         Statement query = con.createStatement();

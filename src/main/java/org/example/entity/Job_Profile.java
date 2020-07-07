@@ -16,9 +16,9 @@ import java.util.List;
 public class Job_Profile {
     @Id
     //perhaps add generated value annotation
-    private int job_profile_id;
+    private Integer job_profile_id;
     private String company_name;
-    private int open_spots;
+    private Integer open_spots;
     private String salary;
     private String job_title;
     private String job_description;

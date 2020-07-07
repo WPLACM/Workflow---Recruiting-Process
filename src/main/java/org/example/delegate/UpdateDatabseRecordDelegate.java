@@ -2,10 +2,15 @@ package org.example.delegate;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.camunda.spin.json.SpinJsonNode;
 import org.camunda.spin.plugin.variable.value.JsonValue;
+import org.camunda.spin.plugin.variable.value.impl.JsonValueImpl;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
+
+import static org.camunda.spin.Spin.JSON;
 
 public class UpdateDatabseRecordDelegate implements JavaDelegate {
     @Override
@@ -34,7 +39,7 @@ public class UpdateDatabseRecordDelegate implements JavaDelegate {
 
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         PreparedStatement statement = con.prepareStatement(candidate_update);
-        int index = statement.executeUpdate();
+        Integer index = statement.executeUpdate();
 
         // Index = Updated PK id
         System.out.println(index);
@@ -45,9 +50,39 @@ public class UpdateDatabseRecordDelegate implements JavaDelegate {
         statement_application.setInt(1, candidate_id);
         statement_application.setInt(2, (Integer) delegateExecution.getVariable("openingId"));
         statement_application.executeUpdate();
+        ResultSet rs_application = statement_application.getGeneratedKeys();
 
-        // set process variable required for next step
-        delegateExecution.setVariable("applications_received", true);
+        if (rs_application.next()){
+            // set process variable required for next step
+            delegateExecution.setVariable("applications_received", true);
+            delegateExecution.setVariable("candidate_email", "wplacmrecruiting@gmail.com");
+            delegateExecution.setVariable("candidate_confirmation_text", "hello this is a test");
 
+            // add application to collection
+            String application = "{\"application_id\" : \"" + rs_application.getInt(1) + "\","
+                    + "\"candidate_id\" : \"" + candidate_id + "\","
+                    + "\"first_name\" : \"" + candidate.getValue().prop("first_name").stringValue() + "\","
+                    + "\"last_name\" : \"" + candidate.getValue().prop("last_name").stringValue() + "\","
+                    + "\"cv\" :  \"" + "cv link" + "\""
+                    + "}";
+
+            System.out.println(application);
+            SpinJsonNode application_json = JSON(application);
+
+            JsonValueImpl collApplication = (JsonValueImpl) delegateExecution.getVariableTyped("collectedApplications");
+
+            SpinJsonNode application_collection = JSON(collApplication.getValueSerialized());
+
+            if (!application_collection.hasProp("applications")){
+                application_collection.prop("applications", application_json);
+            }
+            else{
+                application_collection.prop("applications").append(application_json);
+            }
+            delegateExecution.setVariable("collectedApplications", application_collection);
+        }
+        else {
+            //error
+        }
     }
 }

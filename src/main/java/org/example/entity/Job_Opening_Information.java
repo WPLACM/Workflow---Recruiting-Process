@@ -16,10 +16,13 @@ import java.util.List;
 @Entity
 public class Job_Opening_Information {
     @Id
-    private int job_opening_information_id;
-    private int WBIG_process_ID;
-    private DateTime time_stamp;
-    private int open_spots;
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Integer index;
+    // todo maybe change time_stamp and deadline to timestamp type, (additional efforts required!)
+    private Integer job_opening_information_id;
+    private Integer WBIG_process_ID;
+    private String time_stamp;
+    private Integer open_spots;
     private String salary;
     private String job_title;
     private String job_description;
@@ -27,7 +30,7 @@ public class Job_Opening_Information {
     private String additional_information;
     private String job_location;
     private double working_hours;
-    private DateTime deadline;
+    private String deadline;
 
     @OneToMany(targetEntity = Job_Profile.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "joi_jp_fk", referencedColumnName = "job_opening_information_id")

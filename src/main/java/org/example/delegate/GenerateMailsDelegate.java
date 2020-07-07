@@ -10,7 +10,6 @@ public class GenerateMailsDelegate implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
         //access jobProfile information
         String jobProfile = (String) execution.getVariable("jobProfile");
-        //System.out.println("Job Profile: "+jobProfile); //TODO null
 
         //access list of potential candidates and generate generic mails
         ArrayList<String> emails = new ArrayList<String>();
@@ -21,8 +20,7 @@ public class GenerateMailsDelegate implements JavaDelegate {
             String mail ="Dear "+currentFirstName+" "+currentLastName+", " + System.lineSeparator() +
                     "we are pleased to announce to you that there is a new job offer that you might be interested in. "+ System.lineSeparator() +
                     "Please find all relevant information below."+System.lineSeparator()+ "Sincerely, Weplacm Headhunting. "+System.lineSeparator()+
-                    "(todo)";
-                    //include jobProfile as soon as fixed
+                    jobProfile;
 
             emails.add(mail);
         }
