@@ -33,7 +33,6 @@ public class Controller_DA {
                 .correlate();
 
 
-        LOGGER.info("DebitAuthorization received");
         return wbig_processInstanceId;
     }
 }

@@ -44,8 +44,6 @@ public class Controller_Invoice {
                 .processInstanceId(wplacm_processInstanceId)
                 .correlate();
 
-
-        LOGGER.info("WBIG Test started");
         return wplacm_processInstanceId;
     }
 }
