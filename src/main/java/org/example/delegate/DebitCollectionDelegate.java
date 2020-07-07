@@ -10,6 +10,9 @@ import javax.mail.internet.MimeMessage;
 import java.security.GeneralSecurityException;
 import java.util.Properties;
 
+//TODO WBIG mail address
+//TODO Message Task instead of Service Task
+
 public class DebitCollectionDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         delegateExecution.setVariable("debit", true);
@@ -18,8 +21,8 @@ public class DebitCollectionDelegate implements JavaDelegate {
         String openingid = (String) delegateExecution.getVariable("openingid");
         String debit_message = "Dear "+client_name+ "," + System.lineSeparator() +
                 "we have received your debit authorization for the job opening with the ID "
-                + openingid + ". Expect your specified account to be charged in the upcoming days." + System.lineSeparator() +
-                "Sincerely, WPLACM Headhunting";
+                 + openingid + ". Expect your specified account to be charged in the upcoming days." + System.lineSeparator() +
+                 "Sincerely, WPLACM Headhunting";
 
         Properties props = new Properties();
 
