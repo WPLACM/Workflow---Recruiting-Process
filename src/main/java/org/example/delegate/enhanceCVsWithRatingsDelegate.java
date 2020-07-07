@@ -5,6 +5,8 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 import java.sql.*;
 
+import static java.lang.Math.round;
+
 public class enhanceCVsWithRatingsDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
@@ -13,20 +15,31 @@ public class enhanceCVsWithRatingsDelegate implements JavaDelegate {
         String applications_query = "SELECT  application_id, cv_rating, backgroundrating  FROM Application " +
                 "WHERE jo_ap_fk = \'" + openingId + "\' ";
 
-        //SELECT  application_id, cv_rating, backgroundrating  FROM Application WHERE jo_ap_fk = \'" + openingId + "\' ";
-
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         Statement query = con.createStatement();
         ResultSet rs = query.executeQuery( applications_query);
 
         // iterate all found applications
         while (rs.next()){
-            Integer application_id  =rs.getInt("application_id");
+            Integer application_id  = rs.getInt("application_id");
             Integer cv_rating = rs.getInt("cv_rating");
             Integer bg_rating = rs.getInt("backgroundrating");
 
-            // TODO calculate rating
-            Integer rating = 100; //SOME FORMULA
+            Integer rating = 0;
+
+            switch (bg_rating){
+                case 1:
+                    rating = cv_rating;
+                    break;
+                case 2:
+                    rating = (Integer) Math.round((cv_rating/3));
+                    break;
+                case 3:
+                    rating = 0;
+                    break;
+                default:
+                    rating = cv_rating;
+            }
 
             // update db entry
             // Prepare Update Statement

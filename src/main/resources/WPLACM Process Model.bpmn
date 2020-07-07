@@ -600,7 +600,7 @@
         <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
         <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
         <camunda:formData>
-          <camunda:formField id="cv_rating" label="Rate from 1-10" type="string" />
+          <camunda:formField id="cv_rating" label="Rate from 0-100" type="string" />
           <camunda:formField id="application_id" label="Application ID" type="string" defaultValue="${applicationelem.prop(&#34;application_id&#34;).stringValue()}" />
           <camunda:formField id="candidate_id" label="Candidate ID" type="string" defaultValue="${applicationelem.prop(&#34;candidate_id&#34;).stringValue()}" />
           <camunda:formField id="first_name" label="Firstname" type="string" defaultValue="${applicationelem.prop(&#34;first_name&#34;).stringValue()}" />
