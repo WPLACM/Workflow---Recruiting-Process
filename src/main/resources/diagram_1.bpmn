@@ -9,19 +9,6 @@
       <bpmn:incoming>Flow_196nido</bpmn:incoming>
       <bpmn:outgoing>Flow_0btmx9n</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:sequenceFlow id="Flow_1s3ao8d" sourceRef="Event_0y26rqb" targetRef="Activity_1mr3yij" />
-    <bpmn:endEvent id="Event_0pk7wi4">
-      <bpmn:incoming>Flow_0w96nbm</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0w96nbm" sourceRef="Activity_1mr3yij" targetRef="Event_0pk7wi4" />
-    <bpmn:startEvent id="Event_0y26rqb">
-      <bpmn:outgoing>Flow_1s3ao8d</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1t9fofd" messageRef="Message_0o4v5d1" />
-    </bpmn:startEvent>
-    <bpmn:userTask id="Activity_1mr3yij" name="Dummy">
-      <bpmn:incoming>Flow_1s3ao8d</bpmn:incoming>
-      <bpmn:outgoing>Flow_0w96nbm</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:sendTask id="Activity_1et0w7r" name="Send Test1" camunda:class="org.example.WBIG_dummy.Test_Message_DA">
       <bpmn:incoming>Flow_1grkn36</bpmn:incoming>
       <bpmn:outgoing>Flow_1pp0prb</bpmn:outgoing>
@@ -44,14 +31,6 @@
         <di:waypoint x="215" y="117" />
         <di:waypoint x="270" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1s3ao8d_di" bpmnElement="Flow_1s3ao8d">
-        <di:waypoint x="215" y="230" />
-        <di:waypoint x="270" y="230" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0w96nbm_di" bpmnElement="Flow_0w96nbm">
-        <di:waypoint x="370" y="230" />
-        <di:waypoint x="432" y="230" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1pp0prb_di" bpmnElement="Flow_1pp0prb">
         <di:waypoint x="690" y="117" />
         <di:waypoint x="752" y="117" />
@@ -69,15 +48,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0c50wvo_di" bpmnElement="Activity_130rl8b">
         <dc:Bounds x="270" y="77" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0pk7wi4_di" bpmnElement="Event_0pk7wi4">
-        <dc:Bounds x="432" y="212" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0nnk2yi_di" bpmnElement="Event_0y26rqb">
-        <dc:Bounds x="179" y="212" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0trltrg_di" bpmnElement="Activity_1mr3yij">
-        <dc:Bounds x="270" y="190" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1et0w7r_di" bpmnElement="Activity_1et0w7r">
         <dc:Bounds x="590" y="77" width="100" height="80" />

@@ -25,7 +25,7 @@ public class Controller_Invoice {
         LOGGER.info("Controller WPLACM ProcessInstanceId: " + wplacm_processInstanceId);
 
         //correlation specification via message name "test_message". This needs to be inserted as message name for catching event in bpmn-model.
-        runtimeService.createMessageCorrelation("test_message")
+        runtimeService.createMessageCorrelation("test_message123")
                 .processInstanceVariableEquals("wplacm_processInstanceId", wplacm_processInstanceId)
                 .setVariable("invoice_id", invInfo.getInvoice_id())
                 .setVariable("payment_information_acceptances", invInfo.getPayment_information_acceptances() )
