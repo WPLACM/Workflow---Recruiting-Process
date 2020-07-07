@@ -19,13 +19,14 @@ public class Test_Message_noC implements JavaDelegate {
 
         // requires data-object class. Set variables in object
         NumberOfCandidates payload = new NumberOfCandidates(delegateExecution.getProcessInstanceId(), 1,50.5);
-        System.out.println("WBIG Prozess ID_NOC: "+ delegateExecution.getProcessInstanceId());
+        System.out.println("Send the amount of placed candidates");
 
         // sends data-object to url (String class specification needed)
         String wbig_processInstanceId = template.postForObject("http://localhost:8080/Billing/start/" + delegateExecution.getProcessInstanceId(), payload, String.class);
         //the following variable is necessary to link the response (see controller) !!!
         delegateExecution.setVariable("wbig_processInstanceId", wbig_processInstanceId);
-        System.out.println("After Delegate WBIG ProcessInstanceId: " + wbig_processInstanceId);
+
+        System.out.println("Amount of placed Candidates succesfully sent");
 
     }
 }

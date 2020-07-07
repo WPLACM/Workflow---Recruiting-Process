@@ -17,12 +17,13 @@ public class Test_Message_DA implements JavaDelegate{
 
         // requires data-object class. Set variables in object
         DebitAuthorization da = new DebitAuthorization(delegateExecution.getProcessInstanceId(), "DE00121545487");
-        System.out.println("WBIG Prozess ID_DA: "+ delegateExecution.getProcessInstanceId());
+
 
         // sends data-object to url (String class specification needed)
         String wbig_processInstanceId = template.postForObject("http://localhost:8080/Billing/DA/" + delegateExecution.getProcessInstanceId(), da, String.class);
         delegateExecution.setVariable("wbig_processInstanceId", wbig_processInstanceId);
 
+        System.out.println("Debit Authorization successfully sent");
     }
 }
 
