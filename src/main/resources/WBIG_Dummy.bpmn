@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_102reik" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.0.0">
-  <bpmn:process id="Process_1mr2u9a" isExecutable="true">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_102reik" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.0.0">
+  <bpmn:process id="WBIG_Dummy" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0vt3k2l</bpmn:outgoing>
     </bpmn:startEvent>
@@ -9,13 +9,13 @@
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0vt3k2l" sourceRef="StartEvent_1" targetRef="Activity_0r2itp1" />
     <bpmn:sequenceFlow id="Flow_1j2yr38" sourceRef="Activity_0r2itp1" targetRef="Event_0gkd9pv" />
-    <bpmn:sendTask id="Activity_0r2itp1" name="Send Opening Infromation">
+    <bpmn:sendTask id="Activity_0r2itp1" name="Send Opening Infromation" camunda:class="org.example.delegate._wbigSendOpeningDelegate">
       <bpmn:incoming>Flow_0vt3k2l</bpmn:incoming>
       <bpmn:outgoing>Flow_1j2yr38</bpmn:outgoing>
     </bpmn:sendTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1mr2u9a">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="WBIG_Dummy">
       <bpmndi:BPMNEdge id="Flow_0vt3k2l_di" bpmnElement="Flow_0vt3k2l">
         <di:waypoint x="215" y="97" />
         <di:waypoint x="310" y="97" />

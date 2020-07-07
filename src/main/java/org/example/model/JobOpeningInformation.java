@@ -20,21 +20,21 @@ public class JobOpeningInformation {
     private String opening_name;
     private Integer open_spots_initial;
     private Integer open_spots_remaining;
-    private Double salary;
+    private long salary;
     private String job_title;
     private String job_description;
     private String required_qualifications;
     private String additional_information;
     //@JsonFormat(pattern = "yyyy-MM-dd")
-    private Date deadline;
-    private double rewardPerAcceptance;
+    private String deadline;
+    private long rewardPerAcceptance;
     private String job_location;
-    private Integer working_hours;
+    private long working_hours;
 
     public JobOpeningInformation(String wbig_process_ID, String time_stamp, String opening_name, Integer open_spots_initial,
-                                 Integer open_spots_remaining, Double salary, String job_title, String job_description,
-                                 String required_qualifications, String additional_information, Date deadline,
-                                 double rewardPerAcceptance, String job_location, Integer working_hours){
+                                 Integer open_spots_remaining, long salary, String job_title, String job_description,
+                                 String required_qualifications, String additional_information, String deadline,
+                                 long rewardPerAcceptance, String job_location, Integer working_hours){
 
         this.wbig_process_ID = wbig_process_ID;
         this.time_stamp = time_stamp;

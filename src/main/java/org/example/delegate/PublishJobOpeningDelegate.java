@@ -41,7 +41,6 @@ public class PublishJobOpeningDelegate implements JavaDelegate {
             Integer job_opening_id =  rs.getInt(1);
             execution.setVariable("openingId", job_opening_id);
         }
-        execution.setVariable("applications_received", false);
 
     }
 }
