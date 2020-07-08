@@ -29,12 +29,13 @@ public class _wbigFinalSelectionController {
     @Autowired
     private RuntimeService runtimeService;
 
-    @PostMapping(path = "/wbig_cvs/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String continueCVProcess(@RequestBody ApplicationMessageList payload, @PathVariable ("id") String wbig_processInstanceId) {
+    @PostMapping(path = "/wbig_cvs/{wplacmid}/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String continueCVProcess(@RequestBody ApplicationMessageList payload, @PathVariable ("id") String wbig_processInstanceId, @PathVariable ("wplacmid") String wplacm_processInstanceId) {
 
         //Get the WPLACM Prozess Instance ID
         ApplicationMessage message = payload.getApplicationList().get(0);
-        String wplacm_processInstanceId = message.getWplacm_process_instance_id();
+        //At the moment null, not set
+        //String wplacm_processInstanceId = message.getWplacm_process_instance_id();
 
         runtimeService.createMessageCorrelation("SomeCVs")
                 //.processInstanceVariableEquals("wplacm_processInstanceId", wplacm_processInstanceId)
