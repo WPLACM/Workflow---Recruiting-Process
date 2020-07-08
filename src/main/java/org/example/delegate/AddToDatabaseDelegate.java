@@ -9,7 +9,7 @@ import org.camunda.spin.json.SpinJsonNode;
 import org.camunda.spin.plugin.variable.value.JsonValue;
 import org.camunda.spin.plugin.variable.value.impl.JsonValueImpl;
 import org.example.entity.Application;
-import org.example.model.ApplicationCollectionElement;
+//import org.example.model.ApplicationCollectionElement;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

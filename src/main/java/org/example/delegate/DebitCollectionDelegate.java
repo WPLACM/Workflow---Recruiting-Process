@@ -12,6 +12,7 @@ import java.util.Properties;
 
 //TODO WBIG mail address
 //TODO Message Task instead of Service Task
+//TODO Test if the given IBAN is correct?
 
 public class DebitCollectionDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
@@ -23,6 +24,8 @@ public class DebitCollectionDelegate implements JavaDelegate {
                 "we have received your debit authorization for the job opening with the ID "
                  + openingid + ". Expect your specified account to be charged in the upcoming days." + System.lineSeparator() +
                  "Sincerely, WPLACM Headhunting";
+
+        System.out.print(debit_message);
 
         Properties props = new Properties();
 
