@@ -34,7 +34,7 @@ public class _wbigFinalSelectionController {
 
         //Get the WPLACM Prozess Instance ID
         ApplicationMessage message = payload.getApplicationList().get(0);
-        //At the moment null, not set
+        //At the moment null, not set TODO see class SendFinalSelectionDelegate
         //String wplacm_processInstanceId = message.getWplacm_process_instance_id();
 
         runtimeService.createMessageCorrelation("SomeCVs")

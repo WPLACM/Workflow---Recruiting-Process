@@ -24,7 +24,7 @@ public class _wbigInvoiceController {
     @PostMapping(path = "big_billingSuff/" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public String receiveInvoice (@RequestBody Invoice invInfo) throws SQLException {
 
-
+        System.out.print(invInfo.getWPLACM_processInstanceID());
 
         //correlation specification via message name "Invoice". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("Invoice")
