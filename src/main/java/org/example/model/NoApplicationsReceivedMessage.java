@@ -15,8 +15,8 @@ public class NoApplicationsReceivedMessage {
         return WPLACM_processInstanceID;
     }
 
-    public void setWPLACM_processInstanceID(String WBIG_processInstanceID) {
-        this.WPLACM_processInstanceID = WBIG_processInstanceID;
+    public void setWPLACM_processInstanceID(String WPACM_processInstanceID) {
+        this.WPLACM_processInstanceID = WPLACM_processInstanceID;
     }
 
     public String getTime_stamp() {
@@ -35,7 +35,7 @@ public class NoApplicationsReceivedMessage {
         this.textmessage = textmessage;
     }
 
-    public NoApplicationsReceivedMessage(){
+    public NoApplicationsReceivedMessage(String time_stamp, String textmessage){
 
     }
 }

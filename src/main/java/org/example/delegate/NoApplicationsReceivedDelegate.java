@@ -10,19 +10,18 @@ public class NoApplicationsReceivedDelegate implements JavaDelegate {
 
     public void execute(DelegateExecution delegateExecution) throws Exception {
         RestTemplate template = new RestTemplate();
-        String wbig_processInstanceId = (String) delegateExecution.getVariable("wbig_processInstanceId");
+        String wbig_processInstanceId = (String) delegateExecution.getVariable("WBIG_process_ID");
+        String wplacm_processInstanceId = (String) delegateExecution.getProcessInstanceId();
         String time_stamp = (String) delegateExecution.getVariable("time_stamp");
         String textmessage = "Dear WBIG, we are very sorry that we were not able to find any suitable candidates " +
                 "for you. Our apologies. We hope we can continue doing services for you in the future for any " +
                 "other job openings you will have. Thanks very much for your understanding. Yours faithfully, WPLACM.";
 
-
-        NoApplicationsReceivedMessage noappmsg = new NoApplicationsReceivedMessage(wbig_processInstanceId, time_stamp, textmessage);
+        NoApplicationsReceivedMessage noappmsg = new NoApplicationsReceivedMessage(wplacm_processInstanceId, time_stamp, textmessage);
 
         // sends data-object to url (String class specification needed)
-        //TODO: Insert WBIG's real URL
-        wbig_processInstanceId = template.postForObject(EndpointUrl + "/WBIG_NoApp/Msg/", noappmsg, String.class);
-        delegateExecution.setVariable("wbig_processInstanceId", wbig_processInstanceId);
+        String EndpointUrl = new wbigRestEndpoints().getCurrent_URL();
+        wplacm_processInstanceId = template.postForObject(EndpointUrl + "/wbig/wbig_nocvs/" + wbig_processInstanceId, noappmsg, String.class);
 
 
         /** old version for sending via http
