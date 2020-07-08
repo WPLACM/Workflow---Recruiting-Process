@@ -3,6 +3,7 @@ package org.example.delegate;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.example.model.Invoice;
+import org.example.utility.wbigRestEndpoints;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -36,7 +37,9 @@ public class SendInvoiceDelegate implements JavaDelegate {
 
         Invoice inv = new Invoice(delegateExecution.getProcessInstanceId(), invoiceid, payment_information_acceptances, date, taxID, address_rec, address_send, number_of_acceptances, openingid,
                 openingName, gross, net, tax);
-        wbig_processInstanceId = template.postForObject("http://localhost:8080/Billing/Invoice/" + wbig_processInstanceId, inv, String.class);
+
+        String EndpointUrl = new wbigRestEndpoints().getCurrent_URL();
+        wbig_processInstanceId = template.postForObject(EndpointUrl + "wbig/wbig_billingSuff/" + wbig_processInstanceId, inv, String.class);
         //delegateExecution.setVariable("wbig_processInstanceId", wbig_processInstanceId);
 
 
