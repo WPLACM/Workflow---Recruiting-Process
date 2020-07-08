@@ -912,6 +912,7 @@
             </camunda:validation>
           </camunda:formField>
         </camunda:formData>
+        <camunda:executionListener class="org.example.listener.CreateJobProfileListener" event="end" />
       </extensionElements>
       <incoming>sid-5C9F4FE2-7019-411C-913D-6748BF765B28</incoming>
       <outgoing>sid-01B67229-F517-4B7D-858D-3D2555770D52</outgoing>
