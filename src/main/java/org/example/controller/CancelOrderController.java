@@ -21,7 +21,7 @@ public class CancelOrderController {
 
     // specifes mailbox path, {id} to correlate with specific process instance
     @PostMapping(path = "/CancelOrder/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String continueBillingProcess (@RequestBody CancelOrder orderInfo, @PathVariable ("id") String wbig_processInstanceId) throws SQLException {
+    public String continueBillingProcess (@RequestBody String orderInfo, @PathVariable ("id") String wbig_processInstanceId) throws SQLException {
 
 
 
