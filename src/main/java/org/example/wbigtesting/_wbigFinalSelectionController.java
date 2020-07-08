@@ -36,7 +36,7 @@ public class _wbigFinalSelectionController {
 
         //corralation specification via message nanme "SomeCVs". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("SomeCVs")
-                //.processInstanceVariableEquals("wplacm_processInstanceId", wplacm_processInstanceId)
+                .processInstanceVariableEquals("wplacm_processInstanceId", wplacm_processInstanceId)
                 //optinal: add further set variables here
                 .correlate();
 
