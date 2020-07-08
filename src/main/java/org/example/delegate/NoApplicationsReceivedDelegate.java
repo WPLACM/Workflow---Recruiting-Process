@@ -20,7 +20,7 @@ public class NoApplicationsReceivedDelegate implements JavaDelegate {
 
         // sends data-object to url (String class specification needed)
         String EndpointUrl = new wbigRestEndpoints().getCurrent_URL();
-        String wplacm_processInstanceId = template.postForObject(EndpointUrl + "/wbig/wbig_nocvs/" + wbig_processInstanceId, noappmsg, String.class);
+        String wplacm_processInstanceId = template.postForObject(EndpointUrl + "wbig/wbig_nocvs/" + wbig_processInstanceId, noappmsg, String.class);
 
 
         /** old version for sending via http
