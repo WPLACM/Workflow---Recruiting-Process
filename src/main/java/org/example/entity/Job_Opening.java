@@ -29,7 +29,7 @@ public class Job_Opening {
     private List<Application> applicationList ;
 
     @ManyToOne(targetEntity = Job_Profile.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "jo_jp_fk", referencedColumnName = "job_profile_id")
+    @JoinColumn(name = "jo_jp_fk", referencedColumnName = "jobProfileId")
     private Job_Profile job_profile;
 
     @ManyToOne(targetEntity = Job_Opening_Information.class, cascade = CascadeType.ALL)

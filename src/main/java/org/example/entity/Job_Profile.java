@@ -16,14 +16,14 @@ import java.util.List;
 public class Job_Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer job_profile_id;
+    private Integer jobProfileId;
     private String jobProfile;
 
 
     //One Job Profile can have multiple job openings. Examplary case: Job openings to one job profile are posted on
     // different websites and have different deadlines which need to be maintained.
     @OneToMany(targetEntity = Job_Opening.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "jp_jo_fk", referencedColumnName = "job_profile_id")
+    @JoinColumn(name = "jp_jo_fk", referencedColumnName = "jobProfileId")
     private List<Job_Opening> job_openingList;
 
 }
