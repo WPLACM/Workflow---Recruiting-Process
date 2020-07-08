@@ -20,11 +20,12 @@ public class SendFinalSelectionDelegate implements JavaDelegate {
                 (ObjectValue) delegateExecution.getVariableTyped("finalSelection");
 
         ApplicationMessageList final_selection = (ApplicationMessageList) typedApplicationCollection.getValue();
+        String wbig_processInstanceId = (String) delegateExecution.getVariable("WBIG_process_ID");
 
         RestTemplate template = new RestTemplate();
         try {
             String wplacm_processInstanceId =
-                    template.postForObject("http://localhost:8080/wbig/wbig_cvs", final_selection, String.class);
+                    template.postForObject("http://localhost:8080/wbig/wbig_cvs/" + wbig_processInstanceId, final_selection, String.class);
         } catch (Exception e) {
             System.out.println("error post");
             System.out.println(e.getMessage());
