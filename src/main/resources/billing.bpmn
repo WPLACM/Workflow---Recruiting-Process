@@ -222,15 +222,13 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0cscqcz_di" bpmnElement="Flow_0cscqcz">
         <di:waypoint x="245" y="580" />
-        <di:waypoint x="273" y="580" />
-        <di:waypoint x="273" y="500" />
-        <di:waypoint x="300" y="500" />
+        <di:waypoint x="310" y="580" />
+        <di:waypoint x="310" y="540" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1dzuply_di" bpmnElement="Flow_1dzuply">
         <di:waypoint x="245" y="380" />
-        <di:waypoint x="273" y="380" />
-        <di:waypoint x="273" y="500" />
-        <di:waypoint x="300" y="500" />
+        <di:waypoint x="310" y="380" />
+        <di:waypoint x="310" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_0xtgb9t_di" bpmnElement="StartEvent">
         <dc:Bounds x="212" y="482" width="36" height="36" />

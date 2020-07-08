@@ -28,6 +28,8 @@ public class setTesting implements JavaDelegate {
         delegateExecution.setVariable("processID", processID);
         Integer open_spots = 4;
         delegateExecution.setVariable("open_spots", open_spots);
+        delegateExecution.setVariable("number_of_acceptances", 1);
+        delegateExecution.setVariable("payment_info", 50.5);
         //Invoice Date Format yyyy MMM dd
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd");
         Calendar calendar = Calendar.getInstance();

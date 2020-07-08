@@ -15,11 +15,15 @@ public class Test_Message_MoreC implements JavaDelegate{
     public void execute(DelegateExecution delegateExecution) throws Exception {
         RestTemplate template = new RestTemplate();
 
-        String wplacm_processInstanceId = (String) delegateExecution.getVariable("wplacm_processInstanceId");
+        // TESTING
+        //delegateExecution.setVariable("wplacm_processInstanceId", delegateExecution.getProcessInstanceId());
+        // TESTING
+        //String wplacm_processInstanceId = (String) delegateExecution.getVariable("wplacm_processInstanceId");
+
         MoreCandidates moreC = new MoreCandidates(delegateExecution.getProcessInstanceId());
 
 
-        wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/MoreCandidates/" + wplacm_processInstanceId, moreC, String.class);
+        String wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/MoreCandidates/" + delegateExecution.getProcessInstanceId(), moreC, String.class);
         //delegateExecution.setVariable("wplacm_processInstanceId", wplacm_processInstanceId);
     }
 }
