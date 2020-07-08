@@ -69,15 +69,15 @@
     <bpmn:sequenceFlow id="Flow_03rcae7" sourceRef="Gateway_0d7rd80" targetRef="Event_0v0hatf" />
     <bpmn:startEvent id="Event_0m4cloo">
       <bpmn:outgoing>Flow_03eruz8</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1gthcju" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1gthcju" messageRef="Message_008qiga" />
     </bpmn:startEvent>
     <bpmn:startEvent id="Event_1b3ihzu">
       <bpmn:outgoing>Flow_07ni3hd</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0zid2u0" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0zid2u0" messageRef="Message_05c44ha" />
     </bpmn:startEvent>
     <bpmn:startEvent id="Event_0t60f51">
       <bpmn:outgoing>Flow_0smioj2</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_12pihm7" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_12pihm7" messageRef="Message_0xr0hip" />
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_03eruz8" sourceRef="Event_0m4cloo" targetRef="Activity_09fl3yo" />
     <bpmn:sequenceFlow id="Flow_07ni3hd" sourceRef="Event_1b3ihzu" targetRef="Activity_0mq8r2f" />
@@ -101,6 +101,9 @@
   <bpmn:message id="Message_0778dxp" name="SomeCVs" />
   <bpmn:message id="Message_113ly65" name="NoApplicationsReceived" />
   <bpmn:message id="Message_1oqplb4" name="Invoice" />
+  <bpmn:message id="Message_008qiga" name="start_CandidatesPlaced" />
+  <bpmn:message id="Message_05c44ha" name="Start_OrderCancel" />
+  <bpmn:message id="Message_0xr0hip" name="Start_MoreCandidates" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="WBIG_Dummy">
       <bpmndi:BPMNEdge id="Flow_1psinbt_di" bpmnElement="Flow_1psinbt">
