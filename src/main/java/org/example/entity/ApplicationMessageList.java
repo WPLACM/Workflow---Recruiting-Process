@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 public class ApplicationMessageList {
+
     private List<ApplicationMessage> applicationList;
 
     public ApplicationMessageList(){

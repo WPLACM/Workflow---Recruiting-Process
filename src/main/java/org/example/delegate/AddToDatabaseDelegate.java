@@ -72,7 +72,6 @@ public class AddToDatabaseDelegate implements JavaDelegate {
                         + "\"cv\" :  \"" + "cv link" + "\""
                         + "}";
 
-                System.out.println(application);
                 SpinJsonNode application_json = JSON(application);
 
                 JsonValueImpl collApplication = (JsonValueImpl) delegateExecution.getVariableTyped("collectedApplications");
