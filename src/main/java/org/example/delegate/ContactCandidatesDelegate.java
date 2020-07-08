@@ -56,6 +56,7 @@ public class ContactCandidatesDelegate implements JavaDelegate {
             } catch (MessagingException e) {throw new RuntimeException(e);}
 
         }
+        execution.setVariable("applications_received", false);
 
     }
 }

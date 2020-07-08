@@ -15,13 +15,28 @@ public class CreateCandidateListDelegate implements JavaDelegate {
             System.out.println("test entries already existing");
         }
         //get relevant information from process context
-        String qualifications = (String) execution.getVariable("requiredQualifications");
         String location = (String) execution.getVariable("jobLocation");
+        String qualifications = (String) execution.getVariable("requiredQualifications");
+
+        //filter single qualifications
+        qualifications = qualifications.replaceAll("\\s+","");
+        String[] qual = qualifications.split(",");
 
         //create SQL query
-        String candidats_query = "SELECT first_name, last_name, email FROM Candidate " +
-               "WHERE (skills LIKE \'%"+ qualifications + "%\' AND " +
-                "location_city = \'"+ location + "\')";
+        String candidats_query = "SELECT first_name, last_name, email FROM Candidate ";
+        if(qual.length == 0){
+            candidats_query += "WHERE location_city = \'"+ location +"\'";
+        }
+        else{
+            candidats_query += "WHERE (";
+            for(int i = 0; i < qual.length; i++){
+                candidats_query += "skills LIKE \'%"+qual[i]+"%\'";
+                if(!(i == (qual.length -1))){
+                    candidats_query += " OR ";
+                }
+            }
+            candidats_query += ") AND location_city = \'"+ location +"\'";
+        }
 
         //create lists for relevant information of candidates
         ArrayList<String> candidates_first_name = new ArrayList<String>();

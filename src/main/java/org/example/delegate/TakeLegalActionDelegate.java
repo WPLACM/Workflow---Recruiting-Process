@@ -22,7 +22,8 @@ public class TakeLegalActionDelegate implements JavaDelegate {
         String legalaction_message = "Dear Mr. Lawyer," + System.lineSeparator() +
                 "our client " + client_name + " is not paying our invoice, even after sending him three dunns, " +
                 "for the job opening with the ID " +openingid + "." + System.lineSeparator() +
-                "Please take legal action." +System.lineSeparator() + "Sincerely, WPLACM Headhunting";
+                "Please take legal action." +System.lineSeparator() +
+                "Sincerely, WPLACM Headhunting"+System.lineSeparator();
 
         System.out.print(legalaction_message);
         Properties props = new Properties();

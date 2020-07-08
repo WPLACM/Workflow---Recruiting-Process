@@ -2,11 +2,15 @@ package org.example.delegate;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.camunda.spin.json.SpinJsonNode;
 import org.camunda.spin.plugin.variable.value.JsonValue;
+import org.camunda.spin.plugin.variable.value.impl.JsonValueImpl;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
+
+import static org.camunda.spin.Spin.JSON;
 
 public class UpdateDatabseRecordDelegate implements JavaDelegate {
     @Override
@@ -31,8 +35,6 @@ public class UpdateDatabseRecordDelegate implements JavaDelegate {
                         //"birth_date = \'" + birth_date + "\' " +
                         "WHERE candidate_id = " + candidate_id;
 
-        System.out.println(candidate_update);
-
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         PreparedStatement statement = con.prepareStatement(candidate_update);
         Integer index = statement.executeUpdate();
@@ -55,8 +57,27 @@ public class UpdateDatabseRecordDelegate implements JavaDelegate {
             delegateExecution.setVariable("candidate_confirmation_text", "hello this is a test");
 
             // add application to collection
-            Collection<Integer> collectedApplications = (Collection<Integer>) delegateExecution.getVariable("collectedApplications");
-            collectedApplications.add(rs_application.getInt(1));
+            String application = "{\"application_id\" : \"" + rs_application.getInt(1) + "\","
+                    + "\"candidate_id\" : \"" + candidate_id + "\","
+                    + "\"first_name\" : \"" + candidate.getValue().prop("first_name").stringValue() + "\","
+                    + "\"last_name\" : \"" + candidate.getValue().prop("last_name").stringValue() + "\","
+                    + "\"cv\" :  \"" + "cv link" + "\""
+                    + "}";
+
+            System.out.println(application);
+            SpinJsonNode application_json = JSON(application);
+
+            JsonValueImpl collApplication = (JsonValueImpl) delegateExecution.getVariableTyped("collectedApplications");
+
+            SpinJsonNode application_collection = JSON(collApplication.getValueSerialized());
+
+            if (!application_collection.hasProp("applications")){
+                application_collection.prop("applications", application_json);
+            }
+            else{
+                application_collection.prop("applications").append(application_json);
+            }
+            delegateExecution.setVariable("collectedApplications", application_collection);
         }
         else {
             //error
