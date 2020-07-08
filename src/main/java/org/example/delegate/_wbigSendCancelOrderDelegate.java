@@ -21,11 +21,11 @@ public class _wbigSendCancelOrderDelegate implements JavaDelegate{
         // TESTING
         //delegateExecution.setVariable("wplacm_processInstanceId", delegateExecution.getProcessInstanceId());
         // TESTING
-        //String wplacm_processInstanceId = (String) delegateExecution.getVariable("wplacm_processInstanceId");
+        String wplacm_processInstanceId = (String) delegateExecution.getVariable("wplacm_processInstanceId");
         CancelOrder cancelledOrder = new CancelOrder(delegateExecution.getProcessInstanceId());
 
 
-        String wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/CancelOrder/" + delegateExecution.getProcessInstanceId(), cancelledOrder, String.class);
+        wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/CancelOrder/" + wplacm_processInstanceId, cancelledOrder, String.class);
         //delegateExecution.setVariable("wplacm_processInstanceId", wplacm_processInstanceId);
     }
 }

@@ -21,19 +21,19 @@ public class CancelOrderController {
 
     // specifes mailbox path, {id} to correlate with specific process instance
     @PostMapping(path = "/CancelOrder/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String continueBillingProcess (@RequestBody CancelOrder orderInfo, @PathVariable ("id") String wbig_processInstanceId) throws SQLException {
+    public String continueBillingProcess (@RequestBody CancelOrder orderInfo, @PathVariable ("id") String wplacm_processInstanceId) throws SQLException {
 
 
 
         //correlation specification via message name "OrderCanceledMessage". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("OrderCancelledMessage")
                 //.processInstanceVariableEquals("wplacm_processInstanceId", wbig_processInstanceId)
-                .setVariable("wbig_processInstanceId", wbig_processInstanceId)
-                //.processInstanceId(candidateInfo.getWBIG_processInstanceID())
+                //.setVariable("wbig_processInstanceId", wplacm_processInstanceId)
+                .processInstanceId(wplacm_processInstanceId)
                 .correlate();
 
         System.out.println("Order cancel received");
-        return wbig_processInstanceId;
+        return wplacm_processInstanceId;
     }
 
 }

@@ -21,21 +21,21 @@ public class CandidatesPlacedController {
 
     // specifes mailbox path, {id} to correlate with specific process instance
     @PostMapping(path = "/CandidatesPlaced/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String continueBillingProcess (@RequestBody NumberOfCandidates candidateInfo, @PathVariable ("id") String wbig_processInstanceId) throws SQLException {
+    public String continueBillingProcess (@RequestBody NumberOfCandidates candidateInfo, @PathVariable ("id") String wplacm_processInstanceId) throws SQLException {
 
 
 
         //correlation specification via message name "CandidatesPlacedMessage". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("CandidatesPlacedMessage")
-                .processInstanceVariableEquals("WBIG_process_ID", wbig_processInstanceId)
+                //.processInstanceVariableEquals("WBIG_process_ID", wbig_processInstanceId)
                 .setVariable("number_of_acceptances", candidateInfo.getNumber_of_acceptances())
                 .setVariable("payment_info", candidateInfo.getPayment_info())
-                .setVariable("wbig_processInstanceId", wbig_processInstanceId)
-                //.processInstanceId(candidateInfo.getWBIG_processInstanceID())
+                .setVariable("wbig_processInstanceId", candidateInfo.getWBIG_processInstanceID())
+                .processInstanceId(wplacm_processInstanceId)
                 .correlate();
 
         System.out.println("Amount of placed Candidates received");
-        return wbig_processInstanceId;
+        return wplacm_processInstanceId;
     }
 
 }
