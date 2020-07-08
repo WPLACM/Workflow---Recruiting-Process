@@ -1127,7 +1127,7 @@
       <outgoing>sid-E31C36D5-AB34-411A-B84B-5AA21096568B</outgoing>
       <messageEventDefinition id="sid-94ee041e-c0b3-46b3-8f73-7bb590175933" messageRef="Message_0nut5me" />
     </intermediateCatchEvent>
-    <sendTask id="sid-2E24762A-C42F-444A-BABE-C7BD591F7F6A" name="send invoice" implementation="##WebService" camunda:class="org.example.delegate.SendInvoiceDelegate">
+    <sendTask id="sid-2E24762A-C42F-444A-BABE-C7BD591F7F6A" name="send invoice" camunda:asyncBefore="true" implementation="##WebService" camunda:class="org.example.delegate.SendInvoiceDelegate">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
