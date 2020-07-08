@@ -1,7 +1,6 @@
 package org.example.controller;
 
 import org.camunda.bpm.engine.RuntimeService;
-import org.example.model.CancelOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,7 @@ import java.util.logging.Logger;
 @RequestMapping("/Billing")
 public class Controller_MoreC {
 
-    private final java.util.logging.Logger LOGGER = Logger.getLogger(Controller_NumberOfCandidates.class.getName());
+    private final java.util.logging.Logger LOGGER = Logger.getLogger(Controller_Cplaced.class.getName());
 
     @Autowired
     private RuntimeService runtimeService;

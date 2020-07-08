@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 @RequestMapping("/Billing")
 public class Controller_DA {
 
-    private final java.util.logging.Logger LOGGER = Logger.getLogger(Controller_NumberOfCandidates.class.getName());
+    private final java.util.logging.Logger LOGGER = Logger.getLogger(Controller_Cplaced.class.getName());
 
     @Autowired
     private RuntimeService runtimeService;

@@ -5,7 +5,6 @@ import org.example.model.CancelOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.example.model.CancelOrder;
 
 import java.sql.SQLException;
 import java.util.logging.Logger;
@@ -15,7 +14,7 @@ import java.util.logging.Logger;
 @RequestMapping("/Billing")
 public class Controller_CancelledO {
 
-    private final java.util.logging.Logger LOGGER = Logger.getLogger(Controller_NumberOfCandidates.class.getName());
+    private final java.util.logging.Logger LOGGER = Logger.getLogger(Controller_Cplaced.class.getName());
 
     @Autowired
     private RuntimeService runtimeService;
@@ -27,7 +26,7 @@ public class Controller_CancelledO {
 
 
         //correlation specification via message name "OrderCanceledMessage". This needs to be inserted as message name for catching event in bpmn-model.
-        runtimeService.createMessageCorrelation("OrderCanceledMessage")
+        runtimeService.createMessageCorrelation("OrderCancelledMessage")
                 //.processInstanceVariableEquals("wplacm_processInstanceId", wbig_processInstanceId)
                 .setVariable("wbig_processInstanceId", wbig_processInstanceId)
                 //.processInstanceId(candidateInfo.getWBIG_processInstanceID())

@@ -1,15 +1,16 @@
-package org.example.WBIG_dummy;
+package org.example.wbigtesting;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 import java.util.logging.Logger;
-import org.springframework.stereotype.Component;
+
 import org.springframework.web.client.RestTemplate;
 import org.example.model.CancelOrder;
 
-public class Test_Message_CancelledO implements JavaDelegate{
-    private final Logger LOGGER = Logger.getLogger(Test_Message_noC.class.getName());
+// ORDER CANCELLED
+public class _Message_CancelledO implements JavaDelegate{
+    private final Logger LOGGER = Logger.getLogger(_Message_Cplaced.class.getName());
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {

@@ -1,6 +1,7 @@
-package org.example.controller;
+package org.example.wbigtesting;
 
 import org.camunda.bpm.engine.RuntimeService;
+import org.example.controller.Controller_Cplaced;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +13,9 @@ import java.util.logging.Logger;
 @RestController
 //creates "mailbox" to send to, relative to root path
 @RequestMapping("/Billing")
-public class Controller_Invoice {
+public class WBIG_Controller_Invoice {
 
-    private final java.util.logging.Logger LOGGER = Logger.getLogger(Controller_NumberOfCandidates.class.getName());
+    private final java.util.logging.Logger LOGGER = Logger.getLogger(Controller_Cplaced.class.getName());
 
     @Autowired
     private RuntimeService runtimeService;
@@ -25,8 +26,8 @@ public class Controller_Invoice {
 
 
 
-        //correlation specification via message name "test_message". This needs to be inserted as message name for catching event in bpmn-model.
-        runtimeService.createMessageCorrelation("test_message_WBIG")
+        //correlation specification via message name "Invoice". This needs to be inserted as message name for catching event in bpmn-model.
+        runtimeService.createMessageCorrelation("Invoice")
                 //.processInstanceVariableEquals("wbig_processInstanceId", wbig_processInstanceId)
                 .setVariable("invoice_id", invInfo.getInvoice_id())
                 .setVariable("payment_information_acceptances", invInfo.getPayment_information_acceptances() )

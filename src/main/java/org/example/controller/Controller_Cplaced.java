@@ -12,21 +12,21 @@ import java.util.logging.Logger;
 @RestController
 //creates "mailbox" to send to, relative to root path
 @RequestMapping("/Billing")
-public class Controller_NumberOfCandidates {
+public class Controller_Cplaced {
 
-    private final java.util.logging.Logger LOGGER = Logger.getLogger(Controller_NumberOfCandidates.class.getName());
+    private final java.util.logging.Logger LOGGER = Logger.getLogger(Controller_Cplaced.class.getName());
 
     @Autowired
     private RuntimeService runtimeService;
 
     // specifes mailbox path, {id} to correlate with specific process instance
-    @PostMapping(path = "/start/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
+    @PostMapping(path = "/CandidatesPlaced/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public String continueBillingProcess (@RequestBody NumberOfCandidates candidateInfo, @PathVariable ("id") String wbig_processInstanceId) throws SQLException {
 
 
 
-        //correlation specification via message name "SomeCVs". This needs to be inserted as message name for catching event in bpmn-model.
-        runtimeService.createMessageCorrelation("NumberOfCandidatesMessage")
+        //correlation specification via message name "CandidatesPlacedMessage". This needs to be inserted as message name for catching event in bpmn-model.
+        runtimeService.createMessageCorrelation("CandidatesPlacedMessage")
                 //.processInstanceVariableEquals("wplacm_processInstanceId", wbig_processInstanceId)
                 .setVariable("number_of_acceptances", candidateInfo.getNumber_of_acceptances())
                 .setVariable("payment_info", candidateInfo.getPayment_info())
