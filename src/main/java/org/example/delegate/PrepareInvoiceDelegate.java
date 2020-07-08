@@ -12,7 +12,7 @@ public class PrepareInvoiceDelegate implements JavaDelegate {
         //Manual setting of invoice id
         String invoiceid = (String) delegateExecution.getVariable("openingid");
         invoiceid = invoiceid + " "+ date;
-        Integer open = (Integer) delegateExecution.getVariable("openSpots");
+        Integer open = (Integer) delegateExecution.getVariable("openSpotsRemaining");
 
         try{
             if(number_of_acceptances>open){

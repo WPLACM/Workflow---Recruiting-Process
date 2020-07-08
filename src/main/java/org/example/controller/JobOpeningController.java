@@ -46,31 +46,30 @@ public class JobOpeningController {
         String strSalary = jobInfo.getSalary().toString();
         String strReward = jobInfo.getRewardPerAcceptance().toString();
 
-        runtimeService.createMessageCorrelation("JobOpeningInformation")
-                .processInstanceId(wbig_processInstanceId)
-                .processInstanceVariableEquals("wbig_processInstanceId", wbig_processInstanceId)
-                .setVariable("WBIG_process_ID", wbig_processInstanceId)
-                .setVariable("openingName", jobInfo.getOpening_name())
-                .setVariable("openSpots" , jobInfo.getOpen_spots_initial())
-                .setVariable("openSpotsRemaining" , jobInfo.getOpen_spots_remaining()) //currently not in form
-                .setVariable("salary" , strSalary)
-                .setVariable("jobTitle" , jobInfo.getJob_title())
-                .setVariable("jobDescription" , jobInfo.getJob_description())
-                .setVariable("requiredQualifications" , jobInfo.getRequired_qualifications())
-                .setVariable("additionalInformation" , jobInfo.getAdditional_information())
-                .setVariable("deadline" , strDeadline)
-                .setVariable("deadlineDateFormat", jobInfo.getDeadline())
-                .setVariable("paymentInformationAcceptances" , strReward)
-                .setVariable("jobLocation" , jobInfo.getJob_location())
-                .setVariable("workingHours" , jobInfo.getWorking_hours())
-                .correlate();
+        ProcessInstance processInstance = runtimeService
+            .startProcessInstanceByMessage("JobOpeningInformation",
+                Variables.createVariables()
+                    .putValue("wbig_processInstanceId", wbig_processInstanceId)
+                    .putValue("openingName", jobInfo.getOpening_name())
+                    .putValue("openSpots" , jobInfo.getOpen_spots_initial())
+                    .putValue("openSpotsRemaining" , jobInfo.getOpen_spots_remaining()) //currently not in form
+                    .putValue("salary" , strSalary)
+                    .putValue("jobTitle" , jobInfo.getJob_title())
+                    .putValue("jobDescription" , jobInfo.getJob_description())
+                    .putValue("requiredQualifications" , jobInfo.getRequired_qualifications())
+                    .putValue("additionalInformation" , jobInfo.getAdditional_information())
+                    .putValue("deadline" , strDeadline)
+                    .putValue("deadlineDateFormat", jobInfo.getDeadline())
+                    .putValue("paymentInformationAcceptances" , strReward)
+                    .putValue("jobLocation" , jobInfo.getJob_location())
+                    .putValue("workingHours" , jobInfo.getWorking_hours()));
 
         // insert job opening information into db
         try {
 
             Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
             String job_opening_insert =
-                    "INSERT INTO Job_Opening_Information ( WBIG_process_ID, opening_name, open_spots, open_spots_remaining," +
+                    "INSERT INTO Job_Opening_Information ( wbig_processInstanceId, opening_name, open_spots, open_spots_remaining," +
                             " salary, job_title, job_description, required_qualifications, additional_information, deadline," +
                             " reward_per_acceptance, job_location, working_hours) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -97,7 +96,7 @@ public class JobOpeningController {
             System.out.println(e.getMessage());
         }
 
-        return "Process started";
+        return processInstance.getId();
     }
 
     @PostDeploy
