@@ -700,7 +700,7 @@
         <incoming>Flow_1ars7ky</incoming>
         <outgoing>Flow_1d0f7y9</outgoing>
         <timerEventDefinition id="TimerEventDefinition_12uxvm9">
-          <timeDuration xsi:type="tFormalExpression">PT2M</timeDuration>
+          <timeDuration xsi:type="tFormalExpression">PT1M</timeDuration>
         </timerEventDefinition>
       </intermediateCatchEvent>
     </subProcess>
@@ -793,14 +793,15 @@
               </camunda:map>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">{
-    "job_opening_id" : 2,
-    "opening_date": "2020-12-10T13:45:00.000Z",
-    "deadline": "2021-12-10T13:45:00.000Z"
-}</camunda:inputParameter>
+              "job_opening_id" : 2,
+              "opening_date": "2020-12-10T13:45:00.000Z",
+              "deadline": "2021-12-10T13:45:00.000Z"
+              }</camunda:inputParameter>
             <camunda:outputParameter name="test">#{response}</camunda:outputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>http-connector</camunda:connectorId>
         </camunda:connector>
+        <camunda:executionListener class="org.example.listener.PublishJobOpeningEndListener" event="end" />
       </extensionElements>
       <incoming>sid-624BA53C-DAC3-437D-81A6-71B328D5A2CB</incoming>
       <outgoing>sid-A3DFE089-BA04-4CB7-990B-8525CEAEE7C2</outgoing>
@@ -936,14 +937,14 @@
     <userTask id="sid-B11765A0-D66B-4C18-801A-C08847CFC1D8" name="do background check">
       <extensionElements>
         <camunda:formData>
-          <camunda:formField id="backgroundrating" label="Rate from 1-3" type="long" />
+          <camunda:formField id="backgroundrating" label="Rate from 1-3" type="string" />
           <camunda:formField id="application_id" label="Application ID" type="string" defaultValue="${applicationelem.prop(&#34;application_id&#34;).stringValue()}" />
           <camunda:formField id="candidate_id" label="Candidate ID" type="string" defaultValue="${applicationelem.prop(&#34;candidate_id&#34;).stringValue()}" />
           <camunda:formField id="first_name" label="Firstname" type="string" defaultValue="${applicationelem.prop(&#34;first_name&#34;).stringValue()}" />
           <camunda:formField id="last_name" label="Lastname" type="string" defaultValue="${applicationelem.prop(&#34;last_name&#34;).stringValue()}" />
           <camunda:formField id="cv" label="CV link" type="string" defaultValue="${applicationelem.prop(&#34;cv&#34;).stringValue()}" />
         </camunda:formData>
-        <camunda:executionListener class="org.example.listener.BackgroundCheckEndListener" event="start" />
+        <camunda:executionListener class="org.example.listener.BackgroundCheckEndListener" event="end" />
       </extensionElements>
       <incoming>sid-65F5B595-4AB8-48E3-A9D4-7AC158655CA1</incoming>
       <outgoing>sid-4F78A2E9-A974-4310-B2B2-21FF1CF46A88</outgoing>
@@ -1027,7 +1028,7 @@
         <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
         <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
         <camunda:formData>
-          <camunda:formField id="cv_rating" label="Rate from 1-10" type="long" />
+          <camunda:formField id="cv_rating" label="Rate from 1-100" type="string" />
           <camunda:formField id="application_id" label="Application ID" type="string" defaultValue="${applicationelem.prop(&#34;application_id&#34;).stringValue()}" />
           <camunda:formField id="candidate_id" label="Candidate ID" type="string" defaultValue="${applicationelem.prop(&#34;candidate_id&#34;).stringValue()}" />
           <camunda:formField id="first_name" label="Firstname" type="string" defaultValue="${applicationelem.prop(&#34;first_name&#34;).stringValue()}" />
@@ -1270,7 +1271,7 @@
   <message id="Message_1ehchp3" name="Candidate Application" />
   <message id="Message_19oqz93" name="DebitAuthorizationMessage" />
   <message id="Message_0gs6jpb" name="MoreCandidatesMessage" />
-  <message id="Message_0nut5me" name="OrderCanceledMessage" />
+  <message id="Message_0nut5me" name="OrderCancelledMessage" />
   <message id="Message_0sghar3" name="CandidatesPlacedMessage" />
   <message id="Message_1cxk0u6" name="NoApplicationsReceivedMessage" />
   <message id="Message_14lnuod" name="JobOpeningInformation" />

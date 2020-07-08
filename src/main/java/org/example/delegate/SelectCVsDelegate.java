@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.example.entity.Application;
+import org.example.entity.ApplicationMessage;
 import org.example.entity.ApplicationMessageList;
 
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -31,15 +33,20 @@ public class SelectCVsDelegate implements JavaDelegate {
             Statement query = con.createStatement();
             ResultSet rs = query.executeQuery( applications_query);
 
+            Integer i = 0;
+
             while(rs.next()) {
                 Integer application_id = rs.getInt("application_id");
                 Integer cv_rating = rs.getInt("cv_rating");
                 Integer bg_rating = rs.getInt("backgroundrating");
 
-                Application cv = new Application();
-                cv.setApplication_id(application_id);
-                cv.setCv_rating(cv_rating);
-                cv.setBackgroundrating(bg_rating);
+                ApplicationMessage cv = new ApplicationMessage();
+                cv.setApplicant_id(1+i);
+                i+=1;
+                cv.setApplicant_email("asdfg");
+                cv.setWplacm_rating(77);
+                cv.setApplicant_name("Tesst");
+                cv.setApplicant_email("Tst");
 
                // Candidate cand = new  DTO concept
                 //Applicaton_Candidate_REsponse acp = new Applicaton_Candidate_REsponse();
@@ -47,8 +54,20 @@ public class SelectCVsDelegate implements JavaDelegate {
                 //acp.candidate = cand;
 
                 //response.add(acp);
+                try {
+                    selectedCVs.getApplicationList().add(cv);
 
-                selectedCVs.getApplicationList().add(cv);
+                    /*
+                    List<ApplicationMessage> list = selectedCVs.getApplicationList();
+                    list.add(cv);
+                    selectedCVs.setApplicationList(list);
+                    */
+                    System.out.println("after add cv");
+                } catch (NullPointerException n) {
+                    System.out.println("nullpointer");
+                    System.out.println(n.getMessage());
+                }
+
             }
             /*
             ObjectMapper obj = new ObjectMapper();
@@ -57,6 +76,7 @@ public class SelectCVsDelegate implements JavaDelegate {
             delegateExecution.setVariable("allCvJson",cvJson);
 
              */
+
             delegateExecution.setVariable("finalSelection", selectedCVs);
         }
     }

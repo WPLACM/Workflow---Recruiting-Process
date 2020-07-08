@@ -34,7 +34,7 @@ public class _wbigSendOpeningDelegate implements JavaDelegate {
 
         execution.setVariable("open_spots_remaining", execution.getVariable("open_spots"));
         String wbig_processInstanceId = template.postForObject("http://localhost:8080/jobOpening/start/" + execution.getProcessInstanceId(), payload, String.class);
-        execution.setVariable("wbig_processInstanceId", wbig_processInstanceId); //needed here?
+        //execution.setVariable("wbig_processInstanceId", wbig_processInstanceId); //needed here?
 
         //System.out.println("WBIG Prozess ID: "+ execution.getProcessInstanceId());
     }
