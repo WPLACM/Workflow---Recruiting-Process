@@ -7,6 +7,7 @@ import org.example.entity.Application;
 import org.example.entity.ApplicationMessage;
 import org.example.entity.ApplicationMessageList;
 
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -45,6 +46,7 @@ public class SelectCVsDelegate implements JavaDelegate {
                 cv.setApplicant_email("asdfg");
                 cv.setWplacm_rating(77);
                 cv.setApplicant_name("Tesst");
+                cv.setApplicant_email("Tst");
 
                // Candidate cand = new  DTO concept
                 //Applicaton_Candidate_REsponse acp = new Applicaton_Candidate_REsponse();
@@ -53,12 +55,13 @@ public class SelectCVsDelegate implements JavaDelegate {
 
                 //response.add(acp);
                 try {
-                    // selectedCVs.getApplicationList().add(cv);
+                    selectedCVs.getApplicationList().add(cv);
 
+                    /*
                     List<ApplicationMessage> list = selectedCVs.getApplicationList();
                     list.add(cv);
                     selectedCVs.setApplicationList(list);
-
+                    */
                     System.out.println("after add cv");
                 } catch (NullPointerException n) {
                     System.out.println("nullpointer");
