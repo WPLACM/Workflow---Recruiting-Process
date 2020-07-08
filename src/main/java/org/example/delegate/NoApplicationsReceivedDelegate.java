@@ -4,6 +4,7 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.example.model.NoApplicationsReceivedMessage;
 import org.springframework.web.client.RestTemplate;
+import org.example.utility.wbigRestEndpoints;
 
 public class NoApplicationsReceivedDelegate implements JavaDelegate {
 
@@ -20,7 +21,7 @@ public class NoApplicationsReceivedDelegate implements JavaDelegate {
 
         // sends data-object to url (String class specification needed)
         //TODO: Insert WBIG's real URL
-        wbig_processInstanceId = template.postForObject("http://localhost:8080/WBIG_NoApp/Msg/", noappmsg, String.class);
+        wbig_processInstanceId = template.postForObject(EndpointUrl + "/WBIG_NoApp/Msg/", noappmsg, String.class);
         delegateExecution.setVariable("wbig_processInstanceId", wbig_processInstanceId);
 
 
