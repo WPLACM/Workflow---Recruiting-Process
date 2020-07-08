@@ -21,8 +21,6 @@ public class Job_Opening {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer jobOpeningId;
-
-    //@JsonFormat(pattern = "dd.MM.yyyy, HH:mm:ss")
     private Date openingDate;
     private Timestamp deadline;
 

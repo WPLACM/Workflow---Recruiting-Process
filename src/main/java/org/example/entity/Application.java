@@ -24,6 +24,8 @@ public class Application {
     private Integer rating;
     private Integer cv_rating;
     private Integer backgroundrating;
-
     private String cv_link;
+
+    private DateTime acceptedDate;  //optional to-do: set when final selection complete
+    private DateTime rejectedDate;  //optional to-do: set when final selection complete
 }

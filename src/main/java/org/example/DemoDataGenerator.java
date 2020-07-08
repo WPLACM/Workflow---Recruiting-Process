@@ -119,6 +119,11 @@ public class DemoDataGenerator {
         managementGroup.setType("WORKFLOW");
         identityService.saveGroup(managementGroup);
 
+        Group applicationEvaluationGroup = identityService.newGroup("applicationEvaluation");
+        applicationEvaluationGroup.setName("Application Evaluation");
+        applicationEvaluationGroup.setType("WORKFLOW");
+        identityService.saveGroup(applicationEvaluationGroup);
+
         final AuthorizationService authorizationService = engine.getAuthorizationService();
 
         // create group
@@ -218,7 +223,7 @@ public class DemoDataGenerator {
         Authorization manDemoAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
         manDemoAuth.setGroupId("management");
         manDemoAuth.setResource(USER);
-        manDemoAuth.setResourceId("demo");
+        manDemoAuth.setResourceId("nemo");
         manDemoAuth.addPermission(READ);
         authorizationService.saveAuthorization(manDemoAuth);
 
