@@ -29,22 +29,24 @@ public class _wbigFinalSelectionController {
     @Autowired
     private RuntimeService runtimeService;
 
-    @PostMapping(path = "/wbig_cvs", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String continueCVProcess(@RequestBody ApplicationMessageList payload, @PathVariable("id") String wplacm_processInstanceId) {
+    @PostMapping(path = "/wbig_cvs/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String continueCVProcess(@RequestBody ApplicationMessageList payload, @PathVariable ("id") String wbig_processInstanceId) {
 
-        LOGGER.info("Controller WPLACM ProcessInstanceId: " + wplacm_processInstanceId);
+        //LOGGER.info("Controller WPLACM ProcessInstanceId: " + wbig_processInstanceId);
 
         //corralation specification via message nanme "SomeCVs". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("SomeCVs")
                 //.processInstanceVariableEquals("wplacm_processInstanceId", wplacm_processInstanceId)
+                //.setVariable("wplacm_processInstanceId", payload.getApplicationList())
                 //optinal: add further set variables here
+                .processInstanceId(wbig_processInstanceId)
                 .correlate();
 
         List<ApplicationMessage> applicationList  = payload.getApplicationList();
 
         System.out.println("RECEIVED CVS");
 
-        LOGGER.info("WEBIG SomeCVs started");
+        //LOGGER.info("WEBIG SomeCVs started");
 
         return "cvs received";
     }

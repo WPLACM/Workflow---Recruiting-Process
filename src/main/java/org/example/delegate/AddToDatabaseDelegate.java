@@ -9,7 +9,7 @@ import org.camunda.spin.json.SpinJsonNode;
 import org.camunda.spin.plugin.variable.value.JsonValue;
 import org.camunda.spin.plugin.variable.value.impl.JsonValueImpl;
 import org.example.entity.Application;
-import org.example.model.ApplicationCollectionElement;
+//import org.example.model.ApplicationCollectionElement;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -72,7 +72,6 @@ public class AddToDatabaseDelegate implements JavaDelegate {
                         + "\"cv\" :  \"" + "cv link" + "\""
                         + "}";
 
-                System.out.println(application);
                 SpinJsonNode application_json = JSON(application);
 
                 JsonValueImpl collApplication = (JsonValueImpl) delegateExecution.getVariableTyped("collectedApplications");

@@ -10,6 +10,9 @@ public class DeterminePlacementStatusDelegate implements JavaDelegate {
         Integer open_spots = (Integer) delegateExecution.getVariable("open_spots");
         Integer number_acceptances = (Integer) delegateExecution.getVariable("number_of_acceptances");
         Integer new_open = open_spots - number_acceptances;
+
+        System.out.println("Test");
+
         if (new_open > 0) {
             delegateExecution.setVariable("placementFin",  false);
             delegateExecution.setVariable("open_spots", new_open);

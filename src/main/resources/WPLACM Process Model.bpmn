@@ -700,7 +700,7 @@
         <incoming>Flow_1ars7ky</incoming>
         <outgoing>Flow_1d0f7y9</outgoing>
         <timerEventDefinition id="TimerEventDefinition_12uxvm9">
-          <timeDuration xsi:type="tFormalExpression">PT2M</timeDuration>
+          <timeDuration xsi:type="tFormalExpression">PT1M</timeDuration>
         </timerEventDefinition>
       </intermediateCatchEvent>
     </subProcess>
@@ -793,10 +793,10 @@
               </camunda:map>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">{
-    "job_opening_id" : 2,
-    "opening_date": "2020-12-10T13:45:00.000Z",
-    "deadline": "2021-12-10T13:45:00.000Z"
-}</camunda:inputParameter>
+              "job_opening_id" : 2,
+              "opening_date": "2020-12-10T13:45:00.000Z",
+              "deadline": "2021-12-10T13:45:00.000Z"
+              }</camunda:inputParameter>
             <camunda:outputParameter name="test">#{response}</camunda:outputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>http-connector</camunda:connectorId>
@@ -1271,7 +1271,7 @@
   <message id="Message_1ehchp3" name="Candidate Application" />
   <message id="Message_19oqz93" name="DebitAuthorizationMessage" />
   <message id="Message_0gs6jpb" name="MoreCandidatesMessage" />
-  <message id="Message_0nut5me" name="OrderCanceledMessage" />
+  <message id="Message_0nut5me" name="OrderCancelledMessage" />
   <message id="Message_0sghar3" name="CandidatesPlacedMessage" />
   <message id="Message_1cxk0u6" name="NoApplicationsReceivedMessage" />
   <message id="Message_14lnuod" name="JobOpeningInformation" />
