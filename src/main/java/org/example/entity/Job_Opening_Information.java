@@ -20,7 +20,7 @@ public class Job_Opening_Information {
     private Integer index;
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private String job_opening_information_id; //Integer before
-    private String WBIG_process_ID; //Integer before
+    private String wbig_processInstanceId; //Integer before
     private String opening_name; //new from wbig
     private Integer open_spots; //initial
     private Integer open_spots_remaining; //new from wbig
