@@ -18,14 +18,14 @@ public class Test_Message_noC implements JavaDelegate {
         RestTemplate template = new RestTemplate();
 
         // TESTING
-        delegateExecution.setVariable("wplacm_processInstanceId", delegateExecution.getProcessInstanceId());
+        //delegateExecution.setVariable("wplacm_processInstanceId", delegateExecution.getProcessInstanceId());
         // TESTING
-        String wplacm_processInstanceId = (String) delegateExecution.getVariable("wplacm_processInstanceId");
+        //String wplacm_processInstanceId = (String) delegateExecution.getVariable("wplacm_processInstanceId");
         NumberOfCandidates payload = new NumberOfCandidates(delegateExecution.getProcessInstanceId(), 1,50.5);
         System.out.println("Send the amount of placed candidates");
 
 
-        wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/start/" + wplacm_processInstanceId, payload, String.class);
+        String wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/start/" + delegateExecution.getProcessInstanceId(), payload, String.class);
         //delegateExecution.setVariable("wplacm_processInstanceId", wplacm_processInstanceId);
 
 

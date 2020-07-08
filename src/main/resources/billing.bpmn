@@ -17,7 +17,7 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_0603z6u" messageRef="Message_05qf6oc" />
     </bpmn:startEvent>
     <bpmn:sendTask id="Activity_1nxu2ix" name="Send invoice" camunda:class="org.example.delegate.SendInvoiceDelegate">
-      <bpmn:incoming>Flow_1by44ts</bpmn:incoming>
+      <bpmn:incoming>Flow_02k16ah</bpmn:incoming>
       <bpmn:outgoing>Flow_0n0gr1m</bpmn:outgoing>
     </bpmn:sendTask>
     <bpmn:eventBasedGateway id="Gateway_1p7jdfw" name="Gateway">
@@ -77,9 +77,9 @@
       <bpmn:incoming>Flow_1t1trmd</bpmn:incoming>
       <bpmn:outgoing>Flow_05qomt5</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_05qomt5" sourceRef="Activity_11n4xb8" targetRef="Activity_1v265dh" />
+    <bpmn:sequenceFlow id="Flow_05qomt5" sourceRef="Activity_11n4xb8" targetRef="Event_1rh6chx" />
     <bpmn:serviceTask id="Activity_1v265dh" name="Prepare invoice" camunda:class="org.example.delegate.PrepareInvoiceDelegate">
-      <bpmn:incoming>Flow_05qomt5</bpmn:incoming>
+      <bpmn:incoming>Flow_1n0qyyb</bpmn:incoming>
       <bpmn:outgoing>Flow_02k16ah</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:exclusiveGateway id="Gateway_0xvknp5">
@@ -104,13 +104,13 @@
       <bpmn:incoming>Flow_0b5qbag</bpmn:incoming>
       <bpmn:outgoing>Flow_045w6ar</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:sequenceFlow id="Flow_02k16ah" sourceRef="Activity_1v265dh" targetRef="Event_0asu903" />
-    <bpmn:sequenceFlow id="Flow_1by44ts" sourceRef="Event_0asu903" targetRef="Activity_1nxu2ix" />
-    <bpmn:intermediateCatchEvent id="Event_0asu903">
-      <bpmn:incoming>Flow_02k16ah</bpmn:incoming>
-      <bpmn:outgoing>Flow_1by44ts</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_174dlp1">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT30S</bpmn:timeDuration>
+    <bpmn:sequenceFlow id="Flow_02k16ah" sourceRef="Activity_1v265dh" targetRef="Activity_1nxu2ix" />
+    <bpmn:sequenceFlow id="Flow_1n0qyyb" sourceRef="Event_1rh6chx" targetRef="Activity_1v265dh" />
+    <bpmn:intermediateCatchEvent id="Event_1rh6chx">
+      <bpmn:incoming>Flow_05qomt5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1n0qyyb</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1vq6mtv">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
   </bpmn:process>
@@ -120,6 +120,10 @@
       <bpmndi:BPMNShape id="Participant_17xhagr_di" bpmnElement="Participant_17xhagr" isHorizontal="true">
         <dc:Bounds x="160" y="160" width="1560" height="600" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_02k16ah_di" bpmnElement="Flow_02k16ah">
+        <di:waypoint x="560" y="500" />
+        <di:waypoint x="637" y="500" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ac1xbw_di" bpmnElement="Flow_0ac1xbw">
         <di:waypoint x="1390" y="355" />
         <di:waypoint x="1390" y="440" />
@@ -134,8 +138,9 @@
         <di:waypoint x="1365" y="330" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_05qomt5_di" bpmnElement="Flow_05qomt5">
-        <di:waypoint x="400" y="500" />
-        <di:waypoint x="460" y="500" />
+        <di:waypoint x="350" y="460" />
+        <di:waypoint x="350" y="380" />
+        <di:waypoint x="412" y="380" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1t1trmd_di" bpmnElement="Flow_1t1trmd">
         <di:waypoint x="248" y="500" />
@@ -193,15 +198,11 @@
         <di:waypoint x="737" y="500" />
         <di:waypoint x="802" y="500" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_02k16ah_di" bpmnElement="Flow_02k16ah">
-        <di:waypoint x="510" y="460" />
+      <bpmndi:BPMNEdge id="Flow_1n0qyyb_di" bpmnElement="Flow_1n0qyyb">
+        <di:waypoint x="430" y="398" />
+        <di:waypoint x="430" y="440" />
         <di:waypoint x="510" y="440" />
-        <di:waypoint x="590" y="440" />
-        <di:waypoint x="590" y="482" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1by44ts_di" bpmnElement="Flow_1by44ts">
-        <di:waypoint x="608" y="500" />
-        <di:waypoint x="637" y="500" />
+        <di:waypoint x="510" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_0xtgb9t_di" bpmnElement="StartEvent">
         <dc:Bounds x="212" y="482" width="36" height="36" />
@@ -263,8 +264,8 @@
       <bpmndi:BPMNShape id="Activity_1sustym_di" bpmnElement="ServiceTask_Logger">
         <dc:Bounds x="977" y="290" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1x385ug_di" bpmnElement="Event_0asu903">
-        <dc:Bounds x="572" y="482" width="36" height="36" />
+      <bpmndi:BPMNShape id="Event_0lkot7q_di" bpmnElement="Event_1rh6chx">
+        <dc:Bounds x="412" y="362" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_07amvsb_di" bpmnElement="Participant_07amvsb" isHorizontal="true">
         <dc:Bounds x="160" y="80" width="1560" height="150" />

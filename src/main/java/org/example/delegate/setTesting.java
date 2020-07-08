@@ -26,7 +26,7 @@ public class setTesting implements JavaDelegate {
         delegateExecution.setVariable("openingName", openingName);
         String processID = "processID_Test";
         delegateExecution.setVariable("processID", processID);
-        Integer open_spots = 10;
+        Integer open_spots = 4;
         delegateExecution.setVariable("open_spots", open_spots);
         //Invoice Date Format yyyy MMM dd
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd");
