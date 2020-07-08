@@ -6,11 +6,9 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import org.example.model.NumberOfCandidates;
+import org.example.model.MoreCandidates;
 
-// creates bean using spring boot
-@Component
-public class Test_Message_noC implements JavaDelegate {
+public class Test_Message_MoreC implements JavaDelegate{
     private final Logger LOGGER = Logger.getLogger(Test_Message_noC.class.getName());
 
     @Override
@@ -21,14 +19,12 @@ public class Test_Message_noC implements JavaDelegate {
         //delegateExecution.setVariable("wplacm_processInstanceId", delegateExecution.getProcessInstanceId());
         // TESTING
         //String wplacm_processInstanceId = (String) delegateExecution.getVariable("wplacm_processInstanceId");
-        NumberOfCandidates payload = new NumberOfCandidates(delegateExecution.getProcessInstanceId(), 1,50.5);
-        System.out.println("Send the amount of placed candidates");
+
+        MoreCandidates moreC = new MoreCandidates(delegateExecution.getProcessInstanceId());
 
 
-        String wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/start/" + delegateExecution.getProcessInstanceId(), payload, String.class);
+        String wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/MoreCandidates/" + delegateExecution.getProcessInstanceId(), moreC, String.class);
         //delegateExecution.setVariable("wplacm_processInstanceId", wplacm_processInstanceId);
-
-
-
     }
 }
+

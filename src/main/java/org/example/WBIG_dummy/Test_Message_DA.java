@@ -21,8 +21,6 @@ public class Test_Message_DA implements JavaDelegate{
 
         wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/DA/" + wplacm_processInstanceId, da, String.class);
         //delegateExecution.setVariable("wplacm_processInstanceId", wplacm_processInstanceId);
-
-        System.out.println("Debit Authorization successfully sent");
     }
 }
 
