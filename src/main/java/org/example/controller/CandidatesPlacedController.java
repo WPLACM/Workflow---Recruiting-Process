@@ -27,7 +27,7 @@ public class CandidatesPlacedController {
 
         //correlation specification via message name "CandidatesPlacedMessage". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("CandidatesPlacedMessage")
-                //.processInstanceVariableEquals("wplacm_processInstanceId", wbig_processInstanceId)
+                .processInstanceVariableEquals("WBIG_process_ID", wbig_processInstanceId)
                 .setVariable("number_of_acceptances", candidateInfo.getNumber_of_acceptances())
                 .setVariable("payment_info", candidateInfo.getPayment_info())
                 .setVariable("wbig_processInstanceId", wbig_processInstanceId)

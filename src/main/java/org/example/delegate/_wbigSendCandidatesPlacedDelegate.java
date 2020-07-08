@@ -17,9 +17,6 @@ public class _wbigSendCandidatesPlacedDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         RestTemplate template = new RestTemplate();
 
-        // TESTING
-        //delegateExecution.setVariable("wplacm_processInstanceId", delegateExecution.getProcessInstanceId());
-        // TESTING
         //String wplacm_processInstanceId = (String) delegateExecution.getVariable("wplacm_processInstanceId");
         NumberOfCandidates payload = new NumberOfCandidates(delegateExecution.getProcessInstanceId(), 1,50.5);
         System.out.println("Send the amount of placed candidates");
