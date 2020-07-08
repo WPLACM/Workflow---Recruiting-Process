@@ -19,20 +19,20 @@ public class JobOpeningInformation {
     private String opening_name;
     private Integer open_spots_initial;
     private Integer open_spots_remaining;
-    private Integer salary; //double
+    private Double salary; //double
     private String job_title;
     private String job_description;
     private String required_qualifications;
     private String additional_information;
     private Date deadline;
-    private Integer reward_per_acceptance; //double
+    private Double reward_per_acceptance; //double
     private String job_location;
     private Integer working_hours;
 
     public JobOpeningInformation(String wbig_process_ID, String opening_name, Integer open_spots_initial,
-                                 Integer open_spots_remaining, Integer salary, String job_title, String job_description,
+                                 Integer open_spots_remaining, Double salary, String job_title, String job_description,
                                  String required_qualifications, String additional_information, Date deadline,
-                                 Integer reward_per_acceptance, String job_location, Integer working_hours){
+                                 Double reward_per_acceptance, String job_location, Integer working_hours){
 
         this.wbig_process_ID = wbig_process_ID;
         //this.time_stamp = time_stamp;

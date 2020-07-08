@@ -24,13 +24,13 @@ public class Job_Opening_Information {
     private String opening_name;
     private Integer open_spots; //initial
     private Integer open_spots_remaining; //new from wbig
-    private Integer salary;
+    private Double salary;
     private String job_title;
     private String job_description;
     private String required_qualifications;
     private String additional_information;
     private Date deadline;
-    private Integer reward_per_acceptance; //new from wbig
+    private Double reward_per_acceptance; //new from wbig
     private String job_location;
     private Integer working_hours; //double before
 

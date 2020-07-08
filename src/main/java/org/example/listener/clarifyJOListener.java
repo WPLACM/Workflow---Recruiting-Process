@@ -16,16 +16,16 @@ public class clarifyJOListener implements ExecutionListener {
         String jobDescription = (String) execution.getVariable("jobDescription");
         String jobLocation = (String) execution.getVariable("jobLocation");
         String requiredQualifications = (String) execution.getVariable("requiredQualifications");
-        Long salaryL = (Long) execution.getVariable("salary");
-        Integer salary = salaryL.intValue();
+        String strSalary = (String) execution.getVariable("salary");
+        Double salary = Double.parseDouble(strSalary);
         Long hoursL = (Long) execution.getVariable("workingHours");
         Integer workingHours = hoursL.intValue();
         Long openSpotsL = (Long) execution.getVariable("openSpots");
         Integer openSpots = openSpotsL.intValue();
         String additionalInformation = (String) execution.getVariable("additionalInformation");
         String deadline = (String) execution.getVariable("deadline");
-        Long rewardL = (Long) execution.getVariable("rewardPerAcceptance");
-        Integer rewardPerAcceptance = rewardL.intValue();
+        String strReward = (String) execution.getVariable("rewardPerAcceptance");
+        Double rewardPerAcceptance = Double.parseDouble(strReward);
         String wbigProcessId = (String) execution.getVariable("WBIG_process_ID");
 
         //create sql query
