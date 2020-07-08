@@ -35,8 +35,6 @@ public class UpdateDatabseRecordDelegate implements JavaDelegate {
                         //"birth_date = \'" + birth_date + "\' " +
                         "WHERE candidate_id = " + candidate_id;
 
-        System.out.println(candidate_update);
-
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         PreparedStatement statement = con.prepareStatement(candidate_update);
         Integer index = statement.executeUpdate();

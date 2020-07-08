@@ -29,7 +29,7 @@ public class SelectCVsDelegate implements JavaDelegate {
                     "WHERE jo_ap_fk = \'" + openingId + "\' AND rating > 55 ORDER BY rating desc limit 10";
             */
 
-            String applications_query = "SELECT  A.application_id, A.rating, C.first_name, C.last_name, C.email " +
+            String applications_query = "SELECT  A.application_id, A.rating, C.candidate_id, C.first_name, C.last_name, C.email " +
                     "FROM Application A " +
                     "INNER JOIN Candidate C ON (C.candidate_id = A.ca_ap_fk) " +
                     "WHERE jo_ap_fk = \'" + openingId + "\' AND rating > 55 ORDER BY rating desc limit 10";
@@ -46,7 +46,8 @@ public class SelectCVsDelegate implements JavaDelegate {
                 ApplicationMessage cv = new ApplicationMessage();
 
                 cv.setApplicant_id(rs.getInt("candidate_id"));
-                cv.setApplicant_name(rs.getString("first_name") + " " + rs.getString("last_name"));
+                cv.setApplicant_name(rs.getString("first_name") + " " +
+                        rs.getString("last_name"));
                 cv.setWplacm_rating(rs.getInt("rating"));
                 cv.setApplicant_email(rs.getString("email"));
                 cv.setWbig_process_instance_id(wbig_id);
