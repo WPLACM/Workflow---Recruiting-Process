@@ -5,6 +5,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.variable.value.ObjectValue;
 import org.camunda.spin.plugin.variable.value.impl.JsonValueImpl;
 import org.example.entity.Application;
+import org.example.entity.ApplicationMessage;
 import org.example.entity.ApplicationMessageList;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,6 +21,7 @@ public class SendFinalSelectionDelegate implements JavaDelegate {
                 (ObjectValue) delegateExecution.getVariableTyped("finalSelection");
 
         ApplicationMessageList final_selection = (ApplicationMessageList) typedApplicationCollection.getValue();
+
         String wbig_processInstanceId = (String) delegateExecution.getVariable("WBIG_process_ID");
 
         RestTemplate template = new RestTemplate();
