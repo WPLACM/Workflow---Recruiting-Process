@@ -19,6 +19,7 @@ public class NoApplicationsReceivedDelegate implements JavaDelegate {
         NoApplicationsReceivedMessage noappmsg = new NoApplicationsReceivedMessage(wbig_processInstanceId, time_stamp, textmessage);
 
         // sends data-object to url (String class specification needed)
+        //TODO: Insert WBIG's real URL
         wbig_processInstanceId = template.postForObject("http://localhost:8080/WBIG_NoApp/Msg/", noappmsg, String.class);
         delegateExecution.setVariable("wbig_processInstanceId", wbig_processInstanceId);
 
