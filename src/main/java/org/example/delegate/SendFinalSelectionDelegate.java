@@ -27,7 +27,7 @@ public class SendFinalSelectionDelegate implements JavaDelegate {
         try {
             String EndpointUrl = new wbigRestEndpoints().getCurrent_URL();
             String wplacm_processInstanceId =
-                    template.postForObject( EndpointUrl + "/wbig/wbig_cvs/" + wbig_processInstanceId, final_selection, String.class);
+                    template.postForObject( EndpointUrl + "wbig/wbig_cvs/" + wbig_processInstanceId, final_selection, String.class);
         } catch (Exception e) {
             System.out.println("error post");
             System.out.println(e.getMessage());

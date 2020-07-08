@@ -18,6 +18,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.*;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 
@@ -39,26 +40,27 @@ public class JobOpeningController {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         createUsers(processEngine);
 
-        LOGGER.info("Controller WBIG ProcessInstanceId: " + wbig_processInstanceId);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        String strDeadline = dateFormat.format(jobInfo.getDeadline());
+
+        String strSalary = jobInfo.getSalary().toString();
+        String strReward = jobInfo.getReward_per_acceptance().toString();
 
         runtimeService.createMessageCorrelation("JobOpeningInformation")
                 .processInstanceId(wbig_processInstanceId)
                 .processInstanceVariableEquals("wbig_processInstanceId", wbig_processInstanceId)
-                //.startProcessInstanceByKey("sid-9E969114-7F80-4315-A6D5-4D25DC5B40F1",
-                        //Variables.createVariables()
                 .setVariable("WBIG_process_ID", wbig_processInstanceId)
-                //.putValue("time_stamp", jobInfo.getTime_stamp())
-                //.setVariable("opening_information_id", jobInfo.getOpening_name())
                 .setVariable("openingName", jobInfo.getOpening_name())
                 .setVariable("openSpots" , jobInfo.getOpen_spots_initial())
                 .setVariable("openSpotsRemaining" , jobInfo.getOpen_spots_remaining()) //currently not in form
-                .setVariable("salary" , jobInfo.getSalary())
+                .setVariable("salary" , strSalary)
                 .setVariable("jobTitle" , jobInfo.getJob_title())
                 .setVariable("jobDescription" , jobInfo.getJob_description())
                 .setVariable("requiredQualifications" , jobInfo.getRequired_qualifications())
                 .setVariable("additionalInformation" , jobInfo.getAdditional_information())
-                .setVariable("deadline" , jobInfo.getDeadline())
-                .setVariable("paymentInformationAcceptances" , jobInfo.getReward_per_acceptance())
+                .setVariable("deadline" , strDeadline)
+                .setVariable("deadlineDateFormat", jobInfo.getDeadline())
+                .setVariable("paymentInformationAcceptances" , strReward)
                 .setVariable("jobLocation" , jobInfo.getJob_location())
                 .setVariable("workingHours" , jobInfo.getWorking_hours())
                 .correlate();
@@ -74,21 +76,21 @@ public class JobOpeningController {
 
             PreparedStatement statement = con.prepareStatement(job_opening_insert, Statement.RETURN_GENERATED_KEYS);
 
-            //System.out.println(jobInfo.getWbig_process_ID());
             // Set values for insert
             statement.setString(1, jobInfo.getWbig_process_ID());
             statement.setString(2, jobInfo.getOpening_name());
-            statement.setInt(3, jobInfo.getOpen_spots_initial()); //TODO
-            statement.setInt(4, jobInfo.getOpen_spots_remaining()); //TODO
-            statement.setLong(5, jobInfo.getSalary());
+            statement.setInt(3, jobInfo.getOpen_spots_initial());
+            statement.setInt(4, jobInfo.getOpen_spots_remaining());
+            statement.setDouble(5, jobInfo.getSalary());
             statement.setString(6, jobInfo.getJob_title());
             statement.setString(7, jobInfo.getJob_description());
             statement.setString(8, jobInfo.getRequired_qualifications());
             statement.setString(9, jobInfo.getAdditional_information());
-            statement.setString(10, jobInfo.getDeadline());
-            statement.setFloat(11, jobInfo.getReward_per_acceptance());
+            //String datetest = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(jobInfo.getDeadline());
+            statement.setString(10, strDeadline);
+            statement.setDouble(11, jobInfo.getReward_per_acceptance());
             statement.setString(12, jobInfo.getJob_location());
-            statement.setLong(13, jobInfo.getWorking_hours());
+            statement.setInt(13, jobInfo.getWorking_hours());
             statement.executeUpdate();
         } catch (java.sql.SQLException e){
             System.out.println(e.getErrorCode());

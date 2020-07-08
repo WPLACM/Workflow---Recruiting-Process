@@ -3,6 +3,9 @@ package org.example.listener;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.ExecutionListener;
 
+import java.sql.*;
+import java.text.SimpleDateFormat;
+
 public class clarifyJOListener implements ExecutionListener {
 
 
@@ -13,16 +16,39 @@ public class clarifyJOListener implements ExecutionListener {
         String jobDescription = (String) execution.getVariable("jobDescription");
         String jobLocation = (String) execution.getVariable("jobLocation");
         String requiredQualifications = (String) execution.getVariable("requiredQualifications");
-        long salary = (long) execution.getVariable("salary");
-        long workingHours = (long) execution.getVariable("workingHours");
-        long openSpots = (long) execution.getVariable("openSpots");
+        String strSalary = (String) execution.getVariable("salary");
+        Double salary = Double.parseDouble(strSalary);
+        Long hoursL = (Long) execution.getVariable("workingHours");
+        Integer workingHours = hoursL.intValue();
+        Long openSpotsL = (Long) execution.getVariable("openSpots");
+        Integer openSpots = openSpotsL.intValue();
         String additionalInformation = (String) execution.getVariable("additionalInformation");
         String deadline = (String) execution.getVariable("deadline");
-        long rewardPerAcceptance = (long) execution.getVariable("rewardPerAcceptance");
+        String strReward = (String) execution.getVariable("rewardPerAcceptance");
+        Double rewardPerAcceptance = Double.parseDouble(strReward);
+        String wbigProcessId = (String) execution.getVariable("WBIG_process_ID");
 
-        //TODO Update Database entries
+        //create sql query
+        String update_query = "UPDATE Job_Opening_Information SET " +
+                "opening_name = \'" + openingName + "\', " +
+                "open_spots = " + openSpots + ", " +
+                "salary = " + salary + ", " +
+                "job_title = \'" + jobTitle + "\', " +
+                "job_description = \'" + jobDescription + "\', " +
+                "required_qualifications = \'" + requiredQualifications + "\', " +
+                "additional_information = \'" + additionalInformation + "\', " +
+                "deadline = \'" + deadline + "\', " +
+                "reward_per_acceptance = " + rewardPerAcceptance + ", " +
+                "job_location = \'" + jobLocation + "\', " +
+                "working_hours = " + workingHours + " " +
+                "WHERE WBIG_process_ID = \'" + wbigProcessId + "\'";
 
+        //open connection and execute statement
+        Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
+        PreparedStatement statement = con.prepareStatement(update_query);
+        Integer index = statement.executeUpdate();
 
-
+        //Close connection
+        con.close();
     }
 }
