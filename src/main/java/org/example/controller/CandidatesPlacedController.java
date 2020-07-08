@@ -30,7 +30,7 @@ public class CandidatesPlacedController {
                 //.processInstanceVariableEquals("WBIG_process_ID", wbig_processInstanceId)
                 .setVariable("number_of_acceptances", candidateInfo.getNumber_of_acceptances())
                 .setVariable("payment_info", candidateInfo.getPayment_info())
-                .setVariable("wbig_processInstanceId", candidateInfo.getWBIG_processInstanceID())
+                //.setVariable("wbig_processInstanceId", candidateInfo.getWBIG_processInstanceID())
                 .processInstanceId(wplacm_processInstanceId)
                 .correlate();
 

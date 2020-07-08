@@ -46,7 +46,7 @@ public class JobOpeningController {
                 .processInstanceVariableEquals("wbig_processInstanceId", wbig_processInstanceId)
                 //.startProcessInstanceByKey("sid-9E969114-7F80-4315-A6D5-4D25DC5B40F1",
                         //Variables.createVariables()
-                .setVariable("WBIG_process_ID", wbig_processInstanceId)
+                .setVariable("wbig_processInstanceId", wbig_processInstanceId)
                 //.putValue("time_stamp", jobInfo.getTime_stamp())
                 //.setVariable("opening_information_id", jobInfo.getOpening_name())
                 .setVariable("openingName", jobInfo.getOpening_name())

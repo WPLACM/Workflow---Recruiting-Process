@@ -15,7 +15,6 @@ public class SendInvoiceDelegate implements JavaDelegate {
         String client_company = (String) delegateExecution.getVariable("new_client_company");
         String client_name = (String) delegateExecution.getVariable("client_name");
         String job_opening_info = (String) delegateExecution.getVariable("job_opening_info");
-        String wbig_process_id = (String) delegateExecution.getVariable("wbig_process_id");
         String time_stamp = (String) delegateExecution.getVariable("time_stamp");
         String job_opening = (String) delegateExecution.getVariable("job_opening");
         String openingid = (String) delegateExecution.getVariable("openingid");

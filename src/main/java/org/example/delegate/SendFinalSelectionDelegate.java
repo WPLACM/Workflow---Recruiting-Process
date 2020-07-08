@@ -22,7 +22,7 @@ public class SendFinalSelectionDelegate implements JavaDelegate {
 
         ApplicationMessageList final_selection = (ApplicationMessageList) typedApplicationCollection.getValue();
 
-        String wbig_processInstanceId = (String) delegateExecution.getVariable("WBIG_process_ID");
+        String wbig_processInstanceId = (String) delegateExecution.getVariable("wbig_processInstanceId");
 
         RestTemplate template = new RestTemplate();
         try {
