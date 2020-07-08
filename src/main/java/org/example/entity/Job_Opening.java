@@ -22,7 +22,7 @@ public class Job_Opening {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer jobOpeningId;
     private Date openingDate;
-    private Timestamp deadline;
+    private String deadline;
 
     @OneToMany(targetEntity = Application.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "jo_ap_fk", referencedColumnName = "jobOpeningId")

@@ -46,15 +46,19 @@ public class PublishJobOpeningController {
             return "index";
         }
         Job_Profile profile = current.getJob_profile();
+
+        //Adding Job_Opening specific variables
         model.addAttribute("id", id);
         DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm", Locale.ENGLISH);
         String openingDate = dateFormat.format(current.getOpeningDate());
-        String deadline = dateFormat.format(current.getDeadline());
+        String deadline = dateFormat.format(current.getDeadline());     //probably throws error
         model.addAttribute("deadline",deadline);
         model.addAttribute("openingDate", openingDate);
 
-        //todo:  add Job_Profile attributes
+        //Adding Job_Profile text to model
+        model.addAttribute("jobProfile", profile.getJobProfile());
 
+        //todo:  Job_Opening_Information to model
         return "jobOpening";
     }
 }

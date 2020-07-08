@@ -28,4 +28,6 @@ public class Application {
 
     private DateTime acceptedDate;  //optional to-do: set when final selection complete
     private DateTime rejectedDate;  //optional to-do: set when final selection complete
+
+
 }
