@@ -4,7 +4,7 @@ public class DebitAuthorization {
     //private String WBIG_processInstanceID;
     private String IBAN;
 
-    public DebitAuthorization(String WBIG_processInstanceID) { //String IBAN){
+    public DebitAuthorization(String IBAN) { //String IBAN){
         //this.WBIG_processInstanceID = WBIG_processInstanceID;
         this.IBAN = IBAN;
 
@@ -18,7 +18,7 @@ public class DebitAuthorization {
         this.WBIG_processInstanceID = WBIG_processInstanceID;
     }
     */
-     */
+
 
     public String getIBAN() {
         return IBAN;
