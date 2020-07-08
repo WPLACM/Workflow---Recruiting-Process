@@ -58,7 +58,7 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_08l2mrp" messageRef="Message_1oqplb4" />
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="Flow_09zysii" sourceRef="Event_0v0hatf" targetRef="Activity_1oq39c8" />
-    <bpmn:sendTask id="Activity_1oq39c8" name="Send Debit Authorization" camunda:class="org.example.wbigtesting.Test_Message_DA">
+    <bpmn:sendTask id="Activity_1oq39c8" name="Send Debit Authorization" camunda:class="org.example.delegate._wbigSendDebitAuthorizationDelegate">
       <bpmn:incoming>Flow_09zysii</bpmn:incoming>
       <bpmn:outgoing>Flow_0li8xpb</bpmn:outgoing>
     </bpmn:sendTask>
@@ -82,15 +82,15 @@
     <bpmn:sequenceFlow id="Flow_03eruz8" sourceRef="Event_0m4cloo" targetRef="Activity_09fl3yo" />
     <bpmn:sequenceFlow id="Flow_07ni3hd" sourceRef="Event_1b3ihzu" targetRef="Activity_0mq8r2f" />
     <bpmn:sequenceFlow id="Flow_0smioj2" sourceRef="Event_0t60f51" targetRef="Activity_1qakmzi" />
-    <bpmn:sendTask id="Activity_0mq8r2f" name="Send Order Cancel" camunda:class="org.example.wbigtesting.Test_Message_CancelledO">
+    <bpmn:sendTask id="Activity_0mq8r2f" name="Send Order Cancel" camunda:class="org.example.delegate._wbigSendCancelOrderDelegate">
       <bpmn:incoming>Flow_07ni3hd</bpmn:incoming>
       <bpmn:outgoing>Flow_1jfq01u</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:sendTask id="Activity_09fl3yo" name="Send Candidates placed" camunda:class="org.example.wbigtesting.Test_Message_Cplaced">
+    <bpmn:sendTask id="Activity_09fl3yo" name="Send Candidates placed" camunda:class="org.example.delegate._wbigSendCandidatesPlacedDelegate">
       <bpmn:incoming>Flow_03eruz8</bpmn:incoming>
       <bpmn:outgoing>Flow_0he8983</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:sendTask id="Activity_1qakmzi" name="Send Need for more Candidates" camunda:class="org.example.wbigtesting._Message_MoreC">
+    <bpmn:sendTask id="Activity_1qakmzi" name="Send Need for more Candidates" camunda:class="org.example.delegate._wbigSendMoreCandidatesDelegate">
       <bpmn:incoming>Flow_0smioj2</bpmn:incoming>
       <bpmn:outgoing>Flow_149lhwl</bpmn:outgoing>
     </bpmn:sendTask>

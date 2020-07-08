@@ -1,7 +1,7 @@
 package org.example.wbigtesting;
 
 import org.camunda.bpm.engine.RuntimeService;
-import org.example.controller.Controller_Cplaced;
+import org.example.controller.CandidatesPlacedController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +13,9 @@ import java.util.logging.Logger;
 @RestController
 //creates "mailbox" to send to, relative to root path
 @RequestMapping("/Billing")
-public class WBIG_Controller_Invoice {
+public class _wbigInvoiceController {
 
-    private final java.util.logging.Logger LOGGER = Logger.getLogger(Controller_Cplaced.class.getName());
+    private final java.util.logging.Logger LOGGER = Logger.getLogger(CandidatesPlacedController.class.getName());
 
     @Autowired
     private RuntimeService runtimeService;

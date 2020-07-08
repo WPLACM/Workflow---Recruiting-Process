@@ -12,9 +12,9 @@ import java.util.logging.Logger;
 @RestController
 //creates "mailbox" to send to, relative to root path
 @RequestMapping("/Billing")
-public class Controller_Cplaced {
+public class CandidatesPlacedController {
 
-    private final java.util.logging.Logger LOGGER = Logger.getLogger(Controller_Cplaced.class.getName());
+    private final java.util.logging.Logger LOGGER = Logger.getLogger(CandidatesPlacedController.class.getName());
 
     @Autowired
     private RuntimeService runtimeService;
