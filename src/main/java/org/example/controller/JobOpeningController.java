@@ -49,7 +49,6 @@ public class JobOpeningController {
         ProcessInstance processInstance = runtimeService
             .startProcessInstanceByMessage("JobOpeningInformation",
                 Variables.createVariables()
-                    .putValue("WBIG_TEMP", jobInfo.getWBIG_processInstanceID())
                     .putValue("wbig_processInstanceId", wbig_processInstanceId)
                     .putValue("openingName", jobInfo.getOpening_name())
                     .putValue("openSpots" , jobInfo.getOpen_spots_initial())
