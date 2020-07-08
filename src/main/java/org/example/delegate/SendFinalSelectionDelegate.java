@@ -29,14 +29,7 @@ public class SendFinalSelectionDelegate implements JavaDelegate {
         } catch (Exception e) {
             System.out.println("error post");
             System.out.println(e.getMessage());
-
         }
-
-
-        /*
-        String allCvJson = (String) delegateExecution.getVariable("allCvJson");
-        //send json where where?
-         */
     }
 
 
