@@ -14,18 +14,17 @@ public class JobOpeningInformation {
     /*
     Attributes
      */
-    private String wbig_process_ID;
-    //private String time_stamp;
+    private String WBIG_processInstanceID;
     private String opening_name;
     private Integer open_spots_initial;
     private Integer open_spots_remaining;
-    private Double salary; //double
+    private Double salary;
     private String job_title;
     private String job_description;
     private String required_qualifications;
     private String additional_information;
     private Date deadline;
-    private Double reward_per_acceptance; //double
+    private Double rewardPerAcceptance;
     private String job_location;
     private Integer working_hours;
 
@@ -34,8 +33,7 @@ public class JobOpeningInformation {
                                  String required_qualifications, String additional_information, Date deadline,
                                  Double reward_per_acceptance, String job_location, Integer working_hours){
 
-        this.wbig_process_ID = wbig_process_ID;
-        //this.time_stamp = time_stamp;
+        this.WBIG_processInstanceID = wbig_process_ID;
         this.opening_name = opening_name;
         this.open_spots_initial = open_spots_initial;
         this.open_spots_remaining = open_spots_remaining;
@@ -45,7 +43,7 @@ public class JobOpeningInformation {
         this.required_qualifications = required_qualifications;
         this.additional_information = additional_information;
         this.deadline = deadline;
-        this.reward_per_acceptance = reward_per_acceptance;
+        this.rewardPerAcceptance = reward_per_acceptance;
         this.job_location = job_location;
         this.working_hours = working_hours;
     }
