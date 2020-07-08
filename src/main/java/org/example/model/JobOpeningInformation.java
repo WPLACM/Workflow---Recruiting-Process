@@ -24,14 +24,14 @@ public class JobOpeningInformation {
     private String job_description;
     private String required_qualifications;
     private String additional_information;
-    private String deadline; //date
+    private Date deadline;
     private Integer reward_per_acceptance; //double
     private String job_location;
     private Integer working_hours;
 
     public JobOpeningInformation(String wbig_process_ID, String opening_name, Integer open_spots_initial,
                                  Integer open_spots_remaining, Integer salary, String job_title, String job_description,
-                                 String required_qualifications, String additional_information, String deadline,
+                                 String required_qualifications, String additional_information, Date deadline,
                                  Integer reward_per_acceptance, String job_location, Integer working_hours){
 
         this.wbig_process_ID = wbig_process_ID;

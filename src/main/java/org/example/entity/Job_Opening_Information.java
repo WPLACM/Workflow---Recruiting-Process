@@ -29,7 +29,7 @@ public class Job_Opening_Information {
     private String job_description;
     private String required_qualifications;
     private String additional_information;
-    private String deadline;
+    private Date deadline;
     private Integer reward_per_acceptance; //new from wbig
     private String job_location;
     private Integer working_hours; //double before

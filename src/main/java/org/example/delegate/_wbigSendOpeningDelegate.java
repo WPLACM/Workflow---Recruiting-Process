@@ -26,10 +26,9 @@ public class _wbigSendOpeningDelegate implements JavaDelegate {
         payload.setJob_description("Entry level developer who will spend his entire week on StackOverflow");
         payload.setRequired_qualifications("Java, Spring, sql");
         payload.setAdditional_information("Needs to love coding");
-        //SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
-        //Date date = format.parse("01-10-2020");
-        //payload.setDeadline(date); //send as date, converted and processed as string
-        payload.setDeadline("01-10-2020");
+        java.util.Date date = (java.util.Date) new SimpleDateFormat("yyyy-MM-dd").parse("2020-10-01");
+        payload.setDeadline(date);
+        //payload.setDeadline("01-10-2020");
         payload.setReward_per_acceptance(55);
         payload.setJob_location("Cologne");
         payload.setWorking_hours(40);

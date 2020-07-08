@@ -4,6 +4,7 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.ExecutionListener;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 public class clarifyJOListener implements ExecutionListener {
 
