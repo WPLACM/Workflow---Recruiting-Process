@@ -44,7 +44,7 @@ public class JobOpeningController {
         String strDeadline = dateFormat.format(jobInfo.getDeadline());
 
         String strSalary = jobInfo.getSalary().toString();
-        String strReward = jobInfo.getReward_per_acceptance().toString();
+        String strReward = jobInfo.getRewardPerAcceptance().toString();
 
         runtimeService.createMessageCorrelation("JobOpeningInformation")
                 .processInstanceId(wbig_processInstanceId)
@@ -77,7 +77,7 @@ public class JobOpeningController {
             PreparedStatement statement = con.prepareStatement(job_opening_insert, Statement.RETURN_GENERATED_KEYS);
 
             // Set values for insert
-            statement.setString(1, jobInfo.getWbig_process_ID());
+            statement.setString(1, jobInfo.getWBIG_processInstanceID());
             statement.setString(2, jobInfo.getOpening_name());
             statement.setInt(3, jobInfo.getOpen_spots_initial());
             statement.setInt(4, jobInfo.getOpen_spots_remaining());
@@ -88,7 +88,7 @@ public class JobOpeningController {
             statement.setString(9, jobInfo.getAdditional_information());
             //String datetest = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(jobInfo.getDeadline());
             statement.setString(10, strDeadline);
-            statement.setDouble(11, jobInfo.getReward_per_acceptance());
+            statement.setDouble(11, jobInfo.getRewardPerAcceptance());
             statement.setString(12, jobInfo.getJob_location());
             statement.setInt(13, jobInfo.getWorking_hours());
             statement.executeUpdate();

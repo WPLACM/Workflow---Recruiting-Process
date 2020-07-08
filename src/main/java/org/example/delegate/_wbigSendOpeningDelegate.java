@@ -14,10 +14,9 @@ public class _wbigSendOpeningDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
         RestTemplate template = new RestTemplate();
-
         JobOpeningInformation payload = new JobOpeningInformation();
 
-        payload.setWbig_process_ID(execution.getProcessInstanceId());
+        payload.setWBIG_processInstanceID(execution.getProcessInstanceId());
         payload.setOpen_spots_initial(10);
         payload.setOpen_spots_remaining(8);
         payload.setSalary(45000.00);
@@ -29,7 +28,7 @@ public class _wbigSendOpeningDelegate implements JavaDelegate {
         java.util.Date date = (java.util.Date) new SimpleDateFormat("yyyy-MM-dd").parse("2020-10-01");
         payload.setDeadline(date);
         //payload.setDeadline("01-10-2020");
-        payload.setReward_per_acceptance(55.50);
+        payload.setRewardPerAcceptance(55.50);
         payload.setJob_location("Cologne");
         payload.setWorking_hours(40);
         //add to database
