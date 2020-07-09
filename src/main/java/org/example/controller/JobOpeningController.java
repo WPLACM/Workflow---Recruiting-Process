@@ -66,6 +66,7 @@ public class JobOpeningController {
 
         // insert job opening information into db
 
+        /*
         try {
 
             Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
@@ -100,6 +101,8 @@ public class JobOpeningController {
             System.out.println(e.getErrorCode());
             System.out.println(e.getMessage());
         }
+
+         */
 
 
         return processInstance.getId();

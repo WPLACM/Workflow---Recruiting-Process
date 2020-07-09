@@ -36,7 +36,6 @@ public class Job_Opening_Information {
     private Integer working_hours; //double before
 
 
-    @OneToMany(targetEntity = Job_Profile.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "joi_jp_fk", referencedColumnName = "job_opening_information_id")
+    @OneToMany(mappedBy = "job_opening_information")
     private List<Job_Profile> job_profileList;
 }

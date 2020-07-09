@@ -20,6 +20,11 @@ public class Job_Profile {
     private String jobProfile;
 
 
+
+    @ManyToOne(targetEntity = Job_Opening_Information.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_JobOpeningInformationId", referencedColumnName = "index")
+    private Job_Opening_Information job_opening_information;
+
     //One Job Profile can have multiple job openings. Examplary case: Job openings to one job profile are posted on
     // different websites and have different deadlines which need to be maintained.
     @OneToMany(mappedBy = "job_profile")
