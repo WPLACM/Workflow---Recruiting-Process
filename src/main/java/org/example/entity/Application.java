@@ -5,10 +5,7 @@ import com.sun.istack.Nullable;
 import lombok.*;
 import org.joda.time.DateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -29,5 +26,7 @@ public class Application {
     private DateTime acceptedDate;  //optional to-do: set when final selection complete
     private DateTime rejectedDate;  //optional to-do: set when final selection complete
 
-
+    @ManyToOne(targetEntity = Job_Opening.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_jobOpeningId", referencedColumnName = "jobOpeningId")
+    private Job_Opening job_opening;
 }

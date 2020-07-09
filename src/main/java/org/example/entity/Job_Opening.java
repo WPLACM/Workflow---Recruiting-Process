@@ -24,14 +24,14 @@ public class Job_Opening {
     private Date openingDate;
     private String deadline;
 
-    @OneToMany(targetEntity = Application.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "jo_ap_fk", referencedColumnName = "jobOpeningId")
+    @OneToMany(mappedBy = "job_opening")
     private List<Application> applicationList ;
 
     @ManyToOne(targetEntity = Job_Profile.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "FK_JobProfileID", referencedColumnName = "jobProfileId")
     private Job_Profile job_profile;
 
+    //This has to be deleted    :Maxi 9.07 11:46
     @ManyToOne(targetEntity = Job_Opening_Information.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "jo_joi_fk", referencedColumnName = "job_opening_information_id")
     private Job_Opening_Information job_opening_information;
