@@ -1,6 +1,7 @@
 package org.example.delegate;
 
 import com.sun.mail.util.MailSSLSocketFactory;
+import org.camunda.bpm.engine.delegate.BpmnError;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
