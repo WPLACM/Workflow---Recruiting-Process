@@ -60,7 +60,6 @@ public class PublishJobOpeningController {
         if(current==null){
             return "index";
         }
-
         Job_Profile profile = current.getJob_profile();
         //Adding Job_Opening specific variables
         model.addAttribute("id", id);
@@ -70,10 +69,13 @@ public class PublishJobOpeningController {
         model.addAttribute("deadline",deadline);
         model.addAttribute("openingDate", openingDate);
 
-        //Adding Job_Profile text to model
         model.addAttribute("jobProfile", profile.getJobProfile());
+        //Adding Job_Profile text to model
+        model.addAttribute("jobTitle", profile.getJob_opening_information().getJob_title());
+        model.addAttribute("qualifications", profile.getJob_opening_information().getRequired_qualifications());
+        model.addAttribute("salary", profile.getJob_opening_information().getSalary());
+        model.addAttribute("jobLocation", profile.getJob_opening_information().getJob_location());
 
-        //todo:  Job_Opening_Information to model
         return "jobOpening";
     }
 }
