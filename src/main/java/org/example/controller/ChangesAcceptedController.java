@@ -21,11 +21,8 @@ public class ChangesAcceptedController {
 
     // specifes mailbox path, {id} to correlate with specific process instance
     @PostMapping(path = "/ChangesAccepted/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String continueBillingProcess (@RequestBody JobOpeningInformation jobInfo, @PathVariable ("id") String wplacm_processInstanceId) throws SQLException {
+    public String continueBillingProcess (@RequestBody Boolean dummy, @PathVariable ("id") String wplacm_processInstanceId) throws SQLException {
 
-        if (wplacm_processInstanceId == null) {
-            wplacm_processInstanceId = jobInfo.getWBIG_processInstanceID();
-        }
 
         runtimeService.createMessageCorrelation("ChangesAccepted")
                 //.processInstanceVariableEquals("WBIG_process_ID", wbig_processInstanceId)
