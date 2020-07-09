@@ -70,7 +70,7 @@ public class JobOpeningController {
 
             Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
             String job_opening_insert =
-                    "INSERT INTO Job_Opening_Information ( wbig_processInstanceId, opening_name, open_spots, open_spots_remaining," +
+                    "INSERT INTO Job_Opening_Information ( WBIG_process_ID, opening_name, open_spots, open_spots_remaining," +
                             " salary, job_title, job_description, required_qualifications, additional_information, deadline," +
                             " reward_per_acceptance, job_location, working_hours) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
