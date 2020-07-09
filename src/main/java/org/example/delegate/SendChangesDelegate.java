@@ -32,7 +32,6 @@ public class SendChangesDelegate implements JavaDelegate {
 
         //set endpoint and post object
         String EndpointUrl = new wbigRestEndpoints().getCurrent_URL();
-        wbig_processInstanceId = template.postForObject(EndpointUrl + "wbig/xxx/" + wbig_processInstanceId, jobInfo, String.class);
-        //TODO insert url of wbig controller
+        wbig_processInstanceId = template.postForObject(EndpointUrl + "wbig/jobopeningreply/" + wbig_processInstanceId, jobInfo, String.class);
     }
 }
