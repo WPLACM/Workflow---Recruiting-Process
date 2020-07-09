@@ -24,7 +24,6 @@ public class DebitAuthorizationController {
     public String receiveDebitAuthorization (@RequestBody DebitAuthorization daInfo, @PathVariable ("id") String wplacm_processInstanceId) throws SQLException {
 
 
-
         //correlation specification via message name "DebitAuthorizationMessage". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("DebitAuthorizationMessage")
                 //.processInstanceVariableEquals("wplacm_processInstanceId", wbig_processInstanceId)
