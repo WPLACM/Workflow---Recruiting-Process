@@ -23,6 +23,10 @@ public class ChangesDeclinedController {
     @PostMapping(path = "/ChangesDeclined/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public String continueBillingProcess (@RequestBody JobOpeningInformation jobInfo, @PathVariable ("id") String wplacm_processInstanceId) throws SQLException {
 
+        if (wplacm_processInstanceId == null) {
+            wplacm_processInstanceId = jobInfo.getWBIG_processInstanceID();
+        }
+
         //correlation specification via message name "CandidatesPlacedMessage". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("ChangesDeclined")
                 //.processInstanceVariableEquals("WBIG_process_ID", wbig_processInstanceId)
