@@ -13,7 +13,7 @@ public class CreateJobProfileListener implements ExecutionListener  {
 
         //todo: insert job_opening_id into FK key column
         String insert_query =
-                "INSERT INTO Job_Profile ( job_Profile, FK_JobOpeningInformationId) VALUES (?,?)";
+                "INSERT INTO Job_Profile ( job_Profile, FK_Job_Opening_Information_Id) VALUES (?,?)";
                 //"(\'" + jobProfile + "\')";
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         PreparedStatement statement = con.prepareStatement(insert_query, Statement.RETURN_GENERATED_KEYS);
