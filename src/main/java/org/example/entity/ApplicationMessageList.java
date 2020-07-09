@@ -11,6 +11,7 @@ import org.example.entity.ApplicationMessage;
 @Getter
 @Setter
 public class ApplicationMessageList {
+
     private List<ApplicationMessage> applicationList;
 
     public ApplicationMessageList(){

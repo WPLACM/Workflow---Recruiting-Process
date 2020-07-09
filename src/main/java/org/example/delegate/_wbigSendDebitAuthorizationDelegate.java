@@ -17,7 +17,7 @@ public class _wbigSendDebitAuthorizationDelegate implements JavaDelegate{
         RestTemplate template = new RestTemplate();
 
         String wplacm_processInstanceId = (String) delegateExecution.getVariable("wplacm_processInstanceId");
-        DebitAuthorization da = new DebitAuthorization(delegateExecution.getProcessInstanceId(), "DE00121545487");
+        DebitAuthorization da = new DebitAuthorization("DE00121545487");
 
 
         wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/DA/" + wplacm_processInstanceId, da, String.class);
