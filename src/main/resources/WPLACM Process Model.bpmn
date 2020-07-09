@@ -849,7 +849,7 @@
       <incoming>Flow_1yjvo60</incoming>
       <outgoing>Flow_17ippkg</outgoing>
     </userTask>
-    <sendTask id="Activity_1r0r7oq" name="Send Updates">
+    <sendTask id="Activity_1r0r7oq" name="Send Updates" camunda:class="org.example.delegate.SendChangesDelegate">
       <incoming>Flow_17ippkg</incoming>
       <outgoing>Flow_0ce36gp</outgoing>
     </sendTask>
