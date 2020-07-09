@@ -19,14 +19,14 @@ public class SendChangesDelegate implements JavaDelegate {
         jobInfo.setWBIG_processInstanceID(wbig_processInstanceId);
         jobInfo.setOpening_name((String) execution.getVariable("openingName"));
         jobInfo.setOpen_spots_initial(Math.toIntExact((Long)execution.getVariable("openSpots")));
-        jobInfo.setOpen_spots_remaining(Math.toIntExact((Long) execution.getVariable("openSpotsRemaining")));
-        jobInfo.setSalary((Double) execution.getVariable("salary"));
+        jobInfo.setOpen_spots_remaining((Integer) execution.getVariable("openSpotsRemaining"));
+        jobInfo.setSalary(Double.valueOf((String) execution.getVariable("salary")));
         jobInfo.setJob_title((String) execution.getVariable("jobTitle"));
         jobInfo.setJob_description((String) execution.getVariable("jobDescription"));
         jobInfo.setRequired_qualifications((String) execution.getVariable("requiredQualifications"));
         jobInfo.setAdditional_information((String) execution.getVariable("additionalInformation"));
         jobInfo.setDeadline((Date) execution.getVariable("deadline"));
-        jobInfo.setRewardPerAcceptance((Double) execution.getVariable("paymentInformationAcceptances"));
+        jobInfo.setRewardPerAcceptance(Double.valueOf((String) execution.getVariable("paymentInformationAcceptances")));
         jobInfo.setJob_location((String) execution.getVariable("jobLocation"));
         jobInfo.setWorking_hours(Math.toIntExact((Long) execution.getVariable("workingHours")));
 
