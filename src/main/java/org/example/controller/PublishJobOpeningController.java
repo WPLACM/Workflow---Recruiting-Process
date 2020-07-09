@@ -3,6 +3,7 @@ package org.example.controller;
 import org.example.entity.Job_Opening;
 import org.example.entity.Job_Profile;
 import org.example.repository.Job_Opening_Repository;
+import org.example.repository.Job_Profile_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +22,21 @@ import java.util.Locale;
 public class PublishJobOpeningController {
     @Autowired
     private Job_Opening_Repository repository;
+
+    @Autowired
+    private Job_Profile_Repository job_profile_repository;
     
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getAllEntries(){
-        //List<Job_Opening> jobopenings = repository.findAll();
-        List<Job_Opening> jobopenings = repository.findAllByOrderByJobOpeningIdDesc();
-        return ResponseEntity.ok(jobopenings);
+    public String getAllEntries(Model model){
+        List<Job_Opening> jobopenings = repository.findAllByOrderByJobOpeningIdDesc();  //Newest job openings
+        //return ResponseEntity.ok(jobopenings);
+        int i=0;
+        if(jobopenings.get(0)!=null){
+            //model.addAttribute(jobopenings.get(0).getJob_profile().)  //todo: change relation between Jop opening information and job profile
+        }
+
+
+        return "index";
     }
 
     //called by "Publish job opening" service task via http-request
@@ -34,7 +44,8 @@ public class PublishJobOpeningController {
     public ResponseEntity<?> create(@RequestBody Job_Opening job_opening){
         Date date = new Date();
         job_opening.setOpeningDate(date);
-        job_opening = repository.save(job_opening);
+        job_opening = repository.save(job_opening); //No foreign key saved
+
         return ResponseEntity.ok(job_opening);
     }
 
@@ -45,8 +56,8 @@ public class PublishJobOpeningController {
         if(current==null){
             return "index";
         }
-        Job_Profile profile = current.getJob_profile();
 
+        Job_Profile profile = current.getJob_profile();
         //Adding Job_Opening specific variables
         model.addAttribute("id", id);
         DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm", Locale.ENGLISH);

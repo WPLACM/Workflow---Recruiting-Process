@@ -959,6 +959,7 @@
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
         <signavio:signavioMetaData metaKey="vorgngerprozesse" metaValue="[]" />
+        <camunda:executionListener class="org.example.listener.jobOpeningInformationReceivedListener" event="end" />
       </extensionElements>
       <outgoing>sid-9EA1DAA7-0674-4034-8781-3464A54B3013</outgoing>
       <messageEventDefinition id="sid-3d077e23-a8ce-4031-abba-b86b365799d7" messageRef="Message_14lnuod" />

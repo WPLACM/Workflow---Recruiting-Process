@@ -10,6 +10,7 @@ public class CreateJobProfileListener implements ExecutionListener  {
     public void notify(DelegateExecution execution) throws Exception {
         String jobProfile = (String) execution.getVariable("jobProfile");
 
+        //todo: insert job_opening_id into FK key column
         String instert_query = "INSERT INTO Job_Profile (job_Profile) VALUES " +
                 "(\'" + jobProfile + "\')";
 

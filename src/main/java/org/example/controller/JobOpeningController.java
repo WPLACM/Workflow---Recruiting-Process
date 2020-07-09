@@ -65,6 +65,7 @@ public class JobOpeningController {
                     .putValue("workingHours" , jobInfo.getWorking_hours()));
 
         // insert job opening information into db
+
         try {
 
             Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
@@ -91,10 +92,15 @@ public class JobOpeningController {
             statement.setString(12, jobInfo.getJob_location());
             statement.setInt(13, jobInfo.getWorking_hours());
             statement.executeUpdate();
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                long id = generatedKeys.getLong(1);
+            }
         } catch (java.sql.SQLException e){
             System.out.println(e.getErrorCode());
             System.out.println(e.getMessage());
         }
+
 
         return processInstance.getId();
     }
