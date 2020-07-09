@@ -22,7 +22,6 @@ public class Job_Opening {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer jobOpeningId;
     private Date openingDate;
-    private String deadline;
 
     @OneToMany(mappedBy = "job_opening")
     private List<Application> applicationList ;

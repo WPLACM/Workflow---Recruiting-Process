@@ -3,6 +3,7 @@ package org.example.controller;
 import org.example.entity.Application;
 import org.example.entity.Job_Opening;
 import org.example.entity.Job_Profile;
+import org.example.model.JobOpeningReceiver;
 import org.example.repository.Job_Opening_Repository;
 import org.example.repository.Job_Profile_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,10 +46,14 @@ public class PublishJobOpeningController {
     }
     //called by "Publish job opening" service task via http-request
     @RequestMapping(value = "/", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> create(@RequestBody Job_Opening job_opening){
+    public ResponseEntity<?> create(@RequestBody JobOpeningReceiver job_opening) throws Exception{
         Date date = new Date();
-        job_opening.setOpeningDate(date);
-        job_opening = repository.save(job_opening); //No foreign key saved
+        String insert_query =
+                "INSERT INTO Job_Opening (FK_JobProfileID) VALUES (?)";
+        Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
+        PreparedStatement statement = con.prepareStatement(insert_query, Statement.RETURN_GENERATED_KEYS);
+        statement.setInt(1, job_opening.getFK_JobProfileID());
+        Integer index = statement.executeUpdate();
 
         return ResponseEntity.ok(job_opening);
     }
@@ -65,12 +74,12 @@ public class PublishJobOpeningController {
         model.addAttribute("id", id);
         DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm", Locale.ENGLISH);
         String openingDate = dateFormat.format(current.getOpeningDate());
-        String deadline = dateFormat.format(current.getDeadline());     //probably throws error
+        String deadline = dateFormat.format(profile.getJob_opening_information().getDeadline());     //probably throws error
         model.addAttribute("deadline",deadline);
         model.addAttribute("openingDate", openingDate);
-
-        model.addAttribute("jobProfile", profile.getJobProfile());
         //Adding Job_Profile text to model
+        model.addAttribute("jobProfile", profile.getJobProfile());
+
         model.addAttribute("jobTitle", profile.getJob_opening_information().getJob_title());
         model.addAttribute("qualifications", profile.getJob_opening_information().getRequired_qualifications());
         model.addAttribute("salary", profile.getJob_opening_information().getSalary());

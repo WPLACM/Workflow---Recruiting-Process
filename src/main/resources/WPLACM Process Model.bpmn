@@ -793,8 +793,7 @@
               </camunda:map>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">{
-"jo_joi_fk": ${jobProfileId}
-"deadline": ${deadline}
+"FK_JobProfileID": ${jobProfileId},
 }</camunda:inputParameter>
             <camunda:outputParameter name="test">#{response}</camunda:outputParameter>
           </camunda:inputOutput>

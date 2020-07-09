@@ -53,7 +53,7 @@ import org.camunda.bpm.engine.task.TaskQuery;
 /**
  * Creates demo credentials to be used in the invoice showcase.
  *
- * @author drobisch
+ * @author drobisch und Maxi
  */
 public class DemoDataGenerator {
 
