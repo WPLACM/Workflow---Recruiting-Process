@@ -35,7 +35,7 @@ public class CancelOrderController {
                 .correlate();
 
         System.out.println("Order cancel received");
-        return wbig_processInstanceId;
+        return wplacm_processInstanceId;
     }
 
 }
