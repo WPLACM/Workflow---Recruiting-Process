@@ -21,7 +21,7 @@ public class MoreCandidatesController {
 
     // specifes mailbox path, {id} to correlate with specific process instance
     @PostMapping(path = "/MoreCandidates/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String continueBillingProcess (@RequestBody MoreCandidates candidateInfo, @PathVariable ("id") String wplacm_processInstanceId) throws SQLException {
+    public String continueBillingProcess (@RequestBody int dummy, @PathVariable ("id") String wplacm_processInstanceId) throws SQLException {
 
 
         runtimeService.createMessageCorrelation("MoreCandidatesMessage")
