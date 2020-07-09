@@ -26,7 +26,7 @@ public class ChangesAcceptedController {
         if (wplacm_processInstanceId == null) {
             wplacm_processInstanceId = jobInfo.getWBIG_processInstanceID();
         }
-        //correlation specification via message name "CandidatesPlacedMessage". This needs to be inserted as message name for catching event in bpmn-model.
+
         runtimeService.createMessageCorrelation("ChangesAccepted")
                 //.processInstanceVariableEquals("WBIG_process_ID", wbig_processInstanceId)
                 //.setVariable("wbig_processInstanceId", candidateInfo.getWBIG_processInstanceID())
