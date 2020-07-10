@@ -19,8 +19,9 @@ spring:
     jpa:
       repositories:
         enabled: true
-
-spring.h2.console.enabled: true
+  h2:
+    console:
+      enabled: true
 camunda.bpm:
   admin-user:
     id: demo
