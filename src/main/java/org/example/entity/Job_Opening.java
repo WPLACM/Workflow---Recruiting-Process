@@ -8,8 +8,8 @@ import lombok.ToString;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 @Data   //generate Getter and Setter
@@ -27,7 +27,7 @@ public class Job_Opening {
     private List<Application> applicationList ;
 
     @ManyToOne(targetEntity = Job_Profile.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "FK_JobProfileID", referencedColumnName = "jobProfileId")
+    @JoinColumn(name = "FK_JobProfileId", referencedColumnName = "jobProfileId")
     private Job_Profile job_profile;
 
     //This has to be deleted    :Maxi 9.07 11:46

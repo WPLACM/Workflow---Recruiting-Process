@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class JobOpeningReceiver {
-    int FK_JobProfileID;
+    private int jobProfileId;
 }

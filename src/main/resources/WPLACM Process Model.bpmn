@@ -786,15 +786,17 @@
         <camunda:connector>
           <camunda:inputOutput>
             <camunda:inputParameter name="url">http://localhost:8080/job-openings/</camunda:inputParameter>
-            <camunda:inputParameter name="method">PUT</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
             <camunda:inputParameter name="headers">
               <camunda:map>
                 <camunda:entry key="Content-Type">application/json</camunda:entry>
               </camunda:map>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">{
-"FK_JobProfileID": ${jobProfileId},
-}</camunda:inputParameter>
+  "jobProfileId": ${jobProfileId}
+}
+
+</camunda:inputParameter>
             <camunda:outputParameter name="test">#{response}</camunda:outputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>http-connector</camunda:connectorId>

@@ -13,13 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -45,16 +41,18 @@ public class PublishJobOpeningController {
         return "index";
     }
     //called by "Publish job opening" service task via http-request
-    @RequestMapping(value = "/", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody JobOpeningReceiver job_opening) throws Exception{
-        Date date = new Date();
+        //Integer i = job_opening.getTemp();
+        java.util.Date utildate = new java.util.Date();
+        java.sql.Date date = new java.sql.Date(utildate.getTime());
         String insert_query =
-                "INSERT INTO Job_Opening (FK_JobProfileID) VALUES (?)";
+                "INSERT INTO Job_Opening (FK_Job_Profile_ID,opening_Date) VALUES (?,?)";
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         PreparedStatement statement = con.prepareStatement(insert_query, Statement.RETURN_GENERATED_KEYS);
-        statement.setInt(1, job_opening.getFK_JobProfileID());
+        statement.setInt(1, job_opening.getJobProfileId());
+        statement.setDate(2, date);
         Integer index = statement.executeUpdate();
-
         return ResponseEntity.ok(job_opening);
     }
 
