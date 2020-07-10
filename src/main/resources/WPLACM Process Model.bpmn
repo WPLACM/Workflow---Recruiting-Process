@@ -920,7 +920,7 @@
         <camunda:connector>
           <camunda:inputOutput>
             <camunda:inputParameter name="url">http://wfm-group-2.uni-muenster.de/job-openings/</camunda:inputParameter>
-            <camunda:inputParameter name="method">PUT</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
             <camunda:inputParameter name="headers">
               <camunda:map>
                 <camunda:entry key="Content-Type">application/json</camunda:entry>
