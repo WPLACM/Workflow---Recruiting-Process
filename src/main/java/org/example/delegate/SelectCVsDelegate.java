@@ -45,7 +45,7 @@ public class SelectCVsDelegate implements JavaDelegate {
             while(rs.next()) {
                 ApplicationMessage cv = new ApplicationMessage();
 
-                cv.setApplicant_id(rs.getInt("candidate_id"));
+                cv.setApplicant_id(rs.getInt("application_id"));
                 cv.setApplicant_name(rs.getString("first_name") + " " +
                         rs.getString("last_name"));
                 cv.setWplacm_rating(rs.getInt("rating"));
