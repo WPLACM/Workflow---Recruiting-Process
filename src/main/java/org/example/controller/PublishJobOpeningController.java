@@ -53,6 +53,8 @@ public class PublishJobOpeningController {
         statement.setInt(1, job_opening.getJobProfileId());
         statement.setDate(2, date);
         Integer index = statement.executeUpdate();
+        System.out.println("insert job opening id:");
+        System.out.println(index);
         return ResponseEntity.ok(job_opening);
     }
 
