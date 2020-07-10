@@ -77,13 +77,19 @@ public class CreateCandidateListDelegate implements JavaDelegate {
      */
     public void createTestEntries() throws SQLException {
         String insert_query1 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
-                "VALUES (12, 'Donald', 'Duck', 'wplacmrecruiting@gmail.com', 'Java', 'Cologne')";
+                "VALUES (12, 'Donald', 'Duck', 'wplacmrecruiting@gmail.com', 'Camunda', 'Muenster')";
         String insert_query2 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
-                "VALUES (2, 'Max', 'Mustermann', 'wplacmrecruiting@gmail.com', 'Spring', 'Cologne')";
+                "VALUES (2, 'Max', 'Mustermann', 'wplacmrecruiting@gmail.com', 'Java, Spring', 'Muenster')";
         String insert_query3 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
-                "VALUES (3, 'Dieter', 'Duck', 'wplacmrecruiting@gmail.com', 'Java', 'Muenster')";
+                "VALUES (3, 'Lisa', 'Cain', 'wplacmrecruiting@gmail.com', 'M.Sc. Computer Science', 'Muenster')";
         String insert_query4 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
-                "VALUES (4, 'Tim', 'Tom', 'wplacmrecruiting@gmail.com', 'Java, Spring', 'Cologne')";
+                "VALUES (4, 'John', 'Doe', 'wplacmrecruiting@gmail.com', 'Java, M.Sc. Computer Science', 'Muenster')";
+        String insert_query5 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
+                "VALUES (5, 'Peter', 'Parker', 'wplacmrecruiting@gmail.com', 'Python', 'Cologne')";
+        String insert_query6 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
+                "VALUES (6, 'Eva', 'Scott', 'wplacmrecruiting@gmail.com', 'Python, M.Sc. Computer Science', 'Berlin')";
+        String insert_query7 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
+                "VALUES (7, 'Anna', 'Mustermann', 'wplacmrecruiting@gmail.com', 'Java', 'Muenster')";
 
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         Statement query = con.createStatement();
@@ -91,6 +97,9 @@ public class CreateCandidateListDelegate implements JavaDelegate {
         query.executeUpdate(insert_query2);
         query.executeUpdate(insert_query3);
         query.executeUpdate(insert_query4);
+        query.executeUpdate(insert_query5);
+        query.executeUpdate(insert_query6);
+        query.executeUpdate(insert_query7);
         query.close();
         con.close();
     }

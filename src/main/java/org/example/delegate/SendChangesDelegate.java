@@ -6,6 +6,8 @@ import org.example.model.JobOpeningInformation;
 import org.example.utility.wbigRestEndpoints;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SendChangesDelegate implements JavaDelegate {
@@ -25,10 +27,10 @@ public class SendChangesDelegate implements JavaDelegate {
         jobInfo.setJob_description((String) execution.getVariable("jobDescription"));
         jobInfo.setRequired_qualifications((String) execution.getVariable("requiredQualifications"));
         jobInfo.setAdditional_information((String) execution.getVariable("additionalInformation"));
-        jobInfo.setDeadline((Date) execution.getVariable("deadlineDateFormat"));
         jobInfo.setRewardPerAcceptance(Double.valueOf((String) execution.getVariable("paymentInformationAcceptances")));
         jobInfo.setJob_location((String) execution.getVariable("jobLocation"));
         jobInfo.setWorking_hours(Math.toIntExact((Long) execution.getVariable("workingHours")));
+        jobInfo.setDeadline(new SimpleDateFormat("dd/MM/yyyy").parse((String)execution.getVariable("deadline")));
 
         //set endpoint and post object
         String EndpointUrl = new wbigRestEndpoints().getCurrent_URL();

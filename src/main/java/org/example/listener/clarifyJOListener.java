@@ -4,11 +4,11 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.ExecutionListener;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class clarifyJOListener implements ExecutionListener {
-
-
     @Override
     public void notify(DelegateExecution execution) throws Exception {
         String jobTitle = (String) execution.getVariable("jobTitle");
@@ -23,10 +23,13 @@ public class clarifyJOListener implements ExecutionListener {
         Long openSpotsL = (Long) execution.getVariable("openSpots");
         Integer openSpots = openSpotsL.intValue();
         String additionalInformation = (String) execution.getVariable("additionalInformation");
-        String deadline = (String) execution.getVariable("deadline");
+        Date date = new SimpleDateFormat("dd/MM/yyyy").parse((String)execution.getVariable("deadline"));
+        DateFormat test = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        String deadline = test.format(date);
+
         String strReward = (String) execution.getVariable("rewardPerAcceptance");
         Double rewardPerAcceptance = Double.parseDouble(strReward);
-        String wbigProcessId = (String) execution.getVariable("WBIG_process_ID");
+        String wbigProcessId = (String) execution.getVariable("wbig_processInstanceId");
 
         //create sql query
         String update_query = "UPDATE Job_Opening_Information SET " +
