@@ -27,16 +27,11 @@ public class _wbigSendOpeningDelegate implements JavaDelegate {
         payload.setAdditional_information("Needs to love coding");
         java.util.Date date = (java.util.Date) new SimpleDateFormat("dd/MM/yyyy").parse("01/10/2020");
         payload.setDeadline(date);
-        //payload.setDeadline("01-10-2020");
         payload.setRewardPerAcceptance(55.50);
         payload.setJob_location("Cologne");
         payload.setWorking_hours(40);
-        //add to database
 
         execution.setVariable("open_spots_remaining", execution.getVariable("open_spots"));
         String wbig_processInstanceId = template.postForObject("http://localhost:8080/jobOpening/start/" + execution.getProcessInstanceId(), payload, String.class);
-        //execution.setVariable("wbig_processInstanceId", wbig_processInstanceId); //needed here?
-
-        //System.out.println("WBIG Prozess ID: "+ execution.getProcessInstanceId());
     }
 }
