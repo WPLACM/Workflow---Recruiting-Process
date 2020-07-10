@@ -39,7 +39,7 @@ public class SelectCVsDelegate implements JavaDelegate {
             Statement query = con.createStatement();
             ResultSet rs = query.executeQuery( applications_query);
 
-            String wbig_id = (String) delegateExecution.getVariable("WBIG_process_ID");
+            String wbig_id = (String) delegateExecution.getVariable("wbig_processInstanceId");
             String wplacm_id = delegateExecution.getProcessInstanceId();
 
             while(rs.next()) {

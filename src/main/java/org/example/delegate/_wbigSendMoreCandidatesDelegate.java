@@ -15,15 +15,12 @@ public class _wbigSendMoreCandidatesDelegate implements JavaDelegate{
     public void execute(DelegateExecution delegateExecution) throws Exception {
         RestTemplate template = new RestTemplate();
 
-        // TESTING
-        //delegateExecution.setVariable("wplacm_processInstanceId", delegateExecution.getProcessInstanceId());
-        // TESTING
-        //String wplacm_processInstanceId = (String) delegateExecution.getVariable("wplacm_processInstanceId");
+        String wplacm_processInstanceId = (String) delegateExecution.getVariable("wplacm_processInstanceId");
 
         MoreCandidates moreC = new MoreCandidates(delegateExecution.getProcessInstanceId());
 
 
-        String wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/MoreCandidates/" + delegateExecution.getProcessInstanceId(), moreC, String.class);
+        wplacm_processInstanceId = template.postForObject("http://localhost:8080/Billing/MoreCandidates/" + wplacm_processInstanceId, moreC, String.class);
         //delegateExecution.setVariable("wplacm_processInstanceId", wplacm_processInstanceId);
     }
 }

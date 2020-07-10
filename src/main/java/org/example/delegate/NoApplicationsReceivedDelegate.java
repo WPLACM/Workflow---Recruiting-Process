@@ -27,10 +27,10 @@ public class NoApplicationsReceivedDelegate implements JavaDelegate {
         JsonValue client_company = delegateExecution.getVariableTyped("new_client_company");
         String client_name = client_company.getValue().prop("name").stringValue();
         JsonValue job_opening_info = delegateExecution.getVariableTyped("new_job_opening_information");
-        String wbig_process_id = job_opening_info.getValue().prop("WBIG_process_ID").stringValue();
+        String wbig_processInstanceId = job_opening_info.getValue().prop("wbig_processInstanceId").stringValue();
         String time_stamp = job_opening_info.getValue().prop("time_stamp").stringValue();
         String noapplicationsJSON = "{\"WPLACM_process_ID\" : \"ID\","
-                + "\"WBIG_process_ID\" : \"" + wbig_process_id + "\","
+                + "\"WBIG_process_ID\" : \"" + wbig_processInstanceId + "\","
                 + "\"time_stamp\" : \"" + time_stamp + "\","
                 + "\"message\" : \" Dear " + client_name + ", we are very sorry that " +
                 "we were not able to find any suitable candidates for you. Our apologies. " +

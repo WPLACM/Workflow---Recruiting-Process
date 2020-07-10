@@ -21,19 +21,17 @@ public class MoreCandidatesController {
 
     // specifes mailbox path, {id} to correlate with specific process instance
     @PostMapping(path = "/MoreCandidates/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String continueBillingProcess (@RequestBody MoreCandidates candidateInfo, @PathVariable ("id") String wbig_processInstanceId) throws SQLException {
+    public String continueBillingProcess (@RequestBody int dummy, @PathVariable ("id") String wplacm_processInstanceId) throws SQLException {
 
 
-
-        //correlation specification via message name "MoreCandidatesMessage". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("MoreCandidatesMessage")
                 //.processInstanceVariableEquals("wplacm_processInstanceId", wbig_processInstanceId)
-                .setVariable("wbig_processInstanceId", wbig_processInstanceId)
-                //.processInstanceId(candidateInfo.getWBIG_processInstanceID())
+                //.setVariable("wbig_processInstanceId", wplacm_processInstanceId)
+                .processInstanceId(wplacm_processInstanceId)
                 .correlate();
 
         System.out.println("Need for more candidates received");
-        return wbig_processInstanceId;
+        return wplacm_processInstanceId;
     }
 
 }

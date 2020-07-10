@@ -40,7 +40,7 @@ public class JobOpeningController {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         startCreateUsers(processEngine);
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String strDeadline = dateFormat.format(jobInfo.getDeadline());
 
         String strSalary = jobInfo.getSalary().toString();
@@ -87,8 +87,8 @@ public class JobOpeningController {
             statement.setString(7, jobInfo.getJob_description());
             statement.setString(8, jobInfo.getRequired_qualifications());
             statement.setString(9, jobInfo.getAdditional_information());
-            //String datetest = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(jobInfo.getDeadline());
-            statement.setString(10, strDeadline);
+            String dateTemp = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(jobInfo.getDeadline());
+            statement.setString(10, dateTemp);
             statement.setDouble(11, jobInfo.getRewardPerAcceptance());
             statement.setString(12, jobInfo.getJob_location());
             statement.setInt(13, jobInfo.getWorking_hours());

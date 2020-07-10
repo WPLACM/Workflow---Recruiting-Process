@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 @RestController
 //creates "mailbox" to send to, relative to root path
-@RequestMapping("/Billing")
+@RequestMapping("/wbig")
 public class _wbigInvoiceController {
 
     private final java.util.logging.Logger LOGGER = Logger.getLogger(CandidatesPlacedController.class.getName());
@@ -21,10 +21,10 @@ public class _wbigInvoiceController {
     private RuntimeService runtimeService;
 
     // specifes mailbox path, {id} to correlate with specific process instance
-    @PostMapping(path = "/Invoice/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String receiveInvoice (@RequestBody Invoice invInfo, @PathVariable ("id") String wbig_processInstanceId) throws SQLException {
+    @PostMapping(path = "big_billingSuff/" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String receiveInvoice (@RequestBody Invoice invInfo) throws SQLException {
 
-
+        System.out.print(invInfo.getWPLACM_processInstanceID());
 
         //correlation specification via message name "Invoice". This needs to be inserted as message name for catching event in bpmn-model.
         runtimeService.createMessageCorrelation("Invoice")
@@ -41,8 +41,9 @@ public class _wbigInvoiceController {
                 .setVariable("gross" , invInfo.getGross())
                 .setVariable("net" , invInfo.getNet())
                 .setVariable("sales_tax" , invInfo.getSales_tax())
-                .setVariable("wplacm_processInstanceId", invInfo.getWPLACM_processInstanceID())
-                .processInstanceId(wbig_processInstanceId)
+                //.setVariable("wplacm_processInstanceId", invInfo.getWPLACM_processInstanceID())
+                //Inserted the WBIG Proces ID, name just differs
+                .processInstanceId(invInfo.getWPLACM_processInstanceID())
                 .correlate();
 
         System.out.println("Invoice received");
