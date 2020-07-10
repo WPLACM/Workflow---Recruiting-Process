@@ -362,6 +362,7 @@
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
         <signavio:signavioMetaData metaKey="vorgngerprozesse" metaValue="[]" />
+        <camunda:executionListener class="org.example.listener.jobOpeningInformationReceivedListener" event="end" />
       </extensionElements>
       <outgoing>sid-9EA1DAA7-0674-4034-8781-3464A54B3013</outgoing>
       <messageEventDefinition id="sid-3d077e23-a8ce-4031-abba-b86b365799d7" messageRef="Message_14lnuod" />
@@ -918,7 +919,7 @@
       <extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="url">http://localhost:8080/job-openings/</camunda:inputParameter>
+            <camunda:inputParameter name="url">http://wfm-group-2.uni-muenster.de/job-openings/</camunda:inputParameter>
             <camunda:inputParameter name="method">PUT</camunda:inputParameter>
             <camunda:inputParameter name="headers">
               <camunda:map>
