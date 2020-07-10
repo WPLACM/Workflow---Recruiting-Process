@@ -17,7 +17,7 @@ public class PublishJobOpeningEndListener implements ExecutionListener {
         Statement query = con.createStatement();
         ResultSet rs = query.executeQuery( count_query);
         if(rs.next()) {
-            delegateExecution.setVariable("openingId", rs.getInt("jobOpeningId"));
+            delegateExecution.setVariable("openingId", rs.getInt("job_Opening_Id"));
         }
     }
 }
