@@ -1,5 +1,7 @@
 package org.example.controller;
 
+import org.camunda.connect.Connectors;
+import org.camunda.connect.httpclient.HttpConnector;
 import org.example.entity.Application;
 import org.example.entity.Job_Opening;
 import org.example.entity.Job_Profile;
@@ -57,7 +59,21 @@ public class PublishJobOpeningController {
     }
 
     @PostMapping("/job-opening")
-    public String openingSubmit(@ModelAttribute Application application) {
+    public String openingSubmit(@ModelAttribute org.example.model.Application application) {
+        String candidate_master_data = "{\"first_name\" : \"" + application.getFirstName() + "\","
+                + "\"last_name\" : \"" + application.getLastName() + "\","
+                + "\"birth_date\" : \"" + application.getBirthDate() + "\","
+                + "\"sex\" : \"" + application.getGender() + "\","
+                + "\"email\" :  \"" + application.getEmail() + "\""
+                + "}";
+
+        HttpConnector http = Connectors.getConnector(HttpConnector.ID);
+        http.createRequest()
+                .post()
+                .url("http://wfm-group-2.uni-muenster.de:80/engine-rest/message")
+                .contentType("application/json")
+                .payload(candidate_master_data)
+                .execute();
         return "jobOpening";    //change return view to something useful
     }
 
@@ -69,7 +85,7 @@ public class PublishJobOpeningController {
         }
         Job_Profile profile = current.getJob_profile();
         //Adding Job_Opening specific variables
-        model.addAttribute("id", id);
+        model.addAttribute("jobOpeningId", id);
         DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm", Locale.ENGLISH);
         String openingDate = dateFormat.format(current.getOpeningDate());
         String deadline = dateFormat.format(profile.getJob_opening_information().getDeadline());     //probably throws error
@@ -83,6 +99,8 @@ public class PublishJobOpeningController {
         model.addAttribute("salary", profile.getJob_opening_information().getSalary());
         model.addAttribute("jobLocation", profile.getJob_opening_information().getJob_location());
 
+        //expose application model to be filled with user form entries
+        model.addAttribute("application", new Application());
         return "jobOpening";
     }
 }
