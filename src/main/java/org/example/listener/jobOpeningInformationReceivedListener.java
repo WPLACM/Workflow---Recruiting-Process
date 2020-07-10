@@ -18,7 +18,6 @@ public class jobOpeningInformationReceivedListener implements ExecutionListener 
 
             PreparedStatement statement = con.prepareStatement(job_opening_insert, Statement.RETURN_GENERATED_KEYS);
 
-            System.out.println("Prepare statement"); //TODO rmv
             // Set values for insert
             String s = (String) execution.getVariable("salary");
             double salary = Double.parseDouble(s);
@@ -39,10 +38,8 @@ public class jobOpeningInformationReceivedListener implements ExecutionListener 
             statement.setString(12, (String) execution.getVariable("jobLocation"));
             statement.setInt(13, (Integer) execution.getVariable("workingHours"));
             statement.executeUpdate();
-            System.out.println("SQL statement executed"); //TODO rmv
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
-                System.out.println("test"); //TODO rmv
                 long id = generatedKeys.getLong(1);
                  execution.setVariable("jobOpeningInformationId", Math.toIntExact(id));
             }

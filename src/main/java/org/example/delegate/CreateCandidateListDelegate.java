@@ -19,7 +19,9 @@ public class CreateCandidateListDelegate implements JavaDelegate {
         String qualifications = (String) execution.getVariable("requiredQualifications");
 
         //filter single qualifications
-        qualifications = qualifications.replaceAll("\\s+","");
+        //qualifications = qualifications.replaceAll("\\s+","");
+        qualifications = qualifications.trim();
+        System.out.println(qualifications); //TODO remove
         String[] qual = qualifications.split(",");
 
         //create SQL query
