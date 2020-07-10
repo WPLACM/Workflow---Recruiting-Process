@@ -926,10 +926,8 @@
               </camunda:map>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">{
-              "job_opening_id" : 2,
-              "opening_date": "2020-12-10T13:45:00.000Z",
-              "deadline": "2021-12-10T13:45:00.000Z"
-              }</camunda:inputParameter>
+   "jobProfileId":${jobProfileId}
+}</camunda:inputParameter>
             <camunda:outputParameter name="test">#{response}</camunda:outputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>http-connector</camunda:connectorId>
