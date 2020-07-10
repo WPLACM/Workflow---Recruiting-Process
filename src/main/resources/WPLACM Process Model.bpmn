@@ -592,7 +592,7 @@
         <incoming>Flow_1ars7ky</incoming>
         <outgoing>Flow_1d0f7y9</outgoing>
         <timerEventDefinition id="TimerEventDefinition_12uxvm9">
-          <timeDuration xsi:type="tFormalExpression">PTM30S</timeDuration>
+          <timeDuration xsi:type="tFormalExpression">PT0M30S</timeDuration>
         </timerEventDefinition>
       </intermediateCatchEvent>
     </subProcess>
