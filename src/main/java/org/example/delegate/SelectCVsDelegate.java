@@ -32,7 +32,7 @@ public class SelectCVsDelegate implements JavaDelegate {
             String applications_query = "SELECT  A.application_id, A.rating, C.candidate_id, C.first_name, C.last_name, C.email " +
                     "FROM Application A " +
                     "INNER JOIN Candidate C ON (C.candidate_id = A.ca_ap_fk) " +
-                    "WHERE jo_ap_fk = \'" + openingId + "\' AND rating > 55 ORDER BY rating desc limit 10";
+                    "WHERE FK_job_Opening_Id = \'" + openingId + "\' AND rating > 55 ORDER BY rating desc limit 10";
 
 
             Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");

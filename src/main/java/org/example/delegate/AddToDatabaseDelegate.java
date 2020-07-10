@@ -51,7 +51,7 @@ public class AddToDatabaseDelegate implements JavaDelegate {
             delegateExecution.setVariable("candidate_id", candidate_id);
 
             // insert new application to db
-            String application_insert = "INSERT INTO Application ( CA_AP_FK, JO_AP_FK) VALUES (?,?)";
+            String application_insert = "INSERT INTO Application ( CA_AP_FK, FK_job_Opening_Id) VALUES (?,?)";
             PreparedStatement statement_application = con.prepareStatement(application_insert, Statement.RETURN_GENERATED_KEYS);
             statement_application.setInt(1, Integer.parseInt(Long.toString(candidate_id)));
             statement_application.setInt(2, (Integer) delegateExecution.getVariable("openingId"));

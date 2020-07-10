@@ -60,7 +60,7 @@ public class InformCandidatesDelegate implements JavaDelegate {
         String applications_query = "SELECT A.application_id, C.first_name, C.last_name, C.email " +
                 "FROM Application A " +
                 "INNER JOIN Candidate C ON (C.candidate_id = A.ca_ap_fk) " +
-                "WHERE jo_ap_fk = " + Integer.toString(openingId);
+                "WHERE FK_job_Opening_Id = " + Integer.toString(openingId);
 
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         Statement query = con.createStatement();
