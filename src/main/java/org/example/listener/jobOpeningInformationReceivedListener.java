@@ -4,6 +4,7 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.ExecutionListener;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 public class jobOpeningInformationReceivedListener implements ExecutionListener {
     @Override
@@ -17,6 +18,7 @@ public class jobOpeningInformationReceivedListener implements ExecutionListener 
 
             PreparedStatement statement = con.prepareStatement(job_opening_insert, Statement.RETURN_GENERATED_KEYS);
 
+            System.out.println("Prepare statement"); //TODO rmv
             // Set values for insert
             String s = (String) execution.getVariable("salary");
             double salary = Double.parseDouble(s);
@@ -31,14 +33,16 @@ public class jobOpeningInformationReceivedListener implements ExecutionListener 
             statement.setString(7, (String) execution.getVariable("jobDescription"));
             statement.setString(8, (String) execution.getVariable("requiredQualifications"));
             statement.setString(9, (String) execution.getVariable("additionalInformation"));
-            //String datetest = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(jobInfo.getDeadline());
-            statement.setString(10, (String) execution.getVariable("deadline"));
+            String datetest = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format((Date) execution.getVariable("deadlineDateFormat"));
+            statement.setString(10, datetest);
             statement.setDouble(11, payment);
             statement.setString(12, (String) execution.getVariable("jobLocation"));
             statement.setInt(13, (Integer) execution.getVariable("workingHours"));
             statement.executeUpdate();
+            System.out.println("SQL statement executed"); //TODO rmv
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
+                System.out.println("test"); //TODO rmv
                 long id = generatedKeys.getLong(1);
                  execution.setVariable("jobOpeningInformationId", Math.toIntExact(id));
             }
