@@ -27,7 +27,7 @@ public class SendChangesDelegate implements JavaDelegate {
         jobInfo.setJob_description((String) execution.getVariable("jobDescription"));
         jobInfo.setRequired_qualifications((String) execution.getVariable("requiredQualifications"));
         jobInfo.setAdditional_information((String) execution.getVariable("additionalInformation"));
-        jobInfo.setRewardPerAcceptance(Double.valueOf((String) execution.getVariable("paymentInformationAcceptances")));
+        jobInfo.setRewardPerAcceptance(Double.parseDouble((String) execution.getVariable("paymentInformationAcceptances")));
         jobInfo.setJob_location((String) execution.getVariable("jobLocation"));
         jobInfo.setWorking_hours(Math.toIntExact((Long) execution.getVariable("workingHours")));
         jobInfo.setDeadline(new SimpleDateFormat("dd/MM/yyyy").parse((String)execution.getVariable("deadline")));
