@@ -21,7 +21,6 @@ public class CreateCandidateListDelegate implements JavaDelegate {
         //filter single qualifications
         //qualifications = qualifications.replaceAll("\\s+","");
         qualifications = qualifications.trim();
-        System.out.println(qualifications); //TODO remove
         String[] qual = qualifications.split(",");
 
         //create SQL query
@@ -37,8 +36,10 @@ public class CreateCandidateListDelegate implements JavaDelegate {
                     candidats_query += " OR ";
                 }
             }
-            candidats_query += ") AND location_city = \'"+ location +"\'";
+            candidats_query += ") OR skills = \'"+qualifications+"\'";
+            candidats_query += " AND location_city = \'"+ location +"\'";
         }
+        System.out.println("Create Candidate List Query: "+candidats_query); //TODO
 
         //create lists for relevant information of candidates
         ArrayList<String> candidates_first_name = new ArrayList<String>();
