@@ -41,8 +41,9 @@ public class SendChangesDelegate implements JavaDelegate {
         System.out.println(jobInfo.getJob_description());
         System.out.println(jobInfo.getRequired_qualifications());
         System.out.println(jobInfo.getAdditional_information());
+        System.out.println("Reward in String: "+(String) execution.getVariable("paymentInformationAcceptances"));
+        System.out.println("Reward in Double: "+Double.parseDouble((String) execution.getVariable("paymentInformationAcceptances")));
         System.out.println("Reward in Object: "+jobInfo.getRewardPerAcceptance());
-        System.out.println("Reward in Form: "+Double.parseDouble((String) execution.getVariable("paymentInformationAcceptances")));
         System.out.println(jobInfo.getJob_location());
         System.out.println(jobInfo.getWorking_hours());
 
