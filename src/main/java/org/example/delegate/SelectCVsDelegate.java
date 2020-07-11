@@ -52,6 +52,9 @@ public class SelectCVsDelegate implements JavaDelegate {
                 cv.setApplicant_email(rs.getString("email"));
                 cv.setWbig_process_instance_id(wbig_id);
                 cv.setWplacm_process_instance_id(wplacm_id);
+                cv.setApplicant_gender(rs.getString("male"));
+                cv.setApplicant_title("Dr.");
+                cv.setApplicant_address("Schlossplatz 2, 48149 Münster");
 
                 try {
                     selectedCVs.getApplicationList().add(cv);
