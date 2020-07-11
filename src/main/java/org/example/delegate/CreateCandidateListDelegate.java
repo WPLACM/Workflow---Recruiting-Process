@@ -82,17 +82,33 @@ public class CreateCandidateListDelegate implements JavaDelegate {
         String insert_query1 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
                 "VALUES (12, 'Donald', 'Duck', 'wplacmrecruiting@gmail.com', 'Camunda', 'Muenster')";
         String insert_query2 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
-                "VALUES (2, 'Max', 'Mustermann', 'wplacmrecruiting@gmail.com', 'Java, Spring', 'Muenster')";
+                "VALUES (2, 'Max', 'Mustermann', 'wplacmrecruiting@gmail.com', 'Java, Camunda', 'Muenster')";
         String insert_query3 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
                 "VALUES (3, 'Lisa', 'Cain', 'wplacmrecruiting@gmail.com', 'M.Sc. Computer Science', 'Muenster')";
         String insert_query4 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
                 "VALUES (4, 'John', 'Doe', 'wplacmrecruiting@gmail.com', 'Java, M.Sc. Computer Science', 'Muenster')";
         String insert_query5 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
-                "VALUES (5, 'Peter', 'Parker', 'wplacmrecruiting@gmail.com', 'Python', 'Cologne')";
+                "VALUES (5, 'Peter', 'Parker', 'wplacmrecruiting@gmail.com', 'Java', 'Cologne')";
         String insert_query6 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
                 "VALUES (6, 'Eva', 'Scott', 'wplacmrecruiting@gmail.com', 'Python, M.Sc. Computer Science', 'Berlin')";
         String insert_query7 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
                 "VALUES (7, 'Anna', 'Mustermann', 'wplacmrecruiting@gmail.com', 'Java', 'Muenster')";
+        String insert_query8 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
+                "VALUES (8, 'Carolin', 'Klein', 'wplacmrecruiting@gmail.com', 'Java', 'Münster')";
+        String insert_query9 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
+                "VALUES (9, 'Daniel', 'Winterberg', 'wplacmrecruiting@gmail.com', 'Camunda', 'Münster')";
+        String insert_query10 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
+                "VALUES (10, 'Rebecca', 'Sommer', 'wplacmrecruiting@gmail.com', 'M. Sc. Computer Science', 'Muenster')";
+        String insert_query11 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
+                "VALUES (11, 'Lena', 'Schmidt', 'wplacmrecruiting@gmail.com', 'M. Sc. Computer Science', 'Münster')";
+        String insert_query12 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
+                "VALUES (13, 'Marvin', 'Winter', 'wplacmrecruiting@gmail.com', 'M.Sc. Information Systems', 'Muenster')";
+        String insert_query13 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
+                "VALUES (14, 'Robert', 'Halpert', 'wplacmrecruiting@gmail.com', 'M. Sc. Information Systems', 'Muenster')";
+        String insert_query14 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
+                "VALUES (15, 'Anna', 'Schmidt', 'wplacmrecruiting@gmail.com', 'M.Sc. Information Systems', 'Münster')";
+        String insert_query15 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
+                "VALUES (16, 'Elizabeth', 'Cain', 'wplacmrecruiting@gmail.com', 'M. Sc. Information Systems', 'Münster')";
 
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         Statement query = con.createStatement();
@@ -103,6 +119,15 @@ public class CreateCandidateListDelegate implements JavaDelegate {
         query.executeUpdate(insert_query5);
         query.executeUpdate(insert_query6);
         query.executeUpdate(insert_query7);
+        query.executeUpdate(insert_query8);
+        query.executeUpdate(insert_query9);
+        query.executeUpdate(insert_query10);
+        query.executeUpdate(insert_query11);
+        query.executeUpdate(insert_query12);
+        query.executeUpdate(insert_query13);
+        query.executeUpdate(insert_query14);
+        query.executeUpdate(insert_query15);
+
         query.close();
         con.close();
     }
