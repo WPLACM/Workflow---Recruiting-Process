@@ -27,7 +27,7 @@ public class SendChangesDelegate implements JavaDelegate {
         jobInfo.setJob_description((String) execution.getVariable("jobDescription"));
         jobInfo.setRequired_qualifications((String) execution.getVariable("requiredQualifications"));
         jobInfo.setAdditional_information((String) execution.getVariable("additionalInformation"));
-        jobInfo.setRewardPerAcceptance(Double.parseDouble((String) execution.getVariable("paymentInformationAcceptances")));
+        jobInfo.setRewardPerAcceptance(Double.parseDouble((String) execution.getVariable("paymentInformationAcceptances"))); //TODO does not work
         jobInfo.setJob_location((String) execution.getVariable("jobLocation"));
         jobInfo.setWorking_hours(Math.toIntExact((Long) execution.getVariable("workingHours")));
         jobInfo.setDeadline(new SimpleDateFormat("dd/MM/yyyy").parse((String)execution.getVariable("deadline")));
@@ -41,7 +41,8 @@ public class SendChangesDelegate implements JavaDelegate {
         System.out.println(jobInfo.getJob_description());
         System.out.println(jobInfo.getRequired_qualifications());
         System.out.println(jobInfo.getAdditional_information());
-        System.out.println(jobInfo.getRewardPerAcceptance());
+        System.out.println("Reward in Object: "+jobInfo.getRewardPerAcceptance());
+        System.out.println("Reward in Form: "+Double.parseDouble((String) execution.getVariable("paymentInformationAcceptances")));
         System.out.println(jobInfo.getJob_location());
         System.out.println(jobInfo.getWorking_hours());
 
