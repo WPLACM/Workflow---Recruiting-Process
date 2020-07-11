@@ -22,7 +22,7 @@ public class jobOpeningInformationReceivedListener implements ExecutionListener 
             String s = (String) execution.getVariable("salary");
             double salary = Double.parseDouble(s);
             String p = (String) execution.getVariable("paymentInformationAcceptances");
-            double payment = Double.parseDouble(s);
+            double payment = Double.parseDouble(p);
             statement.setString(1, (String) execution.getVariable("wbig_processInstanceId"));
             statement.setString(2, (String) execution.getVariable("openingName"));
             statement.setInt(3, (Integer) execution.getVariable("openSpots"));
