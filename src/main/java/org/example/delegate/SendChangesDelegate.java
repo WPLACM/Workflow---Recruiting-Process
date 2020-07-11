@@ -28,25 +28,10 @@ public class SendChangesDelegate implements JavaDelegate {
         jobInfo.setRequired_qualifications((String) execution.getVariable("requiredQualifications"));
         jobInfo.setAdditional_information((String) execution.getVariable("additionalInformation"));
         String rewardPerAcceptances = (String) execution.getVariable("paymentInformationAcceptances");
-        jobInfo.setRewardPerAcceptance(Double.valueOf(rewardPerAcceptances)); //TODO does not work
+        jobInfo.setRewardPerAcceptance(Double.valueOf(rewardPerAcceptances));
         jobInfo.setJob_location((String) execution.getVariable("jobLocation"));
         jobInfo.setWorking_hours(Math.toIntExact((Long) execution.getVariable("workingHours")));
         jobInfo.setDeadline(new SimpleDateFormat("dd/MM/yyyy").parse((String)execution.getVariable("deadline")));
-
-        //TODO remove after testing
-        System.out.println(jobInfo.getOpening_name());
-        System.out.println(jobInfo.getOpen_spots_initial());
-        System.out.println(jobInfo.getOpen_spots_remaining());
-        System.out.println(jobInfo.getSalary());
-        System.out.println(jobInfo.getJob_title());
-        System.out.println(jobInfo.getJob_description());
-        System.out.println(jobInfo.getRequired_qualifications());
-        System.out.println(jobInfo.getAdditional_information());
-        System.out.println("Reward in String: "+(String) execution.getVariable("paymentInformationAcceptances"));
-        System.out.println("Reward in Double: "+Double.parseDouble((String) execution.getVariable("paymentInformationAcceptances")));
-        System.out.println("Reward in Object: "+jobInfo.getRewardPerAcceptance());
-        System.out.println(jobInfo.getJob_location());
-        System.out.println(jobInfo.getWorking_hours());
 
         //set endpoint and post object
         String EndpointUrl = new wbigRestEndpoints().getCurrent_URL();

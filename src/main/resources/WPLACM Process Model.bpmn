@@ -380,7 +380,7 @@
           <camunda:formField id="openSpots" label="Open Spots" type="long" defaultValue="${openSpots}" />
           <camunda:formField id="additionalInformation" label="Additional Information" type="string" defaultValue="${additionalInformation}" />
           <camunda:formField id="deadline" label="Deadline" type="string" defaultValue="${deadline}" />
-          <camunda:formField id="rewardPerAcceptance" label="Reward Per Acceptance" type="string" defaultValue="${paymentInformationAcceptances}" />
+          <camunda:formField id="paymentInformationAcceptances" label="Reward Per Acceptance" type="string" defaultValue="${paymentInformationAcceptances}" />
         </camunda:formData>
         <camunda:executionListener class="org.example.listener.clarifyJOListener" event="end" />
       </extensionElements>
