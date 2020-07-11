@@ -32,6 +32,19 @@ public class SendChangesDelegate implements JavaDelegate {
         jobInfo.setWorking_hours(Math.toIntExact((Long) execution.getVariable("workingHours")));
         jobInfo.setDeadline(new SimpleDateFormat("dd/MM/yyyy").parse((String)execution.getVariable("deadline")));
 
+        //TODO remove after testing
+        System.out.println(jobInfo.getOpening_name());
+        System.out.println(jobInfo.getOpen_spots_initial());
+        System.out.println(jobInfo.getOpen_spots_remaining());
+        System.out.println(jobInfo.getSalary());
+        System.out.println(jobInfo.getJob_title());
+        System.out.println(jobInfo.getJob_description());
+        System.out.println(jobInfo.getRequired_qualifications());
+        System.out.println(jobInfo.getAdditional_information());
+        System.out.println(jobInfo.getRewardPerAcceptance());
+        System.out.println(jobInfo.getJob_location());
+        System.out.println(jobInfo.getWorking_hours());
+
         //set endpoint and post object
         String EndpointUrl = new wbigRestEndpoints().getCurrent_URL();
         wbig_processInstanceId = template.postForObject(EndpointUrl + "wbig/jobopeningreply/" + wbig_processInstanceId, jobInfo, String.class);
