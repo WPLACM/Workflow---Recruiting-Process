@@ -102,8 +102,8 @@ public class PublishJobOpeningController {
         if(application.getTitle()==null){
             application.setTitle("");
         }
-        address.addProperty("value", application.getTitle());
-        address.addProperty("type", "String");
+        title.addProperty("value", application.getTitle());
+        title.addProperty("type", "String");
         processVariables.add("first_name", first_name);
         processVariables.add("last_name", last_name);
         processVariables.add("email", email);
