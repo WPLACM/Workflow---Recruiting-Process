@@ -1046,31 +1046,11 @@
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="application_id" label="Application ID" type="string" defaultValue="${applicationelem.prop(&#34;application_id&#34;).stringValue()}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="candidate_id" label="Candidate ID" type="string" defaultValue="${applicationelem.prop(&#34;candidate_id&#34;).stringValue()}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="first_name" label="Firstname" type="string" defaultValue="${applicationelem.prop(&#34;first_name&#34;).stringValue()}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="last_name" label="Lastname" type="string" defaultValue="${applicationelem.prop(&#34;last_name&#34;).stringValue()}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="cv" label="CV link" type="string" defaultValue="${applicationelem.prop(&#34;cv&#34;).stringValue()}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
+          <camunda:formField id="application_id" label="Application ID" type="string" defaultValue="${applicationelem.prop(&#34;application_id&#34;).stringValue()}" />
+          <camunda:formField id="candidate_id" label="Candidate ID" type="string" defaultValue="${applicationelem.prop(&#34;candidate_id&#34;).stringValue()}" />
+          <camunda:formField id="first_name" label="Firstname" type="string" defaultValue="${applicationelem.prop(&#34;first_name&#34;).stringValue()}" />
+          <camunda:formField id="last_name" label="Lastname" type="string" defaultValue="${applicationelem.prop(&#34;last_name&#34;).stringValue()}" />
+          <camunda:formField id="cv" label="CV link" type="string" defaultValue="${applicationelem.prop(&#34;cv&#34;).stringValue()}" />
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="cv_rating" />
@@ -1090,31 +1070,11 @@
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="application_id" label="Application ID" type="string" defaultValue="${applicationelem.prop(&#34;application_id&#34;).stringValue()}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="candidate_id" label="Candidate ID" type="string" defaultValue="${applicationelem.prop(&#34;candidate_id&#34;).stringValue()}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="first_name" label="Firstname" type="string" defaultValue="${applicationelem.prop(&#34;first_name&#34;).stringValue()}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="last_name" label="Lastname" type="string" defaultValue="${applicationelem.prop(&#34;last_name&#34;).stringValue()}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="cv" label="CV link" type="string" defaultValue="${applicationelem.prop(&#34;cv&#34;).stringValue()}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
+          <camunda:formField id="application_id" label="Application ID" type="string" defaultValue="${applicationelem.prop(&#34;application_id&#34;).stringValue()}" />
+          <camunda:formField id="candidate_id" label="Candidate ID" type="string" defaultValue="${applicationelem.prop(&#34;candidate_id&#34;).stringValue()}" />
+          <camunda:formField id="first_name" label="Firstname" type="string" defaultValue="${applicationelem.prop(&#34;first_name&#34;).stringValue()}" />
+          <camunda:formField id="last_name" label="Lastname" type="string" defaultValue="${applicationelem.prop(&#34;last_name&#34;).stringValue()}" />
+          <camunda:formField id="cv" label="CV link" type="string" defaultValue="${applicationelem.prop(&#34;cv&#34;).stringValue()}" />
         </camunda:formData>
         <camunda:executionListener class="org.example.listener.BackgroundCheckEndListener" event="end" />
       </extensionElements>
