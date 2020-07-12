@@ -1,0 +1,9 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+        <servers>
+         <server>
+            <id>camunda-bpm-nexus-ee</id>
+            <username>trial_s_tewes_uni_muenster_de</username>
+            <password>e9dd9a08-f6f9-4ee6-a</password>
+         </server>
+        </servers>
+       </settings>
