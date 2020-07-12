@@ -62,9 +62,8 @@ public class PublishJobOpeningController {
     }
 
     @PostMapping("/job-opening")
-    public String openingSubmit(@ModelAttribute org.example.model.Application application) {
-        System.out.print("Does this work?");
-        Integer id = application.getOpeningId();
+    public String openingSubmit(@ModelAttribute org.example.model.Application application, @PathVariable(value="id") String openingid) {
+        Integer id = Integer.parseInt(openingid);
         JsonObject app = new JsonObject() ;   //candidate_master_data
         app.addProperty("messageName", "ApplicationReceived");
 
@@ -136,7 +135,7 @@ public class PublishJobOpeningController {
                 .contentType("application/json")
                 .payload(candidate_master_data)
                 .execute();
-        return "jobOpening";    //change return view to something useful
+        return "applicationSuccessful";    //change return view to something useful
     }
 
     @GetMapping("/job-opening")
