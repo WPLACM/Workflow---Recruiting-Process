@@ -31,7 +31,9 @@ public class UpdateDatabseRecordDelegate implements JavaDelegate {
                         //"first_name = \'" + candidate.getValue().prop("first_name").stringValue() + "\', " +
                         //"last_name = \'" + candidate.getValue().prop("last_name").stringValue() + "\', " +
                         "sex = \'" + candidate.getValue().prop("sex").stringValue() + "\', " +
-                        "email = \'" + candidate.getValue().prop("email").stringValue() + "\' " +
+                        "email = \'" + candidate.getValue().prop("email").stringValue() + "\', " +
+                        "title = \'" + candidate.getValue().prop("title").stringValue() + "\', " +
+                        "address = \'" + candidate.getValue().prop("address").stringValue() + "\' " +
                         //"birth_date = \'" + birth_date + "\' " +
                         "WHERE candidate_id = " + candidate_id;
 
