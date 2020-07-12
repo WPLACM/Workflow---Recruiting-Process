@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
-@RestController
+@Controller
 @RequestMapping("/job-openings")
 public class PublishJobOpeningController {
     @Autowired
