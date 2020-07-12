@@ -2,8 +2,9 @@ package org.example.listener;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.ExecutionListener;
-
+import java.util.Date;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 public class jobOpeningInformationReceivedListener implements ExecutionListener {
     @Override
@@ -21,7 +22,7 @@ public class jobOpeningInformationReceivedListener implements ExecutionListener 
             String s = (String) execution.getVariable("salary");
             double salary = Double.parseDouble(s);
             String p = (String) execution.getVariable("paymentInformationAcceptances");
-            double payment = Double.parseDouble(s);
+            double payment = Double.parseDouble(p);
             statement.setString(1, (String) execution.getVariable("wbig_processInstanceId"));
             statement.setString(2, (String) execution.getVariable("openingName"));
             statement.setInt(3, (Integer) execution.getVariable("openSpots"));
@@ -31,8 +32,8 @@ public class jobOpeningInformationReceivedListener implements ExecutionListener 
             statement.setString(7, (String) execution.getVariable("jobDescription"));
             statement.setString(8, (String) execution.getVariable("requiredQualifications"));
             statement.setString(9, (String) execution.getVariable("additionalInformation"));
-            //String datetest = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(jobInfo.getDeadline());
-            statement.setString(10, (String) execution.getVariable("deadline"));
+            String datetest = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format((Date) execution.getVariable("deadlineDateFormat"));
+            statement.setString(10, datetest);
             statement.setDouble(11, payment);
             statement.setString(12, (String) execution.getVariable("jobLocation"));
             statement.setInt(13, (Integer) execution.getVariable("workingHours"));

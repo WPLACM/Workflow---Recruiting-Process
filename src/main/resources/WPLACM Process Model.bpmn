@@ -129,12 +129,12 @@
         <flowNodeRef>sid-B11765A0-D66B-4C18-801A-C08847CFC1D8</flowNodeRef>
         <flowNodeRef>sid-68DD3769-3B35-40AA-9CAA-3B7B7CF142B5</flowNodeRef>
         <flowNodeRef>sid-0C9FA878-B6A0-487D-AE78-59E914AC9B82</flowNodeRef>
-        <flowNodeRef>sid-B4C31733-DF10-40C6-8D46-CE9515284024</flowNodeRef>
         <flowNodeRef>Activity_03kwath</flowNodeRef>
         <flowNodeRef>Gateway_06odl5i</flowNodeRef>
         <flowNodeRef>sid-7B2672DE-9A58-4E88-9646-623C55262664</flowNodeRef>
         <flowNodeRef>Gateway_1mudnk0</flowNodeRef>
         <flowNodeRef>sid-3FE7F46D-6BDC-4882-AE90-A825FA1F2F53</flowNodeRef>
+        <flowNodeRef>sid-B4C31733-DF10-40C6-8D46-CE9515284024</flowNodeRef>
       </lane>
       <lane id="sid-72C0EB9D-3472-4677-83D5-A590BEFC5E46" name="Accounting">
         <extensionElements>
@@ -362,6 +362,7 @@
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
         <signavio:signavioMetaData metaKey="vorgngerprozesse" metaValue="[]" />
+        <camunda:executionListener class="org.example.listener.jobOpeningInformationReceivedListener" event="end" />
       </extensionElements>
       <outgoing>sid-9EA1DAA7-0674-4034-8781-3464A54B3013</outgoing>
       <messageEventDefinition id="sid-3d077e23-a8ce-4031-abba-b86b365799d7" messageRef="Message_14lnuod" />
@@ -379,7 +380,7 @@
           <camunda:formField id="openSpots" label="Open Spots" type="long" defaultValue="${openSpots}" />
           <camunda:formField id="additionalInformation" label="Additional Information" type="string" defaultValue="${additionalInformation}" />
           <camunda:formField id="deadline" label="Deadline" type="string" defaultValue="${deadline}" />
-          <camunda:formField id="rewardPerAcceptance" label="Reward Per Acceptance" type="string" defaultValue="${paymentInformationAcceptances}" />
+          <camunda:formField id="paymentInformationAcceptances" label="Reward Per Acceptance" type="string" defaultValue="${paymentInformationAcceptances}" />
         </camunda:formData>
         <camunda:executionListener class="org.example.listener.clarifyJOListener" event="end" />
       </extensionElements>
@@ -591,7 +592,7 @@
         <incoming>Flow_1ars7ky</incoming>
         <outgoing>Flow_1d0f7y9</outgoing>
         <timerEventDefinition id="TimerEventDefinition_12uxvm9">
-          <timeDuration xsi:type="tFormalExpression">PT30S</timeDuration>
+          <timeDuration xsi:type="tFormalExpression">PT0M30S</timeDuration>
         </timerEventDefinition>
       </intermediateCatchEvent>
     </subProcess>
@@ -815,7 +816,7 @@
       <incoming>Flow_0gsjvkt</incoming>
       <outgoing>sid-5C9F4FE2-7019-411C-913D-6748BF765B28</outgoing>
     </exclusiveGateway>
-    <userTask id="sid-13E49214-4737-4900-8B19-27907B038A06" name="create job profile" implementation="##WebService">
+    <userTask id="sid-13E49214-4737-4900-8B19-27907B038A06" name="create job profile" camunda:asyncAfter="true" implementation="##WebService">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
@@ -918,8 +919,8 @@
       <extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="url">http://wfm-group-2.uni-muenster.de:80/job-openings/</camunda:inputParameter>
-            <camunda:inputParameter name="method">PUT</camunda:inputParameter>
+            <camunda:inputParameter name="url">http://wfm-group-2.uni-muenster.de/job-openings/</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
             <camunda:inputParameter name="headers">
               <camunda:map>
                 <camunda:entry key="Content-Type">application/json</camunda:entry>
@@ -1095,28 +1096,6 @@
       <incoming>sid-7192A392-2690-489E-A6DE-D2986D12DDB6</incoming>
       <outgoing>sid-D3F8220E-5BDD-4EF0-BFAF-4DAF59BEE3E2</outgoing>
     </parallelGateway>
-    <businessRuleTask id="sid-B4C31733-DF10-40C6-8D46-CE9515284024" name="select CV&#39;s" implementation="##WebService" camunda:class="org.example.delegate.SelectCVsDelegate">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
-        <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
-        <signavio:signavioMetaData metaKey="risikenundkontrollen" metaValue="" />
-        <signavio:signavioMetaData metaKey="erteiltfreigabe" metaValue="" />
-        <signavio:signavioMetaData metaKey="wirdkonsultiert" metaValue="[]" />
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
-        <signavio:signavioMetaData metaKey="wirdinformiert" metaValue="[]" />
-      </extensionElements>
-      <categoryValueRef>sid-8dc65996-6426-4fc6-a053-2ef307e60cc0</categoryValueRef>
-      <incoming>sid-4942DDAC-FF75-4A04-B914-2C7765DCCDB9</incoming>
-      <outgoing>Flow_14bvo8h</outgoing>
-      <property id="Property_016ychx" name="__targetRef_placeholder" />
-      <dataInputAssociation id="sid-BBC89C89-D6D6-486A-B7B9-B5CC3148D5C2">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
-        </extensionElements>
-        <sourceRef>sid-EFF056BD-D850-4D56-8988-44937504345F</sourceRef>
-        <targetRef>Property_016ychx</targetRef>
-      </dataInputAssociation>
-    </businessRuleTask>
     <dataStoreReference id="sid-EFF056BD-D850-4D56-8988-44937504345F" name="client database" dataStoreRef="sid-3b407b26-2982-4f77-960b-7a74ab810a6a">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
@@ -1204,6 +1183,18 @@
     </parallelGateway>
     <dataObjectReference id="DataObjectReference_0v8vi63" name="job profile" dataObjectRef="DataObject_1crozt5" />
     <dataObject id="DataObject_1crozt5" />
+    <serviceTask id="sid-B4C31733-DF10-40C6-8D46-CE9515284024" name="select CV&#39;s" camunda:asyncAfter="true" implementation="##WebService" camunda:class="org.example.delegate.SelectCVsDelegate">
+      <incoming>sid-4942DDAC-FF75-4A04-B914-2C7765DCCDB9</incoming>
+      <outgoing>Flow_14bvo8h</outgoing>
+      <property id="Property_0dyyh7j" name="__targetRef_placeholder" />
+      <dataInputAssociation id="sid-BBC89C89-D6D6-486A-B7B9-B5CC3148D5C2">
+        <extensionElements>
+          <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
+        </extensionElements>
+        <sourceRef>sid-EFF056BD-D850-4D56-8988-44937504345F</sourceRef>
+        <targetRef>Property_0dyyh7j</targetRef>
+      </dataInputAssociation>
+    </serviceTask>
   </process>
   <process id="sid-B9084399-9B6E-4BA8-A5D6-F88F9261BE59" name="Candidate" processType="None" isClosed="false" isExecutable="false">
     <extensionElements />
@@ -1555,6 +1546,9 @@
           <omgdc:Bounds x="607" y="336" width="45" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_183k3i2_di" bpmnElement="sid-B4C31733-DF10-40C6-8D46-CE9515284024">
+        <omgdc:Bounds x="2861" y="947" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-6D98E17C-9555-479D-86BC-B7EF17602B95_gui" bpmnElement="sid-6D98E17C-9555-479D-86BC-B7EF17602B95" isExpanded="true">
         <omgdc:Bounds x="1420" y="797" width="810" height="357" />
         <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
@@ -1870,12 +1864,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-0C9FA878-B6A0-487D-AE78-59E914AC9B82_gui" bpmnElement="sid-0C9FA878-B6A0-487D-AE78-59E914AC9B82">
         <omgdc:Bounds x="2631" y="967" width="40" height="40" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="sid-B4C31733-DF10-40C6-8D46-CE9515284024_gui" bpmnElement="sid-B4C31733-DF10-40C6-8D46-CE9515284024">
-        <omgdc:Bounds x="2861" y="947" width="100" height="80" />
-        <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
-          <omgdc:Bounds x="2945.387773498672" y="1097.5718163421561" width="59.400001525878906" height="12" />
-        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-EFF056BD-D850-4D56-8988-44937504345F_gui" bpmnElement="sid-EFF056BD-D850-4D56-8988-44937504345F">
         <omgdc:Bounds x="2880" y="1062" width="62" height="60" />

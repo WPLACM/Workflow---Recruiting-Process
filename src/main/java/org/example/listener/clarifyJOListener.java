@@ -27,7 +27,7 @@ public class clarifyJOListener implements ExecutionListener {
         DateFormat test = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         String deadline = test.format(date);
 
-        String strReward = (String) execution.getVariable("rewardPerAcceptance");
+        String strReward = (String) execution.getVariable("paymentInformationAcceptances");
         Double rewardPerAcceptance = Double.parseDouble(strReward);
         String wbigProcessId = (String) execution.getVariable("wbig_processInstanceId");
 

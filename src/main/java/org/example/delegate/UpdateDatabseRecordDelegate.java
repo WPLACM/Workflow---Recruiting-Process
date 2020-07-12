@@ -31,7 +31,9 @@ public class UpdateDatabseRecordDelegate implements JavaDelegate {
                         //"first_name = \'" + candidate.getValue().prop("first_name").stringValue() + "\', " +
                         //"last_name = \'" + candidate.getValue().prop("last_name").stringValue() + "\', " +
                         "sex = \'" + candidate.getValue().prop("sex").stringValue() + "\', " +
-                        "email = \'" + candidate.getValue().prop("email").stringValue() + "\' " +
+                        "email = \'" + candidate.getValue().prop("email").stringValue() + "\', " +
+                        "title = \'" + candidate.getValue().prop("title").stringValue() + "\', " +
+                        "address = \'" + candidate.getValue().prop("address").stringValue() + "\' " +
                         //"birth_date = \'" + birth_date + "\' " +
                         "WHERE candidate_id = " + candidate_id;
 
@@ -43,7 +45,7 @@ public class UpdateDatabseRecordDelegate implements JavaDelegate {
         System.out.println(index);
 
         // insert new application to db
-        String application_insert = "INSERT INTO Application ( CA_AP_FK, JO_AP_FK) VALUES (?,?)";
+        String application_insert = "INSERT INTO Application ( CA_AP_FK, FK_job_Opening_Id) VALUES (?,?)";
         PreparedStatement statement_application = con.prepareStatement(application_insert, Statement.RETURN_GENERATED_KEYS);
         statement_application.setInt(1, candidate_id);
         statement_application.setInt(2, (Integer) delegateExecution.getVariable("openingId"));

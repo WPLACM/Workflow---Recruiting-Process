@@ -6,6 +6,9 @@ import org.example.model.Invoice;
 import org.example.utility.wbigRestEndpoints;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 //TODO set WBIG address
 
@@ -32,7 +35,10 @@ public class SendInvoiceDelegate implements JavaDelegate {
         String address_send = "Leonardo Campus 3, 48149 Münster";
         String address_rec = "WBIG street 5, 48149 Münster";
         String taxID = "AB123456";
-        String date = (String) delegateExecution.getVariable("date");
+
+        String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+        //String date = (String) delegateExecution.getVariable("date");
+
         String wbig_processInstanceId = (String) delegateExecution.getVariable("wbig_processInstanceId");
 
         Invoice inv = new Invoice(delegateExecution.getProcessInstanceId(), invoiceid, payment_information_acceptances, date, taxID, address_rec, address_send, number_of_acceptances, openingid,
@@ -41,7 +47,6 @@ public class SendInvoiceDelegate implements JavaDelegate {
         String EndpointUrl = new wbigRestEndpoints().getCurrent_URL();
         wbig_processInstanceId = template.postForObject(EndpointUrl + "wbig/wbig_billingSuff/" + wbig_processInstanceId, inv, String.class);
         //delegateExecution.setVariable("wbig_processInstanceId", wbig_processInstanceId);
-
 
         /*
         String invoiceJSON = "{\"WPLACM_process_ID\" : \"" +processID+"\","

@@ -1,6 +1,5 @@
 FROM maven:3-jdk-8 as target
 
-COPY settings.xml /usr/share/maven/ref/
 
 WORKDIR /app
 

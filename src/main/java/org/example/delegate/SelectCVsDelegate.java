@@ -29,10 +29,10 @@ public class SelectCVsDelegate implements JavaDelegate {
                     "WHERE jo_ap_fk = \'" + openingId + "\' AND rating > 55 ORDER BY rating desc limit 10";
             */
 
-            String applications_query = "SELECT  A.application_id, A.rating, C.candidate_id, C.first_name, C.last_name, C.email " +
+            String applications_query = "SELECT  A.application_id, A.rating, C.candidate_id, C.first_name, C.last_name, C.email, C.sex, C.title, C.address " +
                     "FROM Application A " +
                     "INNER JOIN Candidate C ON (C.candidate_id = A.ca_ap_fk) " +
-                    "WHERE jo_ap_fk = \'" + openingId + "\' AND rating > 55 ORDER BY rating desc limit 10";
+                    "WHERE FK_job_Opening_Id = \'" + openingId + "\' AND rating > 80 ORDER BY rating desc limit 10";
 
 
             Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
@@ -45,13 +45,16 @@ public class SelectCVsDelegate implements JavaDelegate {
             while(rs.next()) {
                 ApplicationMessage cv = new ApplicationMessage();
 
-                cv.setApplicant_id(rs.getInt("candidate_id"));
+                cv.setApplicant_id(rs.getInt("application_id"));
                 cv.setApplicant_name(rs.getString("first_name") + " " +
                         rs.getString("last_name"));
                 cv.setWplacm_rating(rs.getInt("rating"));
                 cv.setApplicant_email(rs.getString("email"));
                 cv.setWbig_process_instance_id(wbig_id);
                 cv.setWplacm_process_instance_id(wplacm_id);
+                cv.setApplicant_gender(rs.getString("sex"));
+                cv.setApplicant_title(rs.getString("title"));
+                cv.setApplicant_address(rs.getString("address"));
 
                 try {
                     selectedCVs.getApplicationList().add(cv);

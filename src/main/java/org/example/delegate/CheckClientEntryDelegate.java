@@ -20,6 +20,8 @@ public class CheckClientEntryDelegate implements JavaDelegate {
         String email = delegateExecution.getVariable("email").toString();
         String sex = delegateExecution.getVariable("sex").toString();
         String birth_date_string = delegateExecution.getVariable("birth_date").toString();
+        String title = delegateExecution.getVariable("title").toString();
+        String address = delegateExecution.getVariable("address").toString();
 
         // format birth_date
         java.util.Date birth_date = (java.util.Date) new SimpleDateFormat("yyyy-MM-dd").parse(birth_date_string);
@@ -30,7 +32,9 @@ public class CheckClientEntryDelegate implements JavaDelegate {
                                             + "\"last_name\" : \"" + last_name + "\","
                                             + "\"birth_date\" : \"" + birth_date_string_converted + "\","
                                             + "\"sex\" : \"" + sex + "\","
-                                            + "\"email\" :  \"" + email + "\""
+                                            + "\"email\" :  \"" + email + "\","
+                                            + "\"title\" :  \"" + title + "\","
+                                            + "\"address\" :  \"" + address + "\""
                                             + "}";
 
         JsonValue jsonValue = SpinValues.jsonValue(candidate_master_data).create();

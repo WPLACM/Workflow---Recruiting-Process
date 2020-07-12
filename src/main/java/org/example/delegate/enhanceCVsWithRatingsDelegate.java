@@ -13,7 +13,7 @@ public class enhanceCVsWithRatingsDelegate implements JavaDelegate {
         // get all applications/cvs for this job opening
         Integer openingId = (Integer) delegateExecution.getVariable("openingId");
         String applications_query = "SELECT  application_id, cv_rating, backgroundrating  FROM Application " +
-                "WHERE jo_ap_fk = \'" + openingId + "\' ";
+                "WHERE FK_job_Opening_Id = \'" + openingId + "\' ";
 
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         Statement query = con.createStatement();

@@ -42,7 +42,6 @@ public class JobOpeningController {
 
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String strDeadline = dateFormat.format(jobInfo.getDeadline());
-
         String strSalary = jobInfo.getSalary().toString();
         String strReward = jobInfo.getRewardPerAcceptance().toString();
 

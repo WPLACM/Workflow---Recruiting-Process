@@ -26,6 +26,8 @@ public class Candidate {
     private String skills;
     private String location_country;
     private String location_city;
+    private String title;
+    private String address;
 
     @OneToMany(targetEntity = Application.class, cascade = CascadeType.ALL)
     @JoinColumn(name ="ca_ap_fk", referencedColumnName = "candidate_id")
@@ -37,6 +39,15 @@ public class Candidate {
         this.birth_date = birth_date;
         this.sex        = sex;
         this.email      = email;
+    }
+    public Candidate(String first_name, String last_name, Date birth_date, String sex, String email, String title, String address){
+        this.first_name = first_name;
+        this.last_name  = last_name;
+        this.birth_date = birth_date;
+        this.sex        = sex;
+        this.email      = email;
+        this.title      = title;
+        this.address    = address;
     }
 }
 

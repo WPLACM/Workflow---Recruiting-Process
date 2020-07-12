@@ -32,7 +32,7 @@ public class AddToDatabaseDelegate implements JavaDelegate {
         // Prepare Insert Statement
         Connection con = DriverManager.getConnection("jdbc:h2:./camunda-db", "sa", "sa");
         String candidate_insert =
-                "INSERT INTO Candidate ( first_name, last_name, birth_date, sex, email) VALUES (?,?,?,?,?)";
+                "INSERT INTO Candidate ( first_name, last_name, birth_date, sex, email, title, address) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement statement = con.prepareStatement(candidate_insert, Statement.RETURN_GENERATED_KEYS);
 
         // Set values for insert
@@ -41,6 +41,8 @@ public class AddToDatabaseDelegate implements JavaDelegate {
         statement.setDate(3,  birth_date );
         statement.setString(4, candidate.getValue().prop("sex").stringValue() );
         statement.setString(5, candidate.getValue().prop("email").stringValue() );
+        statement.setString(6, candidate.getValue().prop("title").stringValue() );
+        statement.setString(7, candidate.getValue().prop("address").stringValue() );
         statement.executeUpdate();
 
         ResultSet rs = statement.getGeneratedKeys();
@@ -51,7 +53,7 @@ public class AddToDatabaseDelegate implements JavaDelegate {
             delegateExecution.setVariable("candidate_id", candidate_id);
 
             // insert new application to db
-            String application_insert = "INSERT INTO Application ( CA_AP_FK, JO_AP_FK) VALUES (?,?)";
+            String application_insert = "INSERT INTO Application ( CA_AP_FK, FK_job_Opening_Id) VALUES (?,?)";
             PreparedStatement statement_application = con.prepareStatement(application_insert, Statement.RETURN_GENERATED_KEYS);
             statement_application.setInt(1, Integer.parseInt(Long.toString(candidate_id)));
             statement_application.setInt(2, (Integer) delegateExecution.getVariable("openingId"));
