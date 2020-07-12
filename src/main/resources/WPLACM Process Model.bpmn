@@ -1046,11 +1046,31 @@
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="application_id" label="Application ID" type="string" defaultValue="${applicationelem.prop(&#34;application_id&#34;).stringValue()}" />
-          <camunda:formField id="candidate_id" label="Candidate ID" type="string" defaultValue="${applicationelem.prop(&#34;candidate_id&#34;).stringValue()}" />
-          <camunda:formField id="first_name" label="Firstname" type="string" defaultValue="${applicationelem.prop(&#34;first_name&#34;).stringValue()}" />
-          <camunda:formField id="last_name" label="Lastname" type="string" defaultValue="${applicationelem.prop(&#34;last_name&#34;).stringValue()}" />
-          <camunda:formField id="cv" label="CV link" type="string" defaultValue="${applicationelem.prop(&#34;cv&#34;).stringValue()}" />
+          <camunda:formField id="application_id" label="Application ID" type="string" defaultValue="${applicationelem.prop(&#34;application_id&#34;).stringValue()}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="candidate_id" label="Candidate ID" type="string" defaultValue="${applicationelem.prop(&#34;candidate_id&#34;).stringValue()}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="first_name" label="Firstname" type="string" defaultValue="${applicationelem.prop(&#34;first_name&#34;).stringValue()}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="last_name" label="Lastname" type="string" defaultValue="${applicationelem.prop(&#34;last_name&#34;).stringValue()}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="cv" label="CV link" type="string" defaultValue="${applicationelem.prop(&#34;cv&#34;).stringValue()}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="cv_rating" />
@@ -1070,11 +1090,31 @@
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="application_id" label="Application ID" type="string" defaultValue="${applicationelem.prop(&#34;application_id&#34;).stringValue()}" />
-          <camunda:formField id="candidate_id" label="Candidate ID" type="string" defaultValue="${applicationelem.prop(&#34;candidate_id&#34;).stringValue()}" />
-          <camunda:formField id="first_name" label="Firstname" type="string" defaultValue="${applicationelem.prop(&#34;first_name&#34;).stringValue()}" />
-          <camunda:formField id="last_name" label="Lastname" type="string" defaultValue="${applicationelem.prop(&#34;last_name&#34;).stringValue()}" />
-          <camunda:formField id="cv" label="CV link" type="string" defaultValue="${applicationelem.prop(&#34;cv&#34;).stringValue()}" />
+          <camunda:formField id="application_id" label="Application ID" type="string" defaultValue="${applicationelem.prop(&#34;application_id&#34;).stringValue()}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="candidate_id" label="Candidate ID" type="string" defaultValue="${applicationelem.prop(&#34;candidate_id&#34;).stringValue()}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="first_name" label="Firstname" type="string" defaultValue="${applicationelem.prop(&#34;first_name&#34;).stringValue()}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="last_name" label="Lastname" type="string" defaultValue="${applicationelem.prop(&#34;last_name&#34;).stringValue()}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="cv" label="CV link" type="string" defaultValue="${applicationelem.prop(&#34;cv&#34;).stringValue()}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
         </camunda:formData>
         <camunda:executionListener class="org.example.listener.BackgroundCheckEndListener" event="end" />
       </extensionElements>
@@ -1546,9 +1586,6 @@
           <omgdc:Bounds x="607" y="336" width="45" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_183k3i2_di" bpmnElement="sid-B4C31733-DF10-40C6-8D46-CE9515284024">
-        <omgdc:Bounds x="2861" y="947" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-6D98E17C-9555-479D-86BC-B7EF17602B95_gui" bpmnElement="sid-6D98E17C-9555-479D-86BC-B7EF17602B95" isExpanded="true">
         <omgdc:Bounds x="1420" y="797" width="810" height="357" />
         <bpmndi:BPMNLabel labelStyle="sid-92701fc3-840f-449b-ba75-cba3f3206e29">
@@ -1894,6 +1931,9 @@
         <bpmndi:BPMNLabel>
           <omgdc:Bounds x="1093" y="1164" width="47" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_183k3i2_di" bpmnElement="sid-B4C31733-DF10-40C6-8D46-CE9515284024">
+        <omgdc:Bounds x="2861" y="947" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-363FDF8F-D97E-4056-983A-719D4F3201EC_gui" bpmnElement="sid-363FDF8F-D97E-4056-983A-719D4F3201EC" isHorizontal="true">
         <omgdc:Bounds x="150" y="1341" width="4810" height="91" />
