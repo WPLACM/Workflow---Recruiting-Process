@@ -198,7 +198,7 @@
           </div>
           <div class="col-md-4 mb-3">
             <label for="birthDate">Birth date</label>
-            <input type="text" th:field="*{birthDate}" class="form-control" id="birthDate" placeholder="" value="YYYY-MM-DD" required>
+            <input type="text" th:field="*{birthDate}" class="form-control" id="birthDate" placeholder="YYYY-MM-DD" value="" required>
             <div class="invalid-feedback">
               Birth date is required.
             </div>
@@ -207,9 +207,9 @@
 
         <div class="mb-3">
           <label for="address">Address</label>
-          <input type="text" th:field="*{address}" class="form-control" id="address" placeholder="1234 Main St" required>
+          <input type="text" th:field="*{address}" class="form-control" id="address" placeholder="Schlossplatz 2" required>
           <div class="invalid-feedback">
-            Please enter your shipping address.
+            Please enter your address.
           </div>
         </div>
 
@@ -262,7 +262,7 @@
         <div class="row">
           <div class="col-md-4 mb-3">
             <label for="startDate">Your earliest start date</label>
-            <input type="text" th:field="*{startDate}" class="form-control" id="startDate" placeholder="" value="dd/MM/YYYY" required>
+            <input type="text" th:field="*{startDate}" class="form-control" id="startDate" placeholder="YYYY-MM-DD" value="" required>
             <div class="invalid-feedback">
               A start date is required.
             </div>
