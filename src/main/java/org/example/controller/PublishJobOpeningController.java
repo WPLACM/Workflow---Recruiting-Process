@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
-@Controller
+@RestController
 @RequestMapping("/job-openings")
 public class PublishJobOpeningController {
     @Autowired
@@ -63,6 +63,7 @@ public class PublishJobOpeningController {
 
     @PostMapping("/job-opening")
     public String openingSubmit(@ModelAttribute org.example.model.Application application) {
+        System.out.print("Does this work?");
         Integer id = 1;
         JsonObject app = new JsonObject() ;   //candidate_master_data
         app.addProperty("messageName", "ApplicationReceived");
@@ -77,7 +78,6 @@ public class PublishJobOpeningController {
         processVariables.addProperty("email", application.getEmail());
         processVariables.addProperty("birth_date", application.getBirthDate());
         processVariables.addProperty("gender", application.getGender());
-
         app.add("processVariables", processVariables);
 
         String candidate_master_data = app.toString();
