@@ -64,21 +64,66 @@ public class PublishJobOpeningController {
     @PostMapping("/job-opening")
     public String openingSubmit(@ModelAttribute org.example.model.Application application) {
         System.out.print("Does this work?");
-        Integer id = 1;
+        Integer id = application.getOpeningId();
         JsonObject app = new JsonObject() ;   //candidate_master_data
         app.addProperty("messageName", "ApplicationReceived");
 
         JsonObject correlationKeys = new JsonObject();
-        correlationKeys.addProperty("openingId", id);   //hard-coded
+        JsonObject openingId = new JsonObject();
+        openingId.addProperty("value", id);
+        openingId.addProperty("type", "Integer");
+
+        correlationKeys.add("openingId", openingId);
+
         app.add("correlationKeys", correlationKeys);
 
+
         JsonObject processVariables = new JsonObject();
+
+        JsonObject first_name = new JsonObject();
+        first_name.addProperty("value", application.getFirstName());
+        first_name.addProperty("type", "String");
+        JsonObject last_name = new JsonObject();
+        last_name.addProperty("value", application.getLastName());
+        last_name.addProperty("type", "String");
+        JsonObject email = new JsonObject();
+        email.addProperty("value", application.getEmail());
+        email.addProperty("type", "String");
+        JsonObject sex = new JsonObject();
+        sex.addProperty("value", application.getGender());
+        sex.addProperty("type", "String");
+        JsonObject birth_date = new JsonObject();
+        birth_date.addProperty("value", application.getBirthDate());
+        birth_date.addProperty("type", "String");
+        JsonObject address = new JsonObject();
+        address.addProperty("value", application.getAddress() + " " +  application.getPostalCode());   //todo: title + address compeltion
+        address.addProperty("type", "String");
+        JsonObject title = new JsonObject();
+        if(application.getTitle()==null){
+            application.setTitle("");
+        }
+        address.addProperty("value", application.getTitle());
+        address.addProperty("type", "String");
+        processVariables.add("first_name", first_name);
+        processVariables.add("last_name", last_name);
+        processVariables.add("email", email);
+        processVariables.add("sex", sex);
+        processVariables.add( "birth_date", birth_date);
+        processVariables.add("address", address);
+        processVariables.add("title", title);
+
+        app.add("processVariables", processVariables);
+
+
+        /*
         processVariables.addProperty("first_name", application.getFirstName());
         processVariables.addProperty("last_name", application.getLastName());
         processVariables.addProperty("email", application.getEmail());
         processVariables.addProperty("birth_date", application.getBirthDate());
         processVariables.addProperty("gender", application.getGender());
         app.add("processVariables", processVariables);
+
+         */
 
         String candidate_master_data = app.toString();
 

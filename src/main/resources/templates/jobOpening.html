@@ -153,21 +153,27 @@
       <h4 class="mb-3">Your personal data</h4>
       <form id="target" class="needs-validation" action="#" th:action="@{/job-openings/job-opening}" th:object="${application}" method="post" novalidate >
         <div class="row">
-          <div class="col-md-4 mb-3">
+          <div class="col-md-3 mb-3">
             <label for="firstName">First name</label>
             <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="" value="" required>
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
-          <div class="col-md-4 mb-3">
+          <div class="col-md-3 mb-3">
             <label for="lastName">Last name</label>
             <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="" value="" required>
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
           </div>
-          <div class="col-md-4 mb-3">
+          <div class="col-md-3 mb-3">
+            <label for="title">Title</label>
+            <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="Dr." value="">
+            <div class="invalid-feedback">
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
             <label for="gender">Gender</label>
             <input type="text" th:field="*{gender}" class="form-control" id="gender" placeholder="m/w/d" value="" required>
             <div class="invalid-feedback">
@@ -192,7 +198,7 @@
           </div>
           <div class="col-md-4 mb-3">
             <label for="birthDate">Birth date</label>
-            <input type="text" th:field="*{birthDate}" class="form-control" id="birthDate" placeholder="" value="dd/MM/YYYY" required>
+            <input type="text" th:field="*{birthDate}" class="form-control" id="birthDate" placeholder="" value="YYYY-MM-DD" required>
             <div class="invalid-feedback">
               Birth date is required.
             </div>
@@ -273,6 +279,15 @@
             <input type="text" th:field="*{workingTime}" class="form-control" id="worktime" placeholder="40" value="" required>
             <div class="invalid-feedback">
               Please specify a working time.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="openingId">Opening Id</label>
+            <input type="text" th:field="*{openingId}" class="form-control" id="openingId" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Valid opening id is required.
             </div>
           </div>
         </div>

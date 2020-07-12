@@ -6,6 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Application {
+    private String title;
+    private Integer openingId;
     private String firstName;
     private String lastName;
     private String gender;
