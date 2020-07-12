@@ -20,4 +20,6 @@ public class Application {
     private String startDate;
     private Double desiredPay;
     private Double workingTime;
+    private String country;
+    private String city;
 }

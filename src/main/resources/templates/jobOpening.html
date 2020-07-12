@@ -213,22 +213,16 @@
         <div class="row">
           <div class="col-md-4 mb-3">
             <label for="country">Country</label>
-            <select class="custom-select d-block w-100" id="country" required>
-              <option value="">Choose...</option>
-              <option>Germany</option>
-            </select>
+            <input type="text" th:field="*{country}" class="form-control" id="country" placeholder="Germany" value="" required>
             <div class="invalid-feedback">
-              Please select a valid country.
+              Valid country is required.
             </div>
           </div>
           <div class="col-md-4 mb-3">
-            <label for="state">City</label>
-            <select class="custom-select d-block w-100" id="state" required>
-              <option value="">Choose...</option>
-              <option>Muenster</option>
-            </select>
+            <label for="city">City</label>
+            <input type="text" th:field="*{city}" class="form-control" id="city" placeholder="Muenster" value="" required>
             <div class="invalid-feedback">
-              Please provide a valid state.
+              Valid city is required.
             </div>
           </div>
           <div class="col-md-4 mb-3">
@@ -274,6 +268,7 @@
             </div>
           </div>
         </div>
+        <!--
         <div class="row">
           <div class="col-md-3 mb-3">
             <label for="openingId">Opening Id</label>
@@ -283,7 +278,7 @@
             </div>
           </div>
         </div>
-
+        -->
         <hr class="mb-4">
         <h4 class="mb-3">Further required application information</h4>
 
