@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import camundajar.impl.com.google.gson.JsonObject;
 import org.camunda.connect.Connectors;
 import org.camunda.connect.httpclient.HttpConnector;
 import org.example.entity.Application;
@@ -62,12 +63,26 @@ public class PublishJobOpeningController {
 
     @PostMapping("/job-opening")
     public String openingSubmit(@ModelAttribute org.example.model.Application application) {
-        String candidate_master_data = "{\"first_name\" : \"" + application.getFirstName() + "\","
-                + "\"last_name\" : \"" + application.getLastName() + "\","
-                + "\"birth_date\" : \"" + application.getBirthDate() + "\","
-                + "\"sex\" : \"" + application.getGender() + "\","
-                + "\"email\" :  \"" + application.getEmail() + "\""
-                + "}";
+        Integer id = 1;
+        JsonObject app = new JsonObject() ;   //candidate_master_data
+        app.addProperty("messageName", "ApplicationReceived");
+
+        JsonObject correlationKeys = new JsonObject();
+        correlationKeys.addProperty("openingId", id);   //hard-coded
+        app.add("correlationKeys", correlationKeys);
+
+        JsonObject processVariables = new JsonObject();
+        processVariables.addProperty("first_name", application.getFirstName());
+        processVariables.addProperty("last_name", application.getLastName());
+        processVariables.addProperty("email", application.getEmail());
+        processVariables.addProperty("birth_date", application.getBirthDate());
+        processVariables.addProperty("gender", application.getGender());
+
+        app.add("processVariables", processVariables);
+
+        String candidate_master_data = app.toString();
+
+        System.out.print("Candidate Master data" + candidate_master_data);
 
         HttpConnector http = Connectors.getConnector(HttpConnector.ID);
         http.createRequest()
@@ -95,7 +110,7 @@ public class PublishJobOpeningController {
         model.addAttribute("openingDate", openingDate);
         //Adding Job_Profile text to model
         model.addAttribute("jobProfile", profile.getJobProfile());
-
+         //Add job_opening_information to model
         model.addAttribute("jobTitle", profile.getJob_opening_information().getJob_title());
         model.addAttribute("qualifications", profile.getJob_opening_information().getRequired_qualifications());
         model.addAttribute("salary", profile.getJob_opening_information().getSalary());

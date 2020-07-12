@@ -7,11 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Workflow---Recruiting-Process" />
+        <module name="WPLACM" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Workflow---Recruiting-Process" target="1.8" />
+      <module name="WPLACM" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

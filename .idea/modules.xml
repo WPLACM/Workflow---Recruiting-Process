@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Workflow---Recruiting-Process.iml" filepath="$PROJECT_DIR$/.idea/Workflow---Recruiting-Process.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WPLACM.iml" filepath="$PROJECT_DIR$/WPLACM.iml" />
     </modules>
   </component>
 </project>

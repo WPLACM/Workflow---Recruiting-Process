@@ -10,12 +10,12 @@ public class Application {
     private String lastName;
     private String gender;
     private String birthDate;
-    private int phoneNumber;
+    private Integer phoneNumber;
     private String email;
     private String address;
     private String address2;
     private String postalCode;
     private String startDate;
-    private double desiredPay;
-    private double workingTime;
+    private Double desiredPay;
+    private Double workingTime;
 }

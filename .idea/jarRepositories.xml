@@ -2,6 +2,11 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="camunda-bpm-nexus-ee" />
+      <option name="name" value="Camunda Enterprise Maven Repository" />
+      <option name="url" value="https://app.camunda.com/nexus/content/repositories/camunda-bpm-ee" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
       <option name="url" value="https://repo.maven.apache.org/maven2" />
