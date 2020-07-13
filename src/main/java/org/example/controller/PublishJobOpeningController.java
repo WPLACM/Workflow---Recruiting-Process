@@ -62,8 +62,8 @@ public class PublishJobOpeningController {
     }
 
     @PostMapping("/job-opening")
-    public String openingSubmit(@ModelAttribute org.example.model.Application application, @RequestParam(value="id", required = true) String openingid) {
-        Integer id = Integer.parseInt(openingid);
+    public String openingSubmit(@ModelAttribute org.example.model.Application application) {
+        Integer id = application.getOpeningId();
         JsonObject app = new JsonObject() ;   //candidate_master_data
         app.addProperty("messageName", "ApplicationReceived");
 
@@ -145,6 +145,7 @@ public class PublishJobOpeningController {
             return "index";
         }
         Job_Profile profile = current.getJob_profile();
+
         //Adding Job_Opening specific variables
         model.addAttribute("jobOpeningId", id);
         DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm", Locale.ENGLISH);
@@ -152,16 +153,22 @@ public class PublishJobOpeningController {
         String deadline = dateFormat.format(profile.getJob_opening_information().getDeadline());     //probably throws error
         model.addAttribute("deadline",deadline);
         model.addAttribute("openingDate", openingDate);
+
         //Adding Job_Profile text to model
         model.addAttribute("jobProfile", profile.getJobProfile());
+
          //Add job_opening_information to model
         model.addAttribute("jobTitle", profile.getJob_opening_information().getJob_title());
         model.addAttribute("qualifications", profile.getJob_opening_information().getRequired_qualifications());
         model.addAttribute("salary", profile.getJob_opening_information().getSalary());
         model.addAttribute("jobLocation", profile.getJob_opening_information().getJob_location());
 
+        //provide application model with openingId
+        Application application = new Application();
+        application.setOpeningId(Integer.parseInt(id));
+
         //expose application model to be filled with user form entries
-        model.addAttribute("application", new Application());
+        model.addAttribute("application", application);
         return "jobOpening";
     }
 }
