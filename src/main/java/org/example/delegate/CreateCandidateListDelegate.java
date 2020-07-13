@@ -90,7 +90,7 @@ public class CreateCandidateListDelegate implements JavaDelegate {
         String insert_query5 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
                 "VALUES (5, 'Peter', 'Parker', 'wplacmrecruiting@gmail.com', 'Java', 'Cologne')";
         String insert_query6 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
-                "VALUES (6, 'Eva', 'Scott', 'wplacmrecruiting@gmail.com', 'Python, M.Sc. Computer Science', 'Berlin')";
+                "VALUES (6, 'Eva', 'Scott', 'wplacmrecruiting@gmail.com', 'M.Sc. Information System', 'Muenster')";
         String insert_query7 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
                 "VALUES (7, 'Anna', 'Mustermann', 'wplacmrecruiting@gmail.com', 'Java', 'Muenster')";
         String insert_query8 = "INSERT INTO Candidate (candidate_id, first_name, last_name, email, skills, location_city) "+
