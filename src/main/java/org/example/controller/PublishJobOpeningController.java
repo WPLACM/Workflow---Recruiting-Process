@@ -62,7 +62,7 @@ public class PublishJobOpeningController {
     }
 
     @PostMapping("/job-opening")
-    public String openingSubmit(@ModelAttribute org.example.model.Application application, @PathVariable(value="id") String openingid) {
+    public String openingSubmit(@ModelAttribute org.example.model.Application application, @RequestParam(value="id", required = true) String openingid) {
         Integer id = Integer.parseInt(openingid);
         JsonObject app = new JsonObject() ;   //candidate_master_data
         app.addProperty("messageName", "ApplicationReceived");
