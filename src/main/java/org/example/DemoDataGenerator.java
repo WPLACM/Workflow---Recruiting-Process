@@ -109,20 +109,15 @@ public class DemoDataGenerator {
         publishingGroup.setType("WORKFLOW");
         identityService.saveGroup(publishingGroup);
 
-        Group accountingGroup = identityService.newGroup("accounting");
-        accountingGroup.setName("Accounting");
-        accountingGroup.setType("WORKFLOW");
-        identityService.saveGroup(accountingGroup);
+        Group applicationEvaluationGroup = identityService.newGroup("applicationEvaluation");
+        applicationEvaluationGroup.setName("applicationEvaluation");
+        applicationEvaluationGroup.setType("WORKFLOW");
+        identityService.saveGroup(applicationEvaluationGroup);
 
         Group managementGroup = identityService.newGroup("management");
         managementGroup.setName("Management");
         managementGroup.setType("WORKFLOW");
         identityService.saveGroup(managementGroup);
-
-        Group applicationEvaluationGroup = identityService.newGroup("applicationEvaluation");
-        applicationEvaluationGroup.setName("Application Evaluation");
-        applicationEvaluationGroup.setType("WORKFLOW");
-        identityService.saveGroup(applicationEvaluationGroup);
 
         final AuthorizationService authorizationService = engine.getAuthorizationService();
 
@@ -147,12 +142,12 @@ public class DemoDataGenerator {
         }
 
         identityService.createMembership("nemo", "publishing");
-        identityService.createMembership("nemo", "accounting");
+        identityService.createMembership("nemo", "applicationEvaluation");
         identityService.createMembership("nemo", "management");
         identityService.createMembership("nemo", "camunda-admin");
 
         identityService.createMembership("john", "publishing");
-        identityService.createMembership("mary", "accounting");
+        identityService.createMembership("mary", "applicationEvaluation");
         identityService.createMembership("peter", "management");
 
 
@@ -174,21 +169,21 @@ public class DemoDataGenerator {
         publishingReadProcessDefinition.setResourceId("invoice");
         authorizationService.saveAuthorization(publishingReadProcessDefinition);
 
-        Authorization accountingTasklistAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
-        accountingTasklistAuth.setGroupId("accounting");
-        accountingTasklistAuth.addPermission(ACCESS);
-        accountingTasklistAuth.setResourceId("tasklist");
-        accountingTasklistAuth.setResource(APPLICATION);
-        authorizationService.saveAuthorization(accountingTasklistAuth);
+        Authorization applicationEvaluationTasklistAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
+        applicationEvaluationTasklistAuth.setGroupId("applicationEvaluation");
+        applicationEvaluationTasklistAuth.addPermission(ACCESS);
+        applicationEvaluationTasklistAuth.setResourceId("tasklist");
+        applicationEvaluationTasklistAuth.setResource(APPLICATION);
+        authorizationService.saveAuthorization(applicationEvaluationTasklistAuth);
 
-        Authorization accountingReadProcessDefinition = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
-        accountingReadProcessDefinition.setGroupId("accounting");
-        accountingReadProcessDefinition.addPermission(Permissions.READ);
-        accountingReadProcessDefinition.addPermission(Permissions.READ_HISTORY);
-        accountingReadProcessDefinition.setResource(Resources.PROCESS_DEFINITION);
+        Authorization applicationEvaluationReadProcessDefinition = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
+        applicationEvaluationReadProcessDefinition.setGroupId("applicationEvaluation");
+        applicationEvaluationReadProcessDefinition.addPermission(Permissions.READ);
+        applicationEvaluationReadProcessDefinition.addPermission(Permissions.READ_HISTORY);
+        applicationEvaluationReadProcessDefinition.setResource(Resources.PROCESS_DEFINITION);
         // restrict to invoice process definition only
-        accountingReadProcessDefinition.setResourceId("invoice");
-        authorizationService.saveAuthorization(accountingReadProcessDefinition);
+        applicationEvaluationReadProcessDefinition.setResourceId("invoice");
+        authorizationService.saveAuthorization(applicationEvaluationReadProcessDefinition);
 
         Authorization managementTasklistAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
         managementTasklistAuth.setGroupId("management");
@@ -235,14 +230,14 @@ public class DemoDataGenerator {
         authorizationService.saveAuthorization(manPeterAuth);
 
         Authorization accDemoAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
-        accDemoAuth.setGroupId("accounting");
+        accDemoAuth.setGroupId("applicationEvaluation");
         accDemoAuth.setResource(USER);
         accDemoAuth.setResourceId("nemo");
         accDemoAuth.addPermission(READ);
         authorizationService.saveAuthorization(accDemoAuth);
 
         Authorization accMaryAuth = authorizationService.createNewAuthorization(AUTH_TYPE_GRANT);
-        accMaryAuth.setGroupId("accounting");
+        accMaryAuth.setGroupId("applicationEvaluation");
         accMaryAuth.setResource(USER);
         accMaryAuth.setResourceId("mary");
         accMaryAuth.addPermission(READ);
@@ -294,18 +289,18 @@ public class DemoDataGenerator {
         // management filter
 
         filterProperties.clear();
-        filterProperties.put("description", "Tasks for Group Accounting");
+        filterProperties.put("description", "Tasks for Group applicationEvaluation");
         filterProperties.put("priority", -3);
         addVariables(filterProperties);
-        query = taskService.createTaskQuery().taskCandidateGroupIn(Arrays.asList("accounting")).taskUnassigned();
-        Filter candidateGroupTasksFilter = filterService.newTaskFilter().setName("Accounting").setProperties(filterProperties).setOwner("nemo").setQuery(query);
+        query = taskService.createTaskQuery().taskCandidateGroupIn(Arrays.asList("applicationEvaluation")).taskUnassigned();
+        Filter candidateGroupTasksFilter = filterService.newTaskFilter().setName("applicationEvaluation").setProperties(filterProperties).setOwner("nemo").setQuery(query);
         filterService.saveFilter(candidateGroupTasksFilter);
 
         Authorization managementGroupFilterRead = authorizationService.createNewAuthorization(Authorization.AUTH_TYPE_GRANT);
         managementGroupFilterRead.setResource(FILTER);
         managementGroupFilterRead.setResourceId(candidateGroupTasksFilter.getId());
         managementGroupFilterRead.addPermission(READ);
-        managementGroupFilterRead.setGroupId("accounting");
+        managementGroupFilterRead.setGroupId("applicationEvaluation");
         authorizationService.saveAuthorization(managementGroupFilterRead);
 
         // john's tasks
