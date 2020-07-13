@@ -361,7 +361,7 @@
       <outgoing>sid-9EA1DAA7-0674-4034-8781-3464A54B3013</outgoing>
       <messageEventDefinition id="sid-3d077e23-a8ce-4031-abba-b86b365799d7" messageRef="Message_14lnuod" />
     </startEvent>
-    <userTask id="sid-1FD8BCF3-9D04-4BA4-B9CF-E75E5A7774BB" name="Clarify job opening information">
+    <userTask id="sid-1FD8BCF3-9D04-4BA4-B9CF-E75E5A7774BB" name="Clarify job opening information" camunda:candidateGroups="management">
       <extensionElements>
         <camunda:formData>
           <camunda:formField id="jobTitle" label="Job Title" type="string" defaultValue="${jobTitle}" />
@@ -802,7 +802,7 @@
       <outgoing>Flow_1yjvo60</outgoing>
       <messageEventDefinition id="MessageEventDefinition_1mhjh6r" messageRef="Message_0ca8b3x" />
     </intermediateCatchEvent>
-    <userTask id="sid-13E49214-4737-4900-8B19-27907B038A06" name="create job profile" camunda:asyncAfter="true" implementation="##WebService">
+    <userTask id="sid-13E49214-4737-4900-8B19-27907B038A06" name="create job profile" camunda:asyncAfter="true" implementation="##WebService" camunda:candidateGroups="publishing">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
@@ -1017,7 +1017,7 @@
       <outgoing>sid-06352C00-E179-4BD1-A42C-BC4E2496FAEC</outgoing>
       <outgoing>sid-8DC9B279-F8B0-4C91-8F0E-BCFAFADDCFC2</outgoing>
     </exclusiveGateway>
-    <userTask id="sid-BA44DA97-9017-4629-82C1-5AFE0D419A29" name="evaluate CV" implementation="##WebService">
+    <userTask id="sid-BA44DA97-9017-4629-82C1-5AFE0D419A29" name="evaluate CV" implementation="##WebService" camunda:candidateGroups="applicationEvaluation">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
@@ -1048,7 +1048,7 @@
       <outgoing>sid-7192A392-2690-489E-A6DE-D2986D12DDB6</outgoing>
       <multiInstanceLoopCharacteristics camunda:collection="${collectedApplications.prop(&#34;applications&#34;).elements()}" camunda:elementVariable="applicationelem" />
     </userTask>
-    <userTask id="sid-B11765A0-D66B-4C18-801A-C08847CFC1D8" name="do background check">
+    <userTask id="sid-B11765A0-D66B-4C18-801A-C08847CFC1D8" name="do background check" camunda:candidateGroups="applicationEvaluation">
       <extensionElements>
         <camunda:formData>
           <camunda:formField id="backgroundrating" label="Rate from 1-3" type="string">
